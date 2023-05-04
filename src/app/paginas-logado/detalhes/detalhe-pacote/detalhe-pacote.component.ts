@@ -20,7 +20,6 @@ export class DetalhePacoteComponent implements OnInit{
     private auth: AuthService,
     private route: ActivatedRoute,
     private pacoteService: PacoteService,
-    private alerts: AlertsService
   ){}
 
   ngOnInit() {
@@ -33,7 +32,6 @@ export class DetalhePacoteComponent implements OnInit{
 
     //forçando altenticação
     this.auth.refreshToken();
-
 
     let id = this.route.snapshot.params['id'];
     this.findByIdPacote(id);  

@@ -42,6 +42,7 @@ import { EditReforcoComponent } from './paginas-logado/editar/edit-reforco/edit-
 import { DetalhePacoteComponent } from './paginas-logado/detalhes/detalhe-pacote/detalhe-pacote.component';
 import { DetalheCriancaComponent } from './paginas-logado/detalhes/detalhe-crianca/detalhe-crianca.component';
 import { DetalheReforcoComponent } from './paginas-logado/detalhes/detalhe-reforco/detalhe-reforco.component';
+import { EditCriancaComponent } from './paginas-logado/editar/edit-crianca/edit-crianca.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -91,7 +92,8 @@ export const customCurrencyMaskConfig = {
     EditReforcoComponent,
     DetalhePacoteComponent,
     DetalheCriancaComponent,
-    DetalheReforcoComponent
+    DetalheReforcoComponent,
+    EditCriancaComponent
   ],
   imports: [
     BrowserModule,

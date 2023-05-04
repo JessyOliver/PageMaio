@@ -1,0 +1,280 @@
+.tab-content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2D2182;
+}
+
+.tab-pane {
+    position: relative;
+    top: auto;
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 9%;
+    padding: 10px;
+    background: #fff;
+    border: 2px solid #2D2182;
+    border-radius: 5px 30px 5px 82px;
+}
+
+.buscar-edit {
+    position: relative;
+    width: auto;
+    margin: 2%;
+  //  background: indianred;
+}
+
+.input-busca {
+    background: transparent;
+    border: 1px solid #2D2182;
+    color: #2D2182;
+    font-weight: 600;
+    font-size: 12pt;
+}
+
+.container-principal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-banco {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_camp_top {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.text_edit_title_top {
+    color: #2D2182;
+    padding: 2px;
+    margin: 1px;
+    font-size: 36pt;
+}
+
+.icon_edit_top {
+    color: #2D2182;
+    padding: 5px;
+    font-size: 32pt;
+}
+
+.container-respo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  //  margin: 5%;
+    padding: 15px;
+   // border: 1px solid #2D2182;
+    background: #c896ff;
+    border-radius: 15px;
+}
+
+.container-info {
+    padding: 1px;
+    width: 100%; 
+ //   height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+ //   background: wheat;    
+}
+
+.elemento-info {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    margin: 5px;
+ //   background: aqua;
+}
+
+.titulo-edit {
+    margin: 5px;
+    padding: 2px;
+    color: #2D2182;
+    font-weight: 500; 
+    font-size: 12pt;
+}
+
+.info-edit {
+    margin: 5px;
+    padding: 3px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 12pt;
+}
+
+.container-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 100%; 
+    height: auto;   
+ //   background: rgb(111, 78, 18);  
+}
+
+.botao-cad {
+    width: auto;
+    margin: 2px;
+    text-align: center;
+    color: #ffffff;
+    border: 2px #2D2182 solid;
+    background-color: #2D2182;
+    font-weight: 500;
+}
+  
+.botao-cad:hover {
+    color: #fff;
+    background: #2c218249;
+}
+
+.botao-cancel {
+    width: auto;
+    margin: 2px;
+    text-align: center;
+    color: #ffffff;
+    border: 2px #025e44 solid;
+    background-color: #025e44;
+    font-weight: 500;
+}
+
+.botao-cancel:hover {
+    background-color: transparent;
+    color: #025e44;
+    background-color: #025e445a;
+}
+
+.title-camp {
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    padding: 5px;
+}
+
+.title-icon-ali {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-edit-title {
+    color: #2D2182;
+    padding: 2px;
+    margin: 1px;
+}
+
+.icon-edit-camp {
+    color: #2D2182;
+    padding: 5px;
+    margin: 3px;
+    margin-top: 2px;
+    font-size: 14pt;
+}
+
+.icon-edit {
+    padding: 5px;
+    font-size: 20pt;
+}
+
+.text-edit-title-not {
+    padding: 2px;
+    color: #bb2d3b;
+}
+
+.icon-edit-not {
+    color: #bb2d3b;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.elemento-info {
+    margin-left: 10px;
+}
+
+@media (max-width:920px) {
+
+    .tab-pane {
+        width: 110%;
+        padding: 10%;
+        margin: 35%;
+    }
+
+    .container-principal {
+        width: 100%;
+    }
+
+    .container-respo {
+        width: 100%;
+        margin: 10%;
+    }
+
+    .elemento_info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .text-edit-title-not {
+        border: 1px #bb2d3b solid;
+        border-radius: 5px;
+        padding: 8px;
+        font-size: 10pt;
+    }
+    
+    .icon-edit-not {
+        display: none;
+    }
+
+    .container-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        width: 80%;
+    }
+    
+    .botao-cancel,
+    .botao-cad {
+        margin: 2px;
+        font-size: 8.2px;
+    }
+    
+    .bt-duplo-small {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text-edit-title {
+        font-size: 9pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    .icon-edit {
+        font-size: 9pt;
+    }
+
+}

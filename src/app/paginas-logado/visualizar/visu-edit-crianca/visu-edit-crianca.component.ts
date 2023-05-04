@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Crianca } from 'src/app/model/Crianca';
+import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CriancaService } from 'src/app/service/crianca.service';
 import { environment } from 'src/environments/environment.prod';
@@ -12,15 +13,17 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class VisuEditCriancaComponent implements OnInit{
 
-  
   listCrianca!: Crianca[];
 
   criancaNome!: string;
 
+  idCrianca!: number;
+
   constructor(
     private router: Router,
     private auth: AuthService,
-    private criancaService: CriancaService
+    private criancaService: CriancaService,
+    private alerts: AlertsService
   ){}
 
   ngOnInit() {
@@ -37,6 +40,12 @@ export class VisuEditCriancaComponent implements OnInit{
     this.findAllCrianca();
     this.findByNomeCrianca();
 
+  }
+
+  calcularIdade(dataNascimento: Date): number {
+    const diffInMs = Date.now() - new Date(dataNascimento).getTime();
+    const ageDate = new Date(diffInMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
   findAllCrianca() {
@@ -63,6 +72,22 @@ export class VisuEditCriancaComponent implements OnInit{
       });
     }
 
+  }
+
+  getId(id: number) {
+    this.idCrianca = id;
+  }
+
+  deletarCrianca() {
+
+    this.criancaService
+    .deleteCrianca(this.idCrianca)
+    .subscribe(() =>{
+
+      this.router.navigate(["/visueditcrianca"]);
+      this.alerts.showAlertInfo("Criança apagada com sucesso.");
+      this.findAllCrianca();
+    });
   }
 
 }

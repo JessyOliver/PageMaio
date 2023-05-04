@@ -78,8 +78,7 @@ export class VisualizarPacoteComponent implements OnInit{
   getId(id: number) {
     this.idPacote = id;
   }
-  
-  
+    
   deletarPacote() {
 
     this.pacoteService
