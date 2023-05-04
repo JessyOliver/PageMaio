@@ -1,0 +1,61 @@
+<nav class="navbar-home">
+  <!-- LOGO -->
+  <div class="logo">Turminha Feliz</div>
+  <!-- NAVEGAÇÃO MENU -->
+  <ul class="nav-ul-edit">
+    <!-- CHECKBOX HACK -->
+     <!-- <input type="checkbox" id="checkbox_toggle" /> -->
+     <label for="checkbox_toggle" class="navbar-btn-hamburger">
+      <i class="fa-solid fa-bars" id="burgerIcon"></i>
+      <i class="fa-solid fa-rectangle-xmark close-icon" id="closeIcon"></i>
+    </label>
+
+    <!-- teste fechar -->
+  <!--   <button type="button" (click)="closeMenu()" >
+      <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+      <i class="fa-solid fa-rectangle-xmark" id="close-icon"></i>
+    </button> -->
+    <!-- fim teste -->
+
+
+    <!-- NAVEGAÇÃO MENUS -->
+    <div class="menu" id="menu">
+      <a routerLink="/home" routerLinkActive="active" class="menuBtn1">
+        <li class="nav-li-edit">
+          <i class="fa-solid fa-house nav-menu-icons"></i>
+          <span class="nav-a-edit"> Home </span>
+        </li>
+      </a>
+      <a  href="#" routerLinkActive="active" class="menuBtn2">
+        <li class="nav-li-edit">
+          <i class="fa-solid fa-hands-holding-child nav-menu-icons"></i>
+          <span class="nav-a-edit"> Serviços </span>
+        </li>
+      </a>
+      <a  href="#" routerLinkActive="active" class="menuBtn3">
+        <li class="nav-li-edit">
+          <i class="fa-solid fa-images nav-menu-icons"></i>
+          <span class="nav-a-edit"> Galeria </span>
+        </li>
+      </a>
+      <a  href="#" routerLinkActive="active" class="menuBtn4">
+        <li class="nav-li-edit">
+          <i class="fa-solid fa-hand-holding-dollar nav-menu-icons"></i>
+          <span class="nav-a-edit"> Preços </span>
+        </li>
+      </a>
+      <a  href="#" routerLinkActive="active" class="menuBtn5">
+        <li class="nav-li-edit">
+          <i class="fa-solid fa-circle-exclamation nav-menu-icons"></i>
+          <span class="nav-a-edit"> Sobre </span>
+        </li>
+      </a>
+      <a routerLink="/login" routerLinkActive="active" class="menuBtn6">
+        <li class="nav-li-edit">
+          <i class="fa-solid fa-right-to-bracket nav-menu-icons"></i>
+          <span class="nav-a-edit"> Login </span>
+        </li>
+      </a>
+    </div>
+  </ul>
+</nav>

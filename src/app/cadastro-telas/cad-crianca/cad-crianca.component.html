@@ -1,0 +1,391 @@
+<div class="container-cad">
+  <div class="container-fluid">
+    <div class="container-fluid" id='topo'>
+        <div class="row justify-content-center">
+            <div class="col-md-6 mt-5 mb-5 justificar">
+                <div class="row d-flex justify-content-center">
+
+                    <div class="col-md-10 caixa shadow-sm p-2">
+                      <!-- <div class="title-caixa">
+                        <h2>CADASTRAR CRIANÇA</h2>
+                      </div> -->
+
+                      <div class="d-flex justify-content-center m-0 p-0">
+                        <div class="title-camp">
+                          <hr>
+                          <div class="title-icon-ali">
+                            <h2 class="text-edit-title">CADASTRAR CRIANÇA</h2>
+                            <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>                            </div>
+                          <hr>
+                        </div>
+                      </div>
+
+                      <form class="margin-dentro" [formGroup]="formulario">
+
+                        <div class="campo-nome mb-3 p-3">
+                          <div class="input-box">
+                            <div class="form-group campo">
+                                <input [(ngModel)]="cadCrianca.nome" class="form-control w-75" type="text" formControlName="nome" id="nome" required />
+                                <label class="label-edit" for="nome">Nome*</label>
+                            </div>
+
+                            <div class="mensagem-input-error">
+                              <div class="balao cax-position" *ngIf="(formulario.get('nome')?.errors?.['required'] ||
+                                   formulario.get('nome')?.errors?.['pattern']) &&
+                                   formulario.get('nome')?.touched">
+                                <span class="m-lg-2">
+                                  Preenchimento obrigatório, somente letras!
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-around bg-color">
+
+                          <div class="input-box m-lg-1">
+                            <div class="form-group">
+                                <label class="label-color" for="dataNasc">Data de Nascimento*</label>
+  <!--                          <input [(ngModel)]="cadCrianca.dataNascimento" class="form-control texto-color" type="date" name="dataNasc" id="dataNasc" required />
+  -->                           <input class="form-control texto-color p-2" type="date" formControlName="dataNasc" id="dataNasc" (change)="dataConvert($event)" required />
+                            </div>
+
+                            <div class="mensagem-input-error">
+                              <div class="balao balao-small cax-position w-100" *ngIf="(
+                                   formulario.get('dataNasc')?.errors?.['required'] ||
+                                   formulario.get('dataNasc')?.errors?.['overage']) &&
+                                   formulario.get('dataNasc')?.touched">
+                                <span class="m-lg-2">
+                                  Preenchimento obrigatório e a criança não pode ter mais de 12 anos!
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="input-box m-0">
+                            <div class="form-group">
+                              <label class="label-color" for="tipoGen">Gênero*</label>
+                              <select class="form-control texto-color" formControlName="tipoGen" id="tipoGen" (change)='genero($event)' required>
+                                <option disabled selected value="">Selecione Gênero:</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="Masculino">Masculino</option>
+                              </select>
+                            </div>
+
+                            <div class="mensagem-input-error">
+                              <div class="balao balao-small cax-position w-100" *ngIf="formulario.get('tipoGen')?.errors?.['required'] && formulario.get('tipoGen')?.touched">
+                                <span class="m-lg-2">
+                                  Escolha obrigatória!
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                          <div class="title-camp">
+                            <hr>
+                            <div class="title-icon-ali">
+                              <h6 class="text-edit-title">SAÚDE DA CRIANÇA*</h6>
+                              <i class="fas fa-file-medical"></i>
+                            </div>
+                            <hr>
+                          </div>
+                        </div>
+                                              
+                      <div class="d-flex justify-content-around">
+
+                          <div class="d-block justify-content-around">
+                            
+                            <div class="input-box-radio w-100">
+                              <div class="form-group ">
+                                <label class="titulo-radio" for="problemaSaude">Algum problema de saúde? *</label>
+                                                              
+                                <div class="d-flex justify-content-between caixa-radio">
+                                  
+                                  <div class="radio-edit">
+                                    <input type="radio" id="problemaSaude" formControlName="problemaSaude" value="true" (change)='opSaudeT($event)' required>
+                                    <label class="campo-radio m-lg-2" for="problemaSaude">Sim</label>
+                                  </div>
+                                  
+                                  <div class="radio-edit">
+                                    <input type="radio" id="problemaSaude" formControlName="problemaSaude" value="false" (change)='opSaudeT($event)' required>
+                                    <label class="campo-radio m-lg-2" for="problemaSaude">Não</label>
+                                  </div>
+                      
+                                </div>
+                               <!--  <div class="mensagem-input-error">
+                                  <div class="balao cax-position" *ngIf="
+                                      formulario.get('problemaSaude')?.errors?.['required'] && 
+                                      formulario.get('problemaSaude')?.touched">
+                                    <span class="m-lg-2">
+                                      Seleção Obrigatória!
+                                    </span>
+                                  </div>
+                                </div> -->
+                              </div>
+                            </div>
+                      
+                            <div class="input-box input-box-small" *ngIf="formulario.get('problemaSaude')?.value === 'true'">
+                             
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadCrianca.tipoProblemaSaude" class="form-control w-100" type="text" 
+                                    formControlName="tipoProblemaSaude" id="tipoProblemaSaude" 
+                                     required
+                                  />
+                                  <label class="label-edit" for="tipoProblemaSaude">Qual o problema de saúde? *</label>
+                              </div>
+                      
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position balao-small w-100" *ngIf="
+                                    formulario.get('problemaSaude')?.value === 'true' &&
+                                    formulario.get('tipoProblemaSaude')?.touched"
+                                >
+                                  <span class="m-lg-2">
+                                    Preenchimento Obrigatório!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                      
+                          </div>
+                          
+                          <div class="d-block justify-content-around">
+                      
+                            <div class="input-box-radio w-100">
+                              <div class="form-group">
+                                  <label class="titulo-radio" for="algumaAlergia">Tem alguma alergia? *</label>
+                      
+                                  <div class="d-flex justify-content-between caixa-radio">
+                      
+                                    <div class="radio-edit">
+                                      <input type="radio" id="algumaAlergia" formControlName="algumaAlergia" value="true" (change)='opSaudA($event)' required>
+                                      <label class="campo-radio m-lg-2" for="algumaAlergia">Sim</label>
+                                    </div>
+                                    
+                                    <div class="radio-edit">
+                                      <input type="radio" id="algumaAlergia" formControlName="algumaAlergia" value="false" (change)='opSaudA($event)' required>
+                                      <label class="campo-radio m-lg-2" for="algumaAlergia">Não</label>
+                                    </div>
+                      
+                                  </div>
+                              </div>
+                      
+                      <!--                             <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="formulario.get('algumaAlergia')?.errors?.['required']  &&
+                                  formulario.get('algumaAlergia')?.touched">
+                                  <span class="m-lg-2">
+                                    Selecionar é obrigatório!
+                                  </span>
+                                </div>
+                              </div> -->
+                      
+                            </div>
+                      
+                            <div class="input-box" *ngIf="formulario.get('algumaAlergia')?.value === 'true'">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadCrianca.tipoAlergia" class="form-control w-75" type="text" formControlName="tipoAlergia" id="tipoAlergia" required/>
+                                  <label class="label-edit" for="tipoAlergia">Qual tipo de alergia? *</label>
+                              </div>
+                      
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position balao-small w-100" *ngIf="
+                                  formulario.get('algumaAlergia')?.value === 'true' &&
+                                  formulario.get('tipoAlergia')?.touched"
+                                >
+                                  <span class="m-lg-2">
+                                    Preenchimento Obrigatório!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                      
+                          </div>
+                      </div>
+
+                        <div class="d-flex justify-content-around">
+
+                          <div class="d-block justify-content-around">
+  
+                            <div class="input-box-radio w-100">
+                              <div class="form-group">
+                                  <label class="titulo-radio" for="usoMedicamento">Faz uso de medicamentos? *</label>
+  
+                                  <div class="d-flex justify-content-between caixa-radio">
+  
+                                    <div class="radio-edit">
+                                      <input type="radio" id="usoMedicamento" formControlName="usoMedicamento" value="true" (change)='opSaudM($event)' required>
+                                      <label class="campo-radio m-lg-2" for="usoMedicamento">Sim</label>
+                                    </div>
+                                    
+                                    <div class="radio-edit">
+                                      <input type="radio" id="usoMedicamento" formControlName="usoMedicamento" value="false" (change)='opSaudM($event)' required>
+                                      <label class="campo-radio m-lg-2" for="usoMedicamento">Não</label>
+                                    </div>
+    
+                                  </div>
+                              </div>
+  
+                             <!--  <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="formulario.get('usoMedicamento')?.errors?.['required']  &&
+                                  formulario.get('usoMedicamento')?.touched">
+                                  <span class="m-lg-2">
+                                    Selecionar é obrigatório!
+                                  </span>
+                                </div>
+                              </div> -->
+  
+                            </div>
+  
+                            <div class="input-box" *ngIf="formulario.get('usoMedicamento')?.value === 'true'">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadCrianca.qualMedicamento" class="form-control w-75" type="text" 
+                                    formControlName="qualMedicamento" id="qualMedicamento" required/>
+                                  <label class="label-edit" for="qualMedicamento">Quais medicamentos? *</label>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position balao-small w-100" *ngIf="
+                                  formulario.get('usoMedicamento')?.value === 'true' &&
+                                  formulario.get('qualMedicamento')?.touched">
+                                  <span class="m-lg-2">
+                                    Preenchimento Obrigatório!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+  
+                          </div>
+
+                          <div class="d-block justify-content-around">
+  
+                            <div class="input-box-radio w-100">
+                              <div class="form-group">
+                                  <label class="titulo-radio" for="necessidadesEspeciais">Tem necessidades especiais? *</label>
+  
+                                  <div class="d-flex justify-content-between caixa-radio">
+  
+                                    <div class="radio-edit">
+                                      <input type="radio" id="necessidadesEspeciais" formControlName="necessidadesEspeciais" value="true" (change)='opSaudNE($event)' required>
+                                      <label class="campo-radio m-lg-2" for="necessidadesEspeciais">Sim</label>
+                                    </div>
+                                    
+                                    <div class="radio-edit">
+                                      <input type="radio" id="necessidadesEspeciais" formControlName="necessidadesEspeciais" value="false" (change)='opSaudNE($event)' required>
+                                      <label class="campo-radio m-lg-2" for="necessidadesEspeciais">Não</label>
+                                    </div>
+    
+                                  </div>
+                              </div>
+  
+                             <!--  <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="formulario.get('necessidadesEspeciais')?.errors?.['required']  &&
+                                  formulario.get('necessidadesEspeciais')?.touched">
+                                  <span class="m-lg-2">
+                                    Selecionar é obrigatório!
+                                  </span>
+                                </div>
+                              </div> -->
+  
+                            </div>
+  
+                            <div class="input-box" *ngIf="formulario.get('necessidadesEspeciais')?.value === 'true'">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadCrianca.tipoNecessidadesEspeciais" class="form-control w-75" type="text" 
+                                    formControlName="tipoNecessidadesEspeciais" id="tipoNecessidadesEspeciais" required/>
+                                  <label class="label-edit" for="tipoNecessidadesEspeciais">Quais necessidades especiais? *</label>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position balao-small w-100" *ngIf="
+                                  formulario.get('necessidadesEspeciais')?.value === 'true' &&
+                                  formulario.get('tipoNecessidadesEspeciais')?.touched">
+                                  <span class="m-lg-2">
+                                    Preenchimento Obrigatório!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+  
+                          </div>
+                          
+                        </div>
+
+                        <div class="d-flex justify-content-around">
+                          <div class="title-camp">
+                            <hr>
+                            <div class="title-icon-ali">
+                              <h6 class="text-edit-title">TERMO DE ACEITE *</h6>
+                              <i class="fas fa-file-signature"></i>
+                            </div>
+                            <hr>
+                          </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                          <div class="input-box m-0">
+                            <div class="form-group">
+                              <div class="radio-edit-termo">
+                                <input [(ngModel)]="cadCrianca.termoAceite" type="radio" formControlName="termoAceite" id="termoAceite" value="true" (change)='termoAceiteOk($event)' required />
+                                <label class="campo-radio edit-termo m-lg-2 p-1" for="termoAceite">
+                                  Não coletamos dados de crianças menores de 18 anos sem consentimento verificável de seus pais ou responsáveis legais.
+                                   Caso forneça informações sobre uma criança, elas serão utilizadas apenas para fins específicos e protegidas por 
+                                   nossas práticas de segurança de dados. Ao clicar em "Aceitar", você concorda com nossa política.
+                                </label>
+                              </div>
+                            </div>
+
+                            <div class="mensagem-input-error">
+                              <div class="balao cax-position w-75 balao-small" *ngIf="
+                                  formulario.get('termoAceite')?.errors?.['required'] &&
+                                  formulario.get('termoAceite')?.touched">
+                                <span class="m-lg-2">
+                                  Seleção obrigatório para finalizar o cadastro!
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                      <div class="d-block justify-content-center" *ngIf="formulario.get('termoAceite')?.value === 'true'">
+                        <div class="input-box">
+                          <div class="form-group texto-color">
+                            <label for="tipoPacote" class="label-edit-tp">Pacotes:*</label>
+                              <select class="form-control form-select w-75 p-2" formControlName="tipoPacote" id="tipoPacote" [(ngModel)]="idPacotePg" (change)='findByAllPacote()'>
+                                <option disabled selected value="">Selecione o nome do pacote:</option>
+                                <option *ngFor="let pacotes of listerPacote" value="{{pacotes.id}}" >{{pacotes.tipoPacote}} : R$ {{pacotes.valorPacote}}</option>
+                              </select>
+                          </div>
+
+                          <div class="mensagem-input-error">
+                            <div class="balao cax-position w-50" *ngIf="formulario.get('tipoPacote')?.errors?.['required'] &&
+                                formulario.get('tipoPacote')?.touched">
+                              <span class="m-lg-2">
+                                Seleção obrigatória!
+                              </span>
+                            </div>
+                          </div>
+                      </div>
+
+                      </div>
+
+                      <div class="d-flex justify-content-around m-4">
+                        <button type="submit" class="btn botao-cad m-auto" (click)="cadastrar()" [disabled]="!formulario.valid">
+                          CADASTRAR
+                        </button>
+                        <button type="submit" class="btn botao-cancel m-auto" routerLink="/visuresponsavel">
+                          CANCELAR
+                        </button>
+                      </div>
+
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

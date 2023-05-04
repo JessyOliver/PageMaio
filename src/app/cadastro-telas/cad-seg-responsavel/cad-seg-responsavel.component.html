@@ -1,0 +1,222 @@
+<div class="container-cad">
+    <div class="container-fluid">
+      <div class="container-fluid" id='topo'>
+          <div class="row justify-content-center">
+              <div class="col-md-6 mt-5 mb-5 justificar">
+                  <div class="row d-flex justify-content-center">
+  
+                      <div class="col-md-10 caixa shadow-sm p-2">
+                        <!-- <div class="title-caixa">
+                          <h2>CADASTRAR 2° RESPONSÁVEL</h2>
+                        </div> -->
+
+                        <div class="d-flex justify-content-center m-0 p-0">
+                          <div class="title-camp">
+                            <hr>
+                            <div class="title-icon-ali">
+                              <h2 class="text-edit-title">CADASTRAR 2° RESPONSÁVEL</h2>
+                              <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>                            </div>
+                            <hr>
+                          </div>
+                        </div>
+                        
+                        <form class="margin-dentro" [formGroup]="formulario">
+  
+                          <div class="d-flex justify-content-between">
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadSegResponsavel.nome" class="form-control w-100" type="text" formControlName="nome" id="nome" required />
+                                  <label class="label-edit" for="nome">Nome*</label>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="(formulario.get('nome')?.errors?.['required'] ||
+                                     formulario.get('nome')?.errors?.['pattern'])
+                                  && formulario.get('nome')?.touched">
+                                  <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente letras!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+  
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadSegResponsavel.cpf" class="form-control" type="text" formControlName="cpf" id="cpf" required />
+                                  <label class="label-edit" for="cpf">CPF*</label>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="(formulario.get('cpf')?.errors?.['required'] ||
+                                    formulario.get('cpf')?.errors?.['maxlength'] ||
+                                    formulario.get('cpf')?.errors?.['minlength'] ||
+                                    formulario.get('cpf')?.errors?.['pattern']) &&
+                                    formulario.get('cpf')?.touched">
+                                  <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente números e no máximo 11!
+                                  </span>
+                                </div>
+                                <div class="balao cax-position" *ngIf="(formulario.get('cpf')?.errors?.['ValidaCpf']) && formulario.get('cpf')?.touched">
+                                  <span class="m-lg-2">
+                                    CPF Inválido!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+  
+                          </div>
+  
+                          <div class="d-flex justify-content-between">
+  
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group">
+                                  <label class="label-color" for="dataNasc">Data de Nascimento*</label>
+    <!--                          <input [(ngModel)]="cadSegResponsavel.dataNascimento" class="form-control texto-color" type="date" name="dataNasc" id="dataNasc" required />
+    -->                           <input class="form-control texto-color" type="date" formControlName="dataNasc" id="dataNasc" (change)="dataConvert($event)" required />
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="(
+                                     formulario.get('dataNasc')?.errors?.['required'] ||
+                                     formulario.get('dataNasc')?.errors?.['menorDeIdade']) &&
+                                     formulario.get('dataNasc')?.touched">
+                                  <span class="m-lg-2">
+                                    Preenchimento obrigatório, não pode ser menor de idade!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+  
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group">
+                                  <label class="label-color" for="tipoGen">Gênero*</label>
+                                  <select class="form-control texto-color" formControlName="tipoGen" id="tipoGen" (change)='genero($event)' required>
+                                    <option disabled selected value="">Selecione Gênero:</option> 
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="outros">Outros(Trans, não-binário)</option>
+                                </select>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="formulario.get('tipoGen')?.errors?.['required'] && formulario.get('tipoGen')?.touched">
+                                  <span class="m-lg-2">
+                                    Escolha obrigatória!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="d-flex justify-content-between m-0 p-0">
+
+                            <div class="input-box m-0 p-0">
+                                <div class="form-group campo ">
+                                    <input [(ngModel)]="cadSegResponsavel.parentesco" class="form-control w-100" type="text" 
+                                        formControlName="parentesco" id="parentesco" required />
+                                    <label class="label-edit" for="parentesco">Parentesco*</label>
+                                </div>
+    
+                                <div class="mensagem-input-error">
+                                  <div class="balao cax-position" *ngIf="(formulario.get('parentesco')?.errors?.['required'] ||
+                                       formulario.get('parentesco')?.errors?.['pattern']) &&
+                                       formulario.get('parentesco')?.touched">
+                                    <span class="m-lg-2">
+                                      Preenchimento obrigatório, somente letras!
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                          <div class="d-flex justify-content-center m-0 p-0">
+                            <div class="title-camp">
+                              <hr>
+                              <div class="title-icon-ali">
+                                <h6 class="text-edit-title">TELEFONES PARA CONTATO*</h6>
+                                <i class="fas fa-phone-square icon-edit"></i>
+                              </div>
+                              <hr>
+                            </div>
+                          </div>
+  
+                          <div class="d-flex justify-content-around m-0 p-0">
+  
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadSegResponsavel.celular" class="form-control" type="text" formControlName="celular" id="celular"/>
+                                  <label class="label-edit" for="celular">Celular*</label>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="(formulario.get('celular')?.errors?.['required'] ||
+                                  formulario.get('celular')?.errors?.['maxlength'] ||
+                                  formulario.get('celular')?.errors?.['minlength'] ||
+                                  formulario.get('celular')?.errors?.['pattern'])  &&
+                                  formulario.get('celular')?.touched">
+                                  <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente números e no máximo 11!
+                                  </span>
+                                </div>
+                              </div>
+  
+                            </div>
+  
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadSegResponsavel.telefone" class="form-control" type="text" formControlName="telResidencial" id="telResidencial"/>
+                                  <label class="label-edit" for="telResidencial">Residencial</label>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="(
+                                    formulario.get('telResidencial')?.errors?.['maxlength'] ||
+                                    formulario.get('telResidencial')?.errors?.['minlength'] ||
+                                    formulario.get('telResidencial')?.errors?.['pattern']) &&
+                                    formulario.get('telResidencial')?.touched">
+                                  <span class="m-lg-2">
+                                    Somente números e com 10 números!
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+  
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadSegResponsavel.telefoneComercial" class="form-control" type="text" formControlName="telComercial" id="telComercial"/>
+                                  <label class="label-edit" for="telComercial">Comercial</label>
+                              </div>
+  
+                              <div class="mensagem-input-error">
+                                <div class="balao cax-position" *ngIf="(
+                                    formulario.get('telComercial')?.errors?.['maxlength'] ||
+                                    formulario.get('telComercial')?.errors?.['minlength'] ||
+                                    formulario.get('telComercial')?.errors?.['pattern']) &&
+                                    formulario.get('telComercial')?.touched">
+                                  <span class="m-lg-2">
+                                    Somente números e com 11 números!
+                                  </span>
+                                </div>
+                              </div>
+  
+                            </div>
+                          </div>
+                          
+                        <div class="d-flex justify-content-around m-2">
+                          <button type="submit" class="btn botao-cad m-auto" (click)="cadastrarSegunRes()" [disabled]="!formulario.valid">
+                            CADASTRAR
+                          </button>
+                          <button type="submit" class="btn botao-cancel m-auto" routerLink="/visuresponsavel">
+                              CANCELAR
+                          </button>
+                        </div>
+  
+                        </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>

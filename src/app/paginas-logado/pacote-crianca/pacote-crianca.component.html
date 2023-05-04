@@ -1,0 +1,11 @@
+<div class="pacotecrianca">
+    <div class="input-box m-lg-1">
+        <div class="form-group">
+            <label class="label-color" for="dataNasc">Data de Nascimento*</label>
+<!--                          <input [(ngModel)]="cadCrianca.dataNascimento" class="form-control texto-color" type="date" name="dataNasc" id="dataNasc" required />
+-->                           <input class="form-control texto-color p-2" type="date" formControlName="dataNasc" id="dataNasc" (change)="dataConvert($event)" required />
+        </div>
+
+      </div>
+      
+</div>

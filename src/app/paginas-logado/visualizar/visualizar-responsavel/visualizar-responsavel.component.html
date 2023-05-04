@@ -1,0 +1,196 @@
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active " id="pills-todos"
+    role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+    
+    <div class="d-flex justify-content-center">
+        
+        <div class="form-group buscar-edit">
+            <input type="text" class="form-control input-busca" id="titulo" 
+            placeholder="🔍 buscar responsável." [(ngModel)]='responsavelNome' 
+            (keyup)='findByNomeResponsavel()'>
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-center m-0 p-0">
+        <div class="title_camp_top">
+          <hr>
+          <div class="title-icon-ali">
+            <h2 class="text_edit_title_top">RESPONSÁVEIS</h2>
+            <i class="fa fa-users icon_edit_top" aria-hidden="true"></i>
+          </div>
+          <hr>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center m-2 p-0" *ngIf="listResponsavel == null">
+        <div class="title-camp">
+          <div class="title-icon-ali">
+            <h5 class="text-edit-title-not">Não há responsáveis, cadastrados no momento.</h5>
+            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+          </div>
+          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+            VOLTAR
+        </button>
+        </div>
+    </div>
+    
+    <div class="container-principal"> 
+
+        <div class="result-banco">
+
+                <div class="form-group container-respo" *ngFor="let itemResponsavel of listResponsavel | orderBy: ['nome'] "> 
+            
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="title-camp">
+                          <hr>
+                          <div class="title-icon-ali">
+                            <h5 class="text-edit-title">{{itemResponsavel.nome}}</h5>
+                            <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
+                          </div>
+                          <hr>
+                        </div>
+                    </div>
+
+                    <div class="container-info">
+    
+                        <div class="d-flex justify-content-between w-100">    
+            
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Nascido:</p>
+                                <p class="info-edit">{{itemResponsavel.dtNascimento | date:'dd/MM/yyyy'}}</p>
+                            </div>
+    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Genêro:</p>
+                                <p class="info-edit">{{itemResponsavel.genero}}</p>
+                            </div>
+                            
+                            <div class="elemento-info">
+                                <p class="titulo-edit">CPF:</p>
+                                <p class="info-edit">{{itemResponsavel.cpf}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="d-flex justify-content-center w-100">
+                            <div class="title-camp">
+                              <hr>
+                              <div class="title-icon-ali">
+                                <h5 class="text-edit-title">ENDEREÇO</h5>
+                                <i class="fa fa-map-marker icon-edit-camp" aria-hidden="true"></i>
+                              </div>
+                              <hr>
+                            </div>
+                        </div>
+    
+                        <div class="d-flex justify-content-between w-100">   
+    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Rua:</p>
+                                <p class="info-edit">{{itemResponsavel.rua}}</p>
+                            </div>
+                    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">N°:</p>
+                                <p class="info-edit">{{itemResponsavel.numMoradia}}</p>
+                            </div>
+                            
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Complemento:</p>
+                                <p class="info-edit">{{itemResponsavel.complemento}}</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between w-100">
+    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Bairro:</p>
+                                <p class="info-edit">{{itemResponsavel.bairro}}</p>
+                            </div>
+                
+                            <div class="elemento-info">
+                                <p class="titulo-edit">CEP:</p>
+                                <p class="info-edit">{{itemResponsavel.cep}}</p>
+                            </div>
+                
+                        </div>
+    
+                        <div class="d-flex justify-content-between w-100">
+    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Cidade:</p>
+                                <p class="info-edit">{{itemResponsavel.cidade}}</p>
+                            </div>
+    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Estado:</p>
+                                <p class="info-edit">{{itemResponsavel.estado}}</p>
+                            </div>
+                    
+                        </div>
+
+                        <div class="d-flex justify-content-center w-100">
+                            <div class="title-camp">
+                              <hr>
+                              <div class="title-icon-ali">
+                                <h5 class="text-edit-title">CONTATO</h5>
+                                <i class="fa fa-phone icon-edit-camp" aria-hidden="true"></i>
+                              </div>
+                              <hr>
+                            </div>
+                        </div>
+    
+                        <div class="d-flex justify-content-between w-100">
+    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Celular:</p>
+                                <p class="info-edit">{{itemResponsavel.celular}}</p>
+                            </div>
+    
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Telefone:</p>
+                                <p class="info-edit">{{itemResponsavel.telefone}}</p>
+                            </div>
+                            
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Telefone Comercial:</p>
+                                <p class="info-edit">{{itemResponsavel.telefoneComercial}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="title-camp">
+                          <hr>
+                          <div class="title-icon-ali">
+                            <h5 class="text-edit-title">CADASTRAR</h5>
+                            <i class="fa fa-user-plus icon-edit-camp" aria-hidden="true"></i>
+                          </div>
+                          <hr>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+
+                        <button type="submit" class="btn botao-cad bt-small m-1" [routerLink]="['/cadcrianca', itemResponsavel.id ]">
+                            CRIANÇA
+                        </button>    
+    
+                        <button type="submit" class="btn botao-cad bt-small m-1" [routerLink]="['/cadsegresponsavel', itemResponsavel.id]"> 
+                            2° RESPONSÁVEL
+                        </button>
+
+                        <button type="submit" class="btn botao-cancel m-auto" routerLink="/inicio">
+                            INICIO
+                        </button>
+                        
+                    </div>
+    
+                </div>
+            </div>
+
+         </div>        
+
+    </div>
+
+</div> 

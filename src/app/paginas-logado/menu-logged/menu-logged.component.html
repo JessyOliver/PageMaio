@@ -1,0 +1,101 @@
+<nav class="navbar navbar-dark bg-group fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand navbar-title" routerLink="/inicio">Turminha Feliz</a>
+    <p>Olá, {{nomeUser}}!</p>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+      <i class="fa-solid fa-bars icon-color"></i>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-group" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title font-title" id="offcanvasDarkNavbarLabel">Turminha Feliz</h5>
+        <button type="button" class="navbar-toggler" data-bs-dismiss="offcanvas" aria-label="Close">
+          <i class="fa-solid fa-xmark icon-color"></i>
+        </button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" routerLink="/inicio">Home</a> -->
+            <a routerLink="/inicio" routerLinkActive="active" aria-current="page" class="nav-link text-color-group" >
+                <i class="fa-solid fa-house"></i>
+                <span> Inicio </span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf='authService.adm()'>
+            <a class="nav-link text-color-group" routerLinkActive="active" aria-current="page" [routerLink]="['/editproprietario', idUsu]">
+              <i class="fa-solid fa-user"></i>
+              <span> Perfil </span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-color-group dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <i class="fa-solid fa-eye"></i>
+              <span> Visualizar </span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-group">
+              <li class="li-border-group">
+                <a class="dropdown-item text-color-group-dropdown" routerLink="#">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span> Agenda </span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item text-color-group-dropdown" routerLink="#">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span> Pagamentos </span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider bg-white">
+              </li>
+              <li>
+                <a class="dropdown-item text-color-group-dropdown" routerLink="#">
+                  <i class="fa-solid fa-square-poll-vertical"></i>
+                  <span> Relatórios </span>
+                </a
+              ></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" routerLink="#">Perfil</a> -->
+            <a (click)="logOff()" routerLinkActive="active" class="nav-link text-color-group">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span> Sair </span>
+            </a>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2 text-color-group" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- <nav class="navbar-home">
+
+  <div class="logo">Turminha Feliz</div>
+
+  <ul>
+    <a routerLink="/inicio" routerLinkActive="active">
+      <li >
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span> Inicio </span>
+      </li>
+    </a>
+    <a routerLink="/cadresponsavel" routerLinkActive="active">
+      <li >
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span> Cadastro </span>
+      </li>
+    </a>
+    <a (click)="logOff()" routerLinkActive="active" >
+      <li class="nav-li-edit">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span> Sair </span>
+      </li>
+    </a>
+  </ul>
+</nav>
+ -->

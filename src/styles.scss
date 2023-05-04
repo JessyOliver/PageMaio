@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300&family=Pridi:wght@200&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300&family=Pridi:wght@200&family=Trirong&display=swap');
+
+/*
+font-family: 'Kalam', cursive;
+font-family: 'Pridi', serif;
+font-family: 'Trirong', serif;
+*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

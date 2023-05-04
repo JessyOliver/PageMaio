@@ -1,0 +1,46 @@
+.caixa-alert {
+  position: fixed;
+  top: 10%;
+  right: 50px;
+  width: 30%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2D2182;
+  font-weight: 600;
+  background-color: #C896FF;
+  border: 1px solid #8A77E0;
+}
+
+.close {
+  position: relative;
+  top: -12px;
+  left: 29px;
+  border: 0;
+ // color: #2D2182;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.close-edit {
+  font-size: 25px;
+  color: #070232;
+  padding: 1px;
+  text-align: center;
+}
+
+@media (max-width:920px) {
+  .caixa-alert {
+    top: 10%;
+    right: 5%;
+    width: 90%;
+  }
+  
+  .close {
+    position: relative;
+    top: -12px;
+    left: 5px;
+  }
+}

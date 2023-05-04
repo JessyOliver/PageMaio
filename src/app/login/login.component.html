@@ -1,0 +1,47 @@
+<div class="container-login">
+  <div class="img-box">
+      <img src="https://i.imgur.com/XUZYE6d.jpg">
+  </div>
+  <div class="content-box">
+      <div class="form-box">
+          <h2 class="form-title">Login</h2>
+          <form>
+              <div class="input-box">
+                  <label class="input-title">Usuário: *</label>
+                  <div class="input-icone">
+                    <i class="fa-solid fa-user icon-user"></i>
+                    <input [(ngModel)]="userLogin.usuario" name="nameUser" id="nameUser" class="input-edit" type="email" placeholder="exemplo@mail.com" required>
+                  </div>
+              </div>
+
+              <div class="input-box">
+                  <label class="input-title">Senha: *</label>
+                  <div class="input-icone">
+                    <i class="fa-solid fa-lock icon-user"></i>
+                    <input [(ngModel)]="userLogin.senha" name="senha" id="senha" class="input-edit" type="password" placeholder="senha" required>
+                    <button type="button" (click)="togglePass()" class="botao-revela">
+                      <i class="fa-solid  fa-eye iconPass" id="text"></i>
+                      <i class="fa-solid fa-eye-slash iconPass" id="pass"></i>
+                    </button>
+                  </div>
+              </div>
+
+             <!--  <div class="remember">
+                  <label>
+                      <input type="checkbox"> Remember me
+                  </label>
+                  <a href="#">Esqueceu a Senha?</a>
+              </div> -->
+
+              <div class="input-box-btn">
+                  <input type="submit" value="ENTRAR" (click)="loginUser()">
+              </div>
+
+              <div class="input-box user-cad">
+                 <p class="input-cadastro">Não Tem Uma Conta? <a class="input-link-cadastro" routerLink="/cadusuario">Inscrever-se</a></p>
+              </div>
+          </form>
+
+      </div>
+  </div>
+</div>

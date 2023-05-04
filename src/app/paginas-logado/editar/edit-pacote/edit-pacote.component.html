@@ -1,0 +1,113 @@
+<div class="container-cad">
+    <div class="content-box">
+
+        <div class="campo-edit">
+
+            <div class="form-box">
+
+                <div class="d-flex justify-content-center">
+                    <div class="title_camp_top">
+                      <hr>
+                      <div class="title_icon_ali">
+                        <h2 class="text_edit_title_top">EDITAR PACOTE</h2>
+                        <i class="fa-solid fa-user-pen icon_edit_top"></i>
+                      </div>
+                      <hr>
+                    </div>
+                </div>
+
+                <div class="caixa-forms-edit">
+                    <div class="continer-forms">
+
+                      <div class="camp_edit">
+
+                        <div class="d-block justify-content-between">
+  
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editPacote.valorPeriodo" class="form-control" type="text" 
+                                    name="valorPeriodo" id="valorPeriodo" currencyMask required/>
+                                    <label class="label-edit" for="valorPeriodo">Valor Período:</label>
+                                </div>
+                            </div>
+    
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editPacote.qtdDias" class="form-control" type="number" 
+                                           name="qtdDias" id="qtdDias" required/>
+                                    <label class="label-edit" for="qtdDias">Quantidade de Dias:</label>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="d-block justify-content-between">
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editPacote.valorPacote" class="form-control" type="text"
+                                         name="valorPacote" id="valorPacote" currencyMask/>
+                                  <label class="label-edit" for="valorPacote">Valor Pacote:</label>
+                              </div>
+                            </div>
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                               <!--  <input [(ngModel)]="editPacote.tipoPacote" class="form-control" type="text" 
+                                       name="tipoPacote" id="tipoPacote"/>
+                                <label class="label-edit" for="tipoPacote">Tipo de Pacote</label> -->
+  
+                                <label class="label-color" for="tipoPacote">Tipo de Pacote *</label>
+                                <select class="form-control texto-color p-2" name="tipoPacote" id="tipoPacote" (change)='tipoPacoteCad($event)' required>
+                                  <option disabled selected [value]="editPacote.tipoPacote">{{editPacote.tipoPacote}}</option>
+                                  <option value="INTEGRAL">Integral</option>
+                                  <option value="MENSAL">Mensal</option>
+                                  <option value="SEMANAL">Semanal</option>
+                                  <option value="AVULSO">Avulso</option>
+                                </select>
+                              </div>                              
+                            </div>
+
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <!-- <input [(ngModel)]="editPacote.periodo" class="form-control" type="text" 
+                                          name="periodo" id="periodo"  />
+                                  <label class="label-edit" for="periodo">Período</label> -->
+  
+                                    <label class="label-color" for="periodo">Período *</label>
+                                    <select class="form-control texto-color p-2" name="periodo" id="periodo" (change)='periodoPacoteCad($event)' required>
+                                      <option disabled selected [value]="editPacote.periodo" selected>{{editPacote.periodo}}</option>
+                                      <option value="INTEGRAL">Integral</option>
+                                      <option value="MANHÃ">Manhã</option>
+                                      <option value="TARDE">Tarde</option>
+                                    </select>
+                              </div>
+                            </div> 
+  
+                        </div>
+  
+                      </div>
+
+                        <div class="btn-group-line">
+                
+                            <button type="button" class="btn btn-success-update me-lg-3" (click)='updatePacote()'>
+                              ATUALIZAR
+                            </button>
+                            <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/visupacote">
+                              CANCELAR
+                            </button>
+      
+                          </div>
+
+                    </div>
+                </div>    
+                    
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="img-box">
+        <img src="https://i.imgur.com/2pBoVla.jpg"/>
+    </div>
+</div>

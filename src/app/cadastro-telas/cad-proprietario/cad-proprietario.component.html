@@ -1,0 +1,92 @@
+<div class="container-cad">
+  <div class="img-box">
+    <img src="https://i.imgur.com/IgIqykw.jpg"/>
+  </div>
+  <div class="content-box">
+    <div class="form-box">
+<!--       <h2 class="form-title">CADASTRO PROPRIETÁRIO</h2>
+ -->
+    <div class="d-flex justify-content-center m-0 p-0">
+      <div class="title-camp">
+        <hr>
+        <div class="title-icon-ali">
+          <h2 class="text-edit-title">CADASTRAR PROPRIETÁRIO</h2>
+          <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>                            </div>
+        <hr>
+      </div>
+    </div>
+      <form class="forms-campos-cad" [formGroup]="formulario">
+
+        <div class="input-box">
+          <div class="form-group campo">
+            <input [(ngModel)]="cadProprietario.nome" class="form-control" type="text" formControlName="nome" id="nome" required />
+            <label for="nome" class="label-edit">Nome*</label>
+          </div>
+
+          <div class="mensagem-input-error">
+            <div class="balao cax-position" *ngIf="(formulario.get('nome')?.errors?.['required'] || formulario.get('nome')?.errors?.['pattern'])
+              && formulario.get('nome')?.touched">
+              <span class="m-lg-2">
+                Preenchimento obrigatório, somente letras!
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-box">
+          <div class="form-group campo">
+            <input [(ngModel)]="cadProprietario.cnpj" class="form-control" type="text" formControlName="cnjp" id="cnpj" required />
+            <label for="cnjp" class="label-edit">CNJP*</label>
+          </div>
+
+          <div class="mensagem-input-error">
+            <div class="balao w-100 cax-position" *ngIf="(formulario.get('cnjp')?.errors?.['required'] ||
+               formulario.get('cnjp')?.errors?.['pattern'] ||
+               formulario.get('cnjp')?.errors?.['maxlength'] ) &&
+               formulario.get('cnjp')?.touched">
+
+              <span class="m-lg-2">
+                Preenchimento obrigatório, somente números e no maxímo 14 números!
+              </span>
+            </div>
+           <!--  <div class="balao" *ngIf="formulario.get('cnjp')?.errors?.['pattern']">
+              <span class="m-lg-2">
+                Preenchimento obrigatório e com numeros!
+              </span>
+            </div> -->
+          </div>
+
+        </div>
+
+        <div class="input-box ">
+          <div class="form-group">
+            <div class="texto-color">
+              <label for="usuario" class="label-edit-tp">Usuários:*</label>
+              <p class="label-edit-mensagem">(Obs. Escolha o usuário vinculado ao proprietário a ser cadastrado.)</p>
+              <select class="form-control form-select" formControlName="usuario" id="usuario" [(ngModel)]="idUserN" (change)='findByAllUserOff()'>
+                 <option>Selecione o nome do usuário:</option>
+                <option *ngFor="let users of listUser" value="{{users.id}}" >{{users.usuario}}</option>
+              </select>
+            </div>
+            <div class="mensagem-input-error">
+              <div class="balao bl-position" *ngIf="formulario.get('usuario')?.errors?.['required'] && formulario.get('usuario')?.touched">
+                <span class="m-lg-2">
+                  Selecione o tipo de usuário!
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-box">
+          <div class="d-flex justify-content-around">
+            <button type="submit" class="btn botao-roxo" (click)='cadastrar()' [disabled]="!formulario.valid">
+              CADASTRAR
+            </button>
+            <!-- criar o routerLink no botão cancelar, para que ele volte a página de cadastro abc-->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

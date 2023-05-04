@@ -1,0 +1,328 @@
+.container-cad {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.img-box {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+}
+
+.img-box img {
+  margin-top: 10%;
+  width: 100%;
+  height: 90%;
+}
+
+.title-camp {
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+}
+
+.title-icon-ali {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-edit-title {
+  padding: 5px;
+  margin: 1px;
+}
+
+.icon-edit {
+  padding: 5px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.content-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(11deg, rgb(200, 150, 255) 20%, rgb(138, 119, 224) 44%, rgb(45, 33, 130) 71%);
+}
+
+.content-box .form-box {
+  width: 80%;
+  height: 70%;
+}
+
+.content-box .form-box .form-title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 2em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.forms-campos-cad {
+  display: block;
+  padding: 10px;
+  margin-left: 50px;
+}
+
+.content-box .form-box .input-box {
+  margin-bottom: 15px;
+  padding: 8px;
+ // background-color: yellowgreen;
+}
+
+.cax-position {
+  margin-top: 5px;
+}
+
+///////////
+.mensagem-input-error {
+  margin: 0;
+  color: #ffffff;
+  font-size: 12px;
+  background: #ffffff49;
+  border-radius: 2px;
+}
+
+.balao{
+  background:#bb2d3b;
+  padding: 5px;
+  position: relative;
+  top: -15px;
+  width: 80%;
+  float: left;
+  border-radius: 2px;
+}
+
+.balao::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  left: 10px;
+  top: -4px;
+  background:#bb2d3b;
+  transform:rotate(45deg);
+}
+
+.bl-position {
+  top: 5.5px;
+}
+
+///
+
+.campo {
+  position: relative;
+//  background-color: #552dbb;
+}
+
+.campo input {
+  width: 80%;
+  font-size: 16px;
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 0;
+  margin-bottom: 0,3%;
+}
+
+.campo input:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: 0;
+}
+
+input:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+.campo .label-edit {
+  position: absolute;
+  top: 0;
+  outline: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  pointer-events: none;
+  transition: 100ms;
+}
+
+.campo input:focus~label,
+.campo input:valid~label {
+  top: -27px;
+  font-size: 12px;
+  outline: none;
+}
+
+.campo input:focus {
+  color: #ffffff;
+  border-bottom: 1px solid #C896FF;
+}
+
+.campo input:focus~label {
+  color: #C896FF;
+}
+
+.label-edit-tp {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 400;
+}
+.label-edit-mensagem {
+  font-size: 10px;
+  color: #fff;
+  font-weight: 400;
+}
+
+.preenchido~label {
+  top: -20px;
+  font-size: 12px;
+  outline: none;
+}
+
+.textoColor,
+input,
+select {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.form-select {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 0;
+  width: 80%;
+  font-size: 14px;
+  color: #777;
+  background-color: #ffffffa8;
+}
+
+.botao-roxo {
+  background-color: transparent;
+  margin-top: 20px;
+  color: #ffffff;
+  border: 2px #2D2182 solid;
+  background-color: #2D2182;
+  font-weight: 500;
+}
+
+.botao-roxo:hover {
+  background-color: transparent;
+  color: #2D2182;
+  background-color: #ffffffe2;
+}
+
+.roxin {
+  font-size: 14px;
+  color: #2D2182;
+  font-weight: 600;
+}
+
+.roxin:hover {
+  color: #fff;
+}
+
+
+////////////////////////////////
+////////////////////////////////
+
+
+@media (max-width:920px) {
+
+  .container-cad .img-box{
+      display: none;
+  }
+
+  .container-cad .content-box{
+    width: 100%;
+  }
+
+  .content-box .form-box {
+    width: 100%;
+    height: 82.5%;
+  }
+
+  .container-cad .content-box .form-box {
+    display: block;
+    align-items: center;
+    width: 100%;
+    // height: 60%;
+    padding: 15px;
+    background: #ffffff;
+    margin: 40px;
+    border-radius: 10px;
+  }
+
+  .content-box .form-box .form-title {
+    color: #2D2182;
+    margin-top: 0px;
+  }
+
+  .forms-campos-cad {
+    display: block;
+    padding: 10px;
+    margin-left: 0;
+  }
+
+  .campo input {
+    color: #2D2182;
+    border-bottom: 1px solid #2D2182;
+    width: 100%;
+  }
+
+  .campo .label-edit {
+   // font-weight: 200;
+    color: #2D2182;
+  }
+
+  .campo input:focus {
+    color: #777;
+  }
+
+  .label-edit-tp {
+    color: #2D2182;
+  }
+
+
+  .textoColor,
+  input,
+  select {
+    color: #2D2182;
+  }
+
+  .form-select {
+    border-bottom: 1px solid #2D2182;
+    color: #777;
+    width: 100%;
+  }
+
+  .botao-roxo {
+    margin-top: 1px;
+    padding: 0;
+  }
+
+  .roxin {
+    font-size: 12px;
+    padding: 0;
+  }
+
+  .roxin:hover {
+    color: #C896FF;
+  }
+
+  .balao {
+    width: 100%;
+  }
+
+}

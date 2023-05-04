@@ -1,0 +1,103 @@
+<div class="container-cad">
+    <div class="content-box">
+        <div class="form-box">
+            <div class="d-flex justify-content-center m-0 p-0">
+                <div class="title-camp">
+                    <hr />
+                    <div class="title-icon-ali">
+                        <h2 class="text-edit-title">CADASTRAR REFORÇO</h2>
+                        <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+            <div class="caixa-forms-edit">
+
+                <form class="forms-campos-cad" [formGroup]="formulario">
+    
+                    <div class="input-box m-0">
+                        <div class="form-group">
+                          <label class="label-color" for="materias">Matérias *</label>
+                          <select class="form-control texto-color p-2" formControlName="materias" id="materias" (change)='materiascad($event)' required>
+                            <option  disabled selected value="">Selecione a matéria</option>
+                            <option value="ARTES">Artes</option>
+                            <option value="HISTÓRIA">História</option>
+                            <option value="GEOGRAFIA">Geografia</option>
+                            <option value="MATEMÁTICA">Matemática</option>
+                            <option value="PORTUGUÊS">Português</option>
+                            <option value="INGLÊS">Inglês</option>
+                          </select>
+                        </div>
+
+                        <div class="mensagem-input-error">
+                          <div class="balao balao-small cax-position w-100" *ngIf="formulario.get('materias')?.errors?.['required'] &&
+                                                                             formulario.get('materias')?.touched">
+                            <span class="m-lg-2">
+                              Escolha obrigatória!
+                            </span>
+                          </div>
+                        </div>
+                    </div>
+        
+                    <div class="input-box m-0">
+                        <div class="form-group">
+                          <label class="label-color" for="nivelEstudos">Nível de estudos *</label>
+                          <select class="form-control texto-color p-2" formControlName="nivelEstudos" id="nivelEstudos" (change)='nivelEstudoscad($event)' required>
+                            <option  disabled selected value="">Selecione o nível de estudos</option>
+                            <option value="Básico">Básico</option>
+                            <option value="Médio">Médio</option>
+                            <option value="Avançado">Avançado</option>
+                          </select>
+                        </div>
+
+                        <div class="mensagem-input-error">
+                          <div class="balao balao-small cax-position w-100" *ngIf="formulario.get('nivelEstudos')?.errors?.['required'] &&
+                                                                             formulario.get('nivelEstudos')?.touched">
+                            <span class="m-lg-2">
+                              Escolha obrigatória!
+                            </span>
+                          </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="input-box m-0">
+                        <div class="form-group">
+                          <label class="label-color" for="periodoCurso">Período Curso *</label>
+                          <select class="form-control texto-color p-2" formControlName="periodoCurso" id="periodoCurso" (change)='periodoCursocad($event)' required>
+                            <option  disabled selected value="">Selecione o período</option>
+                            <option value="MANHÃ">Manhã</option>
+                            <option value="TARDE">Tarde</option>
+                          </select>
+                        </div>
+
+                        <div class="mensagem-input-error">
+                          <div class="balao balao-small cax-position w-100" *ngIf="formulario.get('periodoCurso')?.errors?.['required'] &&
+                                                                                   formulario.get('periodoCurso')?.touched">
+                            <span class="m-lg-2">
+                              Escolha obrigatória!
+                            </span>
+                          </div>
+                        </div>
+                    </div>
+                  
+                    <div class="input-box">
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn botao-roxo" (click)="cadastrar()"
+                                [disabled]="!formulario.valid">
+                                CADASTRAR
+                            </button>
+                            <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="img-box">
+        <img src="https://i.imgur.com/2pBoVla.jpg" />
+    </div>
+</div>

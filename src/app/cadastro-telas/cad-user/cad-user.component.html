@@ -1,0 +1,112 @@
+<div class="container-cad">
+  <div class="img-box">
+    <img src="https://i.imgur.com/IgIqykw.jpg"/>
+  </div>
+  <div class="content-box">
+    <div class="form-box">
+      <h2 class="form-title">CADASTRO DE USUÁRIO</h2>
+      <form class="forms-campos-cad" [formGroup]="formulario">
+
+
+        <div class="input-box">
+          <div class="form-group campo">
+            <input [(ngModel)]="cadUser.usuario" class="form-control" type="email" formControlName="usuario" id="usuario" (blur)="validatePreenchido()" required />
+            <label for="usuario" class="label-edit">Usuário*</label>
+          </div>
+          <div class="mensagem-input-error">
+            <div class="balao" *ngIf="(formulario.get('usuario')?.errors?.['minusculo'] || formulario.get('usuario')?.errors?.['email'] || formulario.get('usuario')?.errors?.['pattern']) && formulario.get('usuario')?.touched">
+              <span class="m-lg-2">
+                E-mail Inválido!
+              </span>
+            </div>
+            <!-- <div *ngIf="formulario.get('usuario')?.errors?.['email']">
+              <span>Email Inválido!</span>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="input-box">
+            <div class="form-group campo">
+              <div class="posicaoIconsYey">
+                <input (input)='confirmarSenha($event)' class="form-control" type="password" formControlName="senha" id="senha" required />
+                <label for="senha" class="label-edit">Senha*</label>
+                <button type="button" (click)="togglePass()" class="botao-revela">
+                  <i class="fa-solid  fa-eye iconPass" id="text"></i>
+                  <i class="fa-solid fa-eye-slash iconPass" id="pass"></i>
+                </button>
+              </div>
+
+              <div class="mensagem-input-error">
+                <div class="balao bl-position" *ngIf="(formulario.get('senha')?.errors?.['required'] || formulario.get('senha')?.errors?.['minlength']) && formulario.get('senha')?.touched">
+                  <span class="m-lg-2">
+                    Senha obrigatória, mínimo 8 caracteres!
+                  </span>
+                </div>
+                <!-- <div *ngIf="formulario.get('senha')?.errors?.['minlength']">
+                  <span>
+                    A senha deve conter no mínimo 8 caracteres!
+                  </span>
+                </div> -->
+              </div>
+
+            </div>
+
+        </div>
+
+        <div class="input-box">
+            <div class="form-group campo ">
+              <div class="posicaoIconsYey">
+                <input [(ngModel)]="cadUser.senha" class="form-control" type="password" formControlName="confirmSenha" id="confirmSenha" required />
+                <label for="confirmSenha" class="label-edit">Confirmar Senha*</label>
+                <button type="button" (click)="togglePass2()" class="botao-revela">
+                  <i class="fa-solid  fa-eye iconPass2" id="text2"></i>
+                  <i class="fa-solid fa-eye-slash iconPass2" id="pass2"></i>
+                </button>
+              </div>
+
+              <div class="mensagem-input-error">
+                <div class="balao bl-position" *ngIf="formulario.get('confirmSenha')?.errors?.['required'] && formulario.get('confirmSenha')?.touched">
+                 <span class="m-lg-2">Preenchimento obrigatório!</span>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <div class="form-group">
+              <div class="texto-color">
+                <label for="tipo" class="label-edit-tp">Tipo de Usuário*</label>
+                <!-- select - abre na caixa de texto, e permite escrever opções para escolha do usuário -->
+                <!-- Option - opção dentro da caixa de texto para que o usuário escolha -->
+                <select class="form-control form-select" formControlName="tipo" id="tipo" (change)='tipoUser($event)'>
+                  <option disabled selected value="">Selecione o tipo de usuário:</option>
+                  <option value="ADMINISTRADOR" >Administrador</option>
+                  <option value="PADRÃO">Padrão</option>
+                </select>
+              </div>
+              <div class="mensagem-input-error">
+                <div class="balao bl-position" *ngIf="formulario.get('tipo')?.errors?.['required'] && formulario.get('tipo')?.touched">
+                  <span class="m-lg-2">Tipo de usuário é obrigatória!</span>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="input-box">
+          <div class="btm-small">
+            <button type="submit" class="btn botao-roxo" id="propri" [disabled]="!formulario.valid || tipo.value !== 'ADMINISTRADOR'">
+              PROPRIETÁRIO
+            </button>
+            <button type="submit" class="btn botao-roxo" id="respon" [disabled]="!formulario.valid || tipo.value !== 'PADRÃO'">
+              RESPONSÁVEL
+            </button>
+            <button type="submit" class="btn botao-cancel" id="btnCancelar" routerLink="/inicio">
+              CANCELAR
+            </button>
+            <!-- criar o routerLink no botão cancelar, para que ele volte a página de cadastro abc-->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

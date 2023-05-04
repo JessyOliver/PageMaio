@@ -1,0 +1,161 @@
+
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+li {
+  list-style: none;
+}
+
+/* NAVBAR ESTILO */
+.navbar-home {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  background-color: #2c2182;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu .nav-a-edit {
+  color: #fff;
+}
+
+
+/* LOGO */
+.logo {
+  font-size: 35px;
+  color: #fff;
+ // text-shadow: 2px 1px #49a0d4;
+  font-weight: 900;
+  padding: 0 0 0 20px;
+  font-family: 'Trirong', serif;
+}
+
+/* NAVBAR MENU */
+.menu {
+  display: flex;
+  gap: 1em;
+  font-size: 18px;
+}
+
+.menu .nav-li-edit {
+  padding: 0 0 0 15px;
+}
+
+.menu .nav-li-edit .nav-a-edit {
+  font-size: 16px;
+  padding: 20px;
+}
+
+.menu .nav-li-edit .nav-a-edit.active,
+.menu .nav-li-edit .nav-a-edit:hover {
+  text-decoration: underline;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+/* CHECKBOX HACK */
+/* input[type=checkbox]{
+  display: none;
+} */
+/*navbar-btn-hamburger MENU*/
+.menu .nav-menu-icons,
+.navbar-btn-hamburger,
+.close-icon {
+  display: none;
+  font-size: 24px;
+  user-select: none;
+}
+
+/* APLICAÇÃO MEDIA QUERIES */
+@media (max-width: 920px) {
+
+  .navbar-home {
+    height: 60px;
+    background-color: #2c2182;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  .menu {
+      z-index: 9999;
+      display: none;
+      position: absolute;
+      top: 60px;
+      background-color:#2c2182;
+      right: 0;
+      left: 0;
+      text-align: center;
+  }
+
+///////////////////
+
+////////////////////////////
+
+  .menu .nav-li-edit {
+      display: flex;
+      justify-content: left;
+      gap: 1em;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+  }
+
+  .menu .nav-li-edit .nav-a-edit {
+    padding: 5px;
+  }
+
+  .menu .nav-menu-icons {
+      width: 10%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      padding: 0 0 0 20px;
+  }
+
+  .menu .nav-a-edit {
+      width: 10%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      padding:  0 0 0 15px;
+  }
+
+  .menu .nav-li-edit:hover {
+      color:#2c2182;
+      background-color: #C896FF;
+      transition: 0.3s ease;
+  }
+
+  .menu .nav-li-edit .nav-a-edit:hover {
+     text-decoration: none;
+     color:#2c2182;
+  }
+
+  .menu .nav-li-edit + .nav-li-edit {
+      margin-top: 10px;
+  }
+
+ /*  input[type=checkbox]:checked ~ .menu{
+      display: block;
+  }
+ */
+  .navbar-btn-hamburger {
+    padding: 20px;
+  }
+
+  .menu .nav-menu-icons,
+  .navbar-btn-hamburger {
+      display: block;
+  }
+
+}

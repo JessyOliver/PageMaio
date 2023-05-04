@@ -1,0 +1,179 @@
+<div class="container-cad">
+    <div class="content-box">
+        <div class="form-box">
+            <div class="d-flex justify-content-center m-0 p-0">
+                <div class="title-camp">
+                    <hr />
+                    <div class="title-icon-ali">
+                        <h2 class="text-edit-title">CADASTRAR PACOTE</h2>
+                        <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+            <div class="caixa-forms-edit">
+
+                <form class="forms-campos-cad" [formGroup]="formulario">
+    
+                    
+                    <div class="input-box">
+                        <div class="form-group campo">
+                            <input currencyMask [(ngModel)]="valorPeriodo" class="form-control" type="text"
+                                formControlName="valorPeriodo" id="valorPeriodo" required (ngModelChange)="calcular()"/>
+                            <label for="valorPeriodo" class="label-edit">Valor Período: *</label>
+                        </div>
+    
+                        <div class="mensagem-input-error">
+                            <div class="balao cax-position" 
+                                *ngIf="formulario.get('valorPeriodo')?.errors?.['required'] &&
+                                        formulario.get('valorPeriodo')?.touched"
+                            >
+                                <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente números!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="input-box">
+                        <div class="form-group campo">
+                            <input [(ngModel)]="quantDias" class="form-control" type="number"
+                                formControlName="qtdDias" id="qtdDias" min="1" required (ngModelChange)="calcular()"/>
+                            <label for="qtdDias" class="label-edit">Quantidade de Dias: *</label>
+                        </div>
+    
+                        <div class="mensagem-input-error">
+                            <div class="balao cax-position" 
+                            *ngIf="(formulario.get('qtdDias')?.errors?.['required'] ||
+                                    formulario.get('qtdDias')?.errors?.['pattern'] ||
+                                    formulario.get('qtdDias')?.errors?.['maxlength'] ) &&
+                                    formulario.get('qtdDias')?.touched">
+                                <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente números maior que 0!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="input-box">
+                        <div class="form-group campo">
+                            <label for="valorPacote" class="label_valuepacot">Valor Pacote: *</label>
+                            <input [(ngModel)]="valorPacote" class="form-control" type="text"
+                                formControlName="valorPacote" id="valorPacote" readonly value="R$ {{valorPacote ? valorPacote : 0 }}" currencyMask/>
+                        </div>
+    
+                      <!--   <div class="mensagem-input-error">
+                            <div class="balao cax-position" 
+                                *ngIf="formulario.get('valorPacote')?.errors?.['pattern'] &&
+                                        formulario.get('valorPacote')?.touched"
+                            >
+                                <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente números!
+                                </span>
+                            </div>
+                        </div>  -->
+                    </div>
+
+                    <div class="input-box m-0">
+                        <div class="form-group">
+                          <label class="label-color" for="tipoPacote">Tipo de Pacote *</label>
+                          <select class="form-control texto-color p-2" formControlName="tipoPacote" id="tipoPacote" (change)='tipoPacoteCad($event)' required>
+                            <option  disabled selected value="">Selecione o tipo de pacote</option>
+                            <option value="INTEGRAL">Integral</option>
+                            <option value="MENSAL">Mensal</option>
+                            <option value="SEMANAL">Semanal</option>
+                            <option value="AVULSO">Avulso</option>
+                          </select>
+                        </div>
+
+                        <div class="mensagem-input-error">
+                          <div class="balao balao-small cax-position w-100" *ngIf="formulario.get('tipoPacote')?.errors?.['required'] &&
+                                                                                   formulario.get('tipoPacote')?.touched">
+                            <span class="m-lg-2">
+                              Escolha obrigatória!
+                            </span>
+                          </div>
+                        </div>
+                    </div>
+                    
+    <!--  
+                    <div class="input-box">
+                        <div class="form-group campo">
+                            <input [(ngModel)]="tipoPacote" class="form-control" type="text"
+                                formControlName="tipoPacote" id="tipoPacote" required />
+                            <label for="tipoPacote" class="label-edit">Tipo Pacote: *</label>
+                        </div>
+    
+                        <div class="mensagem-input-error">
+                            <div class="balao cax-position" 
+                            *ngIf="(formulario.get('tipoPacote')?.errors?.['required'] ||
+                                    formulario.get('tipoPacote')?.errors?.['pattern']) &&
+                                    formulario.get('tipoPacote')?.touched">
+                                <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente letras!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    
+                   <div class="input-box">
+                        <div class="form-group campo">
+                            <input [(ngModel)]="periodo" class="form-control" type="text"
+                                formControlName="periodo" id="periodo" required />
+                            <label for="periodo" class="label-edit">Período: *</label>
+                        </div>
+    
+                        <div class="mensagem-input-error">
+                            <div class="balao cax-position" 
+                            *ngIf="(formulario.get('periodo')?.errors?.['required'] ||
+                                    formulario.get('periodo')?.errors?.['pattern']) &&
+                                    formulario.get('periodo')?.touched">
+                                <span class="m-lg-2">
+                                    Preenchimento obrigatório, somente letras!
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="input-box">
+                        <div class="form-group">
+                          <label class="label-color" for="periodo">Período *</label>
+                          <select class="form-control texto-color p-2" formControlName="periodo" id="periodo" (change)='periodoPacoteCad($event)' required>
+                            <option  disabled selected value="">Selecione o período</option>
+                            <option value="INTEGRAL">Integral</option>
+                            <option value="MANHÃ">Manhã</option>
+                            <option value="TARDE">Tarde</option>
+                          </select>
+                        </div>
+
+                        <div class="mensagem-input-error">
+                          <div class="balao balao-small cax-position w-100" *ngIf="formulario.get('periodo')?.errors?.['required'] &&
+                                                                                   formulario.get('periodo')?.touched">
+                            <span class="m-lg-2">
+                              Escolha obrigatória!
+                            </span>
+                          </div>
+                        </div>
+                    </div>
+    
+                    <div class="input-box">
+                        <div class="d-flex justify-content-center m-1 p-2">
+                            <button type="submit" class="btn botao-roxo" (click)="cadastrar()"
+                                [disabled]="!formulario.valid">
+                                CADASTRAR
+                            </button>
+                            <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="img-box">
+        <img src="https://i.imgur.com/2pBoVla.jpg" />
+    </div>
+</div>

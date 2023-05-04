@@ -1,0 +1,268 @@
+<div class="container-cad">
+    <div class="content-box">
+
+        <div class="campo-edit">
+<!-- 
+            <div class="form-box">
+    
+                <div class="d-flex justify-content-center">
+                    <div class="title_camp_top">
+                      <hr>
+                      <div class="title_icon_ali">
+                        <h2 class="text_edit_title_top">EDITAR USUÁRIO</h2>
+                        <i class="fa-solid fa-user-pen icon_edit_top"></i>
+                      </div>
+                      <hr>
+                    </div>
+                </div>
+    
+                <div class="caixa-forms-edit">
+                    <div class="continer-forms">
+    
+                        <div class="input-box">
+                          <div class="form-group campo">
+                            <input [(ngModel)]="editUser.usuario" class="form-control" type="usuario" name="usuario" id="usuario"  />
+                            <label for="usuario" class="label-edit">Usuário*</label>
+                          </div>
+                        </div>
+                
+                        
+                        <div class="d-flex justify-content-between">
+                            
+                            <div class="input-box">
+                              <div class="form-group campo campoSenha">
+                                  <input (input)='confirmarSenha($event)' class="form-control" type="password" name="senha" id="senha"  />
+                                  <label for="senha" class="label-edit">Senha*</label>
+                                  <button type="button" (click)="togglePass()" class="botao-revela">
+                                    <i class="fa-solid  fa-eye iconPass" id="text"></i>
+                                    <i class="fa-solid fa-eye-slash iconPass" id="pass"></i>
+                                  </button>
+                              </div>
+                            </div>
+    
+                            <div class="input-box">
+                              <div class="form-group campo campoSenha">
+                                  <input [(ngModel)]="editUser.senha" class="form-control" type="password" name="confirmSenha" id="confirmSenha"  />
+                                  <label for="confirmSenha" class="label-edit">Confirmar Senha*</label>
+                                  <button type="button" (click)="togglePass2()" class="botao-revela">
+                                    <i class="fa-solid  fa-eye iconPass2" id="text2"></i>
+                                    <i class="fa-solid fa-eye-slash iconPass2" id="pass2"></i>
+                                  </button>
+                              </div>
+                            </div>
+                    
+                        </div>
+                        
+                        <div class="input-box">
+                            <div class="form-group campo">
+                                <label for="tipo" class="label-edit-tp">Tipo de Usuário*</label>
+                                <select class="form-control form-select" name="tipo" id="tipo" (change)='tipoUser($event)'>
+                                  <option value={{editUser.tipo}}>{{editUser.tipo}}</option>
+                                  <option value="padrao">Padrão</option>
+                              </select>
+                            </div>
+                        </div>
+                
+                        <div class="btn-group-line mt-3">
+                
+                          <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/inicio">
+                            APAGAR
+                          </button>
+                          <button type="submit" class="btn btn-success-update me-lg-3" (click)='updateUsuario()'>
+                            ATUALIZAR
+                          </button>
+                          <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/inicio">
+                            CANCELAR
+                          </button>
+    
+                        </div>    
+                       
+                    </div>
+                
+                </div>
+            </div>
+     -->
+            <div class="form-box">
+
+                <div class="d-flex justify-content-center">
+                    <div class="title_camp_top">
+                      <hr>
+                      <div class="title_icon_ali">
+                        <h2 class="text_edit_title_top">EDITAR RESPONSÁVEL</h2>
+                        <i class="fa-solid fa-user-pen icon_edit_top"></i>
+                      </div>
+                      <hr>
+                    </div>
+                </div>
+
+                <div class="caixa-forms-edit">
+                    <div class="continer-forms">
+
+                        <div class="d-block justify-content-between">
+
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editResponsavel.nome" class="form-control" type="text" name="nome" id="nome" required/>
+                                    <label class="label-edit" for="nome">Nome*</label>
+                                </div>
+                            </div>
+    
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editResponsavel.cpf" class="form-control" type="text" 
+                                           name="cpf" id="cpf"  required/>
+                                    <label class="label-edit" for="cpf">CPF*</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-block justify-content-between mt-3">
+
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.dtNascimento" class="form-control" type="date"
+                                         name="dtNascimento" id="dtNascimento" (change)="dataConvert($event)" required/>
+                                  <label class="label-edit" for="dtNascimento">Data de Nascimento*</label>
+                              </div>
+                            </div>
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                <input [(ngModel)]="editResponsavel.genero" class="form-control" type="text" 
+                                       name="genero" id="genero"/>
+                                <label class="label-edit" for="genero">Gênero*</label>
+                              </div>                              
+                            </div>
+  
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <div class="title-camp">
+                              <hr>
+                              <div class="title-icon-ali">
+                                <h6 class="text-edit-title">TELEFONES PARA CONTATO*</h6>
+                                <i class="fas fa-phone-square icon-edit"></i>
+                              </div>
+                              <hr>
+                            </div>
+                        </div>
+  
+                        <div class="d-flex justify-content-around mt-3 contact-position">
+
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.celular" class="form-control" type="text" name="celular" id="celular"/>
+                                  <label class="label-edit" for="celular">Celular*</label>
+                              </div>
+                            </div>
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.telefone" class="form-control" type="text" name="telResidencial" id="telResidencial"/>
+                                  <label class="label-edit" for="telResidencial">Residencial</label>
+                              </div>
+                            </div>
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.telefoneComercial" class="form-control" type="text" name="telComercial" id="telComercial"/>
+                                  <label class="label-edit" for="telComercial">Comercial</label>
+                              </div>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-around">
+                            <div class="title-camp">
+                              <hr>
+                              <div class="title-icon-ali">
+                                <h6 class="text-edit-title">ENDEREÇO</h6>
+                                <i class="fas fa-map-marked-alt icon-edit"></i>
+                              </div>
+                              <hr>
+                            </div>
+                        </div>
+
+                        <div class="d-block justify-content-between mt-3">
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.cep" class="form-control" type="text" name="cep" id="cep"  />
+                                  <label class="label-edit" for="cep">CEP*</label>
+                              </div>
+                            </div>
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                <input [(ngModel)]="editResponsavel.rua" class="form-control" type="text" name="rua" id="rua"  />
+                                <label class="label-edit" for="rua">Rua*</label>
+                              </div>
+                            </div>  
+                        </div>
+
+                        <div class="d-flex justify-content-between contact-position mt-3">
+
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                <input [(ngModel)]="editResponsavel.numMoradia" class="form-control w-50" type="text" name="numCasa" id="numCasa"  />
+                                <label class="label-edit" for="numCasa">Numero*</label>
+                              </div>
+                            </div>
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                <input [(ngModel)]="editResponsavel.complemento" class="form-control w-50" type="text" name="complemento" id="complemento"/>
+                                <label class="label-edit" for="complemento">Complemento</label>
+                              </div>
+                            </div>
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.bairro" class="form-control" type="text" name="bairro" id="bairro"  />
+                                  <label class="label-edit" for="bairro">Bairro*</label>
+                              </div>
+                            </div>
+                        </div>
+  
+                        <div class="d-flex justify-content-between mt-3">
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.cidade" class="form-control" type="text" name="cidade" id="cidade"  />
+                                  <label class="label-edit" for="cidade">Cidade*</label>
+                              </div>    
+                            </div>
+    
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editResponsavel.estado" class="form-control" type="text" name="estado" id="estado"  />
+                                  <label class="label-edit" for="estado">Estado*</label>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-group-line mt-3">
+                
+                            <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/inicio">
+                              APAGAR
+                            </button>
+                            <button type="submit" class="btn btn-success-update me-lg-3" (click)='updateResponsavel()'>
+                              ATUALIZAR
+                            </button>
+                            <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/inicio">
+                              CANCELAR
+                            </button>
+      
+                          </div>
+
+                    </div>
+                </div>    
+                    
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="img-box">
+        <img src="https://i.imgur.com/2pBoVla.jpg" />
+    </div>
+</div>

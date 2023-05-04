@@ -1,0 +1,111 @@
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active " id="pills-todos"
+    role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+    
+    <div class="d-flex justify-content-center">
+        
+        <div class="form-group buscar-edit">
+            <input type="text" class="form-control input-busca" id="titulo" 
+            placeholder="🔍 buscar reforço." [(ngModel)]='reforcoNome' 
+            (keyup)='findByMateria()'>
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-center m-0 p-0">
+        <div class="title_camp_top">
+          <hr>
+          <div class="title-icon-ali">
+            <h2 class="text_edit_title_top">AULAS DE REFORÇO</h2>
+            <i class="fa-solid fa-book-open-reader icon_edit_top"></i>
+          </div>
+          <hr>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center m-2 p-0" *ngIf="listReforco == null">
+        <div class="title-camp">
+          <div class="title-icon-ali">
+            <h5 class="text-edit-title-not">Não há aulas de reforço, cadastradas no momento.</h5>
+            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+          </div>
+          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+            VOLTAR
+        </button>
+        </div>
+    </div>
+    
+    <div class="container-principal"> 
+
+        <div class="result-banco">
+
+                <div class="form-group container-respo" *ngFor="let itemReforco of listReforco | orderBy: ['materias']"> 
+            
+                    <div class="d-flex justify-content-center m-0 p-0">
+                        <div class="title-camp">
+                          <hr>
+                          <div class="title-icon-ali">
+                            <h5 class="text-edit-title">{{itemReforco.materias}}</h5>
+                            <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
+                          </div>
+                          <hr>
+                        </div>
+                    </div>
+
+                    <div class="container-info">
+    
+                        <div class="d-block justify-content-between">
+                
+                            <div class="elemento_info">
+                                <p class="titulo-edit">Período Curso:</p>
+                                <p class="info-edit">{{itemReforco.periodoCurso}}</p>
+                            </div>
+    
+                            <div class="elemento_info">
+                                <p class="titulo-edit">Nível de Estudos:</p>
+                                <p class="info-edit">{{itemReforco.nivelEstudos}}</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+        
+  <!--                   <div class="container-btn">
+
+                        <div class="bt-duplo-small">
+                            <button type="submit" class="btn botao-cad" [routerLink]="['editreforco', itemReforco.id]">
+                                EDITAR
+                            </button>     
+                        </div>
+                        
+                    </div> -->
+
+                    <div class="d-flex justify-content-center m-0 p-0">
+                        <div class="title-camp">
+                          <hr>
+                          <div class="title-icon-ali">
+                            <h5 class="text-edit-title">Mais Opções</h5>
+                            <i class="fa-solid fa-book icon-edit-camp"></i>
+                          </div>
+                          <hr>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+
+                        <button type="submit" class="btn botao-cad" (click)="cadCursas(itemReforco.id, itemReforco.materias)">
+                            ADQUIRIR
+                        </button>    
+
+                        <button type="submit" class="btn botao-cancel" routerLink="/visucrianca">
+                            VOLTAR
+                        </button>
+
+                    </div>
+    
+                </div>
+            </div>
+
+         </div>        
+
+    </div>
+
+</div> 

@@ -1,0 +1,370 @@
+.container-cad {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.img-box {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+}
+
+.img-box img {
+  margin-top: 10%;
+  width: 100%;
+  height: 90%;
+}
+
+.content-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(11deg, rgb(200, 150, 255) 20%, rgba(138,119,224,1) 44%, rgb(45, 33, 130) 71%);
+}
+
+.content-box .form-box {
+  width: 80%;
+  height: 70%;
+  margin-left: 3%;
+
+ // background-color: aquamarine;
+}
+
+.content-box .form-box .form-title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 2em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.forms-campos-cad {
+  display: block;
+  padding: 20px;
+
+//  background-color: #777;
+}
+
+.mensagem-input-error {
+ // background-color: lightcoral;
+// width: 60%;
+  margin: 0;
+  color: #ffffff;
+  font-size: 12px;
+  background: #ffffff49;
+  border-radius: 2px;
+}
+
+///////////
+
+.balao{
+  background:#bb2d3b;
+  padding: 5px;
+  position: relative;
+  top: -12px;
+  width: 60%;
+  float: left;
+  border-radius: 2px;
+}
+
+.balao::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  left: 10px;
+  top: -2px;
+  background:#bb2d3b;
+  -webkit-transform:rotate(45deg);
+}
+
+.bl-position {
+  top: 4px;
+}
+
+///
+
+.content-box .form-box .input-box {
+  margin-bottom: 15px;
+  padding: 7px;
+ // background-color: rgb(0, 149, 255);
+}
+
+.campo {
+  position: relative;
+}
+
+.senha-model {
+  height: 40px;
+}
+
+.campo input {
+  width: 80%;
+  font-size: 16px;
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 0;
+  margin-bottom: 0.3%;
+
+ // background-color: #bb2d3b;
+}
+
+.campo input:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: 0;
+}
+
+input:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+.campo .label-edit {
+  position: absolute;
+  top: 0;
+  outline: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  pointer-events: none;
+  transition: 100ms;
+}
+
+.campo input:focus~label,
+.campo input:valid~label {
+  top: -27px;
+  font-size: 12px;
+  outline: none;
+}
+
+.campo input:focus {
+  color: #ffffff;
+  border-bottom: 1px solid #C896FF;
+}
+
+.campo input:focus~label {
+  color: #C896FF;
+}
+
+.label-edit-tp {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 400;
+}
+
+.preenchido~label {
+  top: -20px;
+  font-size: 12px;
+  outline: none;
+}
+
+.textoColor,
+input,
+select {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.form-select {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 0;
+  width: 80%;
+  font-size: 14px;
+  color: #777;
+  background-color: #ffffffa8;
+}
+
+.btm-small {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+  margin-top: 5px;
+
+ // background-color: indigo;
+}
+
+.botao-roxo {
+  margin: 5px;
+  color: #ffffff;
+  border: 2px #2D2182 solid;
+  background-color: #2D2182;
+  font-weight: 500;
+  width: 30%;
+}
+
+.botao-roxo:hover {
+  color: #2D2182;
+  background-color: #ffffffe2;
+}
+
+.botao-cancel {
+  color: #ffffff;
+  border: 2px #bb2d3b solid;
+  background-color: #bb2d3b;
+  font-weight: 500;
+  margin: 5px;
+  width: 30%;
+}
+
+.botao-cancel:hover {
+  color: #bb2d3b;
+  background-color: #ffffffe2;
+}
+
+.roxin {
+  font-size: 14px;
+  color: #2D2182;
+  font-weight: 600;
+}
+
+.roxin:hover {
+  color: #fff;
+}
+
+.posicaoIconsYey {
+  display: flex;
+}
+.campo .iconPass,
+.campo .iconPass2 {
+  cursor: pointer;
+  margin-left: -25px;
+  color: #fff;
+}
+
+.campo #text,
+.campo #text2 {
+  display: none;
+}
+
+.botao-revela {
+  position: relative;
+  top: -5px;
+  border: 0;
+}
+
+#respon, #btnCancelar {
+  display: none;
+}
+
+////////////////////////////////
+////////////////////////////////
+
+
+@media (max-width:920px) {
+
+  .container-cad .img-box{
+      display: none;
+  }
+
+  .container-cad .content-box{
+    width: 100%;
+  }
+
+  .content-box .form-box {
+    width: 100%;
+    height: 82.5%;
+  }
+
+  .container-cad .content-box .form-box {
+    display: block;
+    align-items: center;
+    width: 100%;
+    // height: 60%;
+    padding: 15px;
+    background: #ffffff;
+    margin: 40px;
+    border-radius: 10px;
+  }
+
+  .content-box .form-box .form-title {
+    color: #2D2182;
+    margin-top: 0px;
+  }
+
+  .forms-campos-cad {
+    display: block;
+    padding: 10px;
+    margin-left: 0;
+  }
+
+  .campo input {
+    color: #2D2182;
+    border-bottom: 1px solid #2D2182;
+    width: 100%;
+  }
+
+  .campo .label-edit {
+   // font-weight: 200;
+    color: #2D2182;
+  }
+
+  .campo input:focus {
+    color: #777;
+  }
+
+  .label-edit-tp {
+    color: #2D2182;
+  }
+
+  .textoColor,
+  input,
+  select {
+    color: #2D2182;
+  }
+
+  .form-select {
+    border-bottom: 1px solid #2D2182;
+    color: #777;
+    width: 100%;
+  }
+
+  .botao-roxo, .botao-cancel {
+    width: 40%;
+    margin-top: 1px;
+    padding: 0;
+    font-size: 12px;
+  }
+
+  .roxin {
+    font-size: 12px;
+    padding: 0;
+  }
+
+  .roxin:hover {
+    color: #C896FF;
+  }
+
+  .campo .iconPass,
+  .campo .iconPass2 {
+    cursor: pointer;
+    margin-left: -25px;
+    color: #2D2182  ;
+  }
+
+  .btm-small {
+    width: 100%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .balao {
+    width: 100%;
+  }
+
+}
