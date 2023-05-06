@@ -55,7 +55,7 @@ export class CadProprietarioComponent implements OnInit {
       }
 
       !this.authService.logged();
-
+      
     });
 
     this.proprietarioService.getAllProprietarioOff().subscribe((respProp: Proprietario[]) => {
@@ -65,7 +65,7 @@ export class CadProprietarioComponent implements OnInit {
       if (this.listProp.length) {
 
         if (environment.token == '') {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/cadproprietario']);
         }
 
         //forçando altenticação
@@ -89,11 +89,24 @@ export class CadProprietarioComponent implements OnInit {
 
   //get all user Response<User[]>
   findByAllUserOff() {
-    this.authService.getAllUserOff()
-      .subscribe((resp: User[]) => {
-      //  this.listUser = JSON.parse(JSON.stringify(resp));
-        this.listUser = resp;
-      });
+
+    if (this.listUser.length) {
+
+      this.authService.getAllUserOff()
+        .subscribe((resp: User[]) => {
+        //  this.listUser = JSON.parse(JSON.stringify(resp));
+          this.listUser = resp;
+        });
+    }
+    else {
+        
+        this.authService.getAllUser()
+          .subscribe((resp: User[]) => {
+          //  this.listUser = JSON.parse(JSON.stringify(resp));
+            this.listUser = resp;
+          });
+    }
+
   }
 
   cadastrar(){

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -34,7 +35,8 @@ export class CadResponsavelComponent implements OnInit{
     private auth: AuthService,
     private router: Router,
     private alerts: AlertsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit(){
@@ -55,16 +57,16 @@ export class CadResponsavelComponent implements OnInit{
       tipoGen: ['', [Validators.required]],
 /*       cpf: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*'), validandoCpf]],
  */    
-      cpf: ['', [validandoCpf]],
+      cpf: ['', [Validators.required, validandoCpf]],
       celular: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*')]],
       telResidencial: ['', [Validators.maxLength(10), Validators.minLength(10), Validators.pattern('[0-9 ]*')]],
       telComercial: ['', [Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*')]],
       cep: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(8), Validators.pattern('[0-9 ]*')]],
-      rua: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
+      rua: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
       numCasa: ['', [Validators.required]],
-      bairro: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
-      cidade: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
-      estado: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
+      bairro: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
+      cidade: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
+      estado: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
       usuario: ['', [Validators.required]],
 
     });
@@ -72,7 +74,36 @@ export class CadResponsavelComponent implements OnInit{
     this.findByAllUser();
   }
 
+  buscarEndereco() {
 
+    const cep = this.formulario.get('cep')!.value.replace(/\D/g, '');
+
+    if (cep.length !== 8) {
+      // CEP inválido
+      return;
+    }
+
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+
+    this.http.get<any>(url).subscribe(data => {
+
+      if (data.hasOwnProperty('erro')) {
+        // CEP não encontrado
+        return;
+      }
+
+      this.formulario.patchValue({
+        rua: data.logradouro,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        estado: data.uf
+      });
+
+    }, error => {
+      
+      this.alerts.showAlertDangerError('Ocorreu um erro:', error);
+    });
+  }
 
   //get all user Response<User[]>
   findByAllUser() {

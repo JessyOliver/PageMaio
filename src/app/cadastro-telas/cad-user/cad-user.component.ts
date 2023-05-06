@@ -70,7 +70,7 @@ export class CadUserComponent implements OnInit{
              if (this.listProp.length ) {
 
                 if (environment.token == '') {
-                  this.router.navigate(['/login']);
+                  this.router.navigate(['/cadproprietario']);
                 }
 
                 //forçando altenticação

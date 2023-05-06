@@ -182,7 +182,7 @@ export class CadCriancaComponent implements OnInit{
 
       this.cadCrianca = resp;
       this.alerts.showAlertSucess("Criança cadastrada com sucesso!");
-      this.router.navigate(["/visuresponsavel"]);
+      this.router.navigate(["/inicio"]);
       
     }, 
     error => {

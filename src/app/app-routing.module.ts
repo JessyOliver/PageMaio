@@ -29,6 +29,7 @@ import { DetalhePacoteComponent } from './paginas-logado/detalhes/detalhe-pacote
 import { DetalheReforcoComponent } from './paginas-logado/detalhes/detalhe-reforco/detalhe-reforco.component';
 import { DetalheCriancaComponent } from './paginas-logado/detalhes/detalhe-crianca/detalhe-crianca.component';
 import { EditCriancaComponent } from './paginas-logado/editar/edit-crianca/edit-crianca.component';
+import { DetalhesResponsavelComponent } from './paginas-logado/detalhes/detalhes-responsavel/detalhes-responsavel.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -69,6 +70,7 @@ const routes: Routes = [
   {path: 'detalhecrianca/:id', component: DetalheCriancaComponent},
   {path: 'detalhepacote/:id', component: DetalhePacoteComponent},
   {path: 'detalhereforco/:id', component: DetalheReforcoComponent},
+  {path: 'detalheresponsavel/:id', component: DetalhesResponsavelComponent},
 
 
 ];

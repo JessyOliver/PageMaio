@@ -64,8 +64,8 @@
               <label for="usuario" class="label-edit-tp">Usuários:*</label>
               <p class="label-edit-mensagem">(Obs. Escolha o usuário vinculado ao proprietário a ser cadastrado.)</p>
               <select class="form-control form-select" formControlName="usuario" id="usuario" [(ngModel)]="idUserN" (change)='findByAllUserOff()'>
-                 <option>Selecione o nome do usuário:</option>
-                <option *ngFor="let users of listUser" value="{{users.id}}" >{{users.usuario}}</option>
+                <option>Selecione o nome do usuário:</option>
+                <option *ngFor="let users of listUser" value="{{users.id}}">{{users.usuario}}</option>
               </select>
             </div>
             <div class="mensagem-input-error">

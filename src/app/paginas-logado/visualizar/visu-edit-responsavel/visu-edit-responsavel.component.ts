@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Responsavel } from 'src/app/model/Responsavel';
+import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { environment } from 'src/environments/environment.prod';
@@ -16,11 +17,13 @@ export class VisuEditResponsavelComponent implements OnInit {
 
   responsavelNome!: string;
 
+  idResponsavel!: number;
+
   constructor(
     private router: Router,
     private auth: AuthService,
-    private responsavelService: ResponsavelService
-
+    private responsavelService: ResponsavelService,
+    private alerts: AlertsService
   ){}
 
   ngOnInit() {
@@ -37,6 +40,10 @@ export class VisuEditResponsavelComponent implements OnInit {
     this.findAllResponsavel();
     this.findByNomeResponsavel();
 
+  }
+
+  getId(id: number) {
+    this.idResponsavel = id;
   }
 
   findAllResponsavel() {
@@ -66,6 +73,19 @@ export class VisuEditResponsavelComponent implements OnInit {
 
     }
     
+  }
+
+  deletarResponsavel() {
+
+    this.responsavelService
+    .deleteResponsavel(this.idResponsavel)
+    .subscribe(() =>{
+
+      this.router.navigate(["/visueditresponsavel"]);
+      this.alerts.showAlertInfo("Responsável apagado com sucesso.");
+      this.findAllResponsavel();
+
+    });
   }
 
 }

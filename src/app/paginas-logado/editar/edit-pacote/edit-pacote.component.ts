@@ -49,7 +49,6 @@ export class EditPacoteComponent implements OnInit {
     .subscribe((resp: Pacote) => {
 
       this.editPacote = resp;
-
     });
 
   }
