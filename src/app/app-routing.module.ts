@@ -30,6 +30,9 @@ import { DetalheReforcoComponent } from './paginas-logado/detalhes/detalhe-refor
 import { DetalheCriancaComponent } from './paginas-logado/detalhes/detalhe-crianca/detalhe-crianca.component';
 import { EditCriancaComponent } from './paginas-logado/editar/edit-crianca/edit-crianca.component';
 import { DetalhesResponsavelComponent } from './paginas-logado/detalhes/detalhes-responsavel/detalhes-responsavel.component';
+import { VisualizarUsuarioComponent } from './paginas-logado/visualizar/visualizar-usuario/visualizar-usuario.component';
+import { DetalheUsuarioComponent } from './paginas-logado/detalhes/detalhe-usuario/detalhe-usuario.component';
+import { EditUsuarioComponent } from './paginas-logado/editar/edit-usuario/edit-usuario.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -54,12 +57,14 @@ const routes: Routes = [
   {path: 'editcrianca/:id', component: EditCriancaComponent},
   {path: 'editpacote/:id', component: EditPacoteComponent},
   {path: 'editreforco/:id', component: EditReforcoComponent},
+  {path: 'editusuario/:id', component: EditUsuarioComponent},
   
   {path: 'visuresponsavel', component: VisualizarResponsavelComponent},
   {path: 'visucrianca', component: VisualizarCriancaComponent},
   {path: 'visupacote/:id', component: VisualizarPacoteComponent},
   {path: 'visupacote', component: VisualizarPacoteComponent},
   {path: 'visureforco/:id', component: VisualizarReforcoComponent},
+  {path: 'visusuario', component: VisualizarUsuarioComponent},
   
   {path: 'visueditresponsavel', component: VisuEditResponsavelComponent},
   {path: 'visueditcrianca', component: VisuEditCriancaComponent},
@@ -71,6 +76,7 @@ const routes: Routes = [
   {path: 'detalhepacote/:id', component: DetalhePacoteComponent},
   {path: 'detalhereforco/:id', component: DetalheReforcoComponent},
   {path: 'detalheresponsavel/:id', component: DetalhesResponsavelComponent},
+  {path: 'detalheusuario/:id', component: DetalheUsuarioComponent},
 
 
 ];

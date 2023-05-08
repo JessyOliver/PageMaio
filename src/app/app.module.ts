@@ -44,6 +44,9 @@ import { DetalheCriancaComponent } from './paginas-logado/detalhes/detalhe-crian
 import { DetalheReforcoComponent } from './paginas-logado/detalhes/detalhe-reforco/detalhe-reforco.component';
 import { EditCriancaComponent } from './paginas-logado/editar/edit-crianca/edit-crianca.component';
 import { DetalhesResponsavelComponent } from './paginas-logado/detalhes/detalhes-responsavel/detalhes-responsavel.component';
+import { VisualizarUsuarioComponent } from './paginas-logado/visualizar/visualizar-usuario/visualizar-usuario.component';
+import { DetalheUsuarioComponent } from './paginas-logado/detalhes/detalhe-usuario/detalhe-usuario.component';
+import { EditUsuarioComponent } from './paginas-logado/editar/edit-usuario/edit-usuario.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -95,7 +98,10 @@ export const customCurrencyMaskConfig = {
     DetalheCriancaComponent,
     DetalheReforcoComponent,
     EditCriancaComponent,
-    DetalhesResponsavelComponent
+    DetalhesResponsavelComponent,
+    VisualizarUsuarioComponent,
+    DetalheUsuarioComponent,
+    EditUsuarioComponent
   ],
   imports: [
     BrowserModule,

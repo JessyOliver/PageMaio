@@ -21,6 +21,7 @@ export class EditProprietarioComponent implements OnInit {
   idUserN!: number;
 
   confirmeSenha!: string;
+  primeiraSenhaps!: string;
   typeUser!: string;
 
   ///ALTERANDO PROPRIETÁRIO
@@ -47,7 +48,7 @@ export class EditProprietarioComponent implements OnInit {
     this.authService.refreshToken();
 
     let id = this.route.snapshot.params['id'];
-    this.findByIdProprietario(id);
+   // this.findByIdProprietario();
     this.findByIdUser(id);
 
     this.findByAllUserAll();
@@ -58,12 +59,26 @@ export class EditProprietarioComponent implements OnInit {
     this.authService.getByIdUser(id)
     .subscribe((resp: User) => {
 
-        this.editUser = resp;
+      this.editUser = resp;
+
+      if (resp.tipo == "ADMINISTRADOR") {
+
+        for (let i = 0; i < resp.proprietario.length; i++) {
+        
+          this.idProprietario = resp.proprietario[i].id;  
+          
+          this.findByIdProprietario(this.idProprietario);
+        }
+          
+      }
+      
     });
 
   }
 
   findByIdProprietario(id: number){
+
+    console.log('Id Proprietário: ', this.idProprietario)
 
     this.proprietarioService
     .getByIdProprietario(id)
@@ -71,7 +86,7 @@ export class EditProprietarioComponent implements OnInit {
 
         this.editProprietario = resp;
     });
-
+     
   }
 
   togglePass() {
@@ -110,66 +125,108 @@ export class EditProprietarioComponent implements OnInit {
 
   }
 
-  modalShow() {
+/*   modalShow() {
      document.getElementById('modalUserEdit');('shown.bs.modal');
   }
-
+ */
   validatePreenchido() {
+
     let usuario = <HTMLInputElement>document.getElementById('usuario');
+   
     if (usuario?.value != '') {
+
       usuario.classList.add('preenchido');
-    } else {
+    } 
+    else {
+
       usuario.classList.remove('preenchido');
     }
+
   }
 
+  primeiraSenha(event: any){
+
+    this.primeiraSenhaps = event.target.value;
+  }
 
   confirmarSenha(event: any){
-    this.confirmeSenha = event.target.value
+
+    this.confirmeSenha = event.target.value;
   }
 
   tipoUser(event: any){
+
     this.typeUser = event.target.value
   }
 
-  updateUsuario() {
+   updateUsuario() {
 
+    if ((this.typeUser !== undefined) ) {
+      
       this.editUser.tipo = this.typeUser;
+    }
+    else {
+      this.editUser.tipo;
+    }
 
+    if (this.primeiraSenhaps !== undefined) {
+
+      this.editUser.senha = this.primeiraSenhaps;
+      
+    }
+    else {
+
+      this.editUser.senha;
+
+    }
+
+    if (this.confirmeSenha !== undefined) {
+      
       if (this.editUser.senha != this.confirmeSenha) {
-
+  
         this.alerts.showAlertDanger("As senhas estão diferentes.");
-
+  
       }
       else {
-
-        console.log( this.editUser);
-
-        try{
-
+    
           this.authService
           .updateUser(this.editUser)
           .subscribe((respUser: User) =>{
-
+  
             this.editUser = respUser;
             this.router.navigate(["/inicio"]);
             this.alerts.showAlertInfo("Usuário editado com sucesso! Faça seu login");
-
+  
             environment.id = 0;
             environment.usuario = '';
             environment.tipo = '';
             environment.token = '';
             this.router.navigate(['/login']);
-
+  
           });
-
-        }
-        catch(error){
-            console.log(error);
-            this.alerts.showAlertDanger("Menssagem: " + error);
-        }
-
+  
       }
+
+    }
+    else {
+
+      this.authService
+      .updateUser(this.editUser)
+      .subscribe((respUser: User) =>{
+
+        this.editUser = respUser;
+        this.router.navigate(["/inicio"]);
+        this.alerts.showAlertInfo("Usuário editado com sucesso! Faça seu login");
+
+        environment.id = 0;
+        environment.usuario = '';
+        environment.tipo = '';
+        environment.token = '';
+        this.router.navigate(['/login']);
+
+      });
+
+    }
 
   }
 

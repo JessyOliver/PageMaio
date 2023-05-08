@@ -54,7 +54,7 @@
     color: #2D2182;
     padding: 2px;
     margin: 1px;
-    font-size: 30pt;
+    font-size: 36pt;
 }
 
 .icon_edit_top {
@@ -147,6 +147,12 @@
     color: #2D2182;
 }
 
+.color_line {
+    background: #2D2182;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    text-align: left;
+}
 
 .edit_btn {
     display: flex;
@@ -192,20 +198,9 @@
     
 }
 
-.color_line {
-    background: #2D2182;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-    text-align: left;
-}
-
 .line_btn {
     position: relative;
-
-    display: table-cell;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding: 20px;
 }
 
 .btn-cancel {
@@ -260,7 +255,7 @@
 
     .table_position {
         position: relative;
-        margin-left: 250px; //qualquer coisa altere aqui para a tabela exibir totalmente        
+        margin-left: 5%;
     }
 
     .tab-content {

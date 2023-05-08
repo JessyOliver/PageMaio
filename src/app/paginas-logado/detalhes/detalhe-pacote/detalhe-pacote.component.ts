@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pacote } from 'src/app/model/Pacote';
-import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { PacoteService } from 'src/app/service/pacote.service';
 import { environment } from 'src/environments/environment.prod';
