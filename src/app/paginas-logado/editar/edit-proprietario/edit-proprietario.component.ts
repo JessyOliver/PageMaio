@@ -194,7 +194,7 @@ export class EditProprietarioComponent implements OnInit {
           .subscribe((respUser: User) =>{
   
             this.editUser = respUser;
-            this.router.navigate(["/inicio"]);
+           // this.router.navigate(["/inicio"]);
             this.alerts.showAlertInfo("Usuário editado com sucesso! Faça seu login");
   
             environment.id = 0;
@@ -215,7 +215,7 @@ export class EditProprietarioComponent implements OnInit {
       .subscribe((respUser: User) =>{
 
         this.editUser = respUser;
-        this.router.navigate(["/inicio"]);
+       // this.router.navigate(["/inicio"]);
         this.alerts.showAlertInfo("Usuário editado com sucesso! Faça seu login");
 
         environment.id = 0;
@@ -233,9 +233,10 @@ export class EditProprietarioComponent implements OnInit {
   updateProprietario() {
 
       //chave estrangeira => FK
-      this.userFK.id = this.idUserN;
+     /*  this.userFK.id = this.idUserN;
       this.editProprietario.usuario = this.userFK;
-
+ */
+     
       this.proprietarioService
       .putProprietario(this.editProprietario)
       .subscribe((resp: Proprietario) => {
@@ -243,13 +244,7 @@ export class EditProprietarioComponent implements OnInit {
         console.log(resp);
         this.editProprietario = resp;
         this.router.navigate(["/inicio"]);
-        this.alerts.showAlertInfo("Usuário editado com sucesso! Faça seu login");
-
-        environment.id = 0;
-        environment.usuario = '';
-        environment.tipo = '';
-        environment.token = '';
-        this.router.navigate(['/login']);
+        this.alerts.showAlertInfo("Seus dados forão alterados com sucesso!");
 
       });
 

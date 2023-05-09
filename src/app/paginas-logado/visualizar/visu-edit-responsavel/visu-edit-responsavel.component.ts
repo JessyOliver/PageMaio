@@ -82,8 +82,8 @@ export class VisuEditResponsavelComponent implements OnInit {
     .subscribe(() =>{
 
       this.router.navigate(["/visueditresponsavel"]);
-      this.alerts.showAlertInfo("Responsável apagado com sucesso.");
       this.findAllResponsavel();
+      this.alerts.showAlertInfo("Responsável apagado com sucesso.");
 
     });
   }

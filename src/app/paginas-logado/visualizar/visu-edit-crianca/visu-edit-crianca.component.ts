@@ -85,8 +85,8 @@ export class VisuEditCriancaComponent implements OnInit{
     .subscribe(() =>{
 
       this.router.navigate(["/visueditcrianca"]);
-      this.alerts.showAlertInfo("Criança apagada com sucesso.");
       this.findAllCrianca();
+      this.alerts.showAlertInfo("Criança apagada com sucesso.");
     });
   }
 

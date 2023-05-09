@@ -87,7 +87,15 @@ export class VisuEditReforcoComponent implements OnInit {
       this.alerts.showAlertInfo("Reforço apagado com sucesso.");
       this.findAllReforco();
 
-    });
+    }, error => {
+
+      if (error == 400) {
+
+        this.alerts.showAlertDanger("Reforço não encontrado.");
+        this.router.navigate(['/visueditreforco']); 
+      }
+
+     }); 
   }
 
 }

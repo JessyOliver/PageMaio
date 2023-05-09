@@ -5,7 +5,7 @@
 
       <div class="form-group buscar-edit">
         <input type="text" class="form-control input-busca" id="titulo" 
-          placeholder="🔍 buscar responsável."
+          placeholder="🔍 buscar tipo pacote..."
           [(ngModel)]='tipoPacote' (keyup)='findByTipoPacote()'>
       </div>
     </div>
@@ -44,7 +44,7 @@
                 <th class="line_btn" scope="col">Valor</th>
                 <th class="line_btn" scope="col">Detalhes</th>
                 <th class="line_btn" scope="col">Editar</th>
-                <th class="line_btn" scope="col">Apagar</th>
+               <!--  <th class="line_btn" scope="col">Apagar</th> -->
               </tr>
             </thead>
             <tbody>
@@ -59,9 +59,9 @@
                       aria-hidden="true"></i></button></td>
                 <td class="line_btn"><button type="button" class="btn edit_btn"
                     [routerLink]="['/editpacote', itemPacote.id]"><i class="fas fa-edit icon_btn"></i></button></td>
-                <td class="line_btn"><button type="button" class="btn edit_btn_danger" (click)="getId(itemPacote.id)"
+<!--                 <td class="line_btn"><button type="button" class="btn edit_btn_danger" (click)="getId(itemPacote.id)"
                     data-bs-toggle="modal" data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
-                </td>
+                </td> -->
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -47,6 +47,9 @@ import { DetalhesResponsavelComponent } from './paginas-logado/detalhes/detalhes
 import { VisualizarUsuarioComponent } from './paginas-logado/visualizar/visualizar-usuario/visualizar-usuario.component';
 import { DetalheUsuarioComponent } from './paginas-logado/detalhes/detalhe-usuario/detalhe-usuario.component';
 import { EditUsuarioComponent } from './paginas-logado/editar/edit-usuario/edit-usuario.component';
+import { VisualizarProprietarioComponent } from './paginas-logado/visualizar/visualizar-proprietario/visualizar-proprietario.component';
+import { DetalheProprietarioComponent } from './paginas-logado/detalhes/detalhe-proprietario/detalhe-proprietario.component';
+import { EditProprietarioUnicComponent } from './paginas-logado/editar/edit-proprietario-unic/edit-proprietario-unic.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -101,7 +104,10 @@ export const customCurrencyMaskConfig = {
     DetalhesResponsavelComponent,
     VisualizarUsuarioComponent,
     DetalheUsuarioComponent,
-    EditUsuarioComponent
+    EditUsuarioComponent,
+    VisualizarProprietarioComponent,
+    DetalheProprietarioComponent,
+    EditProprietarioUnicComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,65 @@
+<div class="container-cad">
+    <div class="content-box">
+
+        <div class="campo-edit">
+
+            <div class="form-box">
+
+                <div class="d-flex justify-content-center">
+                    <div class="title_camp_top">
+                      <hr>
+                      <div class="title_icon_ali">
+                        <h2 class="text_edit_title_top">EDITAR PROPRIETÁRIO</h2>
+                        <i class="fa fa-user icon_edit_top" aria-hidden="true"></i>
+                      </div>
+                      <hr>
+                    </div>
+                </div>
+
+                <div class="caixa-forms-edit">
+                    <div class="continer-forms">
+
+                      <div class="camp_edit">
+
+                        <div class="d-block justify-content-between">
+  
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editProprietario.nome" class="form-control" type="text" name="nome" id="nome" required (change)='nomeEdit($event)' />
+                                    <label for="nome" class="label-edit">Nome*</label>
+                                </div>
+                            </div>
+    
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editProprietario.cnpj" class="form-control" type="text" name="cnpj" id="cnpj" required (change)='cnpjEdit($event)'/>
+                                    <label for="cnpj" class="label-edit">CNPJ*</label>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                        <div class="btn-group-line">
+                
+                            <button type="button" class="btn btn-success-update me-lg-3" (click)='updateUsuario()'>
+                              ATUALIZAR
+                            </button>
+                            <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/visuproprietario">
+                              CANCELAR
+                            </button>
+      
+                          </div>
+
+                    </div>
+                </div>    
+                    
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="img-box">
+        <img src="https://i.imgur.com/0UeIHGU.jpg"/>
+    </div>
+</div>

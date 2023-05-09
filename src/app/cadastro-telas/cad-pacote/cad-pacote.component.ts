@@ -102,7 +102,7 @@ export class CadPacoteComponent implements OnInit {
       }
       else if (error.status === 404) {
 
-        if ( 
+       /*  if ( 
           (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
           (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
           (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
@@ -114,7 +114,7 @@ export class CadPacoteComponent implements OnInit {
                                       "', não pode ser cadastrado para o período '" + this.periodo + "'.");
         
         }
-        else {
+        else { */
 
           this.pacoteService
               .postPacote(this.cadPacote)
@@ -141,12 +141,12 @@ export class CadPacoteComponent implements OnInit {
 
               });
 
-        }        
+        /* }  */       
 
       }
       else {
 
-        if (
+      /*   if (
           (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
           (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
           (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
@@ -158,7 +158,7 @@ export class CadPacoteComponent implements OnInit {
                                       "', não pode ser cadastrado para o período '" + this.periodo + "'.");
 
         }
-        else {
+        else { */
 
           this.pacoteService
           .postPacote(this.cadPacote)
@@ -185,7 +185,7 @@ export class CadPacoteComponent implements OnInit {
 
           });
 
-        }   
+       /*  } */   
 
       }
       

@@ -33,6 +33,9 @@ import { DetalhesResponsavelComponent } from './paginas-logado/detalhes/detalhes
 import { VisualizarUsuarioComponent } from './paginas-logado/visualizar/visualizar-usuario/visualizar-usuario.component';
 import { DetalheUsuarioComponent } from './paginas-logado/detalhes/detalhe-usuario/detalhe-usuario.component';
 import { EditUsuarioComponent } from './paginas-logado/editar/edit-usuario/edit-usuario.component';
+import { VisualizarProprietarioComponent } from './paginas-logado/visualizar/visualizar-proprietario/visualizar-proprietario.component';
+import { DetalheProprietarioComponent } from './paginas-logado/detalhes/detalhe-proprietario/detalhe-proprietario.component';
+import { EditProprietarioUnicComponent } from './paginas-logado/editar/edit-proprietario-unic/edit-proprietario-unic.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -52,6 +55,8 @@ const routes: Routes = [
   {path: 'cadreforco', component: CadReforcoComponent},
   {path: 'cadagenda/:id', component: CadAgendaComponent},
 
+  {path: 'editperfil/:id', component: EditProprietarioComponent},
+  {path: 'editproprietario/:id', component: EditProprietarioUnicComponent},
   {path: 'editproprietario/:id', component: EditProprietarioComponent},
   {path: 'editresposavel/:id', component: EditResponsavelComponent},
   {path: 'editcrianca/:id', component: EditCriancaComponent},
@@ -65,6 +70,7 @@ const routes: Routes = [
   {path: 'visupacote', component: VisualizarPacoteComponent},
   {path: 'visureforco/:id', component: VisualizarReforcoComponent},
   {path: 'visusuario', component: VisualizarUsuarioComponent},
+  {path: 'visuproprietario', component: VisualizarProprietarioComponent},
   
   {path: 'visueditresponsavel', component: VisuEditResponsavelComponent},
   {path: 'visueditcrianca', component: VisuEditCriancaComponent},
@@ -77,6 +83,7 @@ const routes: Routes = [
   {path: 'detalhereforco/:id', component: DetalheReforcoComponent},
   {path: 'detalheresponsavel/:id', component: DetalhesResponsavelComponent},
   {path: 'detalheusuario/:id', component: DetalheUsuarioComponent},
+  {path: 'detalheproprietario/:id', component: DetalheProprietarioComponent},
 
 
 ];

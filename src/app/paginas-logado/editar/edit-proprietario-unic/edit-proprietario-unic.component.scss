@@ -1,0 +1,376 @@
+.container-cad {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+  
+.content-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    background: linear-gradient(11deg,rgb(200, 150, 255) 20%, rgba(138, 119, 224, 1) 44%, rgb(45, 33, 130) 71%);
+}
+
+.campo-edit {
+    position: absolute;
+    top: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+ //   background: yellowgreen;
+    width: 30%;
+}
+
+.content-box .form-box {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ //   background: lightcoral;
+}
+
+.content-box .form-box .form-title {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 2em;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.caixa-forms-edit {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ //   background-color: lightblue;
+}
+
+.img-box {
+    width: 50%;
+    height: auto;
+    padding: 20px;
+}
+
+.img-box img {
+    margin-top: 10%;
+    width: 100%;
+    height: auto;
+}
+
+.title_camp_top {
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.title_icon_ali {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text_edit_title_top {
+    color: #ffffff;
+    padding: 2px;
+    margin: 1px;
+    font-size: 20pt;
+}
+
+.icon_edit_top {
+    color: #ffffff;
+    padding: 5px;
+    font-size: 20pt;
+}
+
+//CAMPOS DE PREENCHIMENTO
+
+.texto-color {
+    font-size: 14px;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+  
+.label-color {
+    padding: 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.continer-forms {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 2%;
+    padding: 4%;
+}
+
+.camp_edit {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-box{
+  position: relative;
+  width: 80%;
+  display: flex;
+  padding: 10px 5px 0 5px;
+}
+
+.input-box .campo {
+  position: relative;
+  width: 100%;
+}
+
+.input-box .campoSenha {
+    display: flex;
+}
+
+.input-box .campo input
+{
+  width: 100%;
+  font-size: 17px;
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  border-radius: 0;
+}
+
+.campo input:focus,
+.campo-modal input:focus {
+  outline: none;
+}
+
+input:focus {
+    outline: 0;
+}
+
+input:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
+.campo .label-edit {
+    position: absolute;
+    top: 0;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    pointer-events: none;
+    transition: 100ms;
+}
+  
+.campo input:focus~label,
+.campo input:valid~label {
+    top: -20px;
+    font-size: 16px;
+    outline: none;
+}
+
+.campo input:focus {
+    color: #ffffff;
+    border-bottom: 1px solid #2D2182;
+}
+
+.campo input:focus~label {
+    color: #ffffff81;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.label-edit-tp {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 200;
+}
+
+.label-edit-mensagem {
+font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.label-edit-tp {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.texto-color {
+    font-size: 14px;
+    color: #2d2182;
+    border-color: #ffffff;
+}
+
+//OLHO MÁGICO
+.iconPass, .iconPass2 {
+    cursor: pointer;
+    color: #fff;
+    margin: 5px;
+}
+
+#text, #text2{
+    display: none;
+}
+
+.botao-revela {
+    position: relative;
+    border: 0;
+    background: none;
+}
+
+.input-box-modal-user .campoSenhaModal {
+    display: flex;
+    width: 84%;
+}
+
+.iconPassModal, .iconPass2Modal {
+    cursor: pointer;
+    color: #ffffff;
+    margin: 5px;
+}
+
+#textModal, #text2Modal {
+    display: none;
+}
+
+.botao-revelaModal {
+    position: relative;
+    border: 0;
+    background: none;
+}
+  
+// TITLE CAIXA
+.title-camp {
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+}
+
+.title-icon-ali {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-edit-title {
+    padding: 5px;
+    margin: 1px;
+}
+
+.icon-edit {
+    padding: 5px;
+    font-size: 20px;
+}
+  
+
+//BOTÕES
+  
+  .btn-group-line {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+  }
+  
+  .btn-cancel {
+    background-color: transparent;
+    // margin: 10px;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #bb2d3b;
+    font-weight: 500;
+  }
+  
+  .btn-cancel:hover {
+    background-color: transparent;
+    color: #bb2d3b;
+    background-color: #bb2d3b2b;
+    border: 2px #bb2d3b solid;
+    font-weight: 500;
+  }
+  
+  .btn-success-update {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #157347;
+    font-weight: 500;
+  }
+  
+  .btn-success-update:hover {
+    background-color: transparent;
+    color: #157347;
+    background-color: #1573471e;
+    border: 2px #157347 solid;
+  }
+    
+  ////////////////MODAL////////////////
+  .text_modal {
+    position: relative;
+    top: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  ////////////////////////////////
+  
+  @media (max-width: 920px) {
+  
+    .container-cad .img-box {
+      display: none;
+    }
+    
+    .container-cad .content-box {
+      width: 100%;
+      height: 115vh;
+    }
+    
+    .content-box .form-box {
+      width: 100%;
+    }
+
+    .campo-edit {
+        width: 100%;
+        top: 15%;
+    }
+     
+    .text_edit_title_top {
+        font-size: 20pt;
+    }
+    
+    .icon_edit_top {
+        font-size: 20pt;
+    }
+
+    .contact-position {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn_lg {
+
+        margin: 5px;
+    }
+  
+  }
+  

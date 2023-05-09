@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.prod';
   templateUrl: './detalhe-pacote.component.html',
   styleUrls: ['./detalhe-pacote.component.scss']
 })
-export class DetalhePacoteComponent implements OnInit{
+export class DetalhePacoteComponent implements OnInit {
 
   getPacote: Pacote = new Pacote;
 

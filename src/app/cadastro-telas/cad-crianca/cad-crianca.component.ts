@@ -22,6 +22,8 @@ export class CadCriancaComponent implements OnInit{
 
   formulario!: FormGroup;
 
+
+
   cadCrianca: Crianca = new Crianca();
 
   gen!: string;
@@ -78,16 +80,16 @@ export class CadCriancaComponent implements OnInit{
       tipoGen: ['', [Validators.required]],
       
       problemaSaude: ['', [Validators.required]],
-      tipoProblemaSaude: ['', []],
+      tipoProblemaSaude: [''],
 
       algumaAlergia: ['', [Validators.required]],
-      tipoAlergia: ['', []],
+      tipoAlergia: [''],
 
       usoMedicamento: ['', [Validators.required]],
-      qualMedicamento: ['', []],
+      qualMedicamento: [''],
 
       necessidadesEspeciais: ['', [Validators.required]],
-      tipoNecessidadesEspeciais: ['', []],
+      tipoNecessidadesEspeciais: [''],
       
       termoAceite: ['', [Validators.required]],
 
@@ -102,6 +104,12 @@ export class CadCriancaComponent implements OnInit{
 
     this.findByAllPacote();
 
+  }
+
+  onProblemaSaudeChange(value: boolean) {
+    if (!value) {
+      this.formulario.get('tipoProblemaSaude')?.setValue(null);
+    }
   }
 
   getByIdResponsavel(idResponsavel: number) {

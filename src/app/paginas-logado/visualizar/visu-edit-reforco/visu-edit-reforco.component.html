@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-center">
 
             <div class="form-group buscar-edit">
-                <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar reforço."
+                <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar reforço..."
                     [(ngModel)]='reforcoNome' (keyup)='findByMateria()'>
             </div>
         </div>
@@ -49,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table_line" *ngFor="let itemReforco of listReforco | orderBy: ['materias']">
+                            <tr class="table_line" *ngFor="let itemReforco of listReforco | orderBy: ['periodoCurso']">
 
                                 <th class="line_btn color_line" scope="row">{{itemReforco.materias}}</th>
                                 <td class="line_btn">{{itemReforco.periodoCurso}}</td>
