@@ -1,1 +1,277 @@
-<p>cad-agenda works!</p>
+<div class="container-cad">
+  <div class="container-fluid">
+    <div class="container-fluid" id='topo'>
+      <div class="row justify-content-center">
+        <div class="col-md-6 mt-5 mb-5 justificar">
+          <div class="row d-flex justify-content-center">
+
+            <div class="col-md-10 caixa shadow-sm p-2">
+
+              <div class="d-flex justify-content-center m-0 p-0">
+                <div class="title-camp">
+                  <hr>
+                  <div class="title-icon-ali">
+                    <h2 class="text-edit-title">CADASTRAR AGENDA</h2>
+                    <i class="fas fa-calendar-plus icon-edit"></i>
+                    <!--  <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i> -->
+                  </div>
+                  <hr>
+                </div>
+              </div>
+
+              <form class="margin-dentro" [formGroup]="formulario" (ngSubmit)="cadAgendamento()">
+
+                <div *ngFor="let dia of quantidadeDias; let i = index">
+
+                  <div class="position_itens" >
+  
+                    <div class="d-flex justify-content-start">
+  
+                      <div class="input-box m-0 p-1">
+                        <div class="form-group">
+                          <label class="label-color" [for]="'dataAgendamento' + dia">Data*</label>
+                          <input class="form-control texto-color" type="date"
+                            [formControlName]="'dia' + (i + 1) + '.dataAgendamento'" 
+                            [id]="'dataAgendamento' + dia" required />
+                        </div>
+  
+                        <!-- Exibição das mensagens de erro para 'dataAgendamento' -->
+                        <div class="mensagem-input-error">
+                          <div class="balao cax-position" *ngIf="formulario.get('dia' + (i + 1) + '.dataAgendamento')?.errors?.['required'] &&
+                                                                  formulario.get('dia' + (i + 1) + '.dataAgendamento')?.touched">
+                            <span class="m-lg-2">
+                              Preenchimento obrigatório!
+                            </span>
+                          </div>
+                          <div class="balao cax-position" *ngIf="formulario.get('dia' + (i + 1) + '.dataAgendamento')?.errors?.['menorDeTresDias'] &&
+                                                                  formulario.get('dia' + (i + 1) + '.dataAgendamento')?.touched">
+                            <span class="m-lg-2">A data deve ser pelo menos 3 dias após o dia atual.</span>
+                          </div>
+                          <div class="balao cax-position" *ngIf="formulario.get('dia' + (i + 1) + '.dataAgendamento')?.errors?.['finalDeSemana'] &&
+                                                                  formulario.get('dia' + (i + 1) + '.dataAgendamento')?.touched">
+                            <span class="m-lg-2">Não é possível agendar para fins de semana.</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="input-box m-0 p-1 w-30">
+                      <div class="form-group campo">
+                        <input class="form-control" type="time" [formControlName]="'dia' + (i + 1) + '.horarioEntrada'"
+                          [id]="'horarioEntrada' + dia" />
+                        <label class="label-edit" [for]="'horarioEntrada' + dia">Horario Entrada*</label>
+                      </div>
+                    
+                      <div class="mensagem-input-error">
+                        <div class="balao cax-position" *ngIf="formulario.get('dia' + (i + 1) + '.horarioEntrada')?.errors?.['required'] &&
+                                                        formulario.get('dia' + (i + 1) + '.horarioEntrada')?.touched">
+                          <span class="m-lg-2">
+                            Preenchimento obrigatório!
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="input-box m-0 p-1 w-30">
+                      <div class="form-group campo">
+                        <input class="form-control" type="time" [formControlName]="'dia' + (i + 1) + '.horarioSaida'"
+                          [id]="'horarioSaida' + dia" />
+                        <label class="label-edit" [for]="'horarioSaida' + dia">Horario Saída*</label>
+                      </div>
+                    
+                      <div class="mensagem-input-error">
+                        <div class="balao cax-position" *ngIf="formulario.get('dia' + (i + 1) + '.horarioSaida')?.errors?.['required'] &&
+                                                        formulario.get('dia' + (i + 1) + '.horarioSaida')?.touched">
+                          <span class="m-lg-2">
+                            Preenchimento obrigatório!
+                          </span>
+                        </div>
+                        <div class="balao cax-position" *ngIf="formulario.get('dia' + (i + 1) + '.horarioSaida')?.errors?.['horaValidator'] &&
+                                                        formulario.get('dia' + (i + 1) + '.horarioSaida')?.touched">
+                          <span class="m-lg-2">
+                            Horário Inválido!
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="input-box m-0 p-1">
+                      <div class="form-group campo">
+                        <input class="form-control" type="text"
+                          [formControlName]="'dia' + (i + 1) + '.observacao'" [id]="'observacao' + dia" />
+                        <label class="label-edit" [for]="'observacao' + dia">Observacao*</label>
+                      </div>
+                    </div>                
+  
+                  </div>
+  
+                  
+                </div>
+                
+                <div class="d-flex justify-content-around m-2">
+                  <button type="submit" class="btn botao-cad m-auto" [disabled]="todosCamposValidos()">
+                    <!-- (click)="cadAgendamento()"  -->
+                    CADASTRAR
+                  </button>
+                  <button type="button" class="btn botao-cancel m-auto" routerLink="/visuresponsavel">
+                    CANCELAR
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 
+
+
+
+
+    <form class="margin-dentro" [formGroup]="formulario">
+
+                        <div class="position_itens">
+
+                            <div class="d-flex justify-content-start">
+    
+                              <div class="input-box m-0 p-1">
+                                <div class="form-group">
+                                    <label class="label-color" for="dataAgendamento">Data*</label>
+                                    <input class="form-control texto-color" type="date" formControlName="dataAgendamento"
+                                     id="dataAgendamento" required />
+                                </div>
+    
+                                <div class="mensagem-input-error">
+                                  <div class="balao cax-position" *ngIf="formulario.get('dataAgendamento')?.errors?.['required'] && formulario.get('dataAgendamento')?.touched">
+                                    <span class="m-lg-2">
+                                      Preenchimento obrigatório!
+                                    </span>
+                                  </div>
+                                  <div class="balao cax-position" *ngIf="formulario.get('dataAgendamento')?.errors?.['menorDeTresDias'] && formulario.get('dataAgendamento')?.touched">
+                                    <span class="m-lg-2">A data deve ser pelo menos 3 dias após o dia atual.</span>
+                                  </div>
+                                  <div class="balao cax-position" *ngIf="formulario.get('dataAgendamento')?.errors?.['finalDeSemana'] && formulario.get('dataAgendamento')?.touched">
+                                    <span class="m-lg-2">Não é possível agendar para fins de semana.</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+  
+                          
+
+                            <div class="d-flex justify-content-start">
+
+                              <div class="input-box m-0 p-1 w-30">
+                                <div class="form-group campo">
+                                  <input class="form-control" type="time" formControlName="horarioEntrada" id="horarioEntrada" />
+                                  <label class="label-edit" for="horarioEntrada">Horario Entrada*</label>
+                                </div>
+                            
+                                <div class="mensagem-input-error">
+                                  <div class="balao cax-position" *ngIf="(formulario.get('horarioEntrada')?.errors?.['required'] ||
+                                   formulario.get('horarioEntrada')?.errors?.['horaValidator']) &&
+                                   formulario.get('horarioEntrada')?.touched">
+                                    <span class="m-lg-2">
+                                      Preenchimento obrigatório!
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            
+                              <div class="input-box m-0 p-1 w-30">
+                                <div class="form-group campo">
+                                  <input class="form-control" type="time" formControlName="horarioSaida" id="horarioSaida" />
+                                  <label class="label-edit" for="horarioSaida">Horario Saída*</label>
+                                </div>
+                            
+                                <div class="mensagem-input-error">
+                                  <div class="balao cax-position" *ngIf="(formulario.get('horarioSaida')?.errors?.['required'] ||
+                                   formulario.get('horarioSaida')?.errors?.['horaValidator']) &&
+                                   formulario.get('horarioSaida')?.touched">
+                                    <span class="m-lg-2">
+                                      Preenchimento obrigatório, somente letras!
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            
+                            </div>
+                            
+                          <div class="d-flex justify-content-start m-0 p-0">
+  
+                            <div class="input-box m-0 p-1">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="cadAgenda.observacao" class="form-control" type="text" formControlName="observacao" id="observacao"/>
+                                  <label class="label-edit" for="observacao">Observacao*</label>
+                              </div>
+  
+                          </div>
+  
+                          </div>
+                      </div>
+                        
+                      <div class="d-flex justify-content-around m-2">
+                        <button type="submit" class="btn botao-cad m-auto" (click)="cadAgendamento()" [disabled]="!formulario.valid">
+                          CADASTRAR
+                        </button>
+                        <button type="submit" class="btn botao-cancel m-auto" routerLink="/visuresponsavel">
+                            CANCELAR
+                        </button>
+                      </div>
+
+                  </form>
+   -->
+
+
+
+
+<!-- NÃO ESTAVA SENDO USADO VERIFICAR DEPOIS
+                              
+                              
+                              
+                              <div class="d-flex justify-content-start">
+  
+                              <div class="input-box m-0 p-1 w-30">
+                                  <div class="form-group campo ">
+                                      <input [(ngModel)]="cadAgenda.horarioEntrada" class="form-control" type="time" 
+                                          formControlName="horarioEntrada" id="horarioEntrada"/>
+                                      <label class="label-edit" for="horarioEntrada">Horario Entrada*</label>
+                                  </div>
+      
+                                  <div class="mensagem-input-error">
+                                    <div class="balao cax-position" *ngIf="(formulario.get('horarioEntrada')?.errors?.['required'] ||
+                                         formulario.get('horarioEntrada')?.errors?.['horaValidator']) &&
+                                         formulario.get('horarioEntrada')?.touched">
+                                      <span class="m-lg-2">
+                                        Preenchimento obrigatório!
+                                      </span>
+                                    </div>
+                                  </div>
+                              </div>
+      
+                              <div class="input-box m-0 p-1 w-30">
+                                  <div class="form-group campo ">
+                                      <input [(ngModel)]="cadAgenda.horarioSaida" class="form-control" type="time" 
+                                          formControlName="horarioSaida" id="horarioSaida" />
+                                      <label class="label-edit" for="horarioSaida">Horario Saída*</label>
+                                  </div>
+      
+                                  <div class="mensagem-input-error">
+                                    <div class="balao cax-position" *ngIf="(formulario.get('horarioSaida')?.errors?.['required'] ||
+                                         formulario.get('horarioSaida')?.errors?.['horaValidator']) &&
+                                         formulario.get('horarioSaida')?.touched">
+                                      <span class="m-lg-2">
+                                        Preenchimento obrigatório, somente letras!
+                                      </span>
+                                    </div>
+                                  </div>
+                              </div>
+                              
+                            </div> -->

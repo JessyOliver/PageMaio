@@ -1,9 +1,43 @@
 <div class="pacotecrianca">
     <div class="input-box m-lg-1">
-        <div class="form-group">
-            <label class="label-color" for="dataNasc">Data de Nascimento*</label>
-<!--                          <input [(ngModel)]="cadCrianca.dataNascimento" class="form-control texto-color" type="date" name="dataNasc" id="dataNasc" required />
--->                           <input class="form-control texto-color p-2" type="date" formControlName="dataNasc" id="dataNasc" (change)="dataConvert($event)" required />
+
+        <div class="position">
+
+            <form [formGroup]="formulario" (ngSubmit)="postarDados()">
+                <!-- NOME -->
+                <div>
+                  <input
+                    formControlName="nome"
+                    placeholder="Nome..."
+                    type="text" />
+                  <small *ngIf="formulario.get('nome')?.errors">
+                    Campo obrigatório
+                  </small>
+                </div>
+              
+                <!-- PERGUNTAS -->
+                <div *ngFor="let pergunta of formPerguntas.controls">
+                  {{pergunta.get('pergunta')?.value}}
+              
+                  <ng-container [formGroup]="$any(pergunta)">
+                    <input
+                      type="radio"
+                      formControlName="resposta"
+                      [value]="false" />
+                    Não
+              
+                    <input
+                      type="radio"
+                      formControlName="resposta"
+                      [value]="true" />
+                    Sim
+                  </ng-container>
+                </div>
+                <div>
+                  <input type="submit" value="Postar" />
+                </div>
+              </form>
+              {{ formulario.value | json }}
         </div>
 
       </div>

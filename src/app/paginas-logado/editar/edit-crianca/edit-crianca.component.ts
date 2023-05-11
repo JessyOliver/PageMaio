@@ -8,6 +8,7 @@ import { CriancaService } from 'src/app/service/crianca.service';
 import { PacoteService } from 'src/app/service/pacote.service';
 import { environment } from 'src/environments/environment.prod';
 
+
 @Component({
   selector: 'app-edit-crianca',
   templateUrl: './edit-crianca.component.html',
@@ -71,10 +72,16 @@ export class EditCriancaComponent implements OnInit{
     this.gen = event.target.value;
   }
  
-  dataConvert(event: any){
+/*   dataConvert(event: any){
 
     this.dataBr = event.target.value.split('/').reverse().join('-');
-  }
+  } */
+
+  dataConvert(event: any){
+
+    this.dataBr = event.target.value;
+
+  } 
 
   opSaudeT(event: any){
     this.opSaudT = event.target.value;
@@ -107,14 +114,56 @@ export class EditCriancaComponent implements OnInit{
 
     });
   }
-
+/* 
   formatarData(data: string): string {
     const [ano, mes, dia] = data.split('-');
     return `${dia}/${mes}/${ano}`;
   }
-
+ */
   updateCrianca() {
 
+
+    console.log(this.editCrianca.dtNascimento)
+
+    var dataFormatada = "05/04/2023"; // Exemplo de data formatada "dd/MM/yyyy"
+
+    var partesData = dataFormatada.split("/");
+    var dia = parseInt(partesData[0]);
+    var mes = parseInt(partesData[1]) - 1; // Note que os meses são indexados a partir de 0
+    var ano = parseInt(partesData[2]);
+    
+    var novaData = new Date(ano, mes, dia);
+    
+    if (isNaN(novaData.getTime())) {
+      // A data não pôde ser convertida corretamente
+      console.error("Data inválida");
+    } else {
+
+      console.log("data: " + novaData)
+      novaData;
+    }
+
+      // Criar um objeto Date com base na string
+      var data = new Date(novaData);
+
+      // Verificar se a data é válida
+      if (isNaN(data.getTime())) {
+        console.error("Data inválida");
+      } else {
+        // Obter os componentes da data
+        var dia = data.getDate();
+        var mes = data.getMonth() + 1; // Note que os meses são indexados a partir de 0
+        var ano = data.getFullYear();
+
+        // Formatar a data no formato desejado
+        var dataFormatada = `${("0" + dia).slice(-2)}/${("0" + mes).slice(-2)}/${ano}`;
+
+        console.log("DAta: " + dataFormatada);
+
+        this.editCrianca.dtNascimento = data; // Atribuir o objeto Date à propriedade
+      }
+    
+    
 
     if (this.idPacotePg === undefined) {
 
@@ -134,15 +183,7 @@ export class EditCriancaComponent implements OnInit{
       
       this.editCrianca.genero = this.gen;
     }
-    
-    if (this.dataBr === undefined) {
-      
-      this.editCrianca.dtNascimento;
-    } 
-    else {
-      
-      this.editCrianca.dtNascimento = this.dataBr;
-    }
+   
 
     if (this.opSaudT === undefined) {
 
@@ -213,3 +254,7 @@ export class EditCriancaComponent implements OnInit{
   }
 
 }
+function moment(dtNascimento: Date) {
+  throw new Error('Function not implemented.');
+}
+

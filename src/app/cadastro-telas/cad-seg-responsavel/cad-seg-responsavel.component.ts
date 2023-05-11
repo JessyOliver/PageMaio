@@ -19,8 +19,8 @@ export class CadSegResponsavelComponent implements OnInit{
 
   formulario!: FormGroup;
   gen!: string;
-  dataBr!: Date;
-
+/*   dataBr!: Date;
+ */
   cadSegResponsavel: SegundoResponsavel = new SegundoResponsavel();
 
   responsavelFk: Responsavel = new Responsavel();
@@ -83,10 +83,10 @@ export class CadSegResponsavelComponent implements OnInit{
     this.gen = event.target.value
   }
 
-  dataConvert(event: any){
+ /*  dataConvert(event: any){
 
     this.dataBr = event.target.value.split('/').reverse().join('-');
-  }
+  } */
 
   cadastrarSegunRes() {
 
@@ -96,8 +96,8 @@ export class CadSegResponsavelComponent implements OnInit{
     
     //itens tratados
     this.cadSegResponsavel.genero = this.gen;
-    this.cadSegResponsavel.dtNascimento = this.dataBr;
-
+/*     this.cadSegResponsavel.dtNascimento = this.dataBr;
+ */
     this.segResponsService
     .postSegunResponsavel(this.cadSegResponsavel)
     .subscribe((resp: SegundoResponsavel) => {

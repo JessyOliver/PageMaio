@@ -22,8 +22,6 @@ export class CadCriancaComponent implements OnInit{
 
   formulario!: FormGroup;
 
-
-
   cadCrianca: Crianca = new Crianca();
 
   gen!: string;
@@ -32,7 +30,8 @@ export class CadCriancaComponent implements OnInit{
   opSaudMOP!: boolean;
   opSaudNEOP!: boolean;
   termoAceiteSelect!: boolean;
-  dataBr!: Date;
+/*   dataBr!: Date;
+ */
 
   //FK
   proprietarioFk: Proprietario = new Proprietario();
@@ -138,10 +137,10 @@ export class CadCriancaComponent implements OnInit{
     this.gen = event.target.value;
   }
  
-  dataConvert(event: any){
+  /* dataConvert(event: any){
 
     this.dataBr = event.target.value.split('/').reverse().join('-');
-  }
+  } */
 
   opSaudeT(event: any){
     this.opSaudT = event.target.value;
@@ -177,7 +176,7 @@ export class CadCriancaComponent implements OnInit{
 
     //itens tratados
     this.cadCrianca.genero = this.gen;
-    this.cadCrianca.dtNascimento = this.dataBr;
+    /* this.cadCrianca.dtNascimento = this.dataBr; */
     this.cadCrianca.problemaSaude = this.opSaudT;
     this.cadCrianca.algumaAlergia = this.opSaudAOP;
     this.cadCrianca.usoMedicamento = this.opSaudMOP;

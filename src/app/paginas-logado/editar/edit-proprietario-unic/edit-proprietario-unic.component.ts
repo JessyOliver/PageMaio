@@ -86,8 +86,13 @@ export class EditProprietarioUnicComponent implements OnInit {
             this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
             this.router.navigate(['/login']);
           } else if (error.status === 400) {
+
+            console.log("Proprietario: ", this.editProprietario)
             this.alerts.showAlertDanger("Não foi possível alterar.");
           } else if (error.status === 500) {
+
+            console.log("Proprietario Id: ", this.editProprietario.id)
+            console.log("Proprietario: ", this.editProprietario)
             this.alerts.showAlertDanger("Confirme as informações inseridas, encontra-se incorreta.");
           }
         }

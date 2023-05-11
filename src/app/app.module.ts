@@ -118,7 +118,8 @@ export const customCurrencyMaskConfig = {
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule, 
-    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
+    ReactiveFormsModule,
 
   ],
   providers: [

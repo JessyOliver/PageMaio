@@ -69,8 +69,8 @@
                           <div class="input-box m-0">
                             <div class="form-group">
                                 <label class="label-color" for="dataNasc">Data de Nascimento*</label>
-                                <input class="form-control texto-color" type="date" formControlName="dataNasc" 
-                                       id="dataNasc" (change)="dataConvert($event)" required />
+                                <input [(ngModel)]="cadResponsavel.dtNascimento" class="form-control texto-color" type="date" formControlName="dataNasc" 
+                                       id="dataNasc" required /> <!-- (change)="dataConvert($event)" -->
                             </div>
 
                             <div class="mensagem-input-error">

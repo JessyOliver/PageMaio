@@ -28,8 +28,8 @@ export class CadResponsavelComponent implements OnInit{
   cadResponsavel: Responsavel = new Responsavel();
 
   gen!: string;
-  dataBr!: Date;
-
+/*   dataBr!: Date;
+ */
   constructor(
     private responsService: ResponsavelService,
     private auth: AuthService,
@@ -118,10 +118,10 @@ export class CadResponsavelComponent implements OnInit{
     this.gen = event.target.value
   }
 
-  dataConvert(event: any){
+  /* dataConvert(event: any){
 
     this.dataBr = event.target.value.split('/').reverse().join('-');
-  }
+  } */
 
   cadastrar() {
 
@@ -130,8 +130,8 @@ export class CadResponsavelComponent implements OnInit{
     this.cadResponsavel.usuario = this.userFK;
 
     this.cadResponsavel.genero = this.gen;
-    this.cadResponsavel.dtNascimento = this.dataBr;
-
+/*     this.cadResponsavel.dtNascimento = this.dataBr;
+ */
       this.responsService
       .postResponsavel(this.cadResponsavel)
       .subscribe((resp: Responsavel) => {

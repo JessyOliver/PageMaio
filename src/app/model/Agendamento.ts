@@ -2,6 +2,7 @@ import { Time } from "@angular/common";
 import { Contem } from "./Contem";
 
 export class Agendamento {
+    [x: string]: any;
 
     public id!: number;
     public dataAgendamento!: Date;

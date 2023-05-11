@@ -76,7 +76,7 @@ const routes: Routes = [
   {path: 'visueditcrianca', component: VisuEditCriancaComponent},
   {path: 'visueditreforco', component: VisuEditReforcoComponent},
   
-  {path: 'pacotecrianca/:id', component: PacoteCriancaComponent},
+  {path: 'pacotecrianca', component: PacoteCriancaComponent},
 
   {path: 'detalhecrianca/:id', component: DetalheCriancaComponent},
   {path: 'detalhepacote/:id', component: DetalhePacoteComponent},

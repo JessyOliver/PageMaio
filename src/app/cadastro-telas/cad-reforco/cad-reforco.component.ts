@@ -111,7 +111,7 @@ export class CadReforcoComponent implements OnInit{
         this.alerts.showAlertSucess("Reforço cadastrado com sucesso!");
         this.router.navigate(["/inicio"]);
 
-        this.formulario.reset();
+       // this.formulario.reset();
 
 
        }, error => {
