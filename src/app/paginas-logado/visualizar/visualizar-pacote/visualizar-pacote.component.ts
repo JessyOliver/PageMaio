@@ -90,6 +90,7 @@ export class VisualizarPacoteComponent implements OnInit{
       this.alerts.showAlertInfo("Pacote apagado com sucesso.");
 
     });
+    
   }
 
 }
