@@ -1,0 +1,126 @@
+.container_sobre {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-gray {
+    z-index: -1;
+    position: absolute;
+    top: 8%;
+    width: 100%;
+    height: 489px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #636268;
+}
+
+/* Define o estilo da imagem da esquerda */
+.image-left {
+    position: absolute;
+    width: 800px;
+    height: 491px;
+    left: 0;
+    background-image: url("https://i.imgur.com/psto2PE.jpg");
+    background-size: cover;
+    filter: blur(2px);
+    opacity: 0.9;
+}
+
+/* Define o estilo da imagem da direita */
+.image-right {
+    position: absolute;
+    width: 720px;
+    height: 491px;
+    right: 0;
+    background-image: url("https://i.imgur.com/eXGixYb.jpg");
+    background-size: cover;
+    filter: blur(2px);
+    opacity: 0.8;
+}
+ 
+
+  /* Define o estilo do título */
+.title {
+    position: absolute;
+    width: 53%;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 50px;
+    text-align: right;
+    right: 47.4%;
+    color: #FFFFFF;
+    padding: 5px;
+    background: #54526141;
+}
+
+
+.img_text {
+    position: relative;
+    top: 540px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f7f7f7;
+}
+
+.position_logo {    
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    background: #f7f7f7;
+    padding: 20px;
+}
+
+.image {    
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    border-radius: 14px;
+}
+
+.sobre_text {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    padding: 20px;
+}
+
+.h2_estile {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 71px;
+    color: #2c2182;
+}
+
+.p_stely {
+    text-indent: 70px;
+    text-align: justify;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    color: #2c2182;
+    margin-left: 5px;
+}
+
+@media (max-width: 900px) {
+
+    .sobre_text {
+      width: 100%;
+    }
+
+}
+  

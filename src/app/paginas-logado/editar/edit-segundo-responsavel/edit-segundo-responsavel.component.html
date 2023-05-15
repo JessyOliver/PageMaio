@@ -1,0 +1,136 @@
+<div class="container-cad">
+    <div class="content-box">
+
+        <div class="campo-edit">
+
+            <div class="form-box">
+
+                <div class="d-flex justify-content-center">
+                    <div class="title_camp_top">
+                      <hr>
+                      <div class="title_icon_ali">
+                        <h2 class="text_edit_title_top">EDITAR 2° RESPONSÁVEL</h2>
+                        <i class="fa-solid fa-user icon_edit_top"></i>
+                      </div>
+                      <hr>
+                    </div>
+                </div>
+
+                <div class="caixa-forms-edit">
+                    <div class="continer-forms">
+
+                      <div class="camp_edit">
+
+                        <div class="d-block justify-content-between w-100">
+  
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editSegResponsavel.nome" class="form-control w-100" type="text" name="nome" id="nome" required />
+                                    <label class="label-edit" for="nome">Nome*</label>
+                                </div>
+                            </div>
+    
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editSegResponsavel.cpf" class="form-control w-75" type="text" name="cpf" id="cpf" required />
+                                  <label class="label-edit" for="cpf">CPF*</label>
+                                </div>
+                            </div>
+                            
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                <label class="label-color" for="dataNasc">Data de Nascimento*</label>
+                               <input [(ngModel)]="editSegResponsavel.dtNascimento" class="form-control texto-color w-75" type="date" name="dataNasc" id="dataNasc"  required /><!-- (change)="dataConvert($event)" -->
+                                                         
+                              </div>
+                            </div>
+                        </div>
+  
+                        <div class="d-flex justify-content-between w-100">  
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                <label class="label-color" for="tipoGen">Gênero</label>
+                                <select class="form-control texto-color p-2" name="tipoGen" id="tipoGen"
+                                    (change)="genero($event)" required>
+                                    <option disabled selected value="{{ editSegResponsavel.genero }}">
+                                        {{ editSegResponsavel.genero }}
+                                    </option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
+                                </select>
+                              </div> 
+                            </div>
+                            
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                <input [(ngModel)]="editSegResponsavel.parentesco" class="form-control w-100" type="text" 
+                                          name="parentesco" id="parentesco" required />
+                                <label class="label-edit" for="parentesco">Parentesco*</label>                             
+                              </div>
+                            </div>
+  
+                        </div>
+  
+                        <div class="d-flex justify-content-center m-0 p-0">
+                            <div class="title-camp">
+                              <hr>
+                              <div class="title-icon-ali">
+                                <h6 class="text-edit-title">TELEFONES PARA CONTATO*</h6>
+                                <i class="fas fa-phone-square icon-edit"></i>
+                              </div>
+                              <hr>
+                            </div>
+                        </div>
+
+                        <div class="d-block justify-content-between w-100">
+                          <div class="input-box">
+                            <div class="form-group campo">
+                                <input [(ngModel)]="editSegResponsavel.celular" 
+                                  class="form-control w-50" type="text" name="celular" id="celular"/>
+                                <label class="label-edit" for="celular">Celular</label>
+                            </div>
+                          </div>
+                          <div class="input-box">
+                            <div class="form-group campo">
+                                <input [(ngModel)]="editSegResponsavel.telefone" 
+                                  class="form-control w-50" type="text" name="telefone" id="telefone"/>
+                                <label class="label-edit" for="telefone">Residencial</label>
+                            </div>
+                          </div>
+                          <div class="input-box">
+                            <div class="form-group campo">
+                                <input [(ngModel)]="editSegResponsavel.telefoneComercial" 
+                                  class="form-control w-50" type="text" name="telefoneComercial" id="telefoneComercial"/>
+                                <label class="label-edit" for="telefoneComercial">Comercial</label>
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                        <div class="btn-group-line">
+                
+                            <button type="submit" class="btn btn-success-update me-lg-3" (click)='updateSegResponsavel()'>
+                              ATUALIZAR
+                            </button>
+                            <button type="button" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/visusegundoresponsavel">
+                              CANCELAR
+                            </button>
+      
+                          </div>
+
+                    </div>
+                </div>    
+                    
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="img-box">
+        <img src="https://i.imgur.com/0UeIHGU.jpg"/>
+    </div>
+</div>

@@ -56,18 +56,27 @@ export class MenuLoggedComponent implements OnInit {
     .getByIdUser(this.idUsu)
     .subscribe((resp: User)=> {
 
-     this.nomeUser = resp.proprietario[0].nome;
-
       for (let i = 0; i < resp.proprietario.length; i++) {
-        const nome = resp.proprietario[i].nome;
+
+       // this.nomeUser = resp.proprietario[i].nome;
+
         console.log(environment.tipo);
 
-        if (resp.tipo === "ADMINISTRADOR") {
+        if (resp.tipo == "ADMINISTRADOR") {
           
           this.nomeUser = resp.proprietario[i].nome;          
         }
-        else {
-  
+
+      }
+
+      for (let i = 0; i < resp.responsavel.length; i++) {
+
+       // this.nomeUser = resp.proprietario[i].nome;
+
+        console.log(environment.tipo);
+
+        if (resp.tipo == "PADRÃO") {
+            
           this.nomeUser = resp.responsavel[i].nome;
         }
 

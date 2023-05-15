@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment.prod';
 export class CadAgendaComponent implements OnInit {  
 
   formulario!: FormGroup;
+
   gen!: string;
   dataBr!: Date;
   horaEntrada!: string;
@@ -69,54 +70,52 @@ export class CadAgendaComponent implements OnInit {
     //forçando altenticação
     this.auth.refreshToken(); 
 
-   /*  this.formulario = this.formBuilder.group({
-
-      dataAgendamento: ['', [Validators.required, this.dataValidator]],
-      horarioEntrada: ['', [Validators.required, CustomValidators.horaValidator]],
-      horarioSaida: ['', [Validators.required, CustomValidators.horaValidator]],
-    
-    }); */
-
-
-    this.formulario = this.formBuilder.group({
-      dia1: this.formBuilder.group({
-        dataAgendamento: ['', [Validators.required, this.dataValidator]],
-        horarioEntrada: ['', [Validators.required, CustomValidators.horaValidator]],
-        horarioSaida: ['', [Validators.required, CustomValidators.horaValidator]],    
-        observacao: ['']
-      }),
-      // adicione mais grupos para outros dias se necessário
-    });
+  
 
     this.formulario = this.formBuilder.group({});
 
-  // Marcar todos os campos como tocados para exibir os erros de validação
-      this.formulario.markAllAsTouched();
+    // Criar os controles para cada dia do pacote
+    for (let i = 1; i <= this.pacotePg.qtdDias; i++) {
+      const diaFormGroup = this.formBuilder.group({
+        dataAgendamento: ['', Validators.required],
+        horarioEntrada: ['', Validators.required],
+        horarioSaida: ['', Validators.required],
+      });
 
-      this.idPacote = this.route.snapshot.params['id'];
-      this.getByIdPacote(this.idPacote);
+      this.formulario.addControl(`dia${i}`, diaFormGroup);
+    }
+
+    // Marcar todos os campos como tocados para exibir os erros de validação
+    this.formulario.markAllAsTouched();
+
+
+    this.idPacote = this.route.snapshot.params['id'];
+    this.getByIdPacote(this.idPacote);
 
   }
   
   todosCamposValidos() {
+
     for (let i = 1; i <= this.quantidadeDias.length; i++) {
+
       const campoData = this.formulario.get(`dia${i}.dataAgendamento`);
       const campoEntrada = this.formulario.get(`dia${i}.horarioEntrada`);
       const campoSaida = this.formulario.get(`dia${i}.horarioSaida`);
-      const campoObservacao = this.formulario.get(`dia${i}.observacao`);
   
-      console.log("campos: ", campoData)
+      console.log("Campo Data: ", campoData, 
+                  " Campo Entrada: ", campoEntrada,
+                  " Campo Saída: ", campoSaida);
       if (
         campoData!.invalid ||
         campoEntrada!.invalid ||
-        campoSaida!.invalid ||
-        campoObservacao!.invalid
-      ) {
-        return false; // Se algum campo for inválido, retorna false
+        campoSaida!.invalid 
+        ) {
+          return false; // Se algum campo for inválido, retorna false
+        }
       }
-    }
-  
-    return true; // Se todos os campos forem válidos, retorna true
+      
+      return true; // Se todos os campos forem válidos, retorna true
+
   }
   
    
@@ -159,8 +158,7 @@ export class CadAgendaComponent implements OnInit {
           observacao: ['']
         });
   
-        this.formulario.addControl(`dia${dia}`, diaFormGroup);
-
+        this.formulario.setControl(`dia${dia}`, diaFormGroup);
 
       }
 
@@ -171,63 +169,65 @@ export class CadAgendaComponent implements OnInit {
 
   cadAgendamento() {
 
-    for (let index = 0; index < this.quantidadeDiasPacote; index++) {
+    
 
-      const diaFormGroup = this.formulario.get(`dia${index + 1}`) as FormGroup;
-      const dataAgendamento = diaFormGroup.get(`dia${index + 1}.dataAgendamento`)?.value;
-      const horarioEntrada = diaFormGroup.get(`dia${index + 1}.horarioEntrada`)?.value;
-      const horarioSaida = diaFormGroup.get(`dia${index + 1}.horarioSaida`)?.value;
-      const observacao = diaFormGroup.get(`dia${index + 1}.observacao`)?.value;
-  
-      console.log("Valores do formulário: ");
-      console.log(dataAgendamento);
-      console.log(horarioEntrada);
-      console.log(horarioSaida);
-      console.log(observacao);
+     if (this.formulario.valid) {
 
-      // Resto do seu código dentro do loop
-      const agendamento: Agendamento = {
-        id: 0,
-        status: true,
-        dataAgendamento: dataAgendamento,
-        horarioEntrada: horarioEntrada,
-        horarioSaida: horarioSaida,
-        observacao: observacao,
-        contem: []
-        // Define os outros atributos do objeto Agendamento conforme necessário
-      };
+      for (let index = 0; index < this.quantidadeDias.length; index++) {
 
+        const diaFormGroup = this.formulario.get(`dia${index + 1}`) as FormGroup;
+        const dataAgendamento = diaFormGroup.get(`dia${index + 1}.dataAgendamento`)?.value;
+        const horarioEntrada = diaFormGroup.get(`dia${index + 1}.horarioEntrada`)?.value;
+        const horarioSaida = diaFormGroup.get(`dia${index + 1}.horarioSaida`)?.value;
+        const observacao = diaFormGroup.get(`dia${index + 1}.observacao`)?.value;
+      
+        console.log("Valores do formulário: ");
+        console.log(dataAgendamento);
+        console.log(horarioEntrada);
+        console.log(horarioSaida);
+        console.log(observacao);
 
-      console.log("Agendamento: ")
-      console.log(agendamento)
+        const agendamento: Agendamento = {
+          id: 0,
+          status: true,
+          dataAgendamento: dataAgendamento,
+          horarioEntrada: horarioEntrada,
+          horarioSaida: horarioSaida,
+          observacao: observacao,
+          contem: []
+        };
+   
+        console.log("Agendamento: ")
+        console.log(agendamento)
 
-      this.agendaService
-      .postAgendamento(agendamento)
-      .subscribe((resp: Agendamento) => {
+        this.agendaService
+        .postAgendamento(agendamento)
+        .subscribe((resp: Agendamento) => {
 
-        this.cadAgenda = resp;
-        this.alerts.showAlertSucess('Agendamento cadastrado com sucesso!');
-        this.router.navigate(['/inicio']);
-      },
-      error => {
-        if (error.status === 400) {
-          
-          this.alerts.showAlertDanger("Valores incorretos no cadastro.");
-        }
-        if (error.status === 401) {
-          
-          this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
-          this.router.navigate(['/login']);
-        }
-        else if (error == 500) {
+          this.cadAgenda = resp;
+          this.alerts.showAlertSucess('Agendamento cadastrado com sucesso!');
+          this.router.navigate(['/inicio']);
+        },
+        error => {
+          if (error.status === 400) {
+            
+            this.alerts.showAlertDanger("Valores incorretos no cadastro.");
+          }
+          if (error.status === 401) {
+            
+            this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+            this.router.navigate(['/login']);
+          }
+          else if (error == 500) {
 
-          this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
-  
-        }
-      });
+            this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+    
+          }
+        });
+
+      }
 
     }
-    
 
   }
 
@@ -241,7 +241,13 @@ export class CadAgendaComponent implements OnInit {
 
 
 
+ /*  this.formulario = this.formBuilder.group({
 
+      dataAgendamento: ['', [Validators.required, this.dataValidator]],
+      horarioEntrada: ['', [Validators.required, CustomValidators.horaValidator]],
+      horarioSaida: ['', [Validators.required, CustomValidators.horaValidator]],
+    
+    }); */
 
 
 

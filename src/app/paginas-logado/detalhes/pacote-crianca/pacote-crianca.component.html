@@ -1,0 +1,80 @@
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+
+      <div class="d-flex justify-content-center m-0 p-0">
+          <div class="title_camp_top">
+              <hr>
+              <div class="title-icon-ali">
+                  <h2 class="text_edit_title_top">DETALHES DA MENSAGEM</h2>
+                  <i class="fas fa-envelope-open-text icon_edit_top"></i>
+              </div>
+              <hr>
+          </div>
+      </div>
+
+      <div class="container-principal">
+          <div class="result-banco">
+
+              <div class="alinhar-blocos">
+
+                  <div class="form-group container-respo">
+
+                      <div class="d-flex justify-content-center m-0 p-0">
+                          <div class="title-camp">
+                              <hr>
+                              <div class="title-icon-ali">
+                                  <h5 class="text-edit-title">{{getMensagem.titulo.toUpperCase()}}</h5>
+                                  <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
+                              </div>
+                              <hr>
+                          </div>
+                      </div>
+
+                      <div class="container-info">
+
+                          <div class="d-block justify-content-between">
+
+                              <div class="elemento-info">
+                                  <p class="titulo-edit">Conteúdo da Mensagem:</p>
+                                  <p class="info-edit">{{getMensagem.conteudoMensagem}}</p>
+                              </div>
+
+
+                          </div>
+
+                          <div class="d-block justify-content-between">
+                              <div class="elemento-info">
+                                  <p class="titulo-edit">Enviado por:</p>
+                                  <p class="info-edit">{{getMensagem.responsavel.nome}}</p>
+                              </div>
+
+                              <div class="elemento-info">
+                                  <p class="titulo-edit">Telefone para Contato:</p>
+                                  <p class="info-edit">{{getMensagem.responsavel.celular}}</p>
+                              </div>
+
+                              <div class="elemento-info">
+                                  <p class="titulo-edit">Responsável pela Criança:</p>
+                                  <p class="info-edit">{{nomeCrianca}}</p>
+                              </div>
+
+                          </div>
+
+                      </div>
+
+                      <div class="container-btn">
+                          <div class="bt-duplo-small">
+                              <button type="button" class="btn botao-cancel" routerLink="/visumensagens">
+                                  VOLTAR
+                              </button>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+
+  </div>
+</div>

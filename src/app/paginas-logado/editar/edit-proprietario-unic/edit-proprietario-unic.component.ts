@@ -65,7 +65,6 @@ export class EditProprietarioUnicComponent implements OnInit {
   }
 
   updateUsuario() {
-    
     if (this.nomeProprietario !== undefined) {
       this.editProprietario.nome = this.nomeProprietario;
     }
@@ -74,25 +73,32 @@ export class EditProprietarioUnicComponent implements OnInit {
       this.editProprietario.cnpj = this.cnjpProprietario;
     }
   
-    this.proprietarioService.putProprietario(this.editProprietario)
-      .subscribe(
+    this.proprietarioService
+    .putProprietario(this.editProprietario)
+    .subscribe(
         (resp: Proprietario) => {
+
           this.editProprietario = resp;
           this.alerts.showAlertSucess("Proprietário alterado com sucesso!");
           this.router.navigate(["/visuproprietario"]);
+
         },
         error => {
+
           if (error.status === 401) {
+
             this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
             this.router.navigate(['/login']);
-          } else if (error.status === 400) {
+          }
+          else if (error.status === 400) {
 
-            console.log("Proprietario: ", this.editProprietario)
+            console.log("Proprietario: ", this.editProprietario);
             this.alerts.showAlertDanger("Não foi possível alterar.");
-          } else if (error.status === 500) {
+          }
+          else if (error.status === 500) {
 
-            console.log("Proprietario Id: ", this.editProprietario.id)
-            console.log("Proprietario: ", this.editProprietario)
+            console.log("Proprietario Id: ", this.editProprietario.id);
+            console.log("Proprietario: ", this.editProprietario);
             this.alerts.showAlertDanger("Confirme as informações inseridas, encontra-se incorreta.");
           }
         }

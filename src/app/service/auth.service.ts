@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { User } from '../model/User';
 import { UserLogin } from '../model/UserLogin';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +21,7 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) { }
+
 
   //Variavel Token
   token = {
