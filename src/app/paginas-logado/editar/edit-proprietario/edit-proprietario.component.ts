@@ -129,6 +129,7 @@ export class EditProprietarioComponent implements OnInit {
      document.getElementById('modalUserEdit');('shown.bs.modal');
   }
  */
+
   validatePreenchido() {
 
     let usuario = <HTMLInputElement>document.getElementById('usuario');
@@ -159,7 +160,7 @@ export class EditProprietarioComponent implements OnInit {
     this.typeUser = event.target.value
   }
 
-   updateUsuario() {
+  updateUsuario() {
 
     if ((this.typeUser !== undefined) ) {
       

@@ -74,7 +74,7 @@ export class Validacoes {
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
       age--;
     }
-    if (age <= 12) {
+    if (age >= 3 && age <= 13) {
       return null;
     }
     return { overage: true };

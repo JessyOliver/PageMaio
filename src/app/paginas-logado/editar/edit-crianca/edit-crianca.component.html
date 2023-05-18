@@ -209,35 +209,18 @@
                                 </div>
                             </div>
 
-                            <!--     <div class="d-flex justify-content-start w-100">
-                                <div class="input-box m-0">
-                                    <div class="form-group campo">
-                                        <label for="tipoPacote" class="label-color">Pacotes:</label>
-                                        <select class="form-control texto-color p-2" name="tipoPacote" id="tipoPacote" 
-                                                [(ngModel)]="idPacotePg" (change)='findByAllPacote()'>
-                                        <option disabled selected value="{{editCrianca.pacote.id}}">
-                                            {{editCrianca.pacote.tipoPacote}} : {{editCrianca.pacote.valorPacote | currency:'BRL':'symbol':'1.2-2'}}
-                                        </option>
-                                        <option *ngFor="let pacotes of listerPacote" value="{{pacotes.id}}" >
-                                            {{pacotes.tipoPacote}} : {{pacotes.valorPacote | currency:'BRL':'symbol':'1.2-2'}}
-                                        </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> -->
-
                             <div class="d-flex justify-content-start w-100">
                                 <div class="input-box m-0">
                                     <div class="form-group campo">
                                         <label for="tipoPacote" class="label-color">Pacotes:</label>
                                         <select class="form-control texto-color p-2" name="tipoPacote" id="tipoPacote"
-                                            [(ngModel)]="idPacotePg" (change)='findByAllPacote()'>
+                                             (change)='tipoPacote($event)'>
                                             <option disabled selected value="{{editCrianca.pacote.id}}">
-                                                {{editCrianca.pacote.tipoPacote}} : {{editCrianca.pacote.valorPacote |
+                                                '{{editCrianca.pacote.tipoPacote}}' no periodo '{{editCrianca.pacote.periodo}}' : {{editCrianca.pacote.valorPacote |
                                                 currency:'BRL':'symbol':'1.2-2'}}
                                             </option>
                                             <option *ngFor="let pacotes of listerPacote" value="{{pacotes.id}}">
-                                                {{pacotes.tipoPacote}} : {{pacotes.valorPacote |
+                                                '{{pacotes.tipoPacote}}' no periodo '{{editCrianca.pacote.periodo}}' : {{pacotes.valorPacote |
                                                 currency:'BRL':'symbol':'1.2-2'}}
                                             </option>
                                         </select>

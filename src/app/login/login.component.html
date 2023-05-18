@@ -9,7 +9,7 @@
               <div class="input-box">
                   <label class="input-title">Usuário: *</label>
                   <div class="input-icone">
-                    <i class="fa-solid fa-user icon-user"></i>
+                    <i class="fas fa-user icon-user"></i>
                     <input [(ngModel)]="userLogin.usuario" name="nameUser" id="nameUser" class="input-edit" type="email" placeholder="exemplo@mail.com" required>
                   </div>
               </div>
@@ -17,14 +17,16 @@
               <div class="input-box">
                   <label class="input-title">Senha: *</label>
                   <div class="input-icone">
-                    <i class="fa-solid fa-lock icon-user"></i>
+                    <i class="fas fa-lock icon-user"></i>
                     <input [(ngModel)]="userLogin.senha" name="senha" id="senha" class="input-edit" type="password" placeholder="senha" required>
                     <button type="button" (click)="togglePass()" class="botao-revela">
-                      <i class="fa-solid  fa-eye iconPass" id="text"></i>
-                      <i class="fa-solid fa-eye-slash iconPass" id="pass"></i>
+                      
+                        <i class="fas fa-eye iconPass" id="text"></i>
+                        <i class="fas fa-eye-slash iconPass" id="pass"></i>
                     </button>
                   </div>
               </div>
+
 
              <!--  <div class="remember">
                   <label>

@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.margin_footer {
+    margin-bottom: 36%;
+}
+
 .background-gray {
     z-index: -1;
     position: absolute;
@@ -71,7 +75,7 @@
 }
 
 .position_logo {    
-    width: 50%;
+    width: 40%;
     height: auto;
     display: flex;
     justify-content: right;

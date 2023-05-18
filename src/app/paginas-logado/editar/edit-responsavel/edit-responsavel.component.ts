@@ -16,11 +16,7 @@ export class EditResponsavelComponent {
   //ALTERANDO RESPONSÁVEL
   editResponsavel: Responsavel = new Responsavel();
 
-  dataBr!: Date;
   gen!: string;
-
-  confirmeSenha!: string;
-  typeUser!: string;
 
   constructor(
     private authService: AuthService,
@@ -58,23 +54,30 @@ export class EditResponsavelComponent {
     
   }
 
-  dataConvert(event: any){
-
-    this.dataBr = event.target.value.split('/').reverse().join('-');
-  }  
+  genero(event: any){
+    this.gen = event.target.value;
+  }
 
   updateResponsavel() {
-
-    console.log("Data ",this.dataBr)
     
-    this.editResponsavel.dtNascimento = this.dataBr;
+    if (this.gen ===  undefined) {
+      
+      this.editResponsavel.genero;
+    }
+    else {
+      
+      this.editResponsavel.genero = this.gen;
+    }
+
 
     this.responsavelService
     .updateResponsavel(this.editResponsavel)
     .subscribe((resp: Responsavel) => {
 
+      console.log(resp)
+
       this.editResponsavel = resp;
-      this.router.navigate(["/inicio"]);
+      this.router.navigate(["/visueditresponsavel"]);
       this.alerts.showAlertInfo("Responsável editado com sucesso.");
 
     },
@@ -86,53 +89,5 @@ export class EditResponsavelComponent {
     });
 
   }
-
-
-  confirmarSenha(event: any){
-    this.confirmeSenha = event.target.value
-  }
-
-  togglePass() {
-
-    let senha = <HTMLInputElement>document.getElementById("senha");
-
-    if (senha.type == "password") {
-      senha.type = "text";
-      document.getElementById('pass')!.style.display = 'none';
-      document.getElementById('text')!.style.display = 'inline-block';
-    }
-    else {
-      senha.type = "password";
-      document.getElementById('text')!.style.display = 'none';
-      document.getElementById('pass')!.style.display = 'inline-block';
-    }
-
-  }
-
-  togglePass2() {
-
-      ///////////CAMPO CONFIRMAÇÃO DE SENHA
-
-      let tipoConfirma = <HTMLInputElement>document.getElementById("confirmSenha");
-
-      if (tipoConfirma.type == "password") {
-        tipoConfirma.type = "text";
-        document.getElementById('pass2')!.style.display = 'none';
-        document.getElementById('text2')!.style.display = 'inline-block';
-      }
-      else {
-        tipoConfirma.type = "password";
-        document.getElementById('text2')!.style.display = 'none';
-        document.getElementById('pass2')!.style.display = 'inline-block';
-      }
-
-  }
-  
-  tipoUser(event: any){
-    this.typeUser = event.target.value
-  }
-
-
-
 
 }

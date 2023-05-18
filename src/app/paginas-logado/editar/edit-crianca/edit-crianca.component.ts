@@ -23,7 +23,7 @@ export class EditCriancaComponent implements OnInit{
   opSaudAOP!: boolean;
   opSaudMOP!: boolean;
   opSaudNEOP!: boolean;
-  termoAceiteSelect!: boolean;
+  tipoPacoteget!: string;
   dataBr!: Date;
 
   listerPacote: Pacote[] = [];
@@ -41,6 +41,7 @@ export class EditCriancaComponent implements OnInit{
   ) {}
 
   ngOnInit(){
+
     window.scroll(0,0);
 
     if (environment.token == '') {
@@ -68,20 +69,43 @@ export class EditCriancaComponent implements OnInit{
     
   }
 
+  findByAllPacote() {
+
+    this.pacoteService
+    .getAllPacote()
+    .subscribe((resp: Pacote[]) => {
+
+      this.listerPacote = resp;
+
+    });
+  }
+
   genero(event: any){
     this.gen = event.target.value;
   }
  
-/*   dataConvert(event: any){
-
-    this.dataBr = event.target.value.split('/').reverse().join('-');
-  } */
-
   dataConvert(event: any){
+
+   // this.dataBr = event.target.value.split('/').reverse().join('-');
+
+    var dataAtual = event.target.value;
+
+    // Obtém os componentes da data
+    var dia = dataAtual.getDate();
+    var mes = dataAtual.getMonth() + 1; // Os meses são baseados em zero, por isso é necessário adicionar 1
+    var ano = dataAtual.getFullYear();
+
+    // Formata a data no formato desejado
+    var dataBr = dia + '-' + mes + '-' + ano;
+
+    console.log(dataBr); 
+  } 
+
+ /*  dataConvert(event: any){
 
     this.dataBr = event.target.value;
 
-  } 
+  }  */
 
   opSaudeT(event: any){
     this.opSaudT = event.target.value;
@@ -99,81 +123,11 @@ export class EditCriancaComponent implements OnInit{
     this.opSaudNEOP = event.target.value;
   }
 
-  termoAceiteOk(event: any){
-    this.termoAceiteSelect = event.target.value;
+  tipoPacote(event: any){
+    this.idPacotePg = event.target.value;
   }
 
-
-  findByAllPacote() {
-
-    this.pacoteService
-    .getAllPacote()
-    .subscribe((resp: Pacote[]) => {
-
-      this.listerPacote = resp;
-
-    });
-  }
-/* 
-  formatarData(data: string): string {
-    const [ano, mes, dia] = data.split('-');
-    return `${dia}/${mes}/${ano}`;
-  }
- */
-  updateCrianca() {
-
-
-    console.log(this.editCrianca.dtNascimento)
-
-    var dataFormatada = "05/04/2023"; // Exemplo de data formatada "dd/MM/yyyy"
-
-    var partesData = dataFormatada.split("/");
-    var dia = parseInt(partesData[0]);
-    var mes = parseInt(partesData[1]) - 1; // Note que os meses são indexados a partir de 0
-    var ano = parseInt(partesData[2]);
-    
-    var novaData = new Date(ano, mes, dia);
-    
-    if (isNaN(novaData.getTime())) {
-      // A data não pôde ser convertida corretamente
-      console.error("Data inválida");
-    } else {
-
-      console.log("data: " + novaData)
-      novaData;
-    }
-
-      // Criar um objeto Date com base na string
-      var data = new Date(novaData);
-
-      // Verificar se a data é válida
-      if (isNaN(data.getTime())) {
-        console.error("Data inválida");
-      } else {
-        // Obter os componentes da data
-        var dia = data.getDate();
-        var mes = data.getMonth() + 1; // Note que os meses são indexados a partir de 0
-        var ano = data.getFullYear();
-
-        // Formatar a data no formato desejado
-        var dataFormatada = `${("0" + dia).slice(-2)}/${("0" + mes).slice(-2)}/${ano}`;
-
-        console.log("DAta: " + dataFormatada);
-
-        this.editCrianca.dtNascimento = data; // Atribuir o objeto Date à propriedade
-      }
-    
-    
-
-    if (this.idPacotePg === undefined) {
-
-      this.editCrianca.pacote;
-    }
-    else {
-
-      this.pacoteFK.id = this.idPacotePg;
-      this.editCrianca.pacote = this.pacoteFK;
-    }
+  updateCrianca() { 
 
     if (this.gen === undefined) {
       
@@ -183,8 +137,21 @@ export class EditCriancaComponent implements OnInit{
       
       this.editCrianca.genero = this.gen;
     }
-   
+    
+     if (this.dataBr === undefined) {
+      
+      this.editCrianca.dtNascimento;
 
+      console.log("1 Data: ", this.editCrianca.dtNascimento)
+
+    } 
+    else { 
+      
+      this.editCrianca.dtNascimento = this.dataBr;
+      console.log("2 Data: ", this.editCrianca.dtNascimento)
+
+    }
+   
     if (this.opSaudT === undefined) {
 
       this.editCrianca.problemaSaude;      
@@ -221,15 +188,25 @@ export class EditCriancaComponent implements OnInit{
       this.editCrianca.necessidadesEspeciais = this.opSaudNEOP;
     }
 
+    if ( this.idPacotePg === undefined) {
+      
+      this.editCrianca.pacote;
+    } 
+    else {
+
+      //chave estrangeira => FK
+      this.pacoteFK.id = this.idPacotePg;
+      this.editCrianca.pacote = this.pacoteFK;
+    }
+    
     this.criancaService
     .putCrianca(this.editCrianca)
     .subscribe((resp: Crianca) => {
 
-      console.log(resp)
-/* 
       this.editCrianca = resp;
+      console.log("Resp: ", resp)
       this.alerts.showAlertSucess("Criança alterada com sucesso!");
-      this.router.navigate(["/visueditcrianca"]); */
+      this.router.navigate(["/visueditcrianca"]);
       
     }, 
     error => {
@@ -254,7 +231,3 @@ export class EditCriancaComponent implements OnInit{
   }
 
 }
-function moment(dtNascimento: Date) {
-  throw new Error('Function not implemented.');
-}
-

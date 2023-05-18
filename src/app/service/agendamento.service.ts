@@ -20,12 +20,17 @@ export class AgendamentoService {
   headers: new HttpHeaders().set('Authorization', environment.token)
  } 
 
-   //ADD
+/*    //ADD
    postAgendamento(cadAgendamento: Agendamento): Observable<Agendamento> {
 
     return this.http
            .post<Agendamento>(`${this.baseUrl}/cadastrar`, cadAgendamento, this.token);
+  } */
+
+  postAgendamento(requestData: any): Observable<Agendamento> {
+    return this.http.post<Agendamento>(`${this.baseUrl}/cadastrar`, requestData, this.token);
   }
+  
 
    //UPDATE
    updateAgendamento(editAgendamento: Agendamento) {
@@ -34,10 +39,10 @@ export class AgendamentoService {
            .put<Agendamento>(`${this.baseUrl}/alterar`, editAgendamento, this.token);
   }
 
-   //DELETE
-   deleteAgendamento(id: number) {
+  //DELETE
+  deleteAgendamento(id: number) {
 
-    return this.http.delete(`${this.baseUrl}/${id}`, this.token);    
+  return this.http.delete(`${this.baseUrl}/${id}`, this.token);    
   }
 
  //GET ALL
@@ -45,6 +50,23 @@ export class AgendamentoService {
 
   return this.http
          .get<Agendamento[]>(`${this.baseUrl}/all`, this.token);
+ }
+
+ //GET-ID
+ getIdAgendamento(id: number): Observable<Agendamento> {
+
+  return this.http.get<Agendamento>(`${this.baseUrl}/${id}`, this.token);
+}
+
+ /* getDataAgendamento(dataAgendamento: Date): Observable<Agendamento[]> {
+
+  return this.http
+         .get<Agendamento[]>(`${this.baseUrl}/agenda/${dataAgendamento}`, this.token);
+ } */
+
+ getDataAgendamento(dataAgendamento: string): Observable<Agendamento[]> {
+  const params = { data: dataAgendamento };
+  return this.http.get<Agendamento[]>(`${this.baseUrl}/data`, { params });
 }
 
 

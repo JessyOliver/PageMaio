@@ -1,3 +1,4 @@
 <app-menu *ngIf="!auth.logged()"></app-menu>
 <app-menu-logged *ngIf="auth.logged()"></app-menu-logged>
 <router-outlet></router-outlet>
+<app-footer *ngIf="!auth.logged()"></app-footer>

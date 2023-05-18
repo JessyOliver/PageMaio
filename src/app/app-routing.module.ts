@@ -41,6 +41,9 @@ import { VisuSegundoResponsavelComponent } from './paginas-logado/visualizar/vis
 import { DetalheSegundoResponsavelComponent } from './paginas-logado/detalhes/detalhe-segundo-responsavel/detalhe-segundo-responsavel.component';
 import { EditSegundoResponsavelComponent } from './paginas-logado/editar/edit-segundo-responsavel/edit-segundo-responsavel.component';
 import { SobreComponent } from './sobre/sobre.component';
+import { VisuAgendaComponent } from './paginas-logado/visualizar/visu-agenda/visu-agenda.component';
+import { DetalheAgendaComponent } from './paginas-logado/detalhes/detalhe-agenda/detalhe-agenda.component';
+import { EditAgendaComponent } from './paginas-logado/editar/edit-agenda/edit-agenda.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -70,6 +73,7 @@ const routes: Routes = [
   {path: 'editreforco/:id', component: EditReforcoComponent},
   {path: 'editusuario/:id', component: EditUsuarioComponent},
   {path: 'editsegresponsavel/:id', component: EditSegundoResponsavelComponent},
+  {path: 'editagenda/:id', component: EditAgendaComponent},
   
   {path: 'visuresponsavel', component: VisualizarResponsavelComponent},
   {path: 'visucrianca', component: VisualizarCriancaComponent},
@@ -80,6 +84,7 @@ const routes: Routes = [
   {path: 'visuproprietario', component: VisualizarProprietarioComponent},
   {path: 'visumensagens', component: VisuMensagensComponent},
   {path: 'visusegundoresponsavel', component: VisuSegundoResponsavelComponent},
+  {path: 'visuagenda', component: VisuAgendaComponent},
   
   {path: 'visueditresponsavel', component: VisuEditResponsavelComponent},
   {path: 'visueditcrianca', component: VisuEditCriancaComponent},
@@ -94,6 +99,7 @@ const routes: Routes = [
   {path: 'detalheusuario/:id', component: DetalheUsuarioComponent},
   {path: 'detalheproprietario/:id', component: DetalheProprietarioComponent},
   {path: 'detalhesegresponsavel/:id', component: DetalheSegundoResponsavelComponent},
+  {path: 'detalheagenda/:id', component: DetalheAgendaComponent},
 
 
 ];

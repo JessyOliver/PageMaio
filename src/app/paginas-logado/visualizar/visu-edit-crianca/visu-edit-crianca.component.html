@@ -55,8 +55,11 @@
                                 {{calcularIdade(itemCrianca.dtNascimento) === 1 ? 'ano' : 'anos'}}</td>
                             <td class="line_btn">{{itemCrianca.responsavel.nome}}</td>
                             <td class="line_btn">{{itemCrianca.responsavel.celular}}</td>
-                            <td class="line_btn"><button type="button" class="btn edit_btn"  [routerLink]="['/detalhecrianca', itemCrianca.id]"><i
-                                        class="fa fa-info icon_btn" aria-hidden="true"></i></button></td>
+                            <td class="line_btn">
+                              <button type="button" class="btn edit_btn"  [routerLink]="['/detalhecrianca', itemCrianca.id]">
+                                <i class="fa fa-info icon_btn" aria-hidden="true"></i>
+                              </button>
+                            </td>                      
                             <td class="line_btn"><button type="button" class="btn edit_btn" [routerLink]="['/editcrianca', itemCrianca.id]"><i
                                         class="fas fa-edit icon_btn"></i></button></td>
                             <td class="line_btn"><button type="button" class="btn edit_btn_danger" 

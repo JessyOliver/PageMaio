@@ -4,9 +4,9 @@
       <div class="d-flex justify-content-center">
   
         <div class="form-group buscar-edit">
-          <input type="text" class="form-control input-busca" id="titulo" 
-            placeholder="🔍 buscar por nome..."
-            [(ngModel)]='nomeSegundoResponsavel' (keyup)='findByNomeSegundoResponsavel()'>
+          <input type="date" class="form-control input-busca" id="titulo" 
+            placeholder="🔍 buscar data..."
+            [(ngModel)]='dataAgendamentoget' (keyup)='findByAllAgendamento()'>
         </div>
       </div>
   
@@ -14,17 +14,17 @@
         <div class="title_camp_top">
           <hr>
           <div class="title-icon-ali">
-            <h2 class="text_edit_title_top">2° RESPONSÁVEIS</h2>
-            <i class="fa fa-users icon_edit_top" aria-hidden="true"></i>
+            <h2 class="text_edit_title_top">AGENDAMENTOS</h2>
+            <i class="fas fa-calendar-alt icon_edit_top"></i>
           </div>
           <hr>
         </div>
       </div>
   
-      <div class="d-flex justify-content-center m-2 p-0" *ngIf="listSegundoResponsavel == null">
+      <div class="d-flex justify-content-center m-2 p-0" *ngIf="listAgenda == null">
         <div class="title-camp">
           <div class="title-icon-ali">
-            <h5 class="text-edit-title-not">Não há 2° responsáveis cadastrados, cadastrados no momento.</h5>
+            <h5 class="text-edit-title-not">Não há agendamentos, cadastrados no momento.</h5>
             <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
           </div>
         </div>
@@ -38,49 +38,47 @@
             <table class="table">
               <thead class="edit_thead">
                 <tr>
-                  <th class="line_btn" scope="col">Nome</th>
-                  <th class="line_btn" scope="col">Gênero</th>
-                  <th class="line_btn" scope="col">Parentesco</th>
-                  <th class="line_btn" scope="col">Celular</th>
-                  <th class="line_btn" scope="col">Criança</th>
+                  <th class="line_btn" scope="col">Data de Agendamento</th>
+                  <th class="line_btn" scope="col">Horário de Entrada</th>
+                  <th class="line_btn" scope="col">Horário de Saída</th>
+                  <th class="line_btn" scope="col">Status</th>
                   <th class="line_btn" scope="col">Detalhes</th>
                   <th class="line_btn" scope="col">Editar</th>
                   <th class="line_btn" scope="col">Apagar</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="table_line" *ngFor="let itemSegunResponsavel of listSegundoResponsavel | orderBy: ['nome']">
+                <tr class="table_line" *ngFor="let itemAgenda of listAgenda | orderBy: ['dataAgendamento']">
   
-                  <th class="line_btn color_line" scope="row">{{itemSegunResponsavel.nome.toUpperCase()}}</th>
-                  <td class="line_btn">{{itemSegunResponsavel.genero}}</td>
-                  <td class="line_btn">{{itemSegunResponsavel.parentesco}}</td>
-                  <td class="line_btn">{{itemSegunResponsavel.celular}}</td>
-                  <td class="line_btn">{{nomeCrianca}}</td>
+                  <th class="line_btn color_line" scope="row">{{itemAgenda.dataAgendamento.toUpperCase() | date:'dd/MM/yyyy'}}</th>
+                  <td class="line_btn">{{itemAgenda.horarioEntrada}}</td>
+                  <td class="line_btn">{{itemAgenda.horarioSaida}}</td>
+                  <td class="line_btn">{{itemAgenda.status ? 'Agendado' : 'Não Agendado'}}</td>
                   <td class="line_btn"><button type="button" class="btn edit_btn"
-                      [routerLink]="['/detalhesegresponsavel', itemSegunResponsavel.id]"><i class="fa fa-info icon_btn"
+                      [routerLink]="['/detalheagenda', itemAgenda.id]"><i class="fa fa-info icon_btn"
                         aria-hidden="true"></i></button></td>
                   <td class="line_btn"><button type="button" class="btn edit_btn"
-                      [routerLink]="['/editsegresponsavel', itemSegunResponsavel.id]"><i class="fas fa-edit icon_btn"></i></button></td>
-                  <td class="line_btn"><button type="button" class="btn edit_btn_danger" (click)="getId(itemSegunResponsavel.id)"
+                      [routerLink]="['/editagenda', itemAgenda.id]"><i class="fas fa-edit icon_btn"></i></button></td>
+                  <td class="line_btn"><button type="button" class="btn edit_btn_danger" (click)="getId(itemAgenda.id)"
                       data-bs-toggle="modal" data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
-                  </td> 
+                  </td>
   
                   <!-- Modal -->
                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog text_modal" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title" id="myModalLabel">APAGAR SEGUNDO RESPONSÁVEL </h4>
+                          <h4 class="modal-title" id="myModalLabel">APAGAR AGENDAMENTO</h4>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          Deseja realmente apagar o segundo responsável?
+                          Deseja realmente apagar esse agendamento?
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default btn-success-update" data-bs-dismiss="modal"
-                            routerLink="/visusegundoresponsavel">Não</button>
+                            routerLink="/visuagenda">Não</button>
                           <button type="button" class="btn btn-primary btn-cancel" data-bs-dismiss="modal"
-                            (click)="deletarSegundoResponsavel()">Sim</button>
+                            (click)="deletarPacote()">Sim</button>
                         </div>
                       </div>
                     </div>

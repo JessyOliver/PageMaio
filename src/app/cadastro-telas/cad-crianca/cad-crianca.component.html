@@ -53,12 +53,18 @@
                             </div>
 
                             <div class="mensagem-input-error">
-                              <div class="balao balao-small cax-position w-100" *ngIf="(
-                                   formulario.get('dataNasc')?.errors?.['required'] ||
-                                   formulario.get('dataNasc')?.errors?.['overage']) &&
+                              <div class="balao balao-small cax-position w-100" *ngIf="
+                                   formulario.get('dataNasc')?.errors?.['required'] &&
                                    formulario.get('dataNasc')?.touched">
                                 <span class="m-lg-2">
-                                  Preenchimento obrigatório e a criança não pode ter mais de 12 anos!
+                                  Preenchimento obrigatório!
+                                </span>
+                              </div>
+                              <div class="balao balao-small cax-position w-100" *ngIf="
+                                   formulario.get('dataNasc')?.errors?.['overage'] &&
+                                   formulario.get('dataNasc')?.touched">
+                                <span class="m-lg-2">
+                                 A criança não pode ser menor de 4 anos e nem maior de 12 anos!
                                 </span>
                               </div>
                             </div>
@@ -357,7 +363,7 @@
 
                         </div>
 
-                      <div class="d-block justify-content-center" *ngIf="formulario.get('termoAceite')?.value === 'true'">
+                      <div class="d-block justify-content-center mb-5" *ngIf="formulario.get('termoAceite')?.value === 'true'">
                         <div class="input-box">
                           <div class="form-group texto-color">
                             <label for="tipoPacote" class="label-edit-tp">Pacotes:*</label>

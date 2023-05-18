@@ -55,6 +55,10 @@ import { VisuSegundoResponsavelComponent } from './paginas-logado/visualizar/vis
 import { DetalheSegundoResponsavelComponent } from './paginas-logado/detalhes/detalhe-segundo-responsavel/detalhe-segundo-responsavel.component';
 import { EditSegundoResponsavelComponent } from './paginas-logado/editar/edit-segundo-responsavel/edit-segundo-responsavel.component';
 import { SobreComponent } from './sobre/sobre.component';
+import { VisuAgendaComponent } from './paginas-logado/visualizar/visu-agenda/visu-agenda.component';
+import { FooterComponent } from './footer/footer.component';
+import { DetalheAgendaComponent } from './paginas-logado/detalhes/detalhe-agenda/detalhe-agenda.component';
+import { EditAgendaComponent } from './paginas-logado/editar/edit-agenda/edit-agenda.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -117,7 +121,11 @@ export const customCurrencyMaskConfig = {
     VisuSegundoResponsavelComponent,
     DetalheSegundoResponsavelComponent,
     EditSegundoResponsavelComponent,
-    SobreComponent
+    SobreComponent,
+    VisuAgendaComponent,
+    FooterComponent,
+    DetalheAgendaComponent,
+    EditAgendaComponent
   ],
   imports: [
     BrowserModule,

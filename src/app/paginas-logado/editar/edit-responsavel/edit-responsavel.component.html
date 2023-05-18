@@ -2,87 +2,8 @@
     <div class="content-box">
 
         <div class="campo-edit">
-<!-- 
-            <div class="form-box">
-    
-                <div class="d-flex justify-content-center">
-                    <div class="title_camp_top">
-                      <hr>
-                      <div class="title_icon_ali">
-                        <h2 class="text_edit_title_top">EDITAR USUÁRIO</h2>
-                        <i class="fa-solid fa-user-pen icon_edit_top"></i>
-                      </div>
-                      <hr>
-                    </div>
-                </div>
-    
-                <div class="caixa-forms-edit">
-                    <div class="continer-forms">
-    
-                        <div class="input-box">
-                          <div class="form-group campo">
-                            <input [(ngModel)]="editUser.usuario" class="form-control" type="usuario" name="usuario" id="usuario"  />
-                            <label for="usuario" class="label-edit">Usuário*</label>
-                          </div>
-                        </div>
-                
-                        
-                        <div class="d-flex justify-content-between">
-                            
-                            <div class="input-box">
-                              <div class="form-group campo campoSenha">
-                                  <input (input)='confirmarSenha($event)' class="form-control" type="password" name="senha" id="senha"  />
-                                  <label for="senha" class="label-edit">Senha*</label>
-                                  <button type="button" (click)="togglePass()" class="botao-revela">
-                                    <i class="fa-solid  fa-eye iconPass" id="text"></i>
-                                    <i class="fa-solid fa-eye-slash iconPass" id="pass"></i>
-                                  </button>
-                              </div>
-                            </div>
-    
-                            <div class="input-box">
-                              <div class="form-group campo campoSenha">
-                                  <input [(ngModel)]="editUser.senha" class="form-control" type="password" name="confirmSenha" id="confirmSenha"  />
-                                  <label for="confirmSenha" class="label-edit">Confirmar Senha*</label>
-                                  <button type="button" (click)="togglePass2()" class="botao-revela">
-                                    <i class="fa-solid  fa-eye iconPass2" id="text2"></i>
-                                    <i class="fa-solid fa-eye-slash iconPass2" id="pass2"></i>
-                                  </button>
-                              </div>
-                            </div>
-                    
-                        </div>
-                        
-                        <div class="input-box">
-                            <div class="form-group campo">
-                                <label for="tipo" class="label-edit-tp">Tipo de Usuário*</label>
-                                <select class="form-control form-select" name="tipo" id="tipo" (change)='tipoUser($event)'>
-                                  <option value={{editUser.tipo}}>{{editUser.tipo}}</option>
-                                  <option value="padrao">Padrão</option>
-                              </select>
-                            </div>
-                        </div>
-                
-                        <div class="btn-group-line mt-3">
-                
-                          <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/inicio">
-                            APAGAR
-                          </button>
-                          <button type="submit" class="btn btn-success-update me-lg-3" (click)='updateUsuario()'>
-                            ATUALIZAR
-                          </button>
-                          <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/inicio">
-                            CANCELAR
-                          </button>
-    
-                        </div>    
-                       
-                    </div>
-                
-                </div>
-            </div>
-     -->
-            <div class="form-box">
+
+          <div class="form-box">
 
                 <div class="d-flex justify-content-center">
                     <div class="title_camp_top">
@@ -120,18 +41,23 @@
 
                             <div class="input-box">
                               <div class="form-group campo">
-                                  <input [(ngModel)]="editResponsavel.dtNascimento" class="form-control" type="date"
-                                         name="dtNascimento" id="dtNascimento" (change)="dataConvert($event)" required/>
-                                  <label class="label-edit" for="dtNascimento">Data de Nascimento*</label>
+                                <label class="label-color" for="dataNasc">Data de Nascimento*</label>
+                                <input [(ngModel)]="editResponsavel.dtNascimento" class="form-control texto-color w-75" type="date" name="dataNasc" id="dataNasc"  required /><!-- (change)="dataConvert($event)" -->                                                       
                               </div>
                             </div>
   
                             <div class="input-box">
                               <div class="form-group campo">
-                                <input [(ngModel)]="editResponsavel.genero" class="form-control" type="text" 
-                                       name="genero" id="genero"/>
-                                <label class="label-edit" for="genero">Gênero*</label>
-                              </div>                              
+                                <label class="label-color" for="tipoGen">Gênero</label>
+                                <select class="form-control texto-color p-2" name="tipoGen" id="tipoGen"
+                                    (change)="genero($event)" required>
+                                    <option disabled selected value="{{ editResponsavel.genero }}">
+                                        {{ editResponsavel.genero }}
+                                    </option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
+                                </select>
+                              </div> 
                             </div>
   
                         </div>
@@ -238,20 +164,17 @@
                               </div>
                             </div>
                         </div>
-
-                        <div class="btn-group-line mt-3">
+       
+                        <div class="btn-group-line">
                 
-                            <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/inicio">
-                              APAGAR
-                            </button>
-                            <button type="submit" class="btn btn-success-update me-lg-3" (click)='updateResponsavel()'>
-                              ATUALIZAR
-                            </button>
-                            <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/visueditresponsavel">
-                              CANCELAR
-                            </button>
-      
-                          </div>
+                          <button type="submit" class="btn btn-success-update me-lg-3" (click)='updateResponsavel()'>
+                            ATUALIZAR
+                          </button>
+                          <button type="button" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/visueditresponsavel">
+                            CANCELAR
+                          </button>
+    
+                      </div>
 
                     </div>
                 </div>    

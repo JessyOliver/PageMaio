@@ -15,3 +15,12 @@ export class Agendamento {
     public contem!: Contem[];
     
 }
+
+export interface AgendamentoContemRequest {
+    agendamentoRequest: {
+      agendar: Agendamento[];
+    };
+    contemRequest: {
+      pacote: number;
+    };
+}
