@@ -55,6 +55,8 @@
 }
 
 .content-box .form-box {
+  position: static;
+  margin-top: 15%;
   width: 80%;
   height: auto;
 }
@@ -272,6 +274,7 @@ input {
   }
   
   .content-box .form-box {
+    margin-top: 20%;
     width: 100%;
   }
    

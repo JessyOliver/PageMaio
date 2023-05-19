@@ -55,23 +55,18 @@ export class EditReforcoComponent implements OnInit {
   }
   
   materiascad(event: any){
-    this.materias = event.target.value
+    this.materias = event.target.value;
   }
  
   periodoCursocad(event: any){
-    this.periodoCurso = event.target.value
+    this.periodoCurso = event.target.value;
   }
   
   nivelEstudoscad(event: any){
-    this.nivelEstudos = event.target.value
+    this.nivelEstudos = event.target.value;
   }
 
   updateReforco() {
-
-    console.log("Nivel Estudos", this.editReforco.nivelEstudos)
-    console.log("Nivel periodo", this.editReforco.periodoCurso)
-    console.log("Nivel materiras", this.editReforco.materias)
-    console.log("Nivel materiras var", this.materias)
     
     if (this.nivelEstudos === undefined) {
       
@@ -108,7 +103,7 @@ export class EditReforcoComponent implements OnInit {
 
         this.editReforco = resp;
         this.alerts.showAlertSucess("Reforço alterado com sucesso!");
-        this.router.navigate(["/inicio"]);
+        this.router.navigate(["/visueditreforco"]);
 
        }, error => {
 

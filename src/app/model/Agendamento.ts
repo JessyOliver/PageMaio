@@ -2,6 +2,7 @@ import { Time } from "@angular/common";
 import { Contem } from "./Contem";
 
 export class Agendamento {
+    [x: string]: any;
 
     public id!: number;
     public dataAgendamento!: Date;
@@ -13,4 +14,13 @@ export class Agendamento {
     //FK
     public contem!: Contem[];
     
+}
+
+export interface AgendamentoContemRequest {
+    agendamentoRequest: {
+      agendar: Agendamento[];
+    };
+    contemRequest: {
+      pacote: number;
+    };
 }

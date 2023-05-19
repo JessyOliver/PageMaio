@@ -52,8 +52,6 @@ export class LoginComponent implements OnInit{
 
     this.auth.loginSite(this.userLogin).subscribe((resp: UserLogin) => {
 
-        console.log({resp});
-
         this.userLogin = resp;
 
         environment.id = this.userLogin.id;

@@ -1,4 +1,4 @@
-<div class="container-cad">
+<div *ngIf='authService.adm()' class="container-cad">
     <div class="content-box">
         <div class="form-box">
             <div class="d-flex justify-content-center m-0 p-0">
@@ -20,7 +20,7 @@
                         <div class="form-group">
                           <label class="label-color" for="materias">Matérias *</label>
                           <select class="form-control texto-color p-2" formControlName="materias" id="materias" (change)='materiascad($event)' required>
-                            <option  disabled selected value="">Selecione a matéria</option>
+                            <option disabled selected value="">Selecione a matéria</option>
                             <option value="ARTES">Artes</option>
                             <option value="HISTÓRIA">História</option>
                             <option value="GEOGRAFIA">Geografia</option>
@@ -82,7 +82,7 @@
                     </div>
                   
                     <div class="input-box">
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center p-2">
                             <button type="submit" class="btn botao-roxo" (click)="cadastrar()"
                                 [disabled]="!formulario.valid">
                                 CADASTRAR
@@ -98,6 +98,6 @@
     </div>
 
     <div class="img-box">
-        <img src="https://i.imgur.com/2pBoVla.jpg" />
+      <img src="https://i.imgur.com/uXpvld9.jpg" />
     </div>
 </div>

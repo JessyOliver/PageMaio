@@ -6,6 +6,7 @@ import { User } from 'src/app/model/User';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ProprietarioService } from 'src/app/service/proprietario.service';
+import { cnpjValidator } from 'src/app/validations/validarCnpj';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -28,7 +29,8 @@ export class CadProprietarioComponent implements OnInit {
   cadProprietario: Proprietario = new Proprietario();
 
   constructor(
-    private authService: AuthService,
+    private auth: AuthService,
+    public  authService: AuthService,
     private proprietarioService: ProprietarioService,
     private router: Router,
     private alerts: AlertsService,
@@ -39,7 +41,7 @@ export class CadProprietarioComponent implements OnInit {
 
     window.scroll(0,0);
 
-     this.authService.getAllUserOff().subscribe((resp: User[]) => {
+     this.auth.getAllUserOff().subscribe((resp: User[]) => {
 
       this.listUser = resp;
 
@@ -50,12 +52,12 @@ export class CadProprietarioComponent implements OnInit {
         }
 
         //forçando altenticação
-        this.authService.refreshToken();
+        this.auth.refreshToken();
 
       }
 
-      !this.authService.logged();
-
+      !this.auth.logged();
+      
     });
 
     this.proprietarioService.getAllProprietarioOff().subscribe((respProp: Proprietario[]) => {
@@ -65,21 +67,21 @@ export class CadProprietarioComponent implements OnInit {
       if (this.listProp.length) {
 
         if (environment.token == '') {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/cadproprietario']);
         }
 
         //forçando altenticação
-        this.authService.refreshToken();
+        this.auth.refreshToken();
 
       }
 
-      !this.authService.logged();
+      !this.auth.logged();
 
     });
 
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
-      cnjp: ['', [Validators.required, Validators.maxLength(14), Validators.pattern('[0-9 ]*')]],
+      cnjp: ['', [Validators.required, cnpjValidator()]],
       usuario: ['', [Validators.required]]
     });
 
@@ -89,11 +91,24 @@ export class CadProprietarioComponent implements OnInit {
 
   //get all user Response<User[]>
   findByAllUserOff() {
-    this.authService.getAllUserOff()
-      .subscribe((resp: User[]) => {
-      //  this.listUser = JSON.parse(JSON.stringify(resp));
-        this.listUser = resp;
-      });
+
+    if (this.listUser.length) {
+
+      this.auth.getAllUserOff()
+        .subscribe((resp: User[]) => {
+        //  this.listUser = JSON.parse(JSON.stringify(resp));
+          this.listUser = resp;
+        });
+    }
+    else {
+        
+        this.auth.getAllUser()
+          .subscribe((resp: User[]) => {
+          //  this.listUser = JSON.parse(JSON.stringify(resp));
+            this.listUser = resp;
+          });
+    }
+
   }
 
   cadastrar(){
@@ -111,6 +126,21 @@ export class CadProprietarioComponent implements OnInit {
       this.router.navigate(["/login"]);
       this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
 
+    },
+    error => {
+      if (error.status === 400) {
+        this.alerts.showAlertDanger("Algum dado incerido não é aceito.");
+      }
+      if (error.status === 401) {
+        
+        this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+        this.router.navigate(['/login']);
+      }
+      else if (error.status === 500) {
+
+        this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+
+      }
     });
 
 

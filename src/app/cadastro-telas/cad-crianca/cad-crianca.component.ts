@@ -30,7 +30,8 @@ export class CadCriancaComponent implements OnInit{
   opSaudMOP!: boolean;
   opSaudNEOP!: boolean;
   termoAceiteSelect!: boolean;
-  dataBr!: Date;
+/*   dataBr!: Date;
+ */
 
   //FK
   proprietarioFk: Proprietario = new Proprietario();
@@ -52,6 +53,7 @@ export class CadCriancaComponent implements OnInit{
     private responsavelService: ResponsavelService,
     private pacoteService: PacoteService,
     private auth: AuthService,
+    public authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private alerts: AlertsService,
@@ -78,16 +80,16 @@ export class CadCriancaComponent implements OnInit{
       tipoGen: ['', [Validators.required]],
       
       problemaSaude: ['', [Validators.required]],
-      tipoProblemaSaude: ['', []],
+      tipoProblemaSaude: [''],
 
       algumaAlergia: ['', [Validators.required]],
-      tipoAlergia: ['', []],
+      tipoAlergia: [''],
 
       usoMedicamento: ['', [Validators.required]],
-      qualMedicamento: ['', []],
+      qualMedicamento: [''],
 
       necessidadesEspeciais: ['', [Validators.required]],
-      tipoNecessidadesEspeciais: ['', []],
+      tipoNecessidadesEspeciais: [''],
       
       termoAceite: ['', [Validators.required]],
 
@@ -102,6 +104,12 @@ export class CadCriancaComponent implements OnInit{
 
     this.findByAllPacote();
 
+  }
+
+  onProblemaSaudeChange(value: boolean) {
+    if (!value) {
+      this.formulario.get('tipoProblemaSaude')?.setValue(null);
+    }
   }
 
   getByIdResponsavel(idResponsavel: number) {
@@ -130,10 +138,10 @@ export class CadCriancaComponent implements OnInit{
     this.gen = event.target.value;
   }
  
-  dataConvert(event: any){
+  /* dataConvert(event: any){
 
     this.dataBr = event.target.value.split('/').reverse().join('-');
-  }
+  } */
 
   opSaudeT(event: any){
     this.opSaudT = event.target.value;
@@ -169,7 +177,7 @@ export class CadCriancaComponent implements OnInit{
 
     //itens tratados
     this.cadCrianca.genero = this.gen;
-    this.cadCrianca.dtNascimento = this.dataBr;
+    /* this.cadCrianca.dtNascimento = this.dataBr; */
     this.cadCrianca.problemaSaude = this.opSaudT;
     this.cadCrianca.algumaAlergia = this.opSaudAOP;
     this.cadCrianca.usoMedicamento = this.opSaudMOP;
@@ -182,7 +190,7 @@ export class CadCriancaComponent implements OnInit{
 
       this.cadCrianca = resp;
       this.alerts.showAlertSucess("Criança cadastrada com sucesso!");
-      this.router.navigate(["/visuresponsavel"]);
+      this.router.navigate(["/inicio"]);
       
     }, 
     error => {
@@ -192,7 +200,7 @@ export class CadCriancaComponent implements OnInit{
           this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
           this.router.navigate(['/login']);
         }
-        else if (error == 500) {
+        else if (error.status === 500) {
 
           this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
   

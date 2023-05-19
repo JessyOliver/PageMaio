@@ -6,7 +6,7 @@
         
         <div class="form-group buscar-edit">
             <input type="text" class="form-control input-busca" id="titulo" 
-            placeholder="🔍 buscar responsável." [(ngModel)]='criancaNome' 
+            placeholder="🔍 buscar criança..." [(ngModel)]='criancaNome' 
             (keyup)='findByNomeCrianca()'>
         </div>
     </div>
@@ -67,124 +67,45 @@
                             
                         </div>
 
-                        <div class="d-flex justify-content-center m-0 p-0">
-                            <div class="title-camp">
-                              <hr>
-                              <div class="title-icon-ali">
-                                <h5 class="text-edit-title">SAÚDE DA CRIANÇA</h5>
-                                <i class="fa fa-medkit icon-edit-camp" aria-hidden="true"></i>
-                              </div>
-                              <hr>
-                            </div>
-                        </div>
-                        
-                        <div class="d-block justify-content-between">   
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Problema Saude?</p>
-                                <p class="info-edit">{{itemCrianca.problemaSaude ? 'Sim' : 'Não'}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Tipo de Problema de Saude:</p>
-                                <p class="info-edit">{{itemCrianca.tipoProblemaSaude}}</p>
-                            </div>
-                    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Alguma Alergia?</p>
-                                <p class="info-edit">{{itemCrianca.algumaAlergia ? 'Sim' : 'Não'}}</p>
-                            </div>
-                            
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Tipo de alergia:</p>
-                                <p class="info-edit">{{itemCrianca.tipoAlergia}}</p>
-                            </div>
+                        <div class="d-block justify-content-between w-100">
 
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Faz uso de médicamentos?</p>
-                                <p class="info-edit">{{itemCrianca.usoMedicamento ? 'Sim' : 'Não'}}</p>
-                            </div>
-                
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Quais médicamentos:</p>
-                                <p class="info-edit">{{itemCrianca.qualMedicamento}}</p>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Tem necessidades especiais?</p>
-                                <p class="info-edit">{{itemCrianca.necessidadesEspeciais ? 'Sim' : 'Não'}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Quais necessidades especiais:</p>
-                                <p class="info-edit">{{itemCrianca.tipoNecessidadesEspeciais}}</p>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Observações da Criança:</p>
-                                <p class="info-edit">{{itemCrianca.obsDiaCrianca}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Termo de aceite:</p>
-                                <p class="info-edit">{{itemCrianca.termoAceite ? 'Aceito' : 'Não'}}</p>
-                            </div>
-
-                            <div class="d-flex justify-content-center m-0 p-0">
+                            <div class="d-flex justify-content-center w-100">
                                 <div class="title-camp">
-                                  <hr>
-                                  <div class="title-icon-ali">
-                                    <h5 class="text-edit-title">PACOTE</h5>
-                                    <i class="fa fa-cubes icon-edit-camp" aria-hidden="true"></i>
-                                  </div>
-                                  <hr>
+                                    <hr>
+                                    <div class="title-icon-ali">
+                                        <h5 class="text-edit-title">PACOTE</h5>
+                                        <i class="fa fa-cube icon-edit-camp" aria-hidden="true"></i>
+                                    </div>
+                                    <hr>
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between ">
+                            <div class="d-flex justify-content-between">
 
                                 <div class="elemento_info">
-                                    <p class="titulo-edit">Tipo Pacote:</p>
+                                    <p class="titulo-edit">Tipo de Pacote:</p>
                                     <p class="info-edit">{{itemCrianca.pacote.tipoPacote}}</p>
                                 </div>
-    
+
                                 <div class="elemento_info">
                                     <p class="titulo-edit">Período:</p>
                                     <p class="info-edit">{{itemCrianca.pacote.periodo}}</p>
                                 </div>
-                                
+
                                 <div class="elemento_info">
                                     <p class="titulo-edit">Valor:</p>
-                                    <p class="info-edit" >R$ {{itemCrianca.pacote.valorPacote}}</p>
+                                    <p class="info-edit">{{itemCrianca.pacote.valorPacote |
+                                        currency:'BRL':'symbol':'1.2-2'}}</p>
                                 </div>
-
-                            </div>
-                            <div class="d-flex justify-content-center m-0 p-0">
-                                <div class="title-camp">
-                                  <hr>
-                                  <div class="title-icon-ali">
-                                    <h5 class="text-edit-title">CONTATO RESPONSÁVEL</h5>
-                                    <i class="fa fa-user icon-edit-camp" aria-hidden="true"></i>
-                                  </div>
-                                  <hr>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-between ">
 
                                 <div class="elemento_info">
-                                    <p class="titulo-edit">Responsável:</p>
-                                    <p class="info-edit">{{itemCrianca.responsavel.nome}}</p>
+                                    <p class="titulo-edit">Quantidade de Dias:</p>
+                                    <p class="info-edit">{{itemCrianca.pacote.qtdDias}}</p>
                                 </div>
-    
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Contato:</p>
-                                    <p class="info-edit">{{itemCrianca.responsavel.celular}}</p>
-                                </div>
-
                             </div>
 
                         </div>
-    
+
                     </div>
        
                     <div class="d-flex justify-content-center m-0 p-0">
@@ -200,7 +121,7 @@
 
                     <div class="d-flex justify-content-center">
 
-                        <button type="submit" class="btn botao-cad" [routerLink]="['/pacotecrianca', itemCrianca.pacote.id]">
+                        <button type="submit" class="btn botao-cad" [routerLink]="['/cadagenda', itemCrianca.pacote.id]">
                             AGENDAR
                         </button>    
     

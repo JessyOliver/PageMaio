@@ -13,9 +13,8 @@
                                         <h2 class="functions__title h2">CADASTRAR</h2>
                                     </div> -->
                                     <div class="functions__list">
-
-                                    
-                                        <a routerLink="/cadpacote" class="functions__item" style="--function-color:#8a77e0;">
+                                                                
+                                        <a *ngIf='authService.adm()' routerLink="/cadpacote" class="functions__item" style="--function-color:#8a77e0;">
                                           <span class="home_logado-s functions__item-duration"></span>
                                           <div class="functions__item-wrap">
                                               <h3 class="functions__item-title">CADASTRAR PACOTE</h3>
@@ -25,7 +24,7 @@
                                           </div>
                                         </a>
 
-                                        <a routerLink="/cadreforco" class="functions__item" style="--function-color:#c896ff;">
+                                        <a *ngIf='authService.adm()' routerLink="/cadreforco" class="functions__item" style="--function-color:#c896ff;">
                                             <span class="home_logado-s functions__item-duration"></span>
                                             <div class="functions__item-wrap">
                                                 <h3 class="functions__item-title">CADASTRAR REFORÇO</h3>
@@ -35,7 +34,7 @@
                                             </div>
                                         </a>
 
-                                        <a routerLink="/cadusuario" class="functions__item" style="--function-color:#c896ff;">
+                                        <a *ngIf='authService.adm()' routerLink="/cadusuario" class="functions__item" style="--function-color:#c896ff;">
                                             <span class="home_logado-s functions__item-duration"></span>
                                             <div class="functions__item-wrap">
                                                 <h3 class="functions__item-title">CADASTRAR USUÁRIOS</h3>                                                
@@ -48,7 +47,7 @@
                                             </div>
                                         </a>
 
-                                        <a routerLink="/visuresponsavel" class="functions__item" style="--function-color:#8a77e0;">
+                                        <a *ngIf='authService.adm()' routerLink="/visuresponsavel" class="functions__item" style="--function-color:#8a77e0;">
                                           <span class="home_logado-s functions__item-duration"></span>
                                           <div class="functions__item-wrap">
                                               <h3 class="functions__item-title">CADASTRAR CRIANÇA / 2° RESPONSÁVEL</h3>
@@ -59,30 +58,21 @@
                                           </div>
                                        </a>
 
-                                      <a routerLink="/visucrianca" class="functions__item" style="--function-color:#8a77e0 ;">
+                                      <a *ngIf='authService.adm()' routerLink="/visucrianca" class="functions__item" style="--function-color:#8a77e0 ;">
                                         <span class="home_logado-s functions__item-duration"></span>
                                         <div class="functions__item-wrap">
                                             <h3 class="functions__item-title">AGENDAR CRIANÇA / ADERIR REFORÇO</h3> 
                                         </div>
                                         <div class="functions__item-image">
-                                            <i class="fa fa-plus-square icon_edit_users" aria-hidden="true"></i>
+                                            <i class="fa fa-id-card icon_edit_users" aria-hidden="true"></i>
+
+                                            <!-- <i class="fa fa-plus-square icon_edit_users" aria-hidden="true"></i> -->
 
 
-<!--                                             <img style="filter: invert(100%);" height="130" width="135" alt="" src="../../../assets/img/child.png">
- -->                                        </div>
-                                      </a>
-
-                                      <a routerLink="" class="functions__item" style="--function-color:#c896ff;">
-                                        <span class="home_logado-s functions__item-duration"></span>
-                                        <div class="functions__item-wrap">
-                                            <h3 class="functions__item-title">VISUALIZAR USUÁRIOS</h3> 
-                                        </div>
-                                        <div class="functions__item-image">
-                                          <i class="fa fa-users icon_edit_users" aria-hidden="true"></i>
-                                        </div>
-                                      </a>
+                                        <!-- <img style="filter: invert(100%);" height="130" width="135" alt="" src="../../../assets/img/child.png"> -->                                        </div>
+                                      </a>                                   
                                     
-                                      <a routerLink="/visupacote" class="functions__item" style="--function-color:#c896ff;">
+                                      <a *ngIf='authService.adm()' routerLink="/visupacote" class="functions__item" style="--function-color:#c896ff;">
                                         <span class="home_logado-s functions__item-duration"></span>
                                         <div class="functions__item-wrap">
                                             <h3 class="functions__item-title">VISUALIZAR PACOTES</h3> 
@@ -94,10 +84,41 @@
                                         </div>
                                       </a>
 
-                                      <a routerLink="/visueditresponsavel" class="functions__item" style="--function-color:#8a77e0;">
+                                      <a *ngIf='authService.adm()' routerLink="/visueditreforco" class="functions__item" style="--function-color:#c896ff ;">
                                         <span class="home_logado-s functions__item-duration"></span>
                                         <div class="functions__item-wrap">
-                                            <h3 class="functions__item-title">VISUALIZAR RESPONSÁVEL</h3>
+                                            <h3 class="functions__item-title">VISUALIZAR AULAS DE REFORÇO</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                            <img style="filter: invert(100%); "height="130" width="135" alt="" src="../../../assets/img/book.png">
+                                        </div>
+                                      </a>
+
+                                      <a *ngIf='authService.adm()' routerLink="/visusuario" class="functions__item" style="--function-color:#8a77e0;">
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">VISUALIZAR USUÁRIOS</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                          <i class="fa fa-users icon_edit_users" aria-hidden="true"></i>
+                                        </div>
+                                      </a>
+                                   
+                                      <a *ngIf='authService.adm()' routerLink="/visuproprietario" class="functions__item" style="--function-color:#8a77e0;">
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">VISUALIZAR PROPRIETÁRIOS</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                            <i class="fas fa-user-friends icon_edit_users"></i>
+                                          <!-- <i class="fa fa-users icon_edit_users" aria-hidden="true"></i> -->
+                                        </div>
+                                      </a>
+
+                                      <a *ngIf='authService.adm()' routerLink="/visueditresponsavel" class="functions__item" style="--function-color:#c896ff;">
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">VISUALIZAR RESPONSÁVEIS</h3>
                                            <!--  <p class="functions__item-category">adastrar Criança e/ou 2° Responsável</p> -->
                                         </div>
                                         <div class="functions__item-image">
@@ -107,7 +128,17 @@
                                         </div>
                                      </a>
 
-                                     <a routerLink="/visueditcrianca" class="functions__item" style="--function-color:#8a77e0 ;">
+                                     <a *ngIf='authService.adm()' routerLink="/visusegundoresponsavel" class="functions__item" style="--function-color:#c896ff;">
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">VISUALIZAR SEGUNDO RESPONSÁVEIS</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                            <i class="fas fa-users icon_edit_users"></i>
+                                       </div>
+                                    </a>
+
+                                     <a *ngIf='authService.adm()' routerLink="/visueditcrianca" class="functions__item" style="--function-color:#8a77e0;">
                                         <span class="home_logado-s functions__item-duration"></span>
                                         <div class="functions__item-wrap">
                                             <h3 class="functions__item-title">VISUALIZAR CRIANÇAS</h3> 
@@ -118,29 +149,51 @@
 <!--                                             <img style="filter: invert(100%);" height="130" width="135" alt="" src="../../../assets/img/child.png">
  -->                                        </div>
                                       </a>
-
-                                     <a routerLink="/visueditreforco" class="functions__item" style="--function-color:#c896ff ;">
+                                      <a *ngIf='authService.adm()' routerLink="/visuagenda" class="functions__item" style="--function-color:#8a77e0;">
                                         <span class="home_logado-s functions__item-duration"></span>
                                         <div class="functions__item-wrap">
-                                            <h3 class="functions__item-title">VISUALIZAR REFORÇO</h3> 
+                                            <h3 class="functions__item-title">Visualizar Agendamentos</h3> 
                                         </div>
                                         <div class="functions__item-image">
-                                            <img style="filter: invert(100%); "height="130" width="135" alt="" src="../../../assets/img/book.png">
+                                            <img style="
+                                                filter: invert(100%);
+                                                " height="130" width="135" alt="" src="../../../assets/img/calendar.png">
                                         </div>
                                       </a>
 
-                                      <a href="pag2.html" class="functions__item" style="--function-color:#c896ff;">
-                                          <span class="home_logado-s functions__item-duration"></span>
-                                          <div class="functions__item-wrap">
-                                              <h3 class="functions__item-title">Agendamento</h3> <b
-                                                  class="functions__item-category">Clique aqui</b>
-                                          </div>
-                                          <div class="functions__item-image">
-                                              <img style="
-                                                  filter: invert(100%);
-                                                  " height="130" width="135" alt="" src="../../../assets/img/calendar.png">
-                                          </div>
-                                      </a>                                                                            
+                                      <!-- SOMENTE DO RESPONSÁVEL -->
+                                      
+                                      <a *ngIf='!authService.adm()' class="functions__item" style="--function-color:#8a77e0;" data-bs-toggle="modal" data-bs-target="#myModal" >
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">ENVIAR MENSAGEM</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                          <i class="fas fa-comments icon-edit"></i>
+                                        </div>
+                                      </a> 
+
+                                      <a *ngIf='!authService.adm()' [routerLink]="['/visucriancasresponsaveis', idResponsavelget]" class="functions__item" style="--function-color:#8a77e0;">
+                                         <span class="home_logado-s functions__item-duration"></span>
+                                         <div class="functions__item-wrap">
+                                             <h3 class="functions__item-title">VISUALIZAR CRIANÇAS</h3> 
+                                         </div>
+                                         <div class="functions__item-image">
+                                           <i  class="fa fa-child icon-edit" aria-hidden="true"></i>
+                                         </div>
+                                       </a>                                                                    
+                                      
+                                        <a *ngIf='!authService.adm()' [routerLink]="['/visusegresponsdresponsa', idResponsavelget]" class="functions__item" style="--function-color:#c896ff;">
+                                            <span class="home_logado-s functions__item-duration"></span>
+                                            <div class="functions__item-wrap">
+                                                <h3 class="functions__item-title">VISUALIZAR SEGUNDO RESPONSÁVEIS</h3> 
+                                            </div>
+                                            <div class="functions__item-image">
+                                                <i class="fas fa-users icon_edit_users"></i>
+                                           </div>
+                                        </a>
+                                                                                                               
+                                                                                                                
                                        
                                     </div>
                                 </section>
@@ -154,3 +207,103 @@
   </div>
 </div>
 
+ <!-- Modal -->
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog text_modal" role="document">
+        <div class="modal-content modal_background">
+
+            <div class="modal-header modal_background_whit">
+                <h4 class="modal-title title_mensagem_modal" id="myModalLabel">PARA O PROPRIETÁRIO</h4>
+                <i class="fas fa-user-alt icon_edit"></i>
+                <button type="button" class="btn-close icon_edit p-2 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="forms-campos-cad" [formGroup]="formulario" (ngSubmit)="postMensages()">
+
+                <div class="modal-body modal_background_whit">
+                    <div class="caixa-forms-edit">
+            
+                            <div class="position_itens_top">
+                                
+                                <div class="input-box">
+                                    <div class="form-group campo ">
+                                        <input class="form-control" type="text" formControlName="titulo" id="titulo" required/>
+                                        <label for="titulo" class="label-edit">Título: *</label>
+                                    </div>
+                
+                                    <div class="mensagem-input-error">
+                                        <div class="balao cax-position" 
+                                            *ngIf="formulario.get('titulo')?.errors?.['required'] && formulario.get('titulo')?.touched">
+                                            <span class="m-lg-2">
+                                                Preenchimento obrigatório!
+                                            </span>
+                                        </div>
+                                        <div class="balao cax-position" 
+                                            *ngIf="formulario.get('titulo')?.errors?.['maxlength'] && formulario.get('titulo')?.touched">
+                                            <span class="m-lg-2">
+                                                O título deve ser menor.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input_box2 ">
+                                    <div class="form-group campo">
+                                        <textarea  class="form-control caixa_texto" formControlName="conteudoMensagem" id="conteudoMensagem" rows="3" placeholder="Escreva sua mensagem *"></textarea>
+                                    </div>
+
+                                    <div class="mensagem-input-error">
+                                        <div class="balao cax-position" 
+                                            *ngIf="formulario.get('conteudoMensagem')?.errors?.['required'] && formulario.get('conteudoMensagem')?.touched">
+                                            <span class="m-lg-2">
+                                                Preenchimento obrigatório!
+                                            </span>
+                                        </div>
+                                        <div class="balao cax-position" 
+                                            *ngIf="formulario.get('conteudoMensagem')?.errors?.['maxlength'] && formulario.get('conteudoMensagem')?.touched">
+                                            <span class="m-lg-2">
+                                                O conteúdo da mensagem ultrapassou 250 caracteres.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-box ">
+                                    <div class="form-group">
+                                    <div class="texto-color">
+                                        <label for="proprietario" class="label-edit">Proprietário:*</label>
+                                        <select class="form-control form-select" formControlName="proprietario" 
+                                                id="proprietario" [(ngModel)]="idProprietario" 
+                                                (change)='findByAllProprietario()'>
+
+                                        <option disabled selected value="">Selecione o nome do proprietário:</option>
+                                        <option *ngFor="let propri of listProprietario" value="{{propri.id}}">{{propri.nome}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mensagem-input-error">
+                                        <div class="balao bl-position"
+                                        *ngIf="formulario.get('proprietario')?.errors?.['required'] && formulario.get('proprietario')?.touched">
+                                        <span class="m-lg-2">
+                                            Selecione o proprietário!
+                                        </span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            </div>                            
+                            
+                    </div>        
+                </div>
+
+                <div class="modal-footer modal_background_whit">
+                    <button type="button" class="btn btn-default btn-success-update" data-bs-dismiss="modal"
+                        routerLink="/inicio">CANCELAR</button>
+                    <button type="submit" class="btn btn-primary btn-cancel" data-bs-dismiss="modal" [disabled]="!formulario.valid">
+                        ENVIAR
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+ </div>

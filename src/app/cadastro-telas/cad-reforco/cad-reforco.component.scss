@@ -258,50 +258,51 @@ select {
 @media (max-width: 920px) {
 
     .container-cad .img-box {
-        display: none;
+      display: none;
     }
-
+    
     .container-cad .content-box {
-        width: 100%;
-        height: 130vh;
+      width: 100%;
+      height: 130vh;
     }
-
+    
     .content-box .form-box {
-        width: 100%;
+      margin-top: 20%;
+      width: 100%;
     }
-        
-    .form-control {
-        top: 0;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
+     
     .forms-campos-cad {
-        width: auto;
-        padding: 15px;
-        margin: 10px;
-        background-color: #ffffff;
-        border-radius: 10px;
+      width: auto;
+      padding: 15px;
+      margin: 10px;
+      background-color: #ffffff;
+      border-radius: 10px;
     }
-
+  
     .campo input {
-        border-bottom: 1px solid #2d2182;
+      border-bottom: 1px solid #2d2182;
     }
-
+    
+    .texto-color {
+      border: 1px solid #2d2182;
+    }
+  
     .campo input, 
-    .campo .label-edit {
-        color: #2d2182;
+    .campo .label-edit, 
+    .label-color,
+    .texto-color {
+       color: #2d2182;
     }
-
+  
     .campo input:focus ~ label, 
     .campo input:focus {
-        color: #8a77e0;
+      color: #8a77e0;
     }
-
+  
     .campo input:focus {
-        border-bottom: 1px solid #8a77e0;
+      border-bottom: 1px solid #8a77e0;
     }
-
-
-}
+    
+  
+  }
+  

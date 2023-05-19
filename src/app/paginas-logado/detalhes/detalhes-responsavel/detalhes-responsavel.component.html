@@ -1,0 +1,153 @@
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+
+        <div class="d-flex justify-content-center m-0 p-0">
+            <div class="title_camp_top">
+                <hr>
+                <div class="title-icon-ali">
+                    <h2 class="text_edit_title_top">DETALHES DO RESPONSÁVEL</h2>
+                    <i class="fa fa-users icon_edit_top" aria-hidden="true"></i>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="container-principal">
+
+            <div class="result-banco">
+
+                <div class="form-group container-respo">
+
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="title-camp">
+                            <hr>
+                            <div class="title-icon-ali">
+                                <h5 class="text-edit-title">{{getResponsavel.nome}}</h5>
+                                <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="container-info">
+
+                        <div class="d-flex justify-content-between w-100">
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Nascido:</p>
+                                <p class="info-edit">{{getResponsavel.dtNascimento | date:'dd/MM/yyyy'}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Genêro:</p>
+                                <p class="info-edit">{{getResponsavel.genero}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">CPF:</p>
+                                <p class="info-edit">{{getResponsavel.cpf}}</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center w-100">
+                            <div class="title-camp">
+                                <hr>
+                                <div class="title-icon-ali">
+                                    <h5 class="text-edit-title">ENDEREÇO</h5>
+                                    <i class="fa fa-map-marker icon-edit-camp" aria-hidden="true"></i>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between w-100">
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Rua:</p>
+                                <p class="info-edit">{{getResponsavel.rua}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">N°:</p>
+                                <p class="info-edit">{{getResponsavel.numMoradia}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Complemento:</p>
+                                <p class="info-edit">{{getResponsavel.complemento}}</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between w-100">
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Bairro:</p>
+                                <p class="info-edit">{{getResponsavel.bairro}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">CEP:</p>
+                                <p class="info-edit">{{getResponsavel.cep}}</p>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between w-100">
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Cidade:</p>
+                                <p class="info-edit">{{getResponsavel.cidade}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Estado:</p>
+                                <p class="info-edit">{{getResponsavel.estado}}</p>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-center w-100">
+                            <div class="title-camp">
+                                <hr>
+                                <div class="title-icon-ali">
+                                    <h5 class="text-edit-title">CONTATO</h5>
+                                    <i class="fa fa-phone icon-edit-camp" aria-hidden="true"></i>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between w-100">
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Celular:</p>
+                                <p class="info-edit">{{getResponsavel.celular}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Telefone:</p>
+                                <p class="info-edit">{{getResponsavel.telefone}}</p>
+                            </div>
+
+                            <div class="elemento-info">
+                                <p class="titulo-edit">Telefone Comercial:</p>
+                                <p class="info-edit">{{getResponsavel.telefoneComercial}}</p>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <div class="container-btn">
+                    <div class="bt-duplo-small">
+                      <button type="submit" class="btn botao-cancel" routerLink="/visueditresponsavel">
+                        VOLTAR
+                      </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

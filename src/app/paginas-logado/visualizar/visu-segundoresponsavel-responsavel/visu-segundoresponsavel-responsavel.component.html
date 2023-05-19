@@ -1,0 +1,69 @@
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+    
+      <div class="d-flex justify-content-center m-0 p-0">
+        <div class="title_camp_top">
+          <hr>
+          <div class="title-icon-ali">
+            <h2 class="text_edit_title_top">2° RESPONSÁVEIS</h2>
+            <i class="fa fa-users icon_edit_top" aria-hidden="true"></i>
+          </div>
+          <hr>
+        </div>
+      </div>
+  
+      <div class="d-flex justify-content-center m-2 p-0" *ngIf="listSegundoResponsavel == null">
+        <div class="title-camp">
+          <div class="title-icon-ali">
+            <h5 class="text-edit-title-not">Não há 2° responsáveis, cadastrados no momento.</h5>
+            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+  
+      <div class="container-principal">
+        <div class="table-responsive">
+  
+          <div class="table_position">
+  
+            <table class="table">
+              <thead class="edit_thead">
+                <tr>
+                  <th class="line_btn" scope="col">Nome</th>
+                  <th class="line_btn" scope="col">Gênero</th>
+                  <th class="line_btn" scope="col">Parentesco</th>
+                  <th class="line_btn" scope="col">Celular</th>
+                  <th class="line_btn" scope="col">Detalhes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table_line" *ngFor="let itemSegunResponsavel of listSegundoResponsavel | orderBy: ['nome']">
+  
+                  <th class="line_btn color_line" scope="row">{{itemSegunResponsavel.nome.toUpperCase()}}</th>
+                  <td class="line_btn">{{itemSegunResponsavel.genero}}</td>
+                  <td class="line_btn">{{itemSegunResponsavel.parentesco}}</td>
+                  <td class="line_btn">{{itemSegunResponsavel.celular}}</td>
+                  <td class="line_btn"><button type="button" class="btn edit_btn"
+                      [routerLink]="['/detalhesegresponsavel', itemSegunResponsavel.id]"><i class="fa fa-info icon_btn"
+                        aria-hidden="true"></i></button>
+                 </td>
+                
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container-btn">
+        <div class="bt-duplo-small">
+          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+            VOLTAR
+          </button>
+          
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>

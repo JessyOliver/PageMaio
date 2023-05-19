@@ -1,4 +1,5 @@
 import { Proprietario } from "./Proprietario";
+import { Responsavel } from "./Responsavel";
 
 export class Mensagem {
 
@@ -8,6 +9,6 @@ export class Mensagem {
 
     // FK
     public proprietario!: Proprietario;
-    public responsavel!: Response;
+    public responsavel!: Responsavel;
 
 }

@@ -22,21 +22,34 @@
             </a>
           </li>
           <li class="nav-item" *ngIf='authService.adm()'>
-            <a class="nav-link text-color-group" routerLinkActive="active" aria-current="page" [routerLink]="['/editproprietario', idUsu]">
+            <a class="nav-link text-color-group" routerLinkActive="active" aria-current="page" [routerLink]="['/editperfil', idUsu]">
               <i class="fa-solid fa-user"></i>
               <span> Perfil </span>
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item" *ngIf='!authService.adm()'>
+            <a class="nav-link text-color-group" routerLinkActive="active" aria-current="page" [routerLink]="['/editperfilresponsavel', idUsu]">
+              <i class="fa-solid fa-user"></i>
+              <span> Perfil </span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf='authService.adm()'>
+            <a class="nav-link text-color-group" routerLinkActive="active" aria-current="page" routerLink="/visumensagens">
+              <i class="fas fa-comments icon-edit"></i>
+              <span> Mensagens </span>
+            </a>
+          </li>
+          
+         <!--  <li class="nav-item dropdown">
             <a class="nav-link text-color-group dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
               <i class="fa-solid fa-eye"></i>
               <span> Visualizar </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-group">
               <li class="li-border-group">
-                <a class="dropdown-item text-color-group-dropdown" routerLink="#">
+                <a class="dropdown-item text-color-group-dropdown" routerLink="/visumensagem">
                   <i class="fa-solid fa-calendar-days"></i>
-                  <span> Agenda </span>
+                  <span> mensagens </span>
                 </a>
               </li>
               <li>
@@ -55,7 +68,7 @@
                 </a
               ></li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item">
             <!-- <a class="nav-link" routerLink="#">Perfil</a> -->
             <a (click)="logOff()" routerLinkActive="active" class="nav-link text-color-group">
@@ -64,14 +77,15 @@
             </a>
           </li>
         </ul>
-        <form class="d-flex mt-3" role="search">
+        <!-- <form class="d-flex mt-3" role="search">
           <input class="form-control me-2 text-color-group" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-success" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
 </nav>
+
 
 <!-- <nav class="navbar-home">
 
@@ -99,3 +113,6 @@
   </ul>
 </nav>
  -->
+
+
+ 

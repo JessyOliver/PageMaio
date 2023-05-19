@@ -1,4 +1,4 @@
-<div class="container-cad">
+<div *ngIf='authService.adm()' class="container-cad">
     <div class="container-fluid">
       <div class="container-fluid" id='topo'>
           <div class="row justify-content-center">
@@ -47,21 +47,18 @@
                               </div>
   
                               <div class="mensagem-input-error">
-                                <div class="balao cax-position" *ngIf="(formulario.get('cpf')?.errors?.['required'] ||
-                                    formulario.get('cpf')?.errors?.['maxlength'] ||
-                                    formulario.get('cpf')?.errors?.['minlength'] ||
-                                    formulario.get('cpf')?.errors?.['pattern']) &&
-                                    formulario.get('cpf')?.touched">
+                                <div class="balao cax-position w-75" *ngIf="formulario.get('cpf')?.errors?.['required'] &&
+                                                                            formulario.get('cpf')?.touched">
                                   <span class="m-lg-2">
-                                    Preenchimento obrigatório, somente números e no máximo 11!
+                                    Campo Obrigatório!
                                   </span>
                                 </div>
-                                <div class="balao cax-position" *ngIf="(formulario.get('cpf')?.errors?.['ValidaCpf']) && formulario.get('cpf')?.touched">
-                                  <span class="m-lg-2">
-                                    CPF Inválido!
-                                  </span>
+                                <div class="balao cax-position w-75" *ngIf="formulario.get('cpf')?.errors?.['cpfInvalido'] &&
+                                            formulario.get('cpf')?.touched">
+                                  CPF inválido!
                                 </div>
                               </div>
+
                             </div>
   
                           </div>
@@ -72,7 +69,7 @@
                               <div class="form-group">
                                   <label class="label-color" for="dataNasc">Data de Nascimento*</label>
     <!--                          <input [(ngModel)]="cadSegResponsavel.dataNascimento" class="form-control texto-color" type="date" name="dataNasc" id="dataNasc" required />
-    -->                           <input class="form-control texto-color" type="date" formControlName="dataNasc" id="dataNasc" (change)="dataConvert($event)" required />
+    -->                           <input [(ngModel)]="cadSegResponsavel.dtNascimento" class="form-control texto-color" type="date" formControlName="dataNasc" id="dataNasc"  required /><!-- (change)="dataConvert($event)" -->
                               </div>
   
                               <div class="mensagem-input-error">
@@ -95,7 +92,7 @@
                                     <option value="Feminino">Feminino</option>
                                     <option value="Masculino">Masculino</option>
                                     <option value="outros">Outros(Trans, não-binário)</option>
-                                </select>
+                                  </select>
                               </div>
   
                               <div class="mensagem-input-error">

@@ -147,6 +147,13 @@
     color: #2D2182;
 }
 
+.color_line {
+    background: #2D2182;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    text-align: left;
+}
+
 
 .edit_btn {
     display: flex;
@@ -241,6 +248,19 @@
 
 
 @media (max-width:920px) {
+
+    .tab-pane {
+     width: 95%;
+    }
+
+    .table_position {
+        position: relative;
+        margin-left: 40%;
+    }
+
+    .tab-content {
+        height: 110vh;
+    }
 
 }
 

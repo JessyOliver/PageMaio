@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pacote } from 'src/app/model/Pacote';
-import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { PacoteService } from 'src/app/service/pacote.service';
 import { environment } from 'src/environments/environment.prod';
@@ -11,7 +10,7 @@ import { environment } from 'src/environments/environment.prod';
   templateUrl: './detalhe-pacote.component.html',
   styleUrls: ['./detalhe-pacote.component.scss']
 })
-export class DetalhePacoteComponent implements OnInit{
+export class DetalhePacoteComponent implements OnInit {
 
   getPacote: Pacote = new Pacote;
 
@@ -20,7 +19,6 @@ export class DetalhePacoteComponent implements OnInit{
     private auth: AuthService,
     private route: ActivatedRoute,
     private pacoteService: PacoteService,
-    private alerts: AlertsService
   ){}
 
   ngOnInit() {
@@ -33,7 +31,6 @@ export class DetalhePacoteComponent implements OnInit{
 
     //forçando altenticação
     this.auth.refreshToken();
-
 
     let id = this.route.snapshot.params['id'];
     this.findByIdPacote(id);  

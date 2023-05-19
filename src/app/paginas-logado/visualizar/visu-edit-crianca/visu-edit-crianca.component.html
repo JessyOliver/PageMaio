@@ -1,17 +1,15 @@
 <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active " id="pills-todos"
-    role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
-    
-    <div class="d-flex justify-content-center">
-        
+    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+  
+      <div class="d-flex justify-content-center">
+  
         <div class="form-group buscar-edit">
-            <input type="text" class="form-control input-busca" id="titulo" 
-            placeholder="🔍 buscar responsável." [(ngModel)]='criancaNome' 
-            (keyup)='findByNomeCrianca()'>
+          <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar criança..."
+            [(ngModel)]='criancaNome' (keyup)='findByNomeCrianca()'>
         </div>
-    </div>
-
-    <div class="d-flex justify-content-center w-100">
+      </div>
+  
+      <div class="d-flex justify-content-center m-0 p-0">
         <div class="title_camp_top">
           <hr>
           <div class="title-icon-ali">
@@ -20,148 +18,93 @@
           </div>
           <hr>
         </div>
-    </div>
-
-    <div class="d-flex justify-content-center m-2 p-0" *ngIf="listCrianca == null">
+      </div>
+  
+      <div class="d-flex justify-content-center m-2 p-0" *ngIf="listCrianca == null">
         <div class="title-camp">
           <div class="title-icon-ali">
             <h5 class="text-edit-title-not">Não há crianças, cadastradas no momento.</h5>
             <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
           </div>
+        </div>
+      </div>
+  
+  
+      <div class="container-principal">
+        <div class="table-responsive">
+            
+            <div class="table_position">
+                <table class="table">
+
+                    <thead class="edit_thead">
+                        <tr>
+                            <th class="line_btn" scope="col">Nome</th>
+                            <th class="line_btn" scope="col">Idade</th>
+                            <th class="line_btn" scope="col">Responsável</th>
+                            <th class="line_btn" scope="col">Contato</th>
+                            <th class="line_btn" scope="col">Detalhes</th>
+                            <th *ngIf='authService.adm()' class="line_btn" scope="col">Editar</th>
+                            <th *ngIf='authService.adm()' class="line_btn" scope="col">Apagar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table_line" *ngFor="let itemCrianca of listCrianca | orderBy: ['nome']">
+        
+                            <th class="line_btn color_line" scope="row">{{itemCrianca.nome}}</th>
+                            <td class="line_btn">{{calcularIdade(itemCrianca.dtNascimento)}}
+                                {{calcularIdade(itemCrianca.dtNascimento) === 1 ? 'ano' : 'anos'}}</td>
+                            <td class="line_btn">{{itemCrianca.responsavel.nome}}</td>
+                            <td class="line_btn">{{itemCrianca.responsavel.celular}}</td>
+                            <td class="line_btn">
+                              <button type="button" class="btn edit_btn"  [routerLink]="['/detalhecrianca', itemCrianca.id]">
+                                <i class="fa fa-info icon_btn" aria-hidden="true"></i>
+                              </button>
+                            </td>                      
+                            <td *ngIf='authService.adm()' class="line_btn"><button type="button" class="btn edit_btn" [routerLink]="['/editcrianca', itemCrianca.id]"><i
+                                        class="fas fa-edit icon_btn"></i></button></td>
+                            <td *ngIf='authService.adm()' class="line_btn"><button type="button" class="btn edit_btn_danger" 
+                                (click)="getId(itemCrianca.id)" data-bs-toggle="modal" data-bs-target="#myModal">
+                                <i class="far fa-trash-alt icon_btn"></i></button></td>
+        
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel">
+                                <div class="modal-dialog text_modal" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">APAGAR AS INFORMAÇÕES DESTA CRIANÇA</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Deseja realmente apagar os dados dessa criança?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-success-update"
+                                                data-bs-dismiss="modal" routerLink="/visueditcrianca">Não</button>
+                                            <button type="button" class="btn btn-primary btn-cancel"
+                                                data-bs-dismiss="modal" (click)="deletarCrianca()">Sim</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+        </div>    
+      </div>
+      
+      <div class="container-btn">
+  
+        <div class="bt-duplo-small">
           <button type="submit" class="btn botao-cancel" routerLink="/inicio">
             VOLTAR
-        </button>
+          </button>
         </div>
+  
+      </div>
+  
     </div>
-    
-    <div class="container-principal"> 
-
-        <div class="result-banco">
-
-                <div class="form-group container-respo" *ngFor="let itemCrianca of listCrianca | orderBy: ['nome']"> 
-            
-                    <div class="d-flex justify-content-center w-100">
-                        <div class="title-camp">
-                          <hr>
-                          <div class="title-icon-ali">
-                            <h5 class="text-edit-title">{{itemCrianca.nome}}</h5>
-                            <i class="fa fa-address-card-o icon-edit-camp" aria-hidden="true"></i>
-                          </div>
-                          <hr>
-                        </div>
-                    </div>
-
-                    <div class="container-info">
-    
-                        <div class="d-flex justify-content-between w-100">
-                
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Data de Nascimento:</p>
-                                <p class="info-edit">{{itemCrianca.dtNascimento | date:'dd/MM/yyyy'}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Genêro:</p>
-                                <p class="info-edit">{{itemCrianca.genero}}</p>
-                            </div>
-                            
-                        </div>
-
-                        <div class="d-flex justify-content-center w-100">
-                            <div class="title-camp">
-                              <hr>
-                              <div class="title-icon-ali">
-                                <h5 class="text-edit-title">SAÚDE DA CRIANÇA</h5>                                
-                                <i class="fa fa-medkit icon-edit-camp" aria-hidden="true"></i>
-                              </div>
-                              <hr>
-                            </div>
-                        </div>
-                        
-                        <div class="d-block justify-content-between w-100">   
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Problema Saude?</p>
-                                <p class="info-edit">{{itemCrianca.problemaSaude ? 'Sim' : 'Não'}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Tipo de Problema de Saude:</p>
-                                <p class="info-edit">{{itemCrianca.tipoProblemaSaude}}</p>
-                            </div>
-                    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Alguma Alergia?</p>
-                                <p class="info-edit">{{itemCrianca.algumaAlergia ? 'Sim' : 'Não'}}</p>
-                            </div>
-                            
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Tipo de alergia:</p>
-                                <p class="info-edit">{{itemCrianca.tipoAlergia}}</p>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Faz uso de médicamentos?</p>
-                                <p class="info-edit">{{itemCrianca.usoMedicamento ? 'Sim' : 'Não'}}</p>
-                            </div>
-                
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Quais médicamentos:</p>
-                                <p class="info-edit">{{itemCrianca.qualMedicamento}}</p>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Tem necessidades especiais?</p>
-                                <p class="info-edit">{{itemCrianca.necessidadesEspeciais ? 'Sim' : 'Não'}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Quais necessidades especiais:</p>
-                                <p class="info-edit">{{itemCrianca.tipoNecessidadesEspeciais}}</p>
-                            </div>
-
-                            <div class="d-flex justify-content-center w-100">
-                                <div class="title-camp">
-                                  <hr>
-                                  <div class="title-icon-ali">
-                                    <h5 class="text-edit-title">OUTRAS INFORMAÇÕES</h5>                                
-                                    <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
-                                </div>
-                                  <hr>
-                                </div>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Observações da Criança:</p>
-                                <p class="info-edit">{{itemCrianca.obsDiaCrianca}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Termo de aceite:</p>
-                                <p class="info-edit">{{itemCrianca.termoAceite ? 'Aceito' : 'Não'}}</p>
-                            </div>
-
-                        </div>
-    
-                    </div>
-        
-                    <div class="container-btn w-100">
-
-                        <div class="bt-duplo-small">
-                            <button type="submit" class="btn botao-cad m-lg-3" [routerLink]="['/editcrianca', itemCrianca.id]">
-                                EDITAR
-                            </button>     
-                            <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-                                VOLTAR
-                            </button>  
-                        </div>
-                        
-                    </div>
-
-                </div>
-            </div>
-
-         </div>        
-
-    </div>
-
-</div> 
+  
+  </div>

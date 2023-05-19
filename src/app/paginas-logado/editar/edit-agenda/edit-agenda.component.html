@@ -1,0 +1,90 @@
+<div class="container-cad">
+    <div class="content-box">
+
+        <div class="campo-edit">
+
+            <div class="form-box">
+
+                <div class="d-flex justify-content-center">
+                    <div class="title_camp_top">
+                      <hr>
+                      <div class="title_icon_ali">
+                        <h2 class="text_edit_title_top">EDITAR AGENDAMENTO</h2>
+                        <i class="fas fa-calendar-edit icon_edit_top"></i>
+<!--                         <i class="fas fa-calendar-alt "></i>
+ -->                    </div>
+                      <hr>
+                    </div>
+                </div>
+
+                <div class="caixa-forms-edit">
+                    <div class="continer-forms">
+
+                      <div class="camp_edit">
+
+                        <div class="d-block justify-content-between w-100">
+  
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editAgendamento.dataAgendamento" class="form-control" type="date" 
+                                    name="dataAgendamento" id="dataAgendamento" required/>
+                                    <label class="label-edit" for="dataAgendamento">Data de Agendamento:</label>
+                                </div>
+                            </div>
+    
+                            <div class="input-box">
+                                <div class="form-group campo">
+                                    <input [(ngModel)]="editAgendamento.horarioEntrada" class="form-control" type="time" 
+                                           name="horarioEntrada" id="horarioEntrada" required/>
+                                    <label class="label-edit" for="horarioEntrada">Horário de Entrada:</label>
+                                </div>
+                            </div>
+                            
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editAgendamento.horarioSaida" class="form-control" type="time"
+                                         name="horarioSaida" id="horarioSaida"/>
+                                  <label class="label-edit" for="horarioSaida">Horário de Saída:</label>
+                              </div>
+                            </div>
+
+                        </div>
+  
+                        <div class="d-block justify-content-between w-100">
+  
+                            <div class="input-box">
+                              <div class="form-group campo">
+                                  <input [(ngModel)]="editAgendamento.observacao" class="form-control" type="text"
+                                         name="observacao" id="observacao"/>
+                                  <label class="label-edit" for="observacao">Observação:</label>
+                              </div>
+                            </div> 
+  
+                        </div>
+  
+                      </div>
+
+                        <div class="btn-group-line">
+                
+                            <button type="button" class="btn btn-success-update me-lg-3" (click)='upDateAgenda()'>
+                              ATUALIZAR
+                            </button>
+                            <button type="submit" class="btn btn-cancel me-lg-3 btn_lg" id="btnCancelarUser" routerLink="/visuagenda">
+                              CANCELAR
+                            </button>
+      
+                          </div>
+
+                    </div>
+                </div>    
+                    
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="img-box">
+        <img src="https://i.imgur.com/0UeIHGU.jpg"/>
+    </div>
+</div>

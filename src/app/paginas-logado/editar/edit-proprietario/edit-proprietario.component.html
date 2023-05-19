@@ -1,4 +1,4 @@
-<div class="content-box">
+<div *ngIf='authService.adm()' class="content-box">
 
   <div class="form-box">
 
@@ -17,7 +17,7 @@
 
         <div class="input-box">
           <div class="form-group campo campoSenha">
-              <input (input)='confirmarSenha($event)' class="form-control" type="password" name="senha" id="senha" required />
+              <input (input)='primeiraSenha($event)' class="form-control" type="password" name="senha" id="senha" required />
               <label for="senha" class="label-edit">Senha*</label>
               <button type="button" (click)="togglePass()" class="botao-revela">
                 <i class="fa-solid  fa-eye iconPass" id="text"></i>
@@ -28,7 +28,7 @@
 
         <div class="input-box">
           <div class="form-group campo campoSenha">
-              <input [(ngModel)]="editUser.senha" class="form-control" type="password" name="confirmSenha" id="confirmSenha" required />
+              <input (input)='confirmarSenha($event)' class="form-control" type="password" name="confirmSenha" id="confirmSenha" required />
               <label for="confirmSenha" class="label-edit">Confirmar Senha*</label>
               <button type="button" (click)="togglePass2()" class="botao-revela">
                 <i class="fa-solid  fa-eye iconPass2" id="text2"></i>
@@ -38,25 +38,32 @@
         </div>
 
         <div class="input-box">
+          <div class="form-group campo">
+            <label for="tipo" class="label_edit_2">Tipo de Usuário*</label>
+            <input disabled="true" [(ngModel)]="editUser.tipo" class="form-control" type="tipo" name="tipo" id="tipo"  />
+          </div>
+        </div>
+        <!-- <div class="input-box">
             <div class="form-group campo col texto-color">
                 <label for="tipo" class="label-edit-tp">Tipo de Usuário*</label>
-                <!-- select - abre na caixa de texto, e permite escrever opções para escolha do usuário -->
-                <!-- Option - opção dentro da caixa de texto para que o usuário escolha -->
                 <select class="form-control form-select" name="tipo" id="tipo" (change)='tipoUser($event)'>
                   <option value={{editUser.tipo}}>{{editUser.tipo}}</option>
-                  <option value="padrao">Padrão</option>
+                  <option value="ADMINISTRADOR">Administrador</option>
+                  <option value="PADRÃO">Padrão</option>
               </select>
             </div>
-        </div>
+        </div> -->
 
         <div class="btn-group-line">
 
           <button type="submit" class="btn btn-cancel me-lg-5" id="btnCancelarUser" routerLink="/inicio">
             CANCELAR
           </button>
+          
           <button type="submit" class="btn btn-success-update" (click)='updateUsuario()'>
             ATUALIZAR
           </button>
+
         </div>
 
       <!--   <div class="btn-position">
@@ -88,17 +95,6 @@
         </div>
       </div>
 
-      <div class="input-box">
-          <div class="form-group campo col texto-color">
-            <label for="usuario" class="label-edit-tp">Usuários:*</label>
-            <p class="label-edit-mensagem">(Obs. Escolha o usuário vinculado ao proprietário a ser cadastrado.)</p>
-            <select class="form-control form-select" name="usuario" id="usuario" [(ngModel)]="idUserN" (change)='findByAllUserAll()'>
-              <!-- <option value={{editProprietario.usuario.id}}>{{editProprietario.usuario.usuario}}</option> -->
-              <option *ngFor="let users of listUser" value="{{users.id}}">{{users.usuario}}</option>
-            </select>
-          </div>
-      </div>
-
       <div class="btn-group-line-2">
 
         <button type="submit" class="btn btn-cancel-2 me-lg-5" id="btnCancelarUser" routerLink="/inicio">
@@ -108,13 +104,6 @@
           ATUALIZAR
         </button>
       </div>
-
-     <!--  <div class="btn-position2">
-        <button type="button" class="btn botao-roxo" id="myBtnPropri">
-          EDITAR
-        </button>
-      </div> -->
-
 
     </form>
 
@@ -169,8 +158,6 @@
         <div class="input-box-modal-user">
           <div class="form-group campo-modal-user col texto-color">
               <label for="tipo" class="label-edit-tp-modal-user">Tipo de Usuário*</label>
-              <!-- select - abre na caixa de texto, e permite escrever opções para escolha do usuário -->
-              <!-- Option - opção dentro da caixa de texto para que o usuário escolha -->
               <select class="form-control form-select-modal-user" name="tipo" id="tipo" (change)='tipoUser($event)'>
                 <option value={{editUser.tipo}}>{{editUser.tipo}}</option>
                 <option value="padrao">Padrão</option>

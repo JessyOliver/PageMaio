@@ -1,0 +1,266 @@
+.tab-content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2D2182;
+}
+
+.tab-pane {
+    position: relative;
+    top: auto;
+    width: 80%;
+    height: auto;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: 9%;
+    padding: 10px;
+    background: #fff;
+    border: 2px solid #2D2182;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.buscar-edit {
+    position: relative;
+    width: 70%;
+    margin: 2%;
+  //  background: indianred;
+}
+
+.input-busca {
+    background: transparent;
+    border: 1px solid #2D2182;
+    color: #2D2182;
+    font-weight: 600;
+    font-size: 12pt;
+}
+
+.container-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_camp_top {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.text_edit_title_top {
+    color: #2D2182;
+    padding: 2px;
+    margin: 1px;
+    font-size: 25pt;
+}
+
+.icon_edit_top {
+    color: #2D2182;
+    padding: 5px;
+    font-size: 25pt;
+}
+
+.title-camp {
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 500;
+}
+
+.title-icon-ali {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-edit-title-not {
+    padding: 2px;
+    color: #bb2d3b;
+}
+
+.icon-edit-not {
+    color: #bb2d3b;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.botao-cancel {
+    margin: 2px;
+    width: auto;
+    font-size: 10pt;
+    color: #ffffff;
+    border: 2px #025e44 solid;
+    background-color: #025e44;
+    font-weight: 500;
+}
+
+.botao-cancel:hover {
+    background-color: transparent;
+    color: #025e44;
+    background-color: #025e445a;
+}
+
+///TABELA EDIT
+
+.edit_thead_cabecalho {
+    background: #2D2182;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18pt;
+    border: 1px solid #ffffff;
+}
+
+.table_position {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_thead {
+    background: #2D2182;
+    color: #ffffff;
+    text-align: left;
+    font-size: 14pt;
+}
+
+.edit_th {
+    background: #2D2182;
+    color: #2D2182;
+}
+
+.table_line {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    background: #dfdede4b;
+    border: 1px solid #2D2182;
+}
+
+.table_line:hover {
+    background: #2c218249;
+    color: #2D2182;
+}
+
+.color_line {
+    background: #2D2182;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    text-align: left;
+}
+
+.edit_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2D2182;
+    width: 40px;
+    height: 40px;
+}
+
+.edit_btn:hover {
+    background: #2D21829d;
+    border: 1px solid #2D2182;
+}
+
+.icon_btn {
+    color: #ffffff;  
+    font-size: 18pt; 
+    text-align: center;
+}
+
+.edit_btn_danger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #bb2d3b;
+    width: 40px;
+    height: 40px;
+}
+
+.edit_btn_danger:hover {
+    background: #920b0bcb;
+    border: 1px solid #bb2d3b;
+}
+
+////////////////MODAL////////////////
+.text_modal {
+    position: relative;
+    top: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.line_btn {
+    position: relative;
+    padding: 20px;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    // margin: 10px;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #bb2d3b;
+    font-weight: 500;
+  }
+  
+  .btn-cancel:hover {
+    background-color: transparent;
+    color: #bb2d3b;
+    background-color: #bb2d3b2b;
+    border: 2px #bb2d3b solid;
+    font-weight: 500;
+  }
+  
+  .btn-success-update {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #157347;
+    font-weight: 500;
+  }
+  
+  .btn-success-update:hover {
+    background-color: transparent;
+    color: #157347;
+    background-color: #1573471e;
+    border: 2px #157347 solid;
+  }
+
+.container-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: right;
+    padding: 5px;
+    width: 100%; 
+    height: auto;   
+ //   background: rgb(111, 78, 18);  
+}
+
+
+
+@media (max-width:920px) {
+
+    .tab-pane {
+     width: 95%;
+    }
+
+    .table_position {
+        position: relative;
+        margin-left: 140%;
+    }
+
+    .tab-content {
+        height: 110vh;
+    }
+
+}
+

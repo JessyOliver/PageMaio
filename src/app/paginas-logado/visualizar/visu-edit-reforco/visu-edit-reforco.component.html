@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-center">
 
             <div class="form-group buscar-edit">
-                <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar reforço."
+                <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar reforço..."
                     [(ngModel)]='reforcoNome' (keyup)='findByMateria()'>
             </div>
         </div>
@@ -33,112 +33,66 @@
         </div>
 
         <div class="container-principal">
+            <div class="table-responsive">
 
-            <div class="table_position">
+                <div class="table_position">
 
-                <!--  <div class="form-group container-respo" *ngFor="let itemReforco of listReforco | orderBy: ['materias']"> 
-            
-                    <div class="d-flex justify-content-center m-0 p-0">
-                        <div class="title-camp">
-                          <hr>
-                          <div class="title-icon-ali">
-                            <h5 class="text-edit-title">{{itemReforco.materias}}</h5>
-                            <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
-                          </div>
-                          <hr>
-                        </div>
-                    </div>
+                    <table class="table">
+                        <thead class="edit_thead">
+                            <tr>
+                                <th class="line_btn" scope="col">Matéria</th>
+                                <th class="line_btn" scope="col">Período</th>
+                                <th class="line_btn" scope="col">Nível</th>
+                                <th class="line_btn" scope="col">Detalhes</th>
+                                <th class="line_btn" scope="col">Editar</th>
+                                <th class="line_btn" scope="col">Apagar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table_line" *ngFor="let itemReforco of listReforco | orderBy: ['periodoCurso']">
 
-                    <div class="container-info">
-    
-                        <div class="d-block justify-content-between">
-                
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Período Curso:</p>
-                                <p class="info-edit">{{itemReforco.periodoCurso}}</p>
-                            </div>
-    
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Nível de Estudos:</p>
-                                <p class="info-edit">{{itemReforco.nivelEstudos}}</p>
-                            </div>
-                            
-                        </div>
-                    </div>
-        
-                    <div class="container-btn">
+                                <th class="line_btn color_line" scope="row">{{itemReforco.materias}}</th>
+                                <td class="line_btn">{{itemReforco.periodoCurso}}</td>
+                                <td class="line_btn">{{itemReforco.nivelEstudos}}</td>
+                                <td class="line_btn"><button type="button" class="btn edit_btn"
+                                        [routerLink]="['/detalhereforco', itemReforco.id]"><i
+                                            class="fa fa-info icon_btn" aria-hidden="true"></i></button></td>
+                                <td class="line_btn"><button type="button" class="btn edit_btn"
+                                        [routerLink]="['/editreforco', itemReforco.id]"><i
+                                            class="fas fa-edit icon_btn"></i></button></td>
+                                <td class="line_btn"><button type="button" class="btn edit_btn_danger"
+                                        (click)="getId(itemReforco.id)" data-bs-toggle="modal"
+                                        data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
+                                </td>
 
-                        <div class="bt-duplo-small">
-                            <button type="submit" class="btn botao-cad" [routerLink]="['/editreforco', itemReforco.id]">
-                                EDITAR
-                            </button>    
-                            
-                            <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-                                VOLTAR
-                            </button>
-    
-                        </div>
-                        
-                    </div>
-    
-                </div> -->
-            
-                <table class="table">
-                    <thead class="edit_thead">
-                        <tr>
-                            <th class="line_btn" scope="col">Matéria</th>
-                            <th class="line_btn" scope="col">Período</th>
-                            <th class="line_btn" scope="col">Nível</th>
-                            <th class="line_btn" scope="col">Detalhes</th>
-                            <th class="line_btn" scope="col">Editar</th>
-                            <th class="line_btn" scope="col">Apagar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table_line" *ngFor="let itemReforco of listReforco | orderBy: ['materias']">
-
-                            <th class="line_btn" scope="row">{{itemReforco.materias}}</th>
-                            <td class="line_btn">{{itemReforco.periodoCurso}}</td>
-                            <td class="line_btn">{{itemReforco.nivelEstudos}}</td>
-                            <td class="line_btn"><button type="button" class="btn edit_btn"
-                                    [routerLink]="['/detalhereforco', itemReforco.id]"><i
-                                        class="fa fa-info icon_btn" aria-hidden="true"></i></button></td>
-                            <td class="line_btn"><button type="button" class="btn edit_btn"
-                                    [routerLink]="['/editreforco', itemReforco.id]"><i
-                                        class="fas fa-edit icon_btn"></i></button></td>
-                            <td class="line_btn"><button type="button" class="btn edit_btn_danger"
-                                    (click)="getId(itemReforco.id)" data-bs-toggle="modal"
-                                    data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
-                            </td>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-                                aria-labelledby="myModalLabel">
-                                <div class="modal-dialog text_modal" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">APAGAR REFORÇO</h4>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Deseja realmente apagar essa aula de reforço?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default btn-success-update"
-                                                data-bs-dismiss="modal" routerLink="/visueditreforco">Não</button>
-                                            <button type="button" class="btn btn-primary btn-cancel"
-                                                data-bs-dismiss="modal" (click)="deletarReforco()">Sim</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog text_modal" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">APAGAR REFORÇO</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Deseja realmente apagar essa aula de reforço?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default btn-success-update"
+                                                    data-bs-dismiss="modal" routerLink="/visueditreforco">Não</button>
+                                                <button type="button" class="btn btn-primary btn-cancel"
+                                                    data-bs-dismiss="modal" (click)="deletarReforco()">Sim</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
         </div>
         <div class="container-btn">
 

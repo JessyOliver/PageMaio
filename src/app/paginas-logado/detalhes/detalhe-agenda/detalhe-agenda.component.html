@@ -1,0 +1,80 @@
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+  
+      <div class="d-flex justify-content-center m-0 p-0">
+        <div class="title_camp_top">
+          <hr>
+          <div class="title-icon-ali">
+            <h2 class="text_edit_title_top">DETALHES DO AGENDAMENTO</h2>
+            <i class="fas fa-calendar-alt icon_edit_top"></i>
+          </div>
+          <hr>
+        </div>
+      </div>
+  
+      <div class="container-principal">
+        <div class="result-banco">
+  
+          <div class="alinhar-blocos">
+  
+            <div class="form-group container-respo">
+  
+              <div class="d-flex justify-content-center m-0 p-0">
+                <div class="title-camp">
+                  <hr>
+                  <div class="title-icon-ali">
+                    <h5 class="text-edit-title">{{getAgendaDia.dataAgendamento | date:'dd/MM/yyyy'}}</h5>
+                    <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+  
+              <div class="container-info">
+  
+                <div class="d-block justify-content-between">
+  
+                  <div class="elemento-info">
+                    <p class="titulo-edit">Horário de Entrada:</p>
+                    <p class="info-edit">{{getAgendaDia.horarioEntrada}}</p>
+                  </div>
+  
+                  <div class="elemento-info">
+                    <p class="titulo-edit">Horário de Saída:</p>
+                    <p class="info-edit">{{getAgendaDia.horarioSaida}}</p>
+                  </div>
+  
+                </div>
+  
+                <div class="d-block justify-content-between">
+  
+                  <div class="elemento-info">
+                    <p class="titulo-edit">STATUS:</p>
+                    <p class="info-edit">{{getAgendaDia.status ? 'Agendado' : 'Sem Agendamento'}}</p>
+                  </div>
+                  
+                  <div class="elemento-info">
+                    <p class="titulo-edit">OBSERVAÇÃO:</p>
+                    <p class="info-edit">{{getAgendaDia.observacao}}</p>
+                  </div>
+  
+                </div>
+  
+              </div>
+  
+              <div class="container-btn">
+                <div class="bt-duplo-small">
+                  <button type="submit" class="btn botao-cancel" routerLink="/visuagenda">
+                    VOLTAR
+                  </button>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </div>

@@ -78,8 +78,7 @@ export class VisualizarPacoteComponent implements OnInit{
   getId(id: number) {
     this.idPacote = id;
   }
-  
-  
+    
   deletarPacote() {
 
     this.pacoteService
@@ -87,10 +86,11 @@ export class VisualizarPacoteComponent implements OnInit{
     .subscribe(() =>{
 
       this.router.navigate(["/visupacote"]);
-      this.alerts.showAlertInfo("Pacote apagado com sucesso.");
       this.findByAllPacote();
+      this.alerts.showAlertInfo("Pacote apagado com sucesso.");
 
     });
+    
   }
 
 }

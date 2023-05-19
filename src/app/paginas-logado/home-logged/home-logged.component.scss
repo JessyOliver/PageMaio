@@ -11,7 +11,8 @@
 /* Testar cor b9abf5 */
 .wrapper {
   position: relative;
-    width: 100%;
+  width: 100%;
+  min-height: 100vh;
   background: linear-gradient(11deg, hsl(269, 100%, 79%) 20%, hsl(251, 63%, 67%) 44%, hsl(247, 60%, 32%) 71%);
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -284,6 +285,246 @@ main.courses:after {
   z-index: 2;
   overflow: hidden
 }
+
+
+
+////////////////MODAL////////////////
+.title_mensagem_modal {
+  color: #2d2182;
+  text-align: center;
+  font-size: 23px;
+}
+
+.icon_edit {
+  padding: 5px;
+  font-size: 20px;
+  color: #2d2182;
+}
+
+.text_modal {
+  position: relative;
+  top: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.line_btn {
+  position: relative;
+  padding: 20px;
+}
+
+.modal_background {
+  background: #2d2182;
+  width: 100%;
+  margin: 0;
+}
+
+.modal_background_whit {
+  background: #ffffff;
+  border: 1px solid #2d2182;
+  width: 100%;
+  margin: 0;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  // margin: 10px;
+  color: #ffffff;
+  border: 2px #ffffff solid;
+  background-color: #bb2d3b;
+  font-weight: 500;
+}
+
+.btn-cancel:hover {
+  background-color: transparent;
+  color: #bb2d3b;
+  background-color: #bb2d3b2b;
+  border: 2px #bb2d3b solid;
+  font-weight: 500;
+}
+
+.btn-success-update {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px #ffffff solid;
+  background-color: #157347;
+  font-weight: 500;
+}
+
+.btn-success-update:hover {
+  background-color: transparent;
+  color: #157347;
+  background-color: #1573471e;
+  border: 2px #157347 solid;
+}
+
+.container-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: right;
+  padding: 5px;
+  width: 100%; 
+  height: auto;   
+//   background: rgb(111, 78, 18);  
+}
+
+////MENSAGEM CAMPOS ENVIO
+/// 
+.position_itens_top {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ // background-color: yellowgreen;
+ }
+
+.forms-campos-cad {
+  width: 100%;
+  height: auto;
+  display: block;
+  padding: 10px;
+ // background-color: indianred;
+}
+
+.input-box {
+  width: 70%;
+  margin-bottom: 15px;
+  padding: 8px;
+ // background-color: aliceblue;
+}
+
+.input_box2 {
+  width: 90%;
+  margin-bottom: 15px;
+  padding: 8px;
+ // background-color: aliceblue;
+}
+
+.cax-position {
+  margin-top: 5px;
+}
+
+///////////
+.mensagem-input-error {
+  margin: 0;
+  color: #ffffff;
+  font-size: 12px;
+  background: #ffffff49;
+  border-radius: 2px;
+}
+
+.balao {
+  background: #bb2d3b;
+  padding: 5px;
+  position: relative;
+  top: -15px;
+  width: auto;
+  float: left;
+  border-radius: 2px;
+}
+
+.balao::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  left: 10px;
+  top: -4px;
+  background: #bb2d3b;
+  transform: rotate(45deg);
+}
+
+.bl-position {
+  top: 5.5px;
+}
+
+///
+
+.campo {
+  position: relative;
+  //  background-color: #552dbb;
+}
+
+.campo input {
+  width: 100%;
+  font-size: 16px;
+  background: transparent;
+  color: #2d2182;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #2d2182;
+  border-radius: 0;
+  margin-bottom: 0, 3%;
+}
+
+.campo input:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: 0;
+}
+
+input:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+.campo .label-edit {
+  position: absolute;
+  top: 0;
+  outline: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2d2182;
+  pointer-events: none;
+  transition: 100ms;
+}
+
+.campo input:focus ~ label,
+.campo input:valid ~ label {
+  top: -27px;
+  font-size: 12px;
+  outline: none;
+}
+
+.campo input:focus {
+  color: #2d2182;
+  border-bottom: 1px solid #2d2182;
+}
+
+.campo input:focus ~ label {
+  color: #2d2182;
+}
+.preenchido ~ label {
+  top: -20px;
+  font-size: 12px;
+  outline: none;
+}
+
+input {
+  color: #2d2182;
+  background-color: transparent;
+}
+
+.caixa_texto {
+  width: 100%;
+  color: #2d2182;
+  border: 1px solid #2d2182;
+  text-align: justify;
+}
+/// 
+
+
+
+
+
+
 
 @media(min-width:768px) {
   .functions {

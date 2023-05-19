@@ -30,7 +30,8 @@ export class CadUserComponent implements OnInit{
 
   constructor(
     private propri: ProprietarioService,
-    private authService: AuthService,
+    private auth: AuthService,
+    public authService: AuthService,
     private router: Router,
     private alerts: AlertsService,
     private formBuilder: FormBuilder
@@ -40,7 +41,7 @@ export class CadUserComponent implements OnInit{
   ngOnInit(){
     window.scroll(0,0);
 
-    this.authService.getAllUserOff().subscribe((resp: User[]) => {
+    this.auth.getAllUserOff().subscribe((resp: User[]) => {
 
       this.listUser = resp;
 
@@ -51,7 +52,7 @@ export class CadUserComponent implements OnInit{
         }
 
         //forçando altenticação
-        this.authService.refreshToken();
+        this.auth.refreshToken();
 
         let btnResp = <HTMLInputElement>document.getElementById("respon");
         let btnCancel = <HTMLInputElement>document.getElementById("btnCancelar");
@@ -70,11 +71,11 @@ export class CadUserComponent implements OnInit{
              if (this.listProp.length ) {
 
                 if (environment.token == '') {
-                  this.router.navigate(['/login']);
+                  this.router.navigate(['/cadproprietario']);
                 }
 
                 //forçando altenticação
-                this.authService.refreshToken();
+                this.auth.refreshToken();
 
                 let btnResp = <HTMLInputElement>document.getElementById("respon");
                 let btnCancel = <HTMLInputElement>document.getElementById("btnCancelar");
@@ -84,7 +85,7 @@ export class CadUserComponent implements OnInit{
 
              }
 
-             !this.authService.logged();
+             !this.auth.logged();
 
     });
 
@@ -179,27 +180,27 @@ export class CadUserComponent implements OnInit{
           }
           else {
 
-            this.authService.addUser(this.cadUser).subscribe((resp: User) =>{
+            this.auth.addUser(this.cadUser).subscribe((resp: User) =>{
 
               this.cadUser = resp;
               this.router.navigate(["/cadproprietario"]);
              // this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
             },
-            erro => {
-              switch (erro.status) {
-                case 400:
-                  console.log(erro.error.mensagem);
-                  this.alerts.showAlertDanger(erro.error.mensagem);
-                  break;
-
-                case 404:
-                  this.alerts.showAlertDanger(erro.error.mensagem);
-                  console.log(erro.error.mensagem);
-                  break;
+            error => {
+              if (error.status === 400) {
+                this.alerts.showAlertDanger("Valor incerido inválido.");
               }
-            }
-
-              );
+              if (error.status === 401) {
+                
+                this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+                this.router.navigate(['/login']);
+              }
+              else if (error.status === 500) {
+      
+                this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+        
+              }
+            });
           }
 
         });
@@ -215,11 +216,28 @@ export class CadUserComponent implements OnInit{
           }
           else {
 
-            this.authService.addUser(this.cadUser).subscribe((resp: User) =>{
+            this.auth
+            .addUser(this.cadUser)
+            .subscribe((resp: User) =>{
 
               this.cadUser = resp;
               this.router.navigate(["/cadresponsavel"]);
              // this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
+            },
+            error => {
+              if (error.status === 400) {
+                this.alerts.showAlertDanger("Valor incerido inválido.");
+              }
+              if (error.status === 401) {
+                
+                this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+                this.router.navigate(['/login']);
+              }
+              else if (error.status === 500) {
+      
+                this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+        
+              }
             });
           }
         });

@@ -28,6 +28,7 @@ export class EditPacoteComponent implements OnInit {
   ) {}
 
   ngOnInit(){
+    
     window.scroll(0,0);
 
     if (environment.token == '') {
@@ -49,7 +50,6 @@ export class EditPacoteComponent implements OnInit {
     .subscribe((resp: Pacote) => {
 
       this.editPacote = resp;
-
     });
 
   }
@@ -82,26 +82,12 @@ export class EditPacoteComponent implements OnInit {
       this.editPacote.tipoPacote = this.tipoPacote;
     }
 
-    if (
-      (this.editPacote.tipoPacote === "INTEGRAL" && this.editPacote.periodo === "MANHÃ") ||
-      (this.editPacote.tipoPacote === "INTEGRAL" && this.editPacote.periodo === "TARDE") ||
-      (this.editPacote.tipoPacote === "MENSAL" && this.editPacote.periodo === "INTEGRAL") ||
-      (this.editPacote.tipoPacote === "SEMANAL" && this.editPacote.periodo === "INTEGRAL") ||
-      (this.editPacote.tipoPacote === "AVULSO" && this.editPacote.periodo === "INTEGRAL")                
-    ) {
-      
-      this.alerts.showAlertDanger("O tipo de pacote '" + this.editPacote.tipoPacote + 
-                                  "', não pode ser cadastrado para o período '" + this.editPacote.periodo + "'.");
-    
-    }
-    else {
-
       this.pacoteService
       .updatPacote(this.editPacote)
       .subscribe((resp: Pacote) => {
 
         this.editPacote = resp;
-        this.router.navigate(["/inicio"]);
+        this.router.navigate(["/visupacote"]);
         this.alerts.showAlertInfo("Pacote alterado com sucesso.");
 
       },
@@ -112,8 +98,6 @@ export class EditPacoteComponent implements OnInit {
         }
       });
     
-    } 
-
-  }
+    }
 
 }

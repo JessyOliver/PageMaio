@@ -6,7 +6,7 @@
         
         <div class="form-group buscar-edit">
             <input type="text" class="form-control input-busca" id="titulo" 
-            placeholder="🔍 buscar responsável." [(ngModel)]='responsavelNome' 
+            placeholder="🔍 buscar responsável..." [(ngModel)]='responsavelNome' 
             (keyup)='findByNomeResponsavel()'>
         </div>
     </div>
@@ -16,11 +16,11 @@
           <hr>
           <div class="title-icon-ali">
             <h2 class="text_edit_title_top">RESPONSÁVEIS</h2>
-            <i class="fa fa-users icon_edit_top" aria-hidden="true"></i>
+            <i class="fas fa-user-friends icon_edit_top"></i>
           </div>
           <hr>
         </div>
-    </div>
+      </div>
 
     <div class="d-flex justify-content-center m-2 p-0" *ngIf="listResponsavel == null">
         <div class="title-camp">
@@ -28,154 +28,76 @@
             <h5 class="text-edit-title-not">Não há responsáveis, cadastrados no momento.</h5>
             <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
           </div>
-          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-            VOLTAR
-        </button>
         </div>
     </div>
     
-    <div class="container-principal"> 
-
-        <div class="result-banco">
-
-                <div class="form-group container-respo" *ngFor="let itemResponsavel of listResponsavel | orderBy: ['nome'] "> 
-            
-                    <div class="d-flex justify-content-center w-100">
-                        <div class="title-camp">
-                          <hr>
-                          <div class="title-icon-ali">
-                            <h5 class="text-edit-title">{{itemResponsavel.nome}}</h5>
-                            <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
-                          </div>
-                          <hr>
+    <div class="container-principal">
+        <div class="table-responsive">
+  
+          <div class="table_position">
+  
+            <table class="table">
+                <thead class="edit_thead">                    
+                    <tr>
+                      <th class="line_btn" scope="col">Nome</th>
+                      <th class="line_btn" scope="col">Contato</th>
+                      <th class="line_btn" scope="col">Criança</th>
+                      <th class="line_btn" scope="col">Detalhes</th>
+                      <th class="line_btn" scope="col">Editar</th>
+                      <th class="line_btn" scope="col">Apagar</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <tr class="table_line" *ngFor="let itemResponsavel of listResponsavel | orderBy: ['nome']">
+  
+                  <th class="line_btn color_line" scope="row">
+                     {{itemResponsavel.nome.toUpperCase()}}
+                  </th>
+                  <td class="line_btn">{{itemResponsavel.celular}}</td>
+                  <td class="line_btn">{{itemResponsavel.crianca}}</td>
+                  <td class="line_btn"><button type="button" class="btn edit_btn"
+                      [routerLink]="['/detalheresponsavel', itemResponsavel.id]"><i class="fa fa-info icon_btn"
+                        aria-hidden="true"></i></button></td>
+                  <td class="line_btn"><button type="button" class="btn edit_btn"
+                      [routerLink]="['/editresposavel', itemResponsavel.id]"><i class="fas fa-edit icon_btn"></i></button></td>
+                  <td class="line_btn"><button type="button" class="btn edit_btn_danger" (click)="getId(itemResponsavel.id)"
+                      data-bs-toggle="modal" data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
+                  </td>
+  
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog text_modal" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel">APAGAR RESPONSÁVEL</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <div class="modal-body">
+                          Deseja realmente apagar o responsável?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default btn-success-update" data-bs-dismiss="modal"
+                            routerLink="/visueditresponsavel">Não</button>
+                          <button type="button" class="btn btn-primary btn-cancel" data-bs-dismiss="modal"
+                            (click)="deletarResponsavel()">Sim</button>
+                        </div>
+                      </div>
                     </div>
-
-                    <div class="container-info">
+                  </div>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div> 
     
-                        <div class="d-flex justify-content-between w-100">    
-            
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Nascido:</p>
-                                <p class="info-edit">{{itemResponsavel.dtNascimento | date:'dd/MM/yyyy'}}</p>
-                            </div>
-    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Genêro:</p>
-                                <p class="info-edit">{{itemResponsavel.genero}}</p>
-                            </div>
-                            
-                            <div class="elemento-info">
-                                <p class="titulo-edit">CPF:</p>
-                                <p class="info-edit">{{itemResponsavel.cpf}}</p>
-                            </div>
-                        </div>
-    
-                        <div class="d-flex justify-content-center w-100">
-                            <div class="title-camp">
-                              <hr>
-                              <div class="title-icon-ali">
-                                <h5 class="text-edit-title">ENDEREÇO</h5>
-                                <i class="fa fa-map-marker icon-edit-camp" aria-hidden="true"></i>
-                              </div>
-                              <hr>
-                            </div>
-                        </div>
-    
-                        <div class="d-flex justify-content-between w-100">   
-    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Rua:</p>
-                                <p class="info-edit">{{itemResponsavel.rua}}</p>
-                            </div>
-                    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">N°:</p>
-                                <p class="info-edit">{{itemResponsavel.numMoradia}}</p>
-                            </div>
-                            
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Complemento:</p>
-                                <p class="info-edit">{{itemResponsavel.complemento}}</p>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-between w-100">
-    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Bairro:</p>
-                                <p class="info-edit">{{itemResponsavel.bairro}}</p>
-                            </div>
-                
-                            <div class="elemento-info">
-                                <p class="titulo-edit">CEP:</p>
-                                <p class="info-edit">{{itemResponsavel.cep}}</p>
-                            </div>
-                
-                        </div>
-    
-                        <div class="d-flex justify-content-between w-100">
-    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Cidade:</p>
-                                <p class="info-edit">{{itemResponsavel.cidade}}</p>
-                            </div>
-    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Estado:</p>
-                                <p class="info-edit">{{itemResponsavel.estado}}</p>
-                            </div>
-                    
-                        </div>
-
-                        <div class="d-flex justify-content-center w-100">
-                            <div class="title-camp">
-                              <hr>
-                              <div class="title-icon-ali">
-                                <h5 class="text-edit-title">CONTATO</h5>
-                                <i class="fa fa-phone icon-edit-camp" aria-hidden="true"></i>
-                              </div>
-                              <hr>
-                            </div>
-                        </div>
-    
-                        <div class="d-flex justify-content-between w-100">
-    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Celular:</p>
-                                <p class="info-edit">{{itemResponsavel.celular}}</p>
-                            </div>
-    
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Telefone:</p>
-                                <p class="info-edit">{{itemResponsavel.telefone}}</p>
-                            </div>
-                            
-                            <div class="elemento-info">
-                                <p class="titulo-edit">Telefone Comercial:</p>
-                                <p class="info-edit">{{itemResponsavel.telefoneComercial}}</p>
-                            </div>
-                        </div>
-
-                    </div>
-        
-                    <div class="container-btn">
-
-                        <div class="bt-duplo-small">
-                            <button type="submit" class="btn botao-cad m-lg-3" [routerLink]="['/editresposavel', itemResponsavel.id]">
-                                EDITAR
-                            </button> 
-                            <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-                                VOLTAR
-                            </button>    
-                        </div>
-                        
-                    </div>
-
-                </div>
-            </div>
-
-         </div>        
+      <div class="container-btn">
+        <div class="bt-duplo-small">
+          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+            VOLTAR
+          </button>
+        </div>  
+      </div>
 
     </div>
 

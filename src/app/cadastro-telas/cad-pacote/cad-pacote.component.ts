@@ -28,6 +28,7 @@ export class CadPacoteComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
+    public authService: AuthService,
     private pacoteService: PacoteService,
     private router: Router,
     private alerts: AlertsService,
@@ -102,7 +103,7 @@ export class CadPacoteComponent implements OnInit {
       }
       else if (error.status === 404) {
 
-        if ( 
+       /*  if ( 
           (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
           (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
           (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
@@ -114,7 +115,7 @@ export class CadPacoteComponent implements OnInit {
                                       "', não pode ser cadastrado para o período '" + this.periodo + "'.");
         
         }
-        else {
+        else { */
 
           this.pacoteService
               .postPacote(this.cadPacote)
@@ -127,13 +128,13 @@ export class CadPacoteComponent implements OnInit {
               },
               error => {
 
-                if (error == 401) {
+                if (error.status === 401) {
 
                   this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
                   this.router.navigate(['/login']);
           
                 }
-                if (error == 500) {
+                if (error.status === 500) {
 
                   this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
           
@@ -141,12 +142,12 @@ export class CadPacoteComponent implements OnInit {
 
               });
 
-        }        
+        /* }  */       
 
       }
       else {
 
-        if (
+      /*   if (
           (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
           (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
           (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
@@ -158,7 +159,7 @@ export class CadPacoteComponent implements OnInit {
                                       "', não pode ser cadastrado para o período '" + this.periodo + "'.");
 
         }
-        else {
+        else { */
 
           this.pacoteService
           .postPacote(this.cadPacote)
@@ -171,13 +172,13 @@ export class CadPacoteComponent implements OnInit {
           },
           error => {
 
-            if (error == 401) {
+            if (error.status === 401) {
 
               this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
               this.router.navigate(['/login']);
       
             }
-            if (error == 500) {
+            if (error.status === 500) {
 
               this.alerts.showAlertDanger("Confirme as informações inseridas, encontra-se incorreta.");
       
@@ -185,7 +186,7 @@ export class CadPacoteComponent implements OnInit {
 
           });
 
-        }   
+       /*  } */   
 
       }
       

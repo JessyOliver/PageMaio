@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { validandoCpf } from 'src/app/validations/validaCpf';
 import { Validacoes } from 'src/app/validations/validacoes';
+import { cepValidator } from 'src/app/validations/validarcep';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -27,14 +29,16 @@ export class CadResponsavelComponent implements OnInit{
   cadResponsavel: Responsavel = new Responsavel();
 
   gen!: string;
-  dataBr!: Date;
-
+/*   dataBr!: Date;
+ */
   constructor(
     private responsService: ResponsavelService,
     private auth: AuthService,
+    public authService: AuthService,
     private router: Router,
     private alerts: AlertsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit(){
@@ -55,16 +59,16 @@ export class CadResponsavelComponent implements OnInit{
       tipoGen: ['', [Validators.required]],
 /*       cpf: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*'), validandoCpf]],
  */    
-      cpf: ['', [validandoCpf]],
+      cpf: ['', [Validators.required, validandoCpf]],
       celular: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*')]],
       telResidencial: ['', [Validators.maxLength(10), Validators.minLength(10), Validators.pattern('[0-9 ]*')]],
       telComercial: ['', [Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*')]],
-      cep: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(8), Validators.pattern('[0-9 ]*')]],
-      rua: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
+      cep: ['', [Validators.required, cepValidator()]],
+      rua: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
       numCasa: ['', [Validators.required]],
-      bairro: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
-      cidade: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
-      estado: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
+      bairro: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
+      cidade: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
+      estado: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
       usuario: ['', [Validators.required]],
 
     });
@@ -72,7 +76,36 @@ export class CadResponsavelComponent implements OnInit{
     this.findByAllUser();
   }
 
+  buscarEndereco() {
 
+    const cep = this.formulario.get('cep')!.value.replace(/\D/g, '');
+
+    if (cep.length !== 8) {
+      // CEP inválido
+      return;
+    }
+
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+
+    this.http.get<any>(url).subscribe(data => {
+
+      if (data.hasOwnProperty('erro')) {
+        // CEP não encontrado
+        return;
+      }
+
+      this.formulario.patchValue({
+        rua: data.logradouro,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        estado: data.uf
+      });
+
+    }, error => {
+      
+      this.alerts.showAlertDangerError('Ocorreu um erro:', error);
+    });
+  }
 
   //get all user Response<User[]>
   findByAllUser() {
@@ -87,10 +120,10 @@ export class CadResponsavelComponent implements OnInit{
     this.gen = event.target.value
   }
 
-  dataConvert(event: any){
+  /* dataConvert(event: any){
 
     this.dataBr = event.target.value.split('/').reverse().join('-');
-  }
+  } */
 
   cadastrar() {
 
@@ -99,8 +132,8 @@ export class CadResponsavelComponent implements OnInit{
     this.cadResponsavel.usuario = this.userFK;
 
     this.cadResponsavel.genero = this.gen;
-    this.cadResponsavel.dtNascimento = this.dataBr;
-
+/*     this.cadResponsavel.dtNascimento = this.dataBr;
+ */
       this.responsService
       .postResponsavel(this.cadResponsavel)
       .subscribe((resp: Responsavel) => {
@@ -109,6 +142,21 @@ export class CadResponsavelComponent implements OnInit{
         this.alerts.showAlertSucess("Responsável cadastrado com sucesso!");
         this.router.navigate(["/inicio"]);
 
+      },
+      error => {
+        if (error.status === 400) {
+          this.alerts.showAlertDanger("Valor incerido inválido.");
+        }
+        if (error.status === 401) {
+          
+          this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+          this.router.navigate(['/login']);
+        }
+        else if (error.status === 500) {
+
+          this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+  
+        }
       });
 
   }

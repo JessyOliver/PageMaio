@@ -1,4 +1,4 @@
-<div class="container-cad">
+<div *ngIf='authService.adm()' class="container-cad">
   <div class="container-fluid">
     <div class="container-fluid" id='topo'>
         <div class="row justify-content-center">
@@ -43,22 +43,21 @@
 
                           <div class="input-box m-0">
                             <div class="form-group campo">
-                                <input [(ngModel)]="cadResponsavel.cpf" class="form-control" type="text" formControlName="cpf" id="cpf" required />
-                                <label class="label-edit" for="cpf">CPF*</label>
+                              <input [(ngModel)]="cadResponsavel.cpf" class="form-control" type="text" formControlName="cpf" id="cpf" required/>
+                              <label class="label-edit" for="cpf">CPF*</label>
                             </div>
-
+                            
                             <div class="mensagem-input-error">
-                              <div class="balao cax-position w-75" *ngIf="formulario.get('cpf')?.errors?.['validandoCpf'] &&
-                                  formulario.get('cpf')?.touched">
+                              <div class="balao cax-position w-75" *ngIf="formulario.get('cpf')?.errors?.['required'] &&
+                                                                          formulario.get('cpf')?.touched">
                                 <span class="m-lg-2">
-                                  CPF Inválido!
+                                  Campo Obrigatório!
                                 </span>
                               </div>
-                              <!-- <div class="balao cax-position" *ngIf="(formulario.get('cpf')?.errors?.['ValidaCpf']) && formulario.get('cpf')?.touched">
-                                <span class="m-lg-2">
-                                  CPF Inválido!
-                                </span>
-                              </div> -->
+                              <div class="balao cax-position w-75" *ngIf="formulario.get('cpf')?.errors?.['cpfInvalido'] &&
+                                          formulario.get('cpf')?.touched">
+                                CPF inválido!
+                              </div>
                             </div>
                           </div>
 
@@ -69,8 +68,8 @@
                           <div class="input-box m-0">
                             <div class="form-group">
                                 <label class="label-color" for="dataNasc">Data de Nascimento*</label>
-                                <input class="form-control texto-color" type="date" formControlName="dataNasc" 
-                                       id="dataNasc" (change)="dataConvert($event)" required />
+                                <input [(ngModel)]="cadResponsavel.dtNascimento" class="form-control texto-color" type="date" formControlName="dataNasc" 
+                                       id="dataNasc" required /> <!-- (change)="dataConvert($event)" -->
                             </div>
 
                             <div class="mensagem-input-error">
@@ -194,18 +193,21 @@
                         <div class="d-flex justify-content-between">
                           <div class="input-box m-0">
                             <div class="form-group campo">
-                                <input [(ngModel)]="cadResponsavel.cep" class="form-control" type="text" formControlName="cep" id="cep" required />
+                                <input [(ngModel)]="cadResponsavel.cep" class="form-control" type="text" formControlName="cep" id="cep" required (change)="buscarEndereco()" />
                                 <label class="label-edit" for="cep">CEP*</label>
                             </div>
 
                             <div class="mensagem-input-error">
-                              <div class="balao cax-position w-75" *ngIf="(formulario.get('cep')?.errors?.['required'] ||
-                                  formulario.get('cep')?.errors?.['maxlength'] ||
-                                  formulario.get('cep')?.errors?.['minlength'] ||
-                                  formulario.get('cep')?.errors?.['pattern']) &&
-                                  formulario.get('cep')?.touched">
+                              <!-- <div class="balao cax-position w-75" *ngIf="formulario.get('cep')?.errors?.['required'] &&
+                                                                          formulario.get('cep')?.touched">
                                 <span class="m-lg-2">
-                                  Preenchimento obrigatório, somente números e no máximo 8!
+                                  Preenchimento obrigatório!
+                                </span>
+                              </div> -->
+                              <div class="balao cax-position w-75" *ngIf="formulario.get('cep')?.errors?.['cepInvalido'] &&
+                                                                          formulario.get('cep')?.touched">
+                                <span class="m-lg-2">
+                                  Preenchimento obrigatório, CEP Inválido!
                                 </span>
                               </div>
                             </div>

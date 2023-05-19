@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { User } from '../model/User';
 import { UserLogin } from '../model/UserLogin';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +21,7 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) { }
+
 
   //Variavel Token
   token = {
@@ -81,7 +83,7 @@ export class AuthService {
   //update user
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(
-      `${this.baseUrl}/atualizar`, user, this.token
+      `${this.baseUrl}/alterar`, user, this.token
     );
   }
 
@@ -115,6 +117,13 @@ export class AuthService {
   getByIdUser(id: number): Observable<User> {
     return this.http.get<User>(
       `${this.baseUrl}/${id}`, this.token
+    );
+  }
+ 
+  getByTipoUser(tipo: string): Observable<User[]> {
+
+    return this.http.get<User[]>(
+      `${this.baseUrl}/tipo/${tipo}`, this.token
     );
   }
 

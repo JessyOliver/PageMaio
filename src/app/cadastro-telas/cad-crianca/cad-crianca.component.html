@@ -1,4 +1,4 @@
-<div class="container-cad">
+<div *ngIf='authService.adm()' class="container-cad">
   <div class="container-fluid">
     <div class="container-fluid" id='topo'>
         <div class="row justify-content-center">
@@ -15,7 +15,8 @@
                           <hr>
                           <div class="title-icon-ali">
                             <h2 class="text-edit-title">CADASTRAR CRIANÇA</h2>
-                            <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>                            </div>
+                            <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>   
+                          </div>
                           <hr>
                         </div>
                       </div>
@@ -48,16 +49,22 @@
                             <div class="form-group">
                                 <label class="label-color" for="dataNasc">Data de Nascimento*</label>
   <!--                          <input [(ngModel)]="cadCrianca.dataNascimento" class="form-control texto-color" type="date" name="dataNasc" id="dataNasc" required />
-  -->                           <input class="form-control texto-color p-2" type="date" formControlName="dataNasc" id="dataNasc" (change)="dataConvert($event)" required />
+  -->                           <input [(ngModel)]="cadCrianca.dtNascimento" class="form-control texto-color p-2" type="date" formControlName="dataNasc" id="dataNasc"  required /> <!-- (change)="dataConvert($event)" -->
                             </div>
 
                             <div class="mensagem-input-error">
-                              <div class="balao balao-small cax-position w-100" *ngIf="(
-                                   formulario.get('dataNasc')?.errors?.['required'] ||
-                                   formulario.get('dataNasc')?.errors?.['overage']) &&
+                              <div class="balao balao-small cax-position w-100" *ngIf="
+                                   formulario.get('dataNasc')?.errors?.['required'] &&
                                    formulario.get('dataNasc')?.touched">
                                 <span class="m-lg-2">
-                                  Preenchimento obrigatório e a criança não pode ter mais de 12 anos!
+                                  Preenchimento obrigatório!
+                                </span>
+                              </div>
+                              <div class="balao balao-small cax-position w-100" *ngIf="
+                                   formulario.get('dataNasc')?.errors?.['overage'] &&
+                                   formulario.get('dataNasc')?.touched">
+                                <span class="m-lg-2">
+                                 A criança não pode ser menor de 4 anos e nem maior de 12 anos!
                                 </span>
                               </div>
                             </div>
@@ -89,7 +96,7 @@
                             <hr>
                             <div class="title-icon-ali">
                               <h6 class="text-edit-title">SAÚDE DA CRIANÇA*</h6>
-                              <i class="fas fa-file-medical"></i>
+                              <i class="fa fa-medkit"></i>
                             </div>
                             <hr>
                           </div>
@@ -106,12 +113,12 @@
                                 <div class="d-flex justify-content-between caixa-radio">
                                   
                                   <div class="radio-edit">
-                                    <input type="radio" id="problemaSaude" formControlName="problemaSaude" value="true" (change)='opSaudeT($event)' required>
+                                    <input type="radio" id="problemaSaude" formControlName="problemaSaude" value="true" (change)='opSaudeT($event)' (change)="onProblemaSaudeChange(true)" required>
                                     <label class="campo-radio m-lg-2" for="problemaSaude">Sim</label>
                                   </div>
                                   
                                   <div class="radio-edit">
-                                    <input type="radio" id="problemaSaude" formControlName="problemaSaude" value="false" (change)='opSaudeT($event)' required>
+                                    <input type="radio" id="problemaSaude" formControlName="problemaSaude" value="false" (change)='opSaudeT($event)' (change)="onProblemaSaudeChange(false)" required>
                                     <label class="campo-radio m-lg-2" for="problemaSaude">Não</label>
                                   </div>
                       
@@ -141,7 +148,8 @@
                               <div class="mensagem-input-error">
                                 <div class="balao cax-position balao-small w-100" *ngIf="
                                     formulario.get('problemaSaude')?.value === 'true' &&
-                                    formulario.get('tipoProblemaSaude')?.touched"
+                                    formulario.get('tipoProblemaSaude')?.touched &&
+                                    !formulario.get('tipoProblemaSaude')?.value"
                                 >
                                   <span class="m-lg-2">
                                     Preenchimento Obrigatório!
@@ -193,8 +201,9 @@
                               <div class="mensagem-input-error">
                                 <div class="balao cax-position balao-small w-100" *ngIf="
                                   formulario.get('algumaAlergia')?.value === 'true' &&
-                                  formulario.get('tipoAlergia')?.touched"
-                                >
+                                  !formulario.get('tipoAlergia')?.value &&
+                                  formulario.get('tipoAlergia')?.touched 
+                                  ">
                                   <span class="m-lg-2">
                                     Preenchimento Obrigatório!
                                   </span>
@@ -249,7 +258,9 @@
                               <div class="mensagem-input-error">
                                 <div class="balao cax-position balao-small w-100" *ngIf="
                                   formulario.get('usoMedicamento')?.value === 'true' &&
-                                  formulario.get('qualMedicamento')?.touched">
+                                  !formulario.get('qualMedicamento')?.value &&
+                                  formulario.get('qualMedicamento')?.touched
+                                  ">
                                   <span class="m-lg-2">
                                     Preenchimento Obrigatório!
                                   </span>
@@ -301,7 +312,9 @@
                               <div class="mensagem-input-error">
                                 <div class="balao cax-position balao-small w-100" *ngIf="
                                   formulario.get('necessidadesEspeciais')?.value === 'true' &&
-                                  formulario.get('tipoNecessidadesEspeciais')?.touched">
+                                  !formulario.get('tipoNecessidadesEspeciais')?.value &&
+                                  formulario.get('tipoNecessidadesEspeciais')?.touched 
+                                 ">
                                   <span class="m-lg-2">
                                     Preenchimento Obrigatório!
                                   </span>
@@ -350,7 +363,7 @@
 
                         </div>
 
-                      <div class="d-block justify-content-center" *ngIf="formulario.get('termoAceite')?.value === 'true'">
+                      <div class="d-block justify-content-center mb-5" *ngIf="formulario.get('termoAceite')?.value === 'true'">
                         <div class="input-box">
                           <div class="form-group texto-color">
                             <label for="tipoPacote" class="label-edit-tp">Pacotes:*</label>
