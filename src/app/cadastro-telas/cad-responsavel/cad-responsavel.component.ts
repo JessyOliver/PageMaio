@@ -33,6 +33,7 @@ export class CadResponsavelComponent implements OnInit{
   constructor(
     private responsService: ResponsavelService,
     private auth: AuthService,
+    public authService: AuthService,
     private router: Router,
     private alerts: AlertsService,
     private formBuilder: FormBuilder,
@@ -140,6 +141,21 @@ export class CadResponsavelComponent implements OnInit{
         this.alerts.showAlertSucess("Responsável cadastrado com sucesso!");
         this.router.navigate(["/inicio"]);
 
+      },
+      error => {
+        if (error.status === 400) {
+          this.alerts.showAlertDanger("Valor incerido inválido.");
+        }
+        if (error.status === 401) {
+          
+          this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+          this.router.navigate(['/login']);
+        }
+        else if (error.status === 500) {
+
+          this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+  
+        }
       });
 
   }

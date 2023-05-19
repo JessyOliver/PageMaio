@@ -43,8 +43,8 @@
                             <th class="line_btn" scope="col">Responsável</th>
                             <th class="line_btn" scope="col">Contato</th>
                             <th class="line_btn" scope="col">Detalhes</th>
-                            <th class="line_btn" scope="col">Editar</th>
-                            <th class="line_btn" scope="col">Apagar</th>
+                            <th *ngIf='authService.adm()' class="line_btn" scope="col">Editar</th>
+                            <th *ngIf='authService.adm()' class="line_btn" scope="col">Apagar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,9 +60,9 @@
                                 <i class="fa fa-info icon_btn" aria-hidden="true"></i>
                               </button>
                             </td>                      
-                            <td class="line_btn"><button type="button" class="btn edit_btn" [routerLink]="['/editcrianca', itemCrianca.id]"><i
+                            <td *ngIf='authService.adm()' class="line_btn"><button type="button" class="btn edit_btn" [routerLink]="['/editcrianca', itemCrianca.id]"><i
                                         class="fas fa-edit icon_btn"></i></button></td>
-                            <td class="line_btn"><button type="button" class="btn edit_btn_danger" 
+                            <td *ngIf='authService.adm()' class="line_btn"><button type="button" class="btn edit_btn_danger" 
                                 (click)="getId(itemCrianca.id)" data-bs-toggle="modal" data-bs-target="#myModal">
                                 <i class="far fa-trash-alt icon_btn"></i></button></td>
         

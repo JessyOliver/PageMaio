@@ -22,6 +22,7 @@ export class VisuEditCriancaComponent implements OnInit{
   constructor(
     private router: Router,
     private auth: AuthService,
+    public authService: AuthService,
     private criancaService: CriancaService,
     private alerts: AlertsService
   ){}

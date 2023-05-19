@@ -24,6 +24,7 @@ export class CadReforcoComponent implements OnInit{
 
   constructor(
     private auth: AuthService,
+    public authService: AuthService,
     private reforcoService: ReforcoService,
     private router: Router,
     private alerts: AlertsService,
@@ -94,14 +95,14 @@ export class CadReforcoComponent implements OnInit{
       
     }, error => {
       
-      if (error === 401) {
+      if (error.status === 401) {
         
         this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
         this.router.navigate(['/login']);
         
       }
       
-      if (error === 404) {
+      if (error.status === 404) {
         
        this.reforcoService
        .postReforco(this.cadReforco)
@@ -116,13 +117,13 @@ export class CadReforcoComponent implements OnInit{
 
        }, error => {
 
-        if (error == 401) {
+        if (error.status === 401) {
 
           this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
           this.router.navigate(['/login']); 
         }
 
-        if (error == 500) {
+        if (error.status === 500) {
 
           this.alerts.showAlertDanger("Confirme as informações inseridas, encontra-se incorreta.");  
         }
@@ -145,13 +146,13 @@ export class CadReforcoComponent implements OnInit{
 
        }, error => {
 
-        if (error == 401) {
+        if (error.status === 401) {
 
           this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
           this.router.navigate(['/login']);  
         }
 
-        if (error == 500) {
+        if (error.status === 500) {
 
           this.alerts.showAlertDanger("Confirme as informações inseridas, encontra-se incorreta.");  
         }

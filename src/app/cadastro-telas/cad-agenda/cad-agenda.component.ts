@@ -1,6 +1,6 @@
 import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { get } from 'jquery';
 import { Agendamento } from 'src/app/model/Agendamento';
@@ -31,6 +31,7 @@ export class CadAgendaComponent implements OnInit {
   pacoteFK: Pacote = new Pacote();
   pacotePg: Pacote = new Pacote();
   idPacote!: number;
+  pacotePeriodo!: string
 
   quantidadeDiasPacote!: number;
   quantidadeDias!: number[];
@@ -38,6 +39,7 @@ export class CadAgendaComponent implements OnInit {
   constructor(
 
     private auth: AuthService,
+    public authService: AuthService,
     private agendaService: AgendamentoService,
     private pacoteService: PacoteService,
     private contemService: ContemService,
@@ -65,10 +67,10 @@ export class CadAgendaComponent implements OnInit {
 
     this.idPacote = this.route.snapshot.params['id'];
     this.getByIdPacote(this.idPacote);
+    console.log("Id: ", this.idPacote)
 
   }
 
-   
   dataValidator(control: AbstractControl): ValidationErrors | null {
     const currentDate = new Date();
     const selectedDate = new Date(control.value);
@@ -94,6 +96,7 @@ export class CadAgendaComponent implements OnInit {
 
       this.pacotePg = resp;
       this.quantidadeDiasPacote = this.pacotePg.qtdDias;
+      this.pacotePeriodo = resp.periodo;
       this.createFormArray();
 
     });
@@ -117,6 +120,10 @@ export class CadAgendaComponent implements OnInit {
   }
 
   cadAgendamento() {
+
+    this.pacoteFK.id = this.idPacote;
+   // this.cadContem.pacote = this.pacoteFK;
+
     const agendamentosFormArray = this.formulario.get('agendar') as FormArray;
   
     const agendamentos = agendamentosFormArray.value.map((item: any) => {
@@ -135,18 +142,34 @@ export class CadAgendaComponent implements OnInit {
       },
       contemRequest: {
         pacote: {
-          id: 1
+          id: this.pacoteFK.id
         }
       }
     };
   
     this.agendaService.postAgendamento(requestData)
       .subscribe((resp: Agendamento) => {
-        
+
         this.cadAgenda = resp;
         this.alerts.showAlertSucess('Agendamento realizado com sucesso!');
         this.router.navigate(['/inicio']);
+      },
+      error => {
+        if (error.status === 400) {
+          this.alerts.showAlertDanger("Não é permitido agendar a mesma data mais de uma vez.");
+        }
+        if (error.status === 401) {
+          
+          this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+          this.router.navigate(['/login']);
+        }
+        else if (error.status === 500) {
+
+          this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+  
+        }
       });
+
   }
   
   

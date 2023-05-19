@@ -216,7 +216,10 @@
 
                     <div class="bt-duplo-small">
 
-                        <button type="submit" class="btn botao-cancel" routerLink="/visueditcrianca">
+                        <button *ngIf='authService.adm()' type="submit" class="btn botao-cancel" routerLink="/visueditcrianca">
+                            VOLTAR
+                        </button>
+                        <button *ngIf='!authService.adm()' type="submit" class="btn botao-cancel" [routerLink]="['/visucriancasresponsaveis', responavelId]">
                             VOLTAR
                         </button>
                     </div>

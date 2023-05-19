@@ -146,7 +146,10 @@
   
               <div class="container-btn">
                 <div class="bt-duplo-small">
-                  <button type="submit" class="btn botao-cancel" routerLink="/visusegundoresponsavel">
+                  <button *ngIf='authService.adm()' type="submit" class="btn botao-cancel" routerLink="/visusegundoresponsavel">
+                    VOLTAR
+                  </button>
+                  <button *ngIf='!authService.adm()' type="submit" class="btn botao-cancel" [routerLink]="['/visusegresponsdresponsa', responavelId]">
                     VOLTAR
                   </button>
                 </div>

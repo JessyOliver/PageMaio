@@ -59,6 +59,8 @@ import { VisuAgendaComponent } from './paginas-logado/visualizar/visu-agenda/vis
 import { FooterComponent } from './footer/footer.component';
 import { DetalheAgendaComponent } from './paginas-logado/detalhes/detalhe-agenda/detalhe-agenda.component';
 import { EditAgendaComponent } from './paginas-logado/editar/edit-agenda/edit-agenda.component';
+import { VisuCriancasResponsavelComponent } from './paginas-logado/visualizar/visu-criancas-responsavel/visu-criancas-responsavel.component';
+import { VisuSegundoresponsavelResponsavelComponent } from './paginas-logado/visualizar/visu-segundoresponsavel-responsavel/visu-segundoresponsavel-responsavel.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -125,7 +127,9 @@ export const customCurrencyMaskConfig = {
     VisuAgendaComponent,
     FooterComponent,
     DetalheAgendaComponent,
-    EditAgendaComponent
+    EditAgendaComponent,
+    VisuCriancasResponsavelComponent,
+    VisuSegundoresponsavelResponsavelComponent
   ],
   imports: [
     BrowserModule,

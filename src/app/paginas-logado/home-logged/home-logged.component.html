@@ -149,30 +149,51 @@
 <!--                                             <img style="filter: invert(100%);" height="130" width="135" alt="" src="../../../assets/img/child.png">
  -->                                        </div>
                                       </a>
-                                   
-                        
-                                      <a *ngIf='!authService.adm()' class="functions__item" style="--function-color:#8a77e0;" data-bs-toggle="modal" data-bs-target="#myModal" >
-                                          <span class="home_logado-s functions__item-duration"></span>
-                                          <div class="functions__item-wrap">
-                                              <h3 class="functions__item-title">ENVIAR MENSAGEM</h3> 
-                                          </div>
-                                          <div class="functions__item-image">
-                                            <i class="fas fa-comments icon-edit"></i>
-                                          </div>
-                                      </a>   
-                                      
-                                                                                                               
                                       <a *ngIf='authService.adm()' routerLink="/visuagenda" class="functions__item" style="--function-color:#8a77e0;">
-                                          <span class="home_logado-s functions__item-duration"></span>
-                                          <div class="functions__item-wrap">
-                                              <h3 class="functions__item-title">Visualizar Agendamentos</h3> 
-                                          </div>
-                                          <div class="functions__item-image">
-                                              <img style="
-                                                  filter: invert(100%);
-                                                  " height="130" width="135" alt="" src="../../../assets/img/calendar.png">
-                                          </div>
-                                      </a>                                                                            
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">Visualizar Agendamentos</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                            <img style="
+                                                filter: invert(100%);
+                                                " height="130" width="135" alt="" src="../../../assets/img/calendar.png">
+                                        </div>
+                                      </a>
+
+                                      <!-- SOMENTE DO RESPONSÁVEL -->
+                                      
+                                      <a *ngIf='!authService.adm()' class="functions__item" style="--function-color:#8a77e0;" data-bs-toggle="modal" data-bs-target="#myModal" >
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">ENVIAR MENSAGEM</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                          <i class="fas fa-comments icon-edit"></i>
+                                        </div>
+                                      </a> 
+
+                                      <a *ngIf='!authService.adm()' [routerLink]="['/visucriancasresponsaveis', idResponsavelget]" class="functions__item" style="--function-color:#8a77e0;">
+                                         <span class="home_logado-s functions__item-duration"></span>
+                                         <div class="functions__item-wrap">
+                                             <h3 class="functions__item-title">VISUALIZAR CRIANÇAS</h3> 
+                                         </div>
+                                         <div class="functions__item-image">
+                                           <i  class="fa fa-child icon-edit" aria-hidden="true"></i>
+                                         </div>
+                                       </a>                                                                    
+                                      
+                                        <a *ngIf='!authService.adm()' [routerLink]="['/visusegresponsdresponsa', idResponsavelget]" class="functions__item" style="--function-color:#c896ff;">
+                                            <span class="home_logado-s functions__item-duration"></span>
+                                            <div class="functions__item-wrap">
+                                                <h3 class="functions__item-title">VISUALIZAR SEGUNDO RESPONSÁVEIS</h3> 
+                                            </div>
+                                            <div class="functions__item-image">
+                                                <i class="fas fa-users icon_edit_users"></i>
+                                           </div>
+                                        </a>
+                                                                                                               
+                                                                                                                
                                        
                                     </div>
                                 </section>

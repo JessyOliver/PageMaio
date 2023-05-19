@@ -53,6 +53,7 @@ export class CadCriancaComponent implements OnInit{
     private responsavelService: ResponsavelService,
     private pacoteService: PacoteService,
     private auth: AuthService,
+    public authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private alerts: AlertsService,
@@ -199,7 +200,7 @@ export class CadCriancaComponent implements OnInit{
           this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
           this.router.navigate(['/login']);
         }
-        else if (error == 500) {
+        else if (error.status === 500) {
 
           this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
   

@@ -1,4 +1,4 @@
-<div class="container-cad">
+<div *ngIf='authService.adm()' class="container-cad">
   <div class="container-fluid">
     <div class="container-fluid" id='topo'>
       <div class="row justify-content-center">
@@ -51,6 +51,7 @@
                                                                    item.get('dataAgendamento')?.touched">
                               <span class="m-lg-2">Não é possível agendar para fins de semana.</span>
                             </div>
+                                                        
                           </div>
                         </div>
                       </div>
@@ -67,7 +68,8 @@
                       
                           <div class="mensagem-input-error">
                             <div class="balao cax-position" *ngIf="(item.get('horarioEntrada')?.errors?.['required'] ||
-                                                                    item.get('horarioEntrada')?.errors?.['horaValidator']) &&
+                                                                    item.get('horarioEntrada')?.errors?.['horaValidator']
+                                                                    ) &&
                                                                     item.get('horarioEntrada')?.touched">
                               <span class="m-lg-2">
                                 Preenchimento obrigatório!

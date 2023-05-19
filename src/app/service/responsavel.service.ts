@@ -56,5 +56,15 @@ export class ResponsavelService {
   getNomeResponsavel(nome: string): Observable<Responsavel[]> {
     return this.http.get<Responsavel[]>(`${this.baseUrl}/nome/${nome}`, this.token);
   }
+ 
+  //GET CRIANÇA
+  getCrianca(id: number): Observable<Responsavel[]> {
+    return this.http.get<Responsavel[]>(`${this.baseUrl}/criancas/${id}`, this.token);
+  }
+
+  //GET SEGUNDO RESPONSAVEL
+  getSegundoResponsavel(id: number): Observable<Responsavel[]> {
+    return this.http.get<Responsavel[]>(`${this.baseUrl}/seguresponsavel/${id}`, this.token);
+  }
 
 }

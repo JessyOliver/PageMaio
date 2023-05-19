@@ -17,10 +17,12 @@ export class DetalheSegundoResponsavelComponent implements OnInit {
   nomeCrianca!: string;
   dtNasciCrianca!: Date;
 
+  responavelId!: number;
 
   constructor(
     private router: Router,
     private auth: AuthService,
+    public authService: AuthService,
     private route: ActivatedRoute,
     private segunResponsavelService: SegundoResponsavelService,
   ){}
@@ -48,6 +50,7 @@ export class DetalheSegundoResponsavelComponent implements OnInit {
     .subscribe((resp: SegundoResponsavel) => {
 
       this.getSegunResponsavel = resp;
+      this.responavelId = resp.responsavel.id;
 
       for (let i = 0; i < resp.responsavel.crianca.length; i++) {
            

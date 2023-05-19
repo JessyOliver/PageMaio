@@ -1,28 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Crianca } from 'src/app/model/Crianca';
+import { Responsavel } from 'src/app/model/Responsavel';
 import { AuthService } from 'src/app/service/auth.service';
-import { CriancaService } from 'src/app/service/crianca.service';
+import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-detalhe-crianca',
-  templateUrl: './detalhe-crianca.component.html',
-  styleUrls: ['./detalhe-crianca.component.scss']
+  selector: 'app-visu-criancas-responsavel',
+  templateUrl: './visu-criancas-responsavel.component.html',
+  styleUrls: ['./visu-criancas-responsavel.component.scss']
 })
-export class DetalheCriancaComponent implements OnInit{
-
+export class VisuCriancasResponsavelComponent implements OnInit{
   
-  getCrianca: Crianca = new Crianca;
-
-  responavelId!: number;
+  listResponsavelCrianca!: Responsavel[];
 
   constructor(
     private router: Router,
-    private auth: AuthService,
-    public authService: AuthService,
     private route: ActivatedRoute,
-    private criancaService: CriancaService
+    private auth: AuthService,
+    private responsavelService: ResponsavelService,
   ){}
 
   ngOnInit() {
@@ -36,20 +32,19 @@ export class DetalheCriancaComponent implements OnInit{
     //forçando altenticação
     this.auth.refreshToken();
 
-    
     let id = this.route.snapshot.params['id'];
-    this.findByIdCrianca(id);  
+    this.findByIdCrianca(id);
     
   }
 
+
   findByIdCrianca(id: number) {
 
-    this.criancaService
-    .getIdCrianca(id)
-    .subscribe((resp: Crianca) => {
+    this.responsavelService
+    .getCrianca(id)
+    .subscribe((resp: Responsavel[]) => {
 
-      this.getCrianca = resp;
-      this.responavelId = resp.responsavel.id;
+      this.listResponsavelCrianca = resp;
     });
 
   }
@@ -61,4 +56,3 @@ export class DetalheCriancaComponent implements OnInit{
   }
 
 }
-

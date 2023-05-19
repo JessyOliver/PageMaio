@@ -29,6 +29,7 @@ export class CadSegResponsavelComponent implements OnInit{
 
   constructor(
     private auth: AuthService,
+    public  authService: AuthService,
     private responsavelService: ResponsavelService,
     private segResponsService: SegundoResponsavelService,
     private router: Router,
@@ -107,6 +108,21 @@ export class CadSegResponsavelComponent implements OnInit{
       this.cadSegResponsavel = resp;
       this.alerts.showAlertSucess("2° Responsável cadastrada com sucesso!");
       this.router.navigate(["/visuresponsavel"]);
+    },
+    error => {
+      if (error.status === 400) {
+        this.alerts.showAlertDanger("Valor incerido inválido.");
+      }
+      if (error.status === 401) {
+        
+        this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+        this.router.navigate(['/login']);
+      }
+      else if (error.status === 500) {
+
+        this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
+
+      }
     });
 
   }
