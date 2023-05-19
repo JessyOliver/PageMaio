@@ -88,28 +88,43 @@ h1 {
   h1 {
     font-size:24px;
   }
+
 }
 
-.position_cards {
-  position: relative;
-  top: 150px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  margin-bottom: 10%;
-}
 
+@media (max-width: 900px) {
+
+  .size_caixa {    
+    width: 600px;  
+    height: 45%;
+  }
+
+  .position_cards {
+    flex-direction: column;
+  }
+  
+
+}
 .position_title {
   position: relative;
-  top: 150px;
+ // top: 150px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   color: #2d2182;
+}
+
+.position_cards {
+  position: relative;
+  // top: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 10%;
 }
 
 .color_text {
@@ -123,4 +138,15 @@ h1 {
 
 .icon_edit {
   color: #8a77e0;
+}
+
+.size_caixa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+  width: 260px;  
+  height: 260px;
+  margin: 4%;
+  border: 1px solid #8a8a8f66;
 }
