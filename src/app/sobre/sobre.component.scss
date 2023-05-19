@@ -7,12 +7,12 @@
 }
 
 .margin_footer {
-    margin-bottom: 36%;
+   // margin-bottom: 36%;
 }
 
 .background-gray {
     z-index: -1;
-    position: absolute;
+    position: relative;
     top: 8%;
     width: 100%;
     height: 489px;
@@ -65,7 +65,7 @@
 
 .img_text {
     position: relative;
-    top: 540px;
+   // top: 540px;
     width: auto;
     display: flex;
     justify-content: space-between;
@@ -126,16 +126,26 @@
       width: 100%;
     }
 
+    .background-gray {
+      width: 0;
+    }
+
+    .image-left {
+        width: 100%;
+    }
+
     .image-right {
         display: none;
     }
+
+
     .title {
-        width: 80%;
+        width: 100%;
         right: 0;
     }
 
     .background-gray  {
-        width: 800px;
+        width:100%;
     }
 
     .position_logo {
@@ -144,13 +154,12 @@
 
     .sobre_text {
         position: relative;
-        margin-left: 180px;
-        width: 540px;
+        width: 350px;
         background-color: #FFFFFF;
     }
 
     .margin_footer {
-        margin-bottom: 145%;
+   //     margin-bottom: 145%;
     }
 
 }
