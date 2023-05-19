@@ -6,6 +6,7 @@ import { User } from 'src/app/model/User';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ProprietarioService } from 'src/app/service/proprietario.service';
+import { cnpjValidator } from 'src/app/validations/validarCnpj';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -80,7 +81,7 @@ export class CadProprietarioComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
-      cnjp: ['', [Validators.required, Validators.maxLength(14), Validators.pattern('[0-9 ]*')]],
+      cnjp: ['', [Validators.required, cnpjValidator()]],
       usuario: ['', [Validators.required]]
     });
 

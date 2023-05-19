@@ -143,11 +143,6 @@ export class EditUsuarioComponent {
       this.editUser.senha = this.primeiraSenhaps;
       
     }
-    else {
-
-      this.editUser.senha;
-
-    }
 
     if (this.confirmeSenha !== undefined) {
       

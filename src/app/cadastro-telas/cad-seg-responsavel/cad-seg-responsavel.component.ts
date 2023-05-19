@@ -7,6 +7,7 @@ import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { SegundoResponsavelService } from 'src/app/service/segundo-responsavel.service';
+import { validandoCpf } from 'src/app/validations/validaCpf';
 import { Validacoes } from 'src/app/validations/validacoes';
 import { environment } from 'src/environments/environment.prod';
 
@@ -54,7 +55,7 @@ export class CadSegResponsavelComponent implements OnInit{
       nome: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
       dataNasc: ['', [Validators.required, Validacoes.MaiorQue18Anos]],
       tipoGen: ['', [Validators.required]],
-      cpf: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*'), Validacoes.ValidaCpf]],
+      cpf: ['', [Validators.required, validandoCpf]],
       parentesco: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ]*')]],
       celular: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*')]],
       telResidencial: ['', [Validators.maxLength(10), Validators.minLength(10), Validators.pattern('[0-9 ]*')]],

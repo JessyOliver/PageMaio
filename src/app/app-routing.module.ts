@@ -46,6 +46,7 @@ import { DetalheAgendaComponent } from './paginas-logado/detalhes/detalhe-agenda
 import { EditAgendaComponent } from './paginas-logado/editar/edit-agenda/edit-agenda.component';
 import { VisuCriancasResponsavelComponent } from './paginas-logado/visualizar/visu-criancas-responsavel/visu-criancas-responsavel.component';
 import { VisuSegundoresponsavelResponsavelComponent } from './paginas-logado/visualizar/visu-segundoresponsavel-responsavel/visu-segundoresponsavel-responsavel.component';
+import { EditPerfilResponsavelComponent } from './paginas-logado/editar/edit-perfil-responsavel/edit-perfil-responsavel.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -67,6 +68,8 @@ const routes: Routes = [
   {path: 'cadagenda/:id', component: CadAgendaComponent},
 
   {path: 'editperfil/:id', component: EditProprietarioComponent},
+  {path: 'editperfilresponsavel/:id', component: EditPerfilResponsavelComponent},
+  
   {path: 'editproprietario/:id', component: EditProprietarioUnicComponent},
   {path: 'editproprietario/:id', component: EditProprietarioComponent},
   {path: 'editresposavel/:id', component: EditResponsavelComponent},

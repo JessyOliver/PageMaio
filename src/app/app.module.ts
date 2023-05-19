@@ -61,6 +61,7 @@ import { DetalheAgendaComponent } from './paginas-logado/detalhes/detalhe-agenda
 import { EditAgendaComponent } from './paginas-logado/editar/edit-agenda/edit-agenda.component';
 import { VisuCriancasResponsavelComponent } from './paginas-logado/visualizar/visu-criancas-responsavel/visu-criancas-responsavel.component';
 import { VisuSegundoresponsavelResponsavelComponent } from './paginas-logado/visualizar/visu-segundoresponsavel-responsavel/visu-segundoresponsavel-responsavel.component';
+import { EditPerfilResponsavelComponent } from './paginas-logado/editar/edit-perfil-responsavel/edit-perfil-responsavel.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -129,7 +130,8 @@ export const customCurrencyMaskConfig = {
     DetalheAgendaComponent,
     EditAgendaComponent,
     VisuCriancasResponsavelComponent,
-    VisuSegundoresponsavelResponsavelComponent
+    VisuSegundoresponsavelResponsavelComponent,
+    EditPerfilResponsavelComponent
   ],
   imports: [
     BrowserModule,
@@ -155,3 +157,5 @@ export const customCurrencyMaskConfig = {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

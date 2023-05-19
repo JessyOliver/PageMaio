@@ -40,20 +40,22 @@
           </div>
 
           <div class="mensagem-input-error">
-            <div class="balao w-100 cax-position" *ngIf="(formulario.get('cnjp')?.errors?.['required'] ||
-               formulario.get('cnjp')?.errors?.['pattern'] ||
-               formulario.get('cnjp')?.errors?.['maxlength'] ) &&
-               formulario.get('cnjp')?.touched">
+            <!-- <div class="balao w-100 cax-position" 
+                *ngIf="formulario.get('cnjp')?.errors?.['required'] &&
+                       formulario.get('cnjp')?.touched">
 
               <span class="m-lg-2">
-                Preenchimento obrigatório, somente números e no maxímo 14 números!
-              </span>
-            </div>
-           <!--  <div class="balao" *ngIf="formulario.get('cnjp')?.errors?.['pattern']">
-              <span class="m-lg-2">
-                Preenchimento obrigatório e com numeros!
+                Preenchimento obrigatório!
               </span>
             </div> -->
+            <div class="balao w-100 cax-position" 
+            *ngIf="formulario.get('cnjp')?.errors?.['cnpjInvalido'] &&
+                   formulario.get('cnjp')?.touched">
+
+              <span class="m-lg-2">
+                Preenchimento obrigatório, CNPJ Inválido!
+              </span>
+            </div>
           </div>
 
         </div>

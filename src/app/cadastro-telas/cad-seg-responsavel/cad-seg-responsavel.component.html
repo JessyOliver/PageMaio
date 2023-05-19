@@ -47,21 +47,18 @@
                               </div>
   
                               <div class="mensagem-input-error">
-                                <div class="balao cax-position" *ngIf="(formulario.get('cpf')?.errors?.['required'] ||
-                                    formulario.get('cpf')?.errors?.['maxlength'] ||
-                                    formulario.get('cpf')?.errors?.['minlength'] ||
-                                    formulario.get('cpf')?.errors?.['pattern']) &&
-                                    formulario.get('cpf')?.touched">
+                                <div class="balao cax-position w-75" *ngIf="formulario.get('cpf')?.errors?.['required'] &&
+                                                                            formulario.get('cpf')?.touched">
                                   <span class="m-lg-2">
-                                    Preenchimento obrigatório, somente números e no máximo 11!
+                                    Campo Obrigatório!
                                   </span>
                                 </div>
-                                <div class="balao cax-position" *ngIf="(formulario.get('cpf')?.errors?.['ValidaCpf']) && formulario.get('cpf')?.touched">
-                                  <span class="m-lg-2">
-                                    CPF Inválido!
-                                  </span>
+                                <div class="balao cax-position w-75" *ngIf="formulario.get('cpf')?.errors?.['cpfInvalido'] &&
+                                            formulario.get('cpf')?.touched">
+                                  CPF inválido!
                                 </div>
                               </div>
+
                             </div>
   
                           </div>

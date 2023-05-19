@@ -1,0 +1,721 @@
+.content-box {
+    position: relative;
+    top: 78px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(11deg, rgb(200, 150, 255) 20%, rgba(138,119,224,1) 44%, rgb(45, 33, 130) 71%);
+  }
+  
+  .content-box .form-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content-box .form-box .forms-campos-cad1 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 5px;
+    display: block;
+    border: 2px solid #ffffff;
+  }
+  
+  .content-box .form-box .forms-campos-cad2 {
+    width: 100%;
+    height: auto;
+    margin: 5px;
+    border: 2px solid #ffffff;
+  }
+  
+  .content-box .form-title {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .continer-forms {
+    position: relative;
+    width: 80%;
+    height: auto;
+    left: 10%;
+  }
+  
+  .forms_all {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content-box .form-box .forms-campos-cad1 .input-box,
+  .content-box .form-box .forms-campos-cad2 .input-box{
+    position: relative;
+    width: 80%;
+    display: flex;
+    left: 10%;
+    padding: 10px 5px 0 5px;
+  }
+  
+  .content-box .form-box .forms-campos-cad1 .input-box .campo,
+  .content-box .form-box .forms-campos-cad2 .input-box .campo {
+    position: relative;
+    width: 100%;
+  }
+  
+  .content-box .form-box .forms-campos-cad1 .input-box .campoSenha {
+    display: flex;
+  }
+  
+  .iconPass, .iconPass2 {
+    cursor: pointer;
+    color: #fff;
+    margin: 5px;
+  }
+  
+  #text, #text2{
+    display: none;
+  }
+  
+  .botao-revela {
+    position: relative;
+    border: 0;
+    background: none;
+  }
+  
+  .content-box .form-box .forms-campos-cad1 .input-box .campo input,
+  .content-box .form-box .forms-campos-cad2 .input-box .campo input
+  {
+    width: 100%;
+    font-size: 17px;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ffffff;
+    border-radius: 0;
+  }
+  
+  .campo input:focus,
+  .campo-modal input:focus {
+    outline: none;
+  }
+  
+  input:focus {
+    outline: 0;
+  }
+  
+  input:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+  
+  .campo .label-edit {
+    position: absolute;
+    top: 0;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    pointer-events: none;
+    transition: 100ms;
+  }
+  
+  .campo .label_edit_2 {
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    pointer-events: none;
+  }
+  
+  .campo input:focus~label,
+  .campo input:valid~label {
+    top: -20px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .campo input:focus {
+    color: #ffffff;
+    border-bottom: 1px solid #2D2182;
+  }
+  
+  .campo input:focus~label {
+    color: #2D2182;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .label-edit-tp {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+  }
+  
+  .label-edit-mensagem {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+  }
+  
+  /* .preenchido~label {
+    top: -20px;
+    font-size: 16px;
+    outline: none;
+  } */
+  
+  .textoColor,
+  input,
+  select {
+    color: #ffffff;
+    background-color: transparent;
+  }
+  
+  .form-select {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ffffff;
+    border-radius: 0;
+    width: 80%;
+    margin: 5px;
+    font-size: 14px;
+    color: #777;
+    background-color: #ffffffa8;
+  }
+  
+  .btn-position {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .btn-position2 {
+    position: relative;
+    top: 14.2%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .botao-roxo {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px #2D2182 solid;
+    background-color: #2D2182;
+    font-weight: 500;
+  }
+  
+  .botao-roxo:hover {
+    background-color: transparent;
+    color: #2D2182;
+    background-color: #2c218258;
+  }
+  
+  //BOTÕES
+  
+  .btn-group-line, .btn-group-line-2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn-group-line-2 {
+    position: relative;
+    top: 14.5%;
+  }
+  
+  .btn-cancel, .btn-cancel-2 {
+    background-color: transparent;
+    // margin: 10px;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #bb2d3b;
+    font-weight: 500;
+  }
+  
+  .btn-cancel:hover, .btn-cancel-2:hover {
+    background-color: transparent;
+    color: #bb2d3b;
+    background-color: #bb2d3b2b;
+    border: 2px #bb2d3b solid;
+    font-weight: 500;
+  }
+  
+  .btn-success-update, .btn-success-update-2 {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #157347;
+    font-weight: 500;
+  }
+  
+  .btn-success-update:hover, .btn-success-update2:hover {
+    background-color: transparent;
+    color: #157347;
+    background-color: #1573471e;
+    border: 2px #157347 solid;
+  }
+  
+  ////////////////////////////////
+  
+  
+  //////////////////////////////// MODAL USUÁRIO
+  ///
+  .modal-dialog-user {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form-title-modal-user {
+    color: #2D2182;
+    font-weight: 600;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .forms-campos-modal-user {
+    width: 100%;
+    height: 48vh;
+  }
+  
+  .forms-campos-modal-user .input-box-modal-user{
+    position: relative;
+    width: 100%;
+    display: flex;
+  }
+  
+  .input-box-modal-user .campo-modal-user input {
+    width: 200%;
+    font-size: 14px;
+    background: transparent;
+    color: #2D2182;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #2D2182;
+    border-radius: 0;
+    margin: 5px;
+  }
+  
+  .campo-modal-user .label-edit
+  {
+    position: absolute;
+    top: 0;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #2D2182;
+    pointer-events: none;
+    transition: 100ms;
+    margin: 10px;
+  }
+  
+  .campo-modal-user input:focus~label,
+  .campo-modal-user input:valid~label
+  {
+    top: -20px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .campo-modal-user input:focus {
+    color: #2D2182;
+    border-bottom: 1px solid #2D2182;
+  }
+  
+  .campo-modal-user input:focus~label
+  {
+    color: #2D2182;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .label-edit-tp-modal-user {
+    font-size: 14px;
+    color: #2D2182;
+    font-weight: 400;
+  }
+  
+  .texto-color-modal-user,
+  input,
+  select {
+    color: #2D2182;
+    background-color: transparent;
+  }
+  
+  .form-select-modal-user {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #2D2182;
+    border-radius: 0;
+    width: 80%;
+    margin: 10px;
+    font-size: 14px;
+    color: #2D2182;
+    background-color: #b2a4a436;
+  }
+  
+  //OLHO MÁGICO
+  
+  .input-box-modal-user .campoSenhaModal {
+    display: flex;
+    width: 84%;
+  }
+  
+  .iconPassModal, .iconPass2Modal {
+    cursor: pointer;
+    color: #2D2182;
+    margin: 5px;
+  }
+  
+  #textModal, #text2Modal {
+    display: none;
+  }
+  
+  .botao-revelaModal {
+    position: relative;
+    border: 0;
+    background: none;
+  }
+  //BOTÕES
+  
+  .btn-group-line-modal-user {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .btn-cancel-modal-user {
+    background-color: transparent;
+    margin: 10px;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #bb2d3b;
+    font-weight: 500;
+  }
+  
+  .btn-cancel-modal-user:hover {
+    background-color: transparent;
+    color: #bb2d3b;
+    background-color: #bb2d3b2b;
+    border: 2px #bb2d3b solid;
+  }
+  
+  .btn-success-update-modal-user {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #157347;
+    font-weight: 500;
+  }
+  
+  .btn-success-update-modal-user:hover {
+    background-color: transparent;
+    color: #157347;
+    background-color: #1573471e;
+    border: 2px #157347 solid;
+  }
+  
+  
+  //////////////////////////////// FIM MODAL USUÁRIO
+  
+  ////////////////////////////////MODAL PROPRIETÁRIO
+  ///
+  .modal-dialog {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form-title-modal {
+    color: #2D2182;
+    font-weight: 600;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .forms-campos-modal {
+    width: 100%;
+    height: 33.5vh;
+  }
+  
+  .forms-campos-modal .input-box-modal{
+    position: relative;
+    width: 100%;
+    display: flex;
+  }
+  
+  .input-box-modal .campo-modal input {
+    width: 200%;
+    font-size: 14px;
+    background: transparent;
+    color: #2D2182;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #2D2182;
+    border-radius: 0;
+    margin: 5px;
+  }
+  
+  .campo-modal .label-edit
+  {
+    position: absolute;
+    top: 0;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #2D2182;
+    pointer-events: none;
+    transition: 100ms;
+    margin: 10px;
+  }
+  
+  .campo-modal input:focus~label,
+  .campo-modal input:valid~label
+  {
+    top: -20px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .campo-modal input:focus {
+    color: #2D2182;
+    border-bottom: 1px solid #2D2182;
+  }
+  
+  .campo-modal input:focus~label
+  {
+    color: #2D2182;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .label-edit-tp-modal {
+    font-size: 14px;
+    color: #2D2182;
+    font-weight: 400;
+  }
+  
+  .label-edit-mensagem-modal {
+    font-size: 14px;
+    color: #2D2182;
+    font-weight: 400;
+  }
+  
+  .texto-color-modal,
+  input,
+  select {
+    color: #2D2182;
+    background-color: transparent;
+  }
+  
+  .form-select-modal {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #2D2182;
+    border-radius: 0;
+    width: 80%;
+    margin: 10px;
+    font-size: 14px;
+    color: #2D2182;
+    background-color: #b2a4a436;
+  }
+  
+  //BOTÕES
+  
+  .btn-group-line-modal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .btn-cancel-modal {
+    background-color: transparent;
+    margin: 10px;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #bb2d3b;
+    font-weight: 500;
+  }
+  
+  .btn-cancel-modal:hover {
+    background-color: transparent;
+    color: #bb2d3b;
+    background-color: #bb2d3b2b;
+    border: 2px #bb2d3b solid;
+  }
+  
+  .btn-success-update-modal {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px #ffffff solid;
+    background-color: #157347;
+    font-weight: 500;
+  }
+  
+  .btn-success-update-modal:hover {
+    background-color: transparent;
+    color: #157347;
+    background-color: #1573471e;
+    border: 2px #157347 solid;
+  }
+  
+
+  // TITLE CAIXA
+.title-camp {
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+}
+
+.title-icon-ali {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-edit-title {
+    padding: 5px;
+    margin: 1px;
+}
+
+.icon-edit {
+    padding: 5px;
+    font-size: 20px;
+}
+  ////////////////////////////////
+  
+  
+  @media (max-width:920px) {
+  
+    .content-box {
+     // width: 100%;
+      height: 195vh;
+     // background: none;
+  
+    }
+  
+    .content-box .form-box {
+      display: block;
+      width: 90%;
+      // height: 1130px;
+      height: 1050px;
+    }
+  
+    .content-box  .form-title {
+      font-size: 20px;
+      margin-top: 0;
+      width: 100%;
+      padding: 8px;
+    }
+  
+    .content-box .form-box .forms-campos-cad1{
+      width: 95%;
+      height: 90vh;
+      padding: 15px;
+      margin: 10px;
+      border: 2px solid #ffffff;
+    }
+  
+    .content-box .form-box .forms-campos-cad2 {
+      width: 95%;
+      height: 80vh;
+      padding: 15px;
+      margin: 10px;
+      border: 2px solid #ffffff;
+    }
+  
+    .content-box .form-box .forms-campos-cad1 .input-box,
+    .content-box .form-box .forms-campos-cad2 .input-box{
+      width: 90%;
+      left: 5%;
+      padding: 10px;
+    }
+  
+    .iconPass, .iconPass2 {
+      margin: 0px;
+    }
+  
+    .content-box .form-box .forms-campos-cad1 .input-box .campo input,
+    .content-box .form-box .forms-campos-cad2 .input-box .campo input
+    {
+      font-size: 20px;
+    }
+  
+    .campo .label-edit {
+      font-size: 18px;
+    }
+  
+    .campo input:focus~label,
+    .campo input:valid~label {
+      font-size: 18px;
+    }
+  
+    .label-edit-tp {
+      font-size: 18px;
+    }
+  
+    .label-edit-mensagem {
+      font-size: 18px;
+    }
+  
+    .preenchido~label {
+      font-size: 18px;
+    }
+  
+    .form-select {
+      font-size: 18px;
+    }
+  
+    .btn-position {
+      position: relative;
+      padding: 0px;
+    }
+  
+    .btn-position2 {
+      position: relative;
+      top: 0;
+    }
+  
+  
+    //sem o modal
+    .btn-group-line-2 {
+      top: 0;
+    }
+  
+    .btn-cancel, .btn-cancel-2 {
+     margin: 5px;
+    }
+  
+    .btn-success-update, .btn-success-update-2 {
+     margin: 5px;
+    }
+  }
+  

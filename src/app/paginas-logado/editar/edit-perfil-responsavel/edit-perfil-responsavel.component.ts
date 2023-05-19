@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Proprietario } from 'src/app/model/Proprietario';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Responsavel } from 'src/app/model/Responsavel';
 import { User } from 'src/app/model/User';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
-import { ProprietarioService } from 'src/app/service/proprietario.service';
+import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-edit-proprietario',
-  templateUrl: './edit-proprietario.component.html',
-  styleUrls: ['./edit-proprietario.component.scss']
+  selector: 'app-edit-perfil-responsavel',
+  templateUrl: './edit-perfil-responsavel.component.html',
+  styleUrls: ['./edit-perfil-responsavel.component.scss']
 })
-export class EditProprietarioComponent implements OnInit {
+export class EditPerfilResponsavelComponent implements OnInit {
 
   //ALTERANDO USUÁRIO
   editUser: User = new User();
@@ -22,16 +22,17 @@ export class EditProprietarioComponent implements OnInit {
 
   confirmeSenha!: string;
   primeiraSenhaps!: string;
-  typeUser!: string;
 
   ///ALTERANDO PROPRIETÁRIO
-  editProprietario: Proprietario = new Proprietario();
-  idProprietario!: number;
+  editResponsavel: Responsavel = new Responsavel();
+  idResponsavel!: number;
+  gen!: string;
+
 
   constructor(
     private auth: AuthService,
     public authService: AuthService,
-    private proprietarioService: ProprietarioService,
+    private responsavelService: ResponsavelService,
     private router: Router,
     private route: ActivatedRoute,
     private alerts: AlertsService,
@@ -49,7 +50,7 @@ export class EditProprietarioComponent implements OnInit {
     this.auth.refreshToken();
 
     let id = this.route.snapshot.params['id'];
-   // this.findByIdProprietario();
+   // this.findByIdResponsavel();
     this.findByIdUser(id);
 
     this.findByAllUserAll();
@@ -62,13 +63,13 @@ export class EditProprietarioComponent implements OnInit {
 
       this.editUser = resp;
 
-      if (resp.tipo == "ADMINISTRADOR") {
+      if (resp.tipo == "PADRÃO") {
 
-        for (let i = 0; i < resp.proprietario.length; i++) {
+        for (let i = 0; i < resp.responsavel.length; i++) {
         
-          this.idProprietario = resp.proprietario[i].id;  
+          this.idResponsavel = resp.responsavel[i].id;  
           
-          this.findByIdProprietario(this.idProprietario);
+          this.findByIdResponsavel(this.idResponsavel);
         }
           
       }
@@ -77,17 +78,23 @@ export class EditProprietarioComponent implements OnInit {
 
   }
 
-  findByIdProprietario(id: number){
+  findByIdResponsavel(id: number){
 
-    console.log('Id Proprietário: ', this.idProprietario)
+    this.responsavelService
+    .getById(id)
+    .subscribe((resp: Responsavel) =>{
 
-    this.proprietarioService
-    .getByIdProprietario(id)
-    .subscribe((resp: Proprietario) =>{
-
-        this.editProprietario = resp;
+        this.editResponsavel = resp;
     });
      
+  }
+
+  //get all user Response<User[]>
+  findByAllUserAll() {
+    this.auth.getAllUser()
+      .subscribe((resp: User[]) => {
+        this.listUser = resp;
+      });
   }
 
   togglePass() {
@@ -126,11 +133,6 @@ export class EditProprietarioComponent implements OnInit {
 
   }
 
-/*   modalShow() {
-     document.getElementById('modalUserEdit');('shown.bs.modal');
-  }
- */
-
   validatePreenchido() {
 
     let usuario = <HTMLInputElement>document.getElementById('usuario');
@@ -156,30 +158,12 @@ export class EditProprietarioComponent implements OnInit {
     this.confirmeSenha = event.target.value;
   }
 
-  tipoUser(event: any){
-
-    this.typeUser = event.target.value
-  }
-
   updateUsuario() {
-
-    if ((this.typeUser !== undefined) ) {
-      
-      this.editUser.tipo = this.typeUser;
-    }
-    else {
-      this.editUser.tipo;
-    }
 
     if (this.primeiraSenhaps !== undefined) {
 
       this.editUser.senha = this.primeiraSenhaps;
       
-    }
-    else {
-
-      this.editUser.senha;
-
     }
 
     if (this.confirmeSenha !== undefined) {
@@ -191,20 +175,19 @@ export class EditProprietarioComponent implements OnInit {
       }
       else {
     
-          this.auth
+          this.authService
           .updateUser(this.editUser)
           .subscribe((respUser: User) =>{
   
             this.editUser = respUser;
-           // this.router.navigate(["/inicio"]);
-            this.alerts.showAlertInfo("Usuário editado com sucesso! Faça seu login");
-  
+            this.alerts.showAlertInfo("Usuário editado com sucesso!");
+
             environment.id = 0;
             environment.usuario = '';
             environment.tipo = '';
             environment.token = '';
             this.router.navigate(['/login']);
-  
+   
           });
   
       }
@@ -212,13 +195,12 @@ export class EditProprietarioComponent implements OnInit {
     }
     else {
 
-      this.auth
+      this.authService
       .updateUser(this.editUser)
       .subscribe((respUser: User) =>{
 
         this.editUser = respUser;
-       // this.router.navigate(["/inicio"]);
-        this.alerts.showAlertInfo("Usuário editado com sucesso! Faça seu login");
+        this.alerts.showAlertInfo("Usuário editado com sucesso!");
 
         environment.id = 0;
         environment.usuario = '';
@@ -227,37 +209,51 @@ export class EditProprietarioComponent implements OnInit {
         this.router.navigate(['/login']);
 
       });
-
+      
     }
 
   }
 
-  updateProprietario() {
 
-      //chave estrangeira => FK
-     /*  this.userFK.id = this.idUserN;
-      this.editProprietario.usuario = this.userFK;
- */
-     
-      this.proprietarioService
-      .putProprietario(this.editProprietario)
-      .subscribe((resp: Proprietario) => {
-
-        console.log(resp);
-        this.editProprietario = resp;
-        this.router.navigate(["/inicio"]);
-        this.alerts.showAlertInfo("Seus dados forão alterados com sucesso!");
-
-      });
-
+  genero(event: any){
+    this.gen = event.target.value;
   }
 
-  //get all user Response<User[]>
-  findByAllUserAll() {
-    this.auth.getAllUser()
-      .subscribe((resp: User[]) => {
-        this.listUser = resp;
-      });
+  updateResponsavel() {
+    
+    if (this.gen ===  undefined) {
+      
+      this.editResponsavel.genero;
+    }
+    else {
+      
+      this.editResponsavel.genero = this.gen;
+    }
+
+
+    this.responsavelService
+    .updateResponsavel(this.editResponsavel)
+    .subscribe((resp: Responsavel) => {
+
+      console.log(resp)
+
+      this.editResponsavel = resp;
+      this.alerts.showAlertInfo("Responsável editado com sucesso.");
+
+      environment.id = 0;
+      environment.usuario = '';
+      environment.tipo = '';
+      environment.token = '';
+      this.router.navigate(['/login']);
+
+    },
+    error => {
+      if (error.status === 400) {
+
+        this.alerts.showAlertInfo("Erro na alteração.");
+      }
+    });
+
   }
 
 }
