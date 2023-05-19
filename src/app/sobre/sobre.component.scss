@@ -66,7 +66,7 @@
 .img_text {
     position: relative;
     top: 540px;
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -124,6 +124,33 @@
 
     .sobre_text {
       width: 100%;
+    }
+
+    .image-right {
+        display: none;
+    }
+    .title {
+        width: 80%;
+        right: 0;
+    }
+
+    .background-gray  {
+        width: 800px;
+    }
+
+    .position_logo {
+        display: none;
+    }
+
+    .sobre_text {
+        position: relative;
+        margin-left: 180px;
+        width: 540px;
+        background-color: #FFFFFF;
+    }
+
+    .margin_footer {
+        margin-bottom: 145%;
     }
 
 }
