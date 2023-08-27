@@ -98,8 +98,8 @@ export class EditCriancaComponent implements OnInit{
     // Formata a data no formato desejado
     var dataBr = dia + '-' + mes + '-' + ano;
 
-    console.log(dataBr); 
-  } 
+/*     console.log(dataBr); 
+ */  } 
 
  /*  dataConvert(event: any){
 
@@ -142,14 +142,14 @@ export class EditCriancaComponent implements OnInit{
       
       this.editCrianca.dtNascimento;
 
-      console.log("1 Data: ", this.editCrianca.dtNascimento)
-
+/*       console.log("1 Data: ", this.editCrianca.dtNascimento)
+ */
     } 
     else { 
       
       this.editCrianca.dtNascimento = this.dataBr;
-      console.log("2 Data: ", this.editCrianca.dtNascimento)
-
+/*       console.log("2 Data: ", this.editCrianca.dtNascimento)
+ */
     }
    
     if (this.opSaudT === undefined) {
@@ -204,7 +204,6 @@ export class EditCriancaComponent implements OnInit{
     .subscribe((resp: Crianca) => {
 
       this.editCrianca = resp;
-      console.log("Resp: ", resp)
       this.alerts.showAlertSucess("Criança alterada com sucesso!");
       this.router.navigate(["/visueditcrianca"]);
       

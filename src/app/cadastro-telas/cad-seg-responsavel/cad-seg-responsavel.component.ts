@@ -104,8 +104,6 @@ export class CadSegResponsavelComponent implements OnInit{
     .postSegunResponsavel(this.cadSegResponsavel)
     .subscribe((resp: SegundoResponsavel) => {
 
-    console.log("Responsavel", resp)
-
       this.cadSegResponsavel = resp;
       this.alerts.showAlertSucess("2° Responsável cadastrada com sucesso!");
       this.router.navigate(["/visuresponsavel"]);

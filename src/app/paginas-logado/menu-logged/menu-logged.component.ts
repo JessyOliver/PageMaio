@@ -60,7 +60,6 @@ export class MenuLoggedComponent implements OnInit {
 
        // this.nomeUser = resp.proprietario[i].nome;
 
-        console.log(environment.tipo);
 
         if (resp.tipo == "ADMINISTRADOR") {
           
@@ -73,7 +72,6 @@ export class MenuLoggedComponent implements OnInit {
 
        // this.nomeUser = resp.proprietario[i].nome;
 
-        console.log(environment.tipo);
 
         if (resp.tipo == "PADRÃO") {
             
