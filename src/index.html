@@ -43,12 +43,7 @@
 
 <body>
 
-  <a href="https://api.whatsapp.com/send?phone=5511958946814&text=Olá,%20gostaria%20de%20receber%20mais%20informações%20sobre%20os%20*Serviços%20Prestados%20pelo%20Espaço%20Educacional%20Turminha%20Feliz!*%20Desde%20já%20obrigada!"
-    target="_blank">
-    <img src="assets/img/WhatsApp-icone.png" alt="Contato WhatsApp-icone" srcset class="img-position">
-  </a>
-
-  <script>
+  <script *ngIf="auth.logged()">
     var purecookieTitle = "Cookies.",
       purecookieDesc = "Nós usamos cookies ou tecnologias similares para finalidades técnicas e, com seu consentimento, para outras finalidades conforme especificado na ",
       purecookieLink = '<a href="https://www.iubenda.com/pt-br/help/106544-requisitos-de-cookies-mais-recentes-do-brasil?utm_source=google&utm_medium=cs_landing&utm_campaign=pt_cs_new_search&utm_term=cookie%20consent&utm_content=639831016463&gclid=Cj0KCQjw6KunBhDxARIsAKFUGs_TJZLDJb9-1dQ3ZQnr2od-AH0bmo9pWjjpdJWM_ziG3Bs0uIHdVJkaAjV7EALw_wcB" target="_blank">política de cookie.</a>',

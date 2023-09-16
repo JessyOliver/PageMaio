@@ -33,15 +33,7 @@ font-family: 'Trirong', serif;
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
-.img-position {
-  z-index: 999;
-  position: fixed;
-  top: 86%;
-  padding: 15px;
-  right: 0;
-  width: 80px;
-  height: 80px;
-}
+
 
 .cookieConsentContainer {
   z-index: 99;

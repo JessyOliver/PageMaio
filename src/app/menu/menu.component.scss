@@ -74,6 +74,18 @@ li {
   user-select: none;
 }
 
+
+/*Imagem WhatsApp*/
+.img-position {
+  z-index: 999;
+  position: fixed;
+  top: 86%;
+  padding: 15px;
+  right: 0;
+  width: 80px;
+  height: 80px;
+}
+
 /* APLICAÇÃO MEDIA QUERIES */
 @media (max-width: 920px) {
 

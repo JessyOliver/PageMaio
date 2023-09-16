@@ -62,6 +62,8 @@ export class CadUserComponent implements OnInit{
 
      }
 
+     this.cadastrar();
+
     });
 
     this.propri.getAllProprietarioOff().subscribe((respProp: Proprietario[]) => {
@@ -164,10 +166,10 @@ export class CadUserComponent implements OnInit{
 
         // console.log(this.cadUser);
 
-      /*   this.authService.addUser(this.cadUser).subscribe((resp: User) =>{
-          this.cadUser = resp;
-          this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
-        }); */
+      // this.authService.addUser(this.cadUser).subscribe((resp: User) =>{
+      //   this.cadUser = resp;
+      //   this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
+      // }); 
 
         btnprop.addEventListener('click', () =>{
 
@@ -184,7 +186,7 @@ export class CadUserComponent implements OnInit{
 
               this.cadUser = resp;
               this.router.navigate(["/cadproprietario"]);
-             // this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
+              this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
             },
             error => {
               if (error.status === 400) {
@@ -222,7 +224,7 @@ export class CadUserComponent implements OnInit{
 
               this.cadUser = resp;
               this.router.navigate(["/cadresponsavel"]);
-             // this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
+              this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
             },
             error => {
               if (error.status === 400) {
