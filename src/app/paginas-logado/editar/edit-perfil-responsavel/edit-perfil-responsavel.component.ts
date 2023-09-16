@@ -235,8 +235,8 @@ export class EditPerfilResponsavelComponent implements OnInit {
     .updateResponsavel(this.editResponsavel)
     .subscribe((resp: Responsavel) => {
 
-      console.log(resp)
-
+/*       console.log(resp)
+ */
       this.editResponsavel = resp;
       this.alerts.showAlertInfo("Responsável editado com sucesso.");
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   constructor(
-  ){}
+    public auth: AuthService
+  ) {}
 
   ngOnInit() {
     window.scroll(0, 0)

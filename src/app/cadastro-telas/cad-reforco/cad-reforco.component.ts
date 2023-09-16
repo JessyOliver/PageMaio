@@ -71,8 +71,8 @@ export class CadReforcoComponent implements OnInit{
     this.cadReforco.periodoCurso = this.periodoCurso;
     this.cadReforco.materias = this.materias;
 
-    console.log("Cadastrar: " + this.nivelEstudos + ", " + this.periodoCurso + ", " + this.materias );
-    
+/*     console.log("Cadastrar: " + this.nivelEstudos + ", " + this.periodoCurso + ", " + this.materias );
+ */    
     this.reforcoService
     .getNivelEstudosAndPeriodoCursoAndMaterias(this.nivelEstudos, this.periodoCurso, this.materias)
     .subscribe((resp: any) => {
@@ -81,8 +81,8 @@ export class CadReforcoComponent implements OnInit{
         
         this.alerts.showAlertDanger(" já está cadastrado.???")
 
-        console.log("resposta: ",resp)
-        console.log("Cad 2: " + this.nivelEstudos + ", " + this.periodoCurso + ", " + this.materias );
+        /* console.log("resposta: ",resp)
+        console.log("Cad 2: " + this.nivelEstudos + ", " + this.periodoCurso + ", " + this.materias ); */
         
       }
       
@@ -91,8 +91,8 @@ export class CadReforcoComponent implements OnInit{
       this.periodoCurso + "', e nível " +
       this.nivelEstudos + ", já cadastrado no sistema.");
       
-      console.log("Cad 3: " + this.nivelEstudos + ", " + this.periodoCurso + ", " + this.materias );
-      
+/*       console.log("Cad 3: " + this.nivelEstudos + ", " + this.periodoCurso + ", " + this.materias );
+ */      
     }, error => {
       
       if (error.status === 401) {

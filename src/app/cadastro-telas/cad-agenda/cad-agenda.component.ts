@@ -67,7 +67,6 @@ export class CadAgendaComponent implements OnInit {
 
     this.idPacote = this.route.snapshot.params['id'];
     this.getByIdPacote(this.idPacote);
-    console.log("Id: ", this.idPacote)
 
   }
 

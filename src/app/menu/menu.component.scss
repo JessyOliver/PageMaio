@@ -11,7 +11,7 @@ li {
 
 /* NAVBAR ESTILO */
 .navbar-home {
-  z-index: 9999;
+  z-index: 99999;
   position: fixed;
   width: 100%;
   display: flex;
@@ -72,6 +72,18 @@ li {
   display: none;
   font-size: 24px;
   user-select: none;
+}
+
+
+/*Imagem WhatsApp*/
+.img-position {
+  z-index: 999;
+  position: fixed;
+  top: 86%;
+  padding: 15px;
+  right: 0;
+  width: 80px;
+  height: 80px;
 }
 
 /* APLICAÇÃO MEDIA QUERIES */
