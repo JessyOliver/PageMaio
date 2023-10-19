@@ -44,6 +44,24 @@ export class CriancaService {
 
     return this.http.get<Crianca[]>(`${this.baseUrl}/all`, this.token);
   }
+  
+  //GETALLSEMPAGAMENTO
+  getListSemPagamento(): Observable<Crianca[]> {
+
+    return this.http.get<Crianca[]>(`${this.baseUrl}/all-sem-pagamento`, this.token);
+  }
+  
+  //GETALLPAGAMENTO
+  getListAllPagamentoPacote(): Observable<Crianca[]> {
+
+    return this.http.get<Crianca[]>(`${this.baseUrl}/all-pagamento`, this.token);
+  }
+  
+  //GETALLSEMPAGAMENTO
+  getListStatus(): Observable<Crianca[]> {
+
+    return this.http.get<Crianca[]>(`${this.baseUrl}/all-status-pagamento`, this.token);
+  }
 
   //GET-ID
   getIdCrianca(idCrianca: number): Observable<Crianca> {

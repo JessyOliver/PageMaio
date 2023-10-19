@@ -15,9 +15,16 @@ export class VisuEditCriancaComponent implements OnInit{
 
   listCrianca!: Crianca[];
 
+  getCrianca: Crianca = new Crianca;
+
+  responavelId!: number;
+
   criancaNome!: string;
 
   idCrianca!: number;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
 
   constructor(
     private router: Router,
@@ -37,6 +44,10 @@ export class VisuEditCriancaComponent implements OnInit{
 
     //forçando altenticação
     this.auth.refreshToken();
+    
+    if (this.listCrianca && this.listCrianca.length > 0) {
+      this.selectedUserId = this.listCrianca[0].id;
+    }
     
     this.findAllCrianca();
     this.findByNomeCrianca();
@@ -76,7 +87,22 @@ export class VisuEditCriancaComponent implements OnInit{
   }
 
   getId(id: number) {
+
     this.idCrianca = id;
+    this.nextButtonId++;
+    this.findByIdCrianca(this.idCrianca);     
+  }
+
+  findByIdCrianca(id: number) {
+
+    this.criancaService
+    .getIdCrianca(id)
+    .subscribe((resp: Crianca) => {
+
+      this.getCrianca = resp;
+      this.responavelId = resp.responsavel.id;
+    });
+
   }
 
   deletarCrianca() {

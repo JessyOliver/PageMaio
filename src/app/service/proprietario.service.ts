@@ -43,7 +43,7 @@ export class ProprietarioService {
 
   //get's
   getAllProprietarioOff(): Observable<Proprietario[]> {
-    return this.http.get<Proprietario[]>(`${this.baseUrl}/all`);
+    return this.http.get<Proprietario[]>(`${this.baseUrl}/alloff`);
   }
 
   getListNomeProprietario(nome: string): Observable<Proprietario[]> {

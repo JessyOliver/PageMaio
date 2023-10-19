@@ -19,6 +19,11 @@ export class VisualizarPacoteComponent implements OnInit{
 
   idPacote!: number;
 
+  getPacote: Pacote = new Pacote;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
+
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -36,6 +41,10 @@ export class VisualizarPacoteComponent implements OnInit{
 
     //forçando altenticação
     this.auth.refreshToken();
+
+    if (this.listPacote && this.listPacote.length > 0) {
+      this.selectedUserId = this.listPacote[0].id;
+    }
 
     //validando as ações do função
     this.findByAllPacote();
@@ -77,8 +86,30 @@ export class VisualizarPacoteComponent implements OnInit{
 
   getId(id: number) {
     this.idPacote = id;
+
+    this.nextButtonId++;
+    this.findByIdPacote(this.idPacote);  
+    this.modalId(this.idPacote)
+  }
+
+
+  modalId(id: number) {
+
+    document.getElementById('my-button')?.addEventListener('click', () => {
+      this.getId(id);
+    });
   }
     
+  findByIdPacote(id: number) {
+
+    this.pacoteService
+    .getIdPacote(id)
+    .subscribe((resp: Pacote) => {
+
+      this.getPacote = resp;
+    });
+  }
+
   deletarPacote() {
 
     this.pacoteService

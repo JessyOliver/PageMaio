@@ -62,6 +62,8 @@ import { EditAgendaComponent } from './paginas-logado/editar/edit-agenda/edit-ag
 import { VisuCriancasResponsavelComponent } from './paginas-logado/visualizar/visu-criancas-responsavel/visu-criancas-responsavel.component';
 import { VisuSegundoresponsavelResponsavelComponent } from './paginas-logado/visualizar/visu-segundoresponsavel-responsavel/visu-segundoresponsavel-responsavel.component';
 import { EditPerfilResponsavelComponent } from './paginas-logado/editar/edit-perfil-responsavel/edit-perfil-responsavel.component';
+import { VisuPagamentoComponent } from './paginas-logado/visualizar/visu-pagamento/visu-pagamento.component';
+import { VisuEditPagamentoComponent } from './paginas-logado/visualizar/visu-edit-pagamento/visu-edit-pagamento.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -131,7 +133,10 @@ export const customCurrencyMaskConfig = {
     EditAgendaComponent,
     VisuCriancasResponsavelComponent,
     VisuSegundoresponsavelResponsavelComponent,
-    EditPerfilResponsavelComponent
+    EditPerfilResponsavelComponent,
+    VisuPagamentoComponent,
+    VisuEditPagamentoComponent,
+    
   ],
   imports: [
     BrowserModule,

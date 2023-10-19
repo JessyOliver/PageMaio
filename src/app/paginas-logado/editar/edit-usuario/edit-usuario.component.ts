@@ -21,6 +21,7 @@ export class EditUsuarioComponent {
   confirmeSenha!: string;
   primeiraSenhaps!: string;
   typeUser!: string;
+  senha!: string;
 
   constructor(
     private authService: AuthService,
@@ -130,54 +131,23 @@ export class EditUsuarioComponent {
 
   updateUsuario() {
 
-    if ((this.typeUser !== undefined) ) {
-      
-      this.editUser.tipo = this.typeUser;
-    }
-    else {
-      this.editUser.tipo;
-    }
-
-    if (this.primeiraSenhaps !== undefined) {
-
-      this.editUser.senha = this.primeiraSenhaps;
-      
-    }
-
-    if (this.confirmeSenha !== undefined) {
-      
-      if (this.editUser.senha != this.confirmeSenha) {
+    if (this.senha != this.confirmeSenha) {
   
-        this.alerts.showAlertDanger("As senhas estão diferentes.");
-  
-      }
-      else {
-    
-          this.authService
-          .updateUser(this.editUser)
-          .subscribe((respUser: User) =>{
-  
-            this.editUser = respUser;
-            this.router.navigate(["/visusuario"]);
-            this.alerts.showAlertInfo("Usuário editado com sucesso!");
-   
-          });
-  
-      }
+      this.alerts.showAlertDanger("As senhas estão diferentes.");
 
     }
     else {
+  
+        this.authService
+        .updateUser(this.editUser)
+        .subscribe((respUser: User) =>{
 
-      this.authService
-      .updateUser(this.editUser)
-      .subscribe((respUser: User) =>{
+          this.editUser = respUser;
+          this.router.navigate(["/visusuario"]);
+          this.alerts.showAlertInfo("Usuário editado com sucesso!");
+ 
+        });
 
-        this.editUser = respUser;
-        this.router.navigate(["/visusuario"]);
-        this.alerts.showAlertInfo("Usuário editado com sucesso!");
-
-      });
-      
     }
 
   }

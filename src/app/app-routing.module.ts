@@ -47,6 +47,8 @@ import { EditAgendaComponent } from './paginas-logado/editar/edit-agenda/edit-ag
 import { VisuCriancasResponsavelComponent } from './paginas-logado/visualizar/visu-criancas-responsavel/visu-criancas-responsavel.component';
 import { VisuSegundoresponsavelResponsavelComponent } from './paginas-logado/visualizar/visu-segundoresponsavel-responsavel/visu-segundoresponsavel-responsavel.component';
 import { EditPerfilResponsavelComponent } from './paginas-logado/editar/edit-perfil-responsavel/edit-perfil-responsavel.component';
+import { VisuPagamentoComponent } from './paginas-logado/visualizar/visu-pagamento/visu-pagamento.component';
+import { VisuEditPagamentoComponent } from './paginas-logado/visualizar/visu-edit-pagamento/visu-edit-pagamento.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -96,6 +98,8 @@ const routes: Routes = [
   {path: 'visueditresponsavel', component: VisuEditResponsavelComponent},
   {path: 'visueditcrianca', component: VisuEditCriancaComponent},
   {path: 'visueditreforco', component: VisuEditReforcoComponent},
+  {path: 'visupagamento', component: VisuPagamentoComponent},
+  {path: 'visueditpagamento', component: VisuEditPagamentoComponent},
   
   {path: 'pacotecrianca/:id', component: PacoteCriancaComponent},
 

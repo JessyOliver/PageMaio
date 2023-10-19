@@ -33,8 +33,7 @@ export class DetalheAgendaComponent {
     this.auth.refreshToken();
 
     let id = this.route.snapshot.params['id'];
-    this.findByIdAgendamento(id);  
-    
+    this.findByIdAgendamento(id);     
   }
 
   

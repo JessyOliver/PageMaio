@@ -13,8 +13,10 @@ import { environment } from 'src/environments/environment.prod';
 export class VisualizarCriancaComponent implements OnInit {
 
   listCrianca!: Crianca[];
+  getCrianca: Crianca = new Crianca;
 
   criancaNome!: string;
+  idCriancaSelecionada!: number;
 
   constructor(
     private router: Router,
@@ -44,8 +46,11 @@ export class VisualizarCriancaComponent implements OnInit {
     .subscribe((resp: Crianca[]) => {
       
       this.listCrianca = resp;
+  
     });
   }
+
+
 
   findByNomeCrianca() {
 

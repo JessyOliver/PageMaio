@@ -1,105 +1,205 @@
-<div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
-  
-      <div class="d-flex justify-content-center">
-  
-        <div class="form-group buscar-edit">
-          <input type="text" class="form-control input-busca" id="titulo" 
-            placeholder="🔍 buscar por nome..."
+<div class="home_logado">
+
+  <div class="whare">
+
+    <main class="table">
+      <section class="table__header">
+        <h1 class="text-title">2° RESPONSÁVEIS</h1>
+        <div class="input-group">
+          <input type="search" class="search-style" placeholder="🔍 buscar por nome..." id="titulo"
             [(ngModel)]='nomeSegundoResponsavel' (keyup)='findByNomeSegundoResponsavel()'>
         </div>
-      </div>
-  
-      <div class="d-flex justify-content-center m-0 p-0">
-        <div class="title_camp_top">
-          <hr>
-          <div class="title-icon-ali">
-            <h2 class="text_edit_title_top">2° RESPONSÁVEIS</h2>
-            <i class="fa fa-users icon_edit_top" aria-hidden="true"></i>
-          </div>
-          <hr>
-        </div>
-      </div>
-  
-      <div class="d-flex justify-content-center m-2 p-0" *ngIf="listSegundoResponsavel == null">
-        <div class="title-camp">
-          <div class="title-icon-ali">
-            <h5 class="text-edit-title-not">Não há 2° responsáveis, cadastrados no momento.</h5>
-            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+      </section>
+      <section>
+
+        <div class="d-flex justify-content-center m-2 p-0" *ngIf="listSegundoResponsavel == null">
+          <div class="title-camp">
+            <div class="title-icon-ali">
+              <h5 class="text-edit-title-not">Não há 2° responsáveis, cadastrados no momento.</h5>
+              <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
-      </div>
-  
-      <div class="container-principal">
-        <div class="table-responsive">
-  
-          <div class="table_position">
-  
-            <table class="table">
-              <thead class="edit_thead">
-                <tr>
-                  <th class="line_btn" scope="col">Nome</th>
-                  <th class="line_btn" scope="col">Gênero</th>
-                  <th class="line_btn" scope="col">Parentesco</th>
-                  <th class="line_btn" scope="col">Celular</th>
-                  <th class="line_btn" scope="col">Criança</th>
-                  <th class="line_btn" scope="col">Detalhes</th>
-                  <th class="line_btn" scope="col">Editar</th>
-                  <th class="line_btn" scope="col">Apagar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table_line" *ngFor="let itemSegunResponsavel of listSegundoResponsavel | orderBy: ['nome']">
-  
-                  <th class="line_btn color_line" scope="row">{{itemSegunResponsavel.nome.toUpperCase()}}</th>
-                  <td class="line_btn">{{itemSegunResponsavel.genero}}</td>
-                  <td class="line_btn">{{itemSegunResponsavel.parentesco}}</td>
-                  <td class="line_btn">{{itemSegunResponsavel.celular}}</td>
-                  <td class="line_btn">{{nomeCrianca}}</td>
-                  <td class="line_btn"><button type="button" class="btn edit_btn"
-                      [routerLink]="['/detalhesegresponsavel', itemSegunResponsavel.id]"><i class="fa fa-info icon_btn"
-                        aria-hidden="true"></i></button></td>
-                  <td class="line_btn"><button type="button" class="btn edit_btn"
-                      [routerLink]="['/editsegresponsavel', itemSegunResponsavel.id]"><i class="fas fa-edit icon_btn"></i></button></td>
-                  <td class="line_btn"><button type="button" class="btn edit_btn_danger" (click)="getId(itemSegunResponsavel.id)"
-                      data-bs-toggle="modal" data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
-                  </td> 
-  
-                  <!-- Modal -->
-                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog text_modal" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" id="myModalLabel">APAGAR SEGUNDO RESPONSÁVEL </h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </section>
+      <section class="table__body">
+        <table *ngIf="listSegundoResponsavel != null">
+          <thead class="edit_thead">
+            <tr>
+              <th class=" color_line_title" scope="row"> Nome <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Gênero <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Parentesco <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Celular <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Criança <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Detalhes <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Editar <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Apagar <span class="icon-arrow">&UpArrow;</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table_line" *ngFor="let itemSegunResponsavel of listSegundoResponsavel | orderBy: ['nome']">
+
+              <th class="line_btn color_line" scope="row">{{itemSegunResponsavel.nome.toUpperCase()}}</th>
+              <td class="line_btn">{{itemSegunResponsavel.genero}}</td>
+              <td class="line_btn">{{itemSegunResponsavel.parentesco}}</td>
+              <td class="line_btn">{{itemSegunResponsavel.celular}}</td>
+              <td class="line_btn">{{nomeCrianca}}</td>
+              <!-- [routerLink]="['/detalhesegresponsavel', itemSegunResponsavel.id]" -->
+              <td class="line_btn">
+                <button type="button" class="btn edit_btn" 
+                  (click)="getId(selectedUserId = itemSegunResponsavel.id)" [id]="'btn-modal-' + nextButtonId"
+                  data-bs-toggle="modal" data-bs-target="#myModal2">
+                  <i class="fa fa-info icon_btn" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td class="line_btn"><button type="button" class="btn edit_btn"
+                  [routerLink]="['/editsegresponsavel', itemSegunResponsavel.id]"><i
+                    class="fas fa-edit icon_btn"></i></button></td>
+              <td class="line_btn"><button type="button" class="btn edit_btn_danger"
+                  (click)="getId(itemSegunResponsavel.id)" data-bs-toggle="modal" data-bs-target="#myModal"><i
+                    class="far fa-trash-alt icon_btn"></i></button>
+              </td>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog text_modal" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">APAGAR SEGUNDO RESPONSÁVEL </h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Deseja realmente apagar o segundo responsável?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default btn-success-update" data-bs-dismiss="modal"
+                        routerLink="/visusegundoresponsavel">Não</button>
+                      <button type="button" class="btn btn-primary btn-cancel" data-bs-dismiss="modal"
+                        (click)="deletarSegundoResponsavel()">Sim</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal 2-->
+              <div class="modal fade mt-0" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog text_modal2" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">DETALHES DO 2° RESPONSÁVEL</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" *ngIf="selectedUserId !== null">
+                      <div class="title-icon-ali">
+                        <h5 class="text-edit-title">{{getSegunResponsavel.nome.toUpperCase()}}</h5>
+                      </div>
+                      <div class="container-info w-75">
+
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Data de Nascimento:</p>
+                          <p class="ml-2">{{getSegunResponsavel.dtNascimento | date:'dd/MM/yyyy'}}</p>
                         </div>
-                        <div class="modal-body">
-                          Deseja realmente apagar o segundo responsável?
+
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Gênero:</p>
+                          <p class="ml-2">{{getSegunResponsavel.genero}}</p>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default btn-success-update" data-bs-dismiss="modal"
-                            routerLink="/visusegundoresponsavel">Não</button>
-                          <button type="button" class="btn btn-primary btn-cancel" data-bs-dismiss="modal"
-                            (click)="deletarSegundoResponsavel()">Sim</button>
+
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">CPF:</p>
+                          <p class="ml-2">{{getSegunResponsavel.cpf}}</p>
+                        </div>
+
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Parentesco:</p>
+                          <p class="ml-2">{{getSegunResponsavel.parentesco}}</p>
+                        </div>
+
+                        <div class=" d-block justify-content-start">
+
+                          <div class="d-flex justify-content-start">
+                            <hr>
+                            <h5 class="text-edit-title">CONTATO</h5>
+                            <hr>
+                          </div>
+
+                          <div class="d-flex justify-content-start">
+                            <p class="titulo-edit">Celular:</p>
+                            <p class="ml-2">{{getSegunResponsavel.celular}}</p>
+                          </div>
+
+                          <div class="d-flex justify-content-start" *ngIf="getSegunResponsavel.telefone != null">
+                            <p class="titulo-edit">Telefone:</p>
+                            <p class="ml-2">{{getSegunResponsavel.telefone}}</p>
+                          </div>
+
+                          <div class="d-flex justify-content-start" *ngIf="getSegunResponsavel.telefoneComercial != null">
+                            <p class="titulo-edit">Telefone Comercial:</p>
+                            <p class="ml-2">{{getSegunResponsavel.telefoneComercial}}</p>
+                          </div>
+
                         </div>
                       </div>
                     </div>
+                    <div class="modal-footer d-block justify-content-start">
+
+                      <div class=" d-block justify-content-start">
+
+                        <div class="d-flex justify-content-start">
+                          <hr>
+                          <h5 class="text-edit-title">RESPONSÁVEL</h5>
+                          <hr>
+                        </div>
+  
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Responsável:</p>
+                          <p class="ml-2">{{getSegunResponsavel.responsavel.nome}}</p>
+                        </div>
+  
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Contato:</p>
+                          <p class="ml-2">{{getSegunResponsavel.responsavel.celular}}</p>
+                        </div>
+                      </div>
+
+                      <div class=" d-block justify-content-start">
+
+                        <div class="d-flex justify-content-start">
+                          <hr>
+                          <h5 class="text-edit-title">CRIANÇA</h5>
+                          <hr>
+                        </div>
+  
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Nome:</p>
+                          <p class="ml-2">{{nomeCrianca}}</p>
+                        </div>
+                      </div>
+
+
+                    </div>
                   </div>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      
+                </div>
+              </div>
+
+            </tr>
+          </tbody>
+        </table>
+      </section>
       <div class="container-btn">
         <div class="bt-duplo-small">
-          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+          <button type="submit" class="btn botao_return" routerLink="/inicio">
             VOLTAR
           </button>
         </div>
       </div>
-  
-    </div>
-  
+    </main>
   </div>
+</div>

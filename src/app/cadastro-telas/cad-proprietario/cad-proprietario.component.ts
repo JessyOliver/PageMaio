@@ -24,7 +24,7 @@ export class CadProprietarioComponent implements OnInit {
   listUser: User[] = [];
  // idUser = environment.id;
 
- listProp: Proprietario[] = [];
+  listProp: Proprietario[] = [];
 
   cadProprietario: Proprietario = new Proprietario();
 

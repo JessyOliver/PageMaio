@@ -1,78 +1,81 @@
-<div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
-  
-      <div class="d-flex justify-content-center">
-  
-        <div class="form-group buscar-edit">
-          <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar criança..."
-            [(ngModel)]='criancaNome' (keyup)='findByNomeCrianca()'>
-        </div>
-      </div>
-  
-      <div class="d-flex justify-content-center m-0 p-0">
-        <div class="title_camp_top">
-          <hr>
-          <div class="title-icon-ali">
-            <h2 class="text_edit_title_top">CRIANÇAS</h2>
-            <i class="fa fa-child icon_edit_top" aria-hidden="true"></i>
-          </div>
-          <hr>
-        </div>
-      </div>
-  
-      <div class="d-flex justify-content-center m-2 p-0" *ngIf="listCrianca == null">
-        <div class="title-camp">
-          <div class="title-icon-ali">
-            <h5 class="text-edit-title-not">Não há crianças, cadastradas no momento.</h5>
-            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-  
-  
-      <div class="container-principal">
-        <div class="table-responsive">
-            
-            <div class="table_position">
-                <table class="table">
+<div class="home_logado">
 
+    <div class="whare">
+
+        <main class="table">
+            <section class="table__header">
+                <h1 class="text-title">CRIANÇAS</h1>
+                <div class="input-group">
+                    <input type="search" class="search-style" placeholder="🔍 buscar criança..." id="titulo"
+                        [(ngModel)]='criancaNome' (keyup)='findByNomeCrianca()'>
+                </div>
+            </section>
+            <section>
+
+                <div class="d-flex justify-content-center m-2 p-0" *ngIf="listCrianca == null">
+                    <div class="title-camp">
+                        <div class="title-icon-ali">
+                            <h5 class="text-edit-title-not">Não há crianças, cadastrados no momento.</h5>
+                            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="table__body">
+                <table *ngIf="listCrianca != null">
                     <thead class="edit_thead">
                         <tr>
-                            <th class="line_btn" scope="col">Nome</th>
-                            <th class="line_btn" scope="col">Idade</th>
-                            <th class="line_btn" scope="col">Responsável</th>
-                            <th class="line_btn" scope="col">Contato</th>
-                            <th class="line_btn" scope="col">Detalhes</th>
-                            <th *ngIf='authService.adm()' class="line_btn" scope="col">Editar</th>
-                            <th *ngIf='authService.adm()' class="line_btn" scope="col">Apagar</th>
+                            <th class=" color_line_title" scope="row"> Nome <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Idade <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Responsável <span
+                                    class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Contato <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Detalhes <span
+                                    class="icon-arrow">&UpArrow;</span></th>
+                            <th *ngIf='authService.adm()' class=" color_line_title" scope="row"> Editar <span
+                                    class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th *ngIf='authService.adm()' class=" color_line_title" scope="row"> Apagar <span
+                                    class="icon-arrow">&UpArrow;</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table_line" *ngFor="let itemCrianca of listCrianca | orderBy: ['nome']">
-        
+
                             <th class="line_btn color_line" scope="row">{{itemCrianca.nome}}</th>
                             <td class="line_btn">{{calcularIdade(itemCrianca.dtNascimento)}}
                                 {{calcularIdade(itemCrianca.dtNascimento) === 1 ? 'ano' : 'anos'}}</td>
                             <td class="line_btn">{{itemCrianca.responsavel.nome}}</td>
                             <td class="line_btn">{{itemCrianca.responsavel.celular}}</td>
                             <td class="line_btn">
-                              <button type="button" class="btn edit_btn"  [routerLink]="['/detalhecrianca', itemCrianca.id]">
-                                <i class="fa fa-info icon_btn" aria-hidden="true"></i>
-                              </button>
-                            </td>                      
-                            <td *ngIf='authService.adm()' class="line_btn"><button type="button" class="btn edit_btn" [routerLink]="['/editcrianca', itemCrianca.id]"><i
+                                <!-- [routerLink]="['/detalhecrianca', itemCrianca.id]" -->
+                                <button type="button" class="btn edit_btn"
+                                    (click)="getId(selectedUserId = itemCrianca.id)" [id]="'btn-modal-' + nextButtonId"
+                                    data-bs-toggle="modal" data-bs-target="#myModal2">
+                                    <i class="fa fa-info icon_btn" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            <td *ngIf='authService.adm()' class="line_btn"><button type="button" class="btn edit_btn"
+                                    [routerLink]="['/editcrianca', itemCrianca.id]"><i
                                         class="fas fa-edit icon_btn"></i></button></td>
-                            <td *ngIf='authService.adm()' class="line_btn"><button type="button" class="btn edit_btn_danger" 
-                                (click)="getId(itemCrianca.id)" data-bs-toggle="modal" data-bs-target="#myModal">
-                                <i class="far fa-trash-alt icon_btn"></i></button></td>
-        
+                            <td *ngIf='authService.adm()' class="line_btn"><button type="button"
+                                    class="btn edit_btn_danger" (click)="getId(itemCrianca.id)" data-bs-toggle="modal"
+                                    data-bs-target="#myModal">
+                                    <i class="far fa-trash-alt icon_btn"></i></button></td>
+
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
                                 aria-labelledby="myModalLabel">
                                 <div class="modal-dialog text_modal" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel">APAGAR AS INFORMAÇÕES DESTA CRIANÇA</h4>
+                                            <h4 class="modal-title" id="myModalLabel">APAGAR AS INFORMAÇÕES DESTA
+                                                CRIANÇA</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -88,23 +91,198 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Modal 2-->
+                            <div class="modal fade mt-0" id="myModal2" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel">
+                                <div class="modal-dialog text_modal2" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">DETALHES DA CRIANÇA</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" *ngIf="selectedUserId !== null">
+                                            <div class="title-icon-ali">
+                                                <h5 class="text-edit-title">{{getCrianca.nome.toUpperCase()}}</h5>
+                                            </div>
+                                            <div class="container-info w-75">
+
+                                                <div class="d-flex justify-content-start">
+                                                    <p class="titulo-edit">Data de Nascimento:</p>
+                                                    <p class="ml-2">{{getCrianca.dtNascimento | date:'dd/MM/yyyy'}}
+                                                    </p>
+                                                </div>
+
+                                                <div class="d-flex justify-content-start">
+                                                    <p class="titulo-edit">Genêro:</p>
+                                                    <p class="ml-2">{{getCrianca.genero}}</p>
+                                                </div>
+
+                                                <div class="d-flex justify-content-start">
+                                                    <p class="titulo-edit">Idade:</p>
+                                                    <p class="ml-2">{{calcularIdade(getCrianca.dtNascimento)}}
+                                                        {{calcularIdade(getCrianca.dtNascimento) === 1 ? 'ano' :
+                                                        'anos'}}</p>
+                                                </div>
+
+                                                <div class=" d-block justify-content-start">
+
+                                                    <div class="d-flex justify-content-start mb-3">
+                                                        <div class="justify-content-start">
+                                                            <h5 class="text-edit-title">SAÚDE DA CRIANÇA</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-between">
+
+                                                        <div class="d-block justify-content-start">
+                                                            <p class="titulo-edit">Problema Saude?</p>
+                                                            <p class="ml-0">R: {{getCrianca.problemaSaude ? 'Sim' :
+                                                                'Não'}}</p>
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-start"
+                                                            *ngIf="getCrianca.tipoProblemaSaude != null">
+                                                            <p class="titulo-edit">Tipo de Problema de Saude:</p>
+                                                            <p class="ml-2">{{getCrianca.tipoProblemaSaude}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <div class="d-block justify-content-start">
+                                                            <p class="titulo-edit">Alguma Alergia?</p>
+                                                            <p>R: {{getCrianca.algumaAlergia ? 'Sim' : 'Não'}}</p>
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-start"
+                                                            *ngIf="getCrianca.tipoAlergia != null">
+                                                            <p class="titulo-edit">Tipo de alergia:</p>
+                                                            <p>{{getCrianca.tipoAlergia}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <div class="d-block justify-content-start">
+                                                            <p class="titulo-edit">Faz uso de médicamentos?</p>
+                                                            <p>R: {{getCrianca.usoMedicamento ? 'Sim' : 'Não'}}</p>
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-start"
+                                                            *ngIf="getCrianca.qualMedicamento != null">
+                                                            <p class="titulo-edit">Quais médicamentos:</p>
+                                                            <p class="ml-2">{{getCrianca.qualMedicamento}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <div class="d-block justify-content-start">
+                                                            <p class="titulo-edit">Tem necessidades especiais?</p>
+                                                            <p>R: {{getCrianca.necessidadesEspeciais ? 'Sim' : 'Não'}}
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-start"
+                                                            *ngIf="getCrianca.tipoNecessidadesEspeciais != null">
+                                                            <p class="titulo-edit">Quais necessidades especiais:</p>
+                                                            <p class="ml-2">{{getCrianca.tipoNecessidadesEspeciais}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class=" d-block justify-content-start">
+
+                                                    <div class="d-flex justify-content-start mb-3">
+                                                        <div class="justify-content-start">
+                                                            <h5 class="text-edit-title">OUTRAS INFORMAÇÕES</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-start"
+                                                        *ngIf="getCrianca.obsDiaCrianca != null">
+                                                        <p class="titulo-edit">Observações da Criança:</p>
+                                                        <p class="ml-2">{{getCrianca.obsDiaCrianca}}</p>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-start">
+                                                        <p class="titulo-edit">Termo de aceite:</p>
+                                                        <p class="ml-2">{{getCrianca.termoAceite ? 'Aceito' : 'Não'}}
+                                                        </p>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class=" d-block justify-content-start">
+
+                                                    <div class="d-flex justify-content-start mb-3">
+                                                        <div class="justify-content-start">
+                                                            <h5 class="text-edit-title">RESPONSÁVEL</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-start">
+                                                        <p class="titulo-edit">Responsável:</p>
+                                                        <p class="ml-2">{{getCrianca.responsavel.nome}}</p>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-start">
+                                                        <p class="titulo-edit">Contato:</p>
+                                                        <p class="ml-2">{{getCrianca.responsavel.celular}}</p>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- <div class="modal-footer d-block justify-content-between">
+
+                                            <div class="d-flex justify-content-start mb-3">
+                                                <div class="justify-content-start">
+                                                    <h5 class="text-edit-title">PACOTE</h5>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex justify-content-start">
+                                                <p class="titulo-edit">Tipo de Pacote:</p>
+                                                <p class="ml-2">{{getCrianca.pacote.tipoPacote}}</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-start">
+                                                <p class="titulo-edit">Período:</p>
+                                                <p class="ml-2">{{getCrianca.pacote.periodo}}</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-start">
+                                                <p class="titulo-edit">Valor:</p>
+                                                <p class="ml-2">{{getCrianca.pacote.valorPacote |
+                                                    currency:'BRL':'symbol':'1.2-2'}}</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-start">
+                                                <p class="titulo-edit">Quantidade de Dias:</p>
+                                                <p class="ml-2">{{getCrianca.pacote.qtdDias}}</p>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+
                         </tr>
                     </tbody>
                 </table>
-            </div>            
-        </div>    
-      </div>
-      
-      <div class="container-btn">
-  
-        <div class="bt-duplo-small">
-          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-            VOLTAR
-          </button>
-        </div>
-  
-      </div>
-  
+            </section>
+            <div class="container-btn">
+                <div class="bt-duplo-small">
+                    <button type="submit" class="btn botao_return" routerLink="/inicio">
+                        VOLTAR
+                    </button>
+                </div>
+            </div>
+        </main>
     </div>
-  
-  </div>
+</div>

@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class VisuEditReforcoComponent implements OnInit {
 
+  getReforco: Reforco = new Reforco;
   
   listReforco!: Reforco[];
 
@@ -75,8 +76,20 @@ export class VisuEditReforcoComponent implements OnInit {
 
   getId(id: number) {
     this.idReforco = id;
+
+    this.findByIdReforco(this.idReforco);  
   }
   
+  findByIdReforco(id: number) {
+
+    this.reforcoService
+    .getIdReforco(id)
+    .subscribe((resp: Reforco) => {
+
+      this.getReforco = resp;
+    });
+  }
+
   deletarReforco() {
 
     this.reforcoService

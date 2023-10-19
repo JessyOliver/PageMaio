@@ -15,9 +15,14 @@ export class VisuEditResponsavelComponent implements OnInit {
 
   listResponsavel!: Responsavel[];
 
+  getResponsavel: Responsavel = new Responsavel;
+
   responsavelNome!: string;
 
   idResponsavel!: number;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
 
   constructor(
     private router: Router,
@@ -36,6 +41,10 @@ export class VisuEditResponsavelComponent implements OnInit {
     //forçando altenticação
     this.auth.refreshToken();
 
+    if (this.listResponsavel && this.listResponsavel.length > 0) {
+      this.selectedUserId = this.listResponsavel[0].id;
+    }
+
     // exibindo o responsável
     this.findAllResponsavel();
     this.findByNomeResponsavel();
@@ -43,7 +52,22 @@ export class VisuEditResponsavelComponent implements OnInit {
   }
 
   getId(id: number) {
+    
     this.idResponsavel = id;
+    this.nextButtonId++;
+    this.findByIdResponsavel(this.idResponsavel); 
+
+  }
+
+  findByIdResponsavel(id: number) {
+
+    this.responsavelService
+    .getById(id)
+    .subscribe((resp: Responsavel) => {
+      
+      this.getResponsavel = resp;
+    });
+    
   }
 
   findAllResponsavel() {

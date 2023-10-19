@@ -45,10 +45,12 @@ export class CadUserComponent implements OnInit{
 
       this.listUser = resp;
 
+      console.log("Lista de ", this.listUser)
+
       if (this.listUser.length) {
 
-        if (environment.token == '') {
-          this.router.navigate(['/login']);
+        if (environment.token) {
+          this.router.navigate(['/cadusuario']);
         }
 
         //forçando altenticação
@@ -62,7 +64,7 @@ export class CadUserComponent implements OnInit{
 
      }
 
-     this.cadastrar();
+    // this.cadastrar();
 
     });
 
@@ -70,7 +72,7 @@ export class CadUserComponent implements OnInit{
 
       this.listProp = respProp;
 
-             if (this.listProp.length ) {
+             if (this.listProp.length) {
 
                 if (environment.token == '') {
                   this.router.navigate(['/cadproprietario']);
@@ -171,80 +173,83 @@ export class CadUserComponent implements OnInit{
       //   this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
       // }); 
 
-        btnprop.addEventListener('click', () =>{
+      btnprop.addEventListener('click', () =>{
 
-          this.cadUser.tipo = this.typeUser;
+        this.cadUser.tipo = this.typeUser;
 
-          if (this.cadUser.senha != this.confirmeSenha) {
+        if (this.cadUser.senha != this.confirmeSenha) {
 
-            this.alerts.showAlertDanger("As senhas estão diferentes.");
+          this.alerts.showAlertDanger("As senhas estão diferentes.");
 
-          }
-          else {
+        }
+        else {
 
-            this.auth.addUser(this.cadUser).subscribe((resp: User) =>{
+          this.auth.addUser(this.cadUser).subscribe((resp: User) =>{
 
-              this.cadUser = resp;
-              this.router.navigate(["/cadproprietario"]);
-              this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
-            },
-            error => {
-              if (error.status === 400) {
-                this.alerts.showAlertDanger("Valor incerido inválido.");
-              }
-              if (error.status === 401) {
-                
-                this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
-                this.router.navigate(['/login']);
-              }
-              else if (error.status === 500) {
+            this.cadUser = resp;
+            
+            this.router.navigate(["/cadproprietario"]);
+           // this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
+          },
+          error => {
+            if (error.status === 400) {
+              this.alerts.showAlertDanger("Valor incerido inválido.");
+            }
+            if (error.status === 401) {
+              
+              this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+              this.router.navigate(['/login']);
+            }
+            else if (error.status === 500) {
+    
+              this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
       
-                this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
-        
-              }
-            });
-          }
+            }
+          });
+        }
 
-        });
+      });
 
-        btnresp.addEventListener('click', () =>{
+      btnresp.addEventListener('click', () =>{
 
-          this.cadUser.tipo = this.typeUser;
+        this.cadUser.tipo = this.typeUser;
 
-          if (this.cadUser.senha != this.confirmeSenha) {
+        if (this.cadUser.senha != this.confirmeSenha) {
 
-            this.alerts.showAlertDanger("As senhas estão diferentes.");
+          this.alerts.showAlertDanger("As senhas estão diferentes.");
 
-          }
-          else {
+        }
+        else {
 
-            this.auth
-            .addUser(this.cadUser)
-            .subscribe((resp: User) =>{
+          this.auth
+          .addUser(this.cadUser)
+          .subscribe((resp: User) =>{
 
-              this.cadUser = resp;
-              this.router.navigate(["/cadresponsavel"]);
-              this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
-            },
-            error => {
-              if (error.status === 400) {
-                this.alerts.showAlertDanger("Valor incerido inválido.");
-              }
-              if (error.status === 401) {
-                
-                this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
-                this.router.navigate(['/login']);
-              }
-              else if (error.status === 500) {
+            this.cadUser = resp;
+            this.router.navigate(["/cadresponsavel"]);
+           // this.alerts.showAlertSucess("Cadastro realizado com sucesso!");
+          },
+          error => {
+            if (error.status === 400) {
+              this.alerts.showAlertDanger("Valor incerido inválido.");
+            }
+            if (error.status === 401) {
+              
+              this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+              this.router.navigate(['/login']);
+            }
+            else if (error.status === 500) {
+    
+              this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
       
-                this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
-        
-              }
-            });
-          }
-        });
+            }
+          });
+        }
+      });
 
   }
+
+  
 
 
 

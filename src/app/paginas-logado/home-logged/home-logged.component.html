@@ -160,6 +160,28 @@
                                                 " height="130" width="135" alt="" src="../../../assets/img/calendar.png">
                                         </div>
                                       </a>
+                                      <a *ngIf='authService.adm()' routerLink="/visueditpagamento" class="functions__item" style="--function-color:#8a77e0;">
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">Visualizar Pagamento de Pacotes</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                            <img style="
+                                                filter: invert(100%);
+                                                " height="130" width="130" alt="" src="../../../assets/img/forma-de-pagamento.png">
+                                        </div>
+                                      </a>
+                                      <a *ngIf='authService.adm()' routerLink="/visupagamento" class="functions__item" style="--function-color:#8a77e0;">
+                                        <span class="home_logado-s functions__item-duration"></span>
+                                        <div class="functions__item-wrap">
+                                            <h3 class="functions__item-title">Visualizar Status de Pagamentos</h3> 
+                                        </div>
+                                        <div class="functions__item-image">
+                                            <img style="
+                                                filter: invert(100%);
+                                                " height="130" width="130" alt="" src="../../../assets/img/conta.png">
+                                        </div>
+                                      </a>
 
                                       <!-- SOMENTE DO RESPONSÁVEL -->
                                       
@@ -192,8 +214,8 @@
                                                 <i class="fas fa-users icon_edit_users"></i>
                                            </div>
                                         </a>
-                                                                                                               
-                                                                                                                
+                                              
+                                                                                                      
                                        
                                     </div>
                                 </section>

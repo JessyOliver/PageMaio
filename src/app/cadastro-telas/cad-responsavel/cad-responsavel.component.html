@@ -193,7 +193,9 @@
                         <div class="d-flex justify-content-between">
                           <div class="input-box m-0">
                             <div class="form-group campo">
-                                <input [(ngModel)]="cadResponsavel.cep" class="form-control" type="text" formControlName="cep" id="cep" required (change)="buscarEndereco()" />
+                                <input [(ngModel)]="cadResponsavel.cep" class="form-control" type="text" 
+                                (keypress)="onKeyPress($event)" maxlength="8" minlength="8"
+                                 formControlName="cep" id="cep" required (change)="buscarEndereco()" />
                                 <label class="label-edit" for="cep">CEP*</label>
                             </div>
 
@@ -204,8 +206,11 @@
                                   Preenchimento obrigatório!
                                 </span>
                               </div> -->
-                              <div class="balao cax-position w-75" *ngIf="formulario.get('cep')?.errors?.['cepInvalido'] &&
-                                                                          formulario.get('cep')?.touched">
+                              <div class="balao cax-position w-75" *ngIf="(formulario.get('cep')?.errors?.['required'] ||
+                                                                           formulario.get('cep')?.errors?.['maxlength'] ||
+                                                                           formulario.get('cep')?.errors?.['minlength'] ||
+                                                                           formulario.get('cep')?.errors?.['pattern']) &&
+                                                                           formulario.get('cep')?.touched">
                                 <span class="m-lg-2">
                                   Preenchimento obrigatório, CEP Inválido!
                                 </span>

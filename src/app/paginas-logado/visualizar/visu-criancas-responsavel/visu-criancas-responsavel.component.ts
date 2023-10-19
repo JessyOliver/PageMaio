@@ -44,7 +44,7 @@ export class VisuCriancasResponsavelComponent implements OnInit{
     .getCrianca(id)
     .subscribe((resp: Responsavel[]) => {
 
-      this.listResponsavelCrianca = resp;
+      //this.listResponsavelCrianca = resp;
     });
 
   }

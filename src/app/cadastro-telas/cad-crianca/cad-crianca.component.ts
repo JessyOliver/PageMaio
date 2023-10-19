@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Crianca } from 'src/app/model/Crianca';
 import { Pacote } from 'src/app/model/Pacote';
+import { PagamentoPacote } from 'src/app/model/PagamentoPacote';
 import { Proprietario } from 'src/app/model/Proprietario';
 import { Responsavel } from 'src/app/model/Responsavel';
 import { AlertsService } from 'src/app/service/alerts.service';
@@ -23,7 +24,6 @@ export class CadCriancaComponent implements OnInit{
   formulario!: FormGroup;
 
   cadCrianca: Crianca = new Crianca();
-
   gen!: string;
   opSaudT!: boolean;
   opSaudAOP!: boolean;
@@ -45,6 +45,8 @@ export class CadCriancaComponent implements OnInit{
   pacote: Pacote = new Pacote;
   pacoteFK: Pacote = new Pacote;
   idPacotePg!: number;
+
+  cadPagamentoPacote: PagamentoPacote = new PagamentoPacote();
 
   //inputTipoProblemaSaude = <HTMLInputElement>document.querySelector("#tipoProblemaSaude");
 
@@ -173,7 +175,7 @@ export class CadCriancaComponent implements OnInit{
     this.cadCrianca.responsavel = this.responsavelFk;
 
     this.pacoteFK.id = this.idPacotePg;
-    this.cadCrianca.pacote = this.pacoteFK;
+    this.cadPagamentoPacote.pacote = this.pacoteFK;
 
     //itens tratados
     this.cadCrianca.genero = this.gen;
@@ -191,7 +193,6 @@ export class CadCriancaComponent implements OnInit{
       this.cadCrianca = resp;
       this.alerts.showAlertSucess("Criança cadastrada com sucesso!");
       this.router.navigate(["/inicio"]);
-      
     }, 
     error => {
 
@@ -207,7 +208,8 @@ export class CadCriancaComponent implements OnInit{
         }
 
     });
-   
+
   }
+  
 
 }

@@ -15,9 +15,14 @@ export class VisualizarProprietarioComponent implements OnInit {
 
   listProprietario!: Proprietario[];
 
+  getProprietario: Proprietario = new Proprietario;
+
   nomeProprietario!: string;
   idProprietario!: number;
 
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
+  
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -31,6 +36,10 @@ export class VisualizarProprietarioComponent implements OnInit {
 
     if (environment.token == '') {
       this.router.navigate(['/login']);
+    }
+
+    if (this.listProprietario && this.listProprietario.length > 0) {
+      this.selectedUserId = this.listProprietario[0].id;
     }
 
     //forçando altenticação
@@ -76,6 +85,30 @@ export class VisualizarProprietarioComponent implements OnInit {
 
   getId(id: number) {
     this.idProprietario = id;
+
+    this.nextButtonId++;
+
+    this.findByIdProprietario(this.idProprietario);  
+    this.modalId(this.idProprietario)
+  }
+
+
+  modalId(id: number) {
+
+    document.getElementById('my-button')?.addEventListener('click', () => {
+      this.getId(id);
+    });
+  }
+
+  findByIdProprietario(id: number) {
+
+    this.proprietarioService
+    .getByIdProprietario(id)
+    .subscribe((resp: Proprietario) => {
+
+      this.getProprietario = resp;
+    });
+
   }
     
   deletarPacote() {

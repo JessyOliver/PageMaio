@@ -1,108 +1,133 @@
-<div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+<div class="home_logado">
 
-        <div class="d-flex justify-content-center">
+    <div class="whare">
 
-            <div class="form-group buscar-edit">
-                <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar reforço..."
-                    [(ngModel)]='reforcoNome' (keyup)='findByMateria()'>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center m-0 p-0">
-            <div class="title_camp_top">
-                <hr>
-                <div class="title-icon-ali">
-                    <h2 class="text_edit_title_top">AULAS DE REFORÇO</h2>
-                    <i class="fa-solid fa-book-open-reader icon_edit_top"></i>
+        <main class="table">
+            <section class="table__header">
+                <h1 class="text-title">AULAS DE REFORÇO</h1>
+                <div class="input-group">
+                    <input type="search" class="search-style" placeholder="🔍 buscar reforço..." id="titulo"
+                        [(ngModel)]='reforcoNome' (keyup)='findByMateria()'>
                 </div>
-                <hr>
-            </div>
-        </div>
+            </section>
+            <section>
 
-        <div class="d-flex justify-content-center m-2 p-0" *ngIf="listReforco == null">
-            <div class="title-camp">
-                <div class="title-icon-ali">
-                    <h5 class="text-edit-title-not">Não há aulas de reforço, cadastradas no momento.</h5>
-                    <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                <div class="d-flex justify-content-center m-2 p-0" *ngIf="listReforco == null">
+                    <div class="title-camp">
+                        <div class="title-icon-ali">
+                            <h5 class="text-edit-title-not">Não há aulas de reforço, cadastrados no momento.</h5>
+                            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                        </div>
+                    </div>
                 </div>
-               <!--  <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-                    VOLTAR
-                </button> -->
-            </div>
-        </div>
+            </section>
+            <section class="table__body">
+                <table *ngIf="listReforco != null">
+                    <thead class="edit_thead">
+                        <tr>
+                            <th class=" color_line_title" scope="row"> Matéria <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Período <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Nível <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Detalhes <span
+                                    class="icon-arrow">&UpArrow;</span></th>
+                            <th class=" color_line_title" scope="row"> Editar <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Apagar <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table_line" *ngFor="let itemReforco of listReforco | orderBy: ['periodoCurso']">
 
-        <div class="container-principal">
-            <div class="table-responsive">
+                            <th class="line_btn color_line" scope="row">{{itemReforco.materias}}</th>
+                            <td class="line_btn">{{itemReforco.periodoCurso}}</td>
+                            <td class="line_btn">{{itemReforco.nivelEstudos}}</td>
+                            <!-- [routerLink]="['/detalhereforco', itemReforco.id]" -->
+                            <td class="line_btn"><button type="button" class="btn edit_btn"
+                                (click)="getId(itemReforco.id)"
+                                data-bs-toggle="modal" data-bs-target="#myModal2"><i
+                                        class="fa fa-info icon_btn" aria-hidden="true"></i></button></td>
+                            <td class="line_btn"><button type="button" class="btn edit_btn"
+                                    [routerLink]="['/editreforco', itemReforco.id]"><i
+                                        class="fas fa-edit icon_btn"></i></button></td>
+                            <td class="line_btn"><button type="button" class="btn edit_btn_danger"
+                                    (click)="getId(itemReforco.id)" data-bs-toggle="modal"
+                                    data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
+                            </td>
 
-                <div class="table_position">
-
-                    <table class="table">
-                        <thead class="edit_thead">
-                            <tr>
-                                <th class="line_btn" scope="col">Matéria</th>
-                                <th class="line_btn" scope="col">Período</th>
-                                <th class="line_btn" scope="col">Nível</th>
-                                <th class="line_btn" scope="col">Detalhes</th>
-                                <th class="line_btn" scope="col">Editar</th>
-                                <th class="line_btn" scope="col">Apagar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table_line" *ngFor="let itemReforco of listReforco | orderBy: ['periodoCurso']">
-
-                                <th class="line_btn color_line" scope="row">{{itemReforco.materias}}</th>
-                                <td class="line_btn">{{itemReforco.periodoCurso}}</td>
-                                <td class="line_btn">{{itemReforco.nivelEstudos}}</td>
-                                <td class="line_btn"><button type="button" class="btn edit_btn"
-                                        [routerLink]="['/detalhereforco', itemReforco.id]"><i
-                                            class="fa fa-info icon_btn" aria-hidden="true"></i></button></td>
-                                <td class="line_btn"><button type="button" class="btn edit_btn"
-                                        [routerLink]="['/editreforco', itemReforco.id]"><i
-                                            class="fas fa-edit icon_btn"></i></button></td>
-                                <td class="line_btn"><button type="button" class="btn edit_btn_danger"
-                                        (click)="getId(itemReforco.id)" data-bs-toggle="modal"
-                                        data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
-                                </td>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog text_modal" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">APAGAR REFORÇO</h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Deseja realmente apagar essa aula de reforço?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default btn-success-update"
-                                                    data-bs-dismiss="modal" routerLink="/visueditreforco">Não</button>
-                                                <button type="button" class="btn btn-primary btn-cancel"
-                                                    data-bs-dismiss="modal" (click)="deletarReforco()">Sim</button>
-                                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel">
+                                <div class="modal-dialog text_modal" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">APAGAR REFORÇO</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Deseja realmente apagar essa aula de reforço?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-success-update"
+                                                data-bs-dismiss="modal" routerLink="/visueditreforco">Não</button>
+                                            <button type="button" class="btn btn-primary btn-cancel"
+                                                data-bs-dismiss="modal" (click)="deletarReforco()">Sim</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                            </tr>
-                        </tbody>
-                    </table>
+              <!-- Modal 2-->
+              <div class="modal fade mt-0" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog text_modal2" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">DETALHES DO REFORÇO</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="title-icon-ali">
+                        <h5 class="text-edit-title">Matéria: {{getReforco.materias}}</h5>
+                      </div>
+                      <div class="container-info w-75">
+
+                        <div class="d-flex justify-content-start">
+                            <p class="titulo-edit">Período Curso:</p>
+                            <p class="ml-2">{{getReforco.periodoCurso}}</p>
+                        </div>
+
+                        <div class="d-flex justify-content-start">
+                            <p class="titulo-edit">Nível de Estudos:</p>
+                            <p class="ml-2">{{getReforco.nivelEstudos}}</p>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- <div class="modal-footer d-flex justify-content-between">
+                      <div class="d-flex justify-content-start">
+                        <p>Crianças:</p>
+                        <p class="ml-2 text_align">{{getReforco}}</p>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="container-btn">
+                <div class="bt-duplo-small">
+                    <button type="submit" class="btn botao_return" routerLink="/inicio">
+                        VOLTAR
+                    </button>
                 </div>
             </div>
-        </div>
-        <div class="container-btn">
-
-            <div class="bt-duplo-small">
-                <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-                    VOLTAR
-                </button>
-            </div>
-
-        </div>
+        </main>
     </div>
-
 </div>
