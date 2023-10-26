@@ -53,4 +53,9 @@ export class PagamentoPacoteService {
     return this.http.get<PagamentoStatusResponse[]>(`${this.baseUrl}/verificar-status`, this.token);
   }
 
+  //GET PACOTE E CRIANÇA
+  getCriancaAndPacoteByPagamentoPacote() {
+    return this.http.get<object[]>(`${this.baseUrl}/crianca-pacote`, this.token);
+  }
+
 }

@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Crianca } from 'src/app/model/Crianca';
 import { Pacote } from 'src/app/model/Pacote';
 import { PagamentoPacote } from 'src/app/model/PagamentoPacote';
+import { Responsavel } from 'src/app/model/Responsavel';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CriancaService } from 'src/app/service/crianca.service';
 import { PacoteService } from 'src/app/service/pacote.service';
 import { PagamentoPacoteService } from 'src/app/service/pagamento-pacote.service';
+import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -23,14 +25,17 @@ export class DetalheCriancaComponent implements OnInit{
   listCrianca!: Crianca[];
   criancaFK: Crianca = new Crianca();
   idCrianca!: number;
-
-  cadPagamentoPacote: PagamentoPacote = new PagamentoPacote();
   
+  listerPacote: Pacote[] = [];
+  pacote: Pacote = new Pacote;
   pacoteFK: Pacote = new Pacote;
   idPacotePg!: number;
- 
-  getPacote: Pacote = new Pacote;
   
+  cadPagamentoPacote: PagamentoPacote = new PagamentoPacote();
+  
+  listResponsavelCrianca!: Crianca[];
+  idResponsavel!: number;
+
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -41,6 +46,7 @@ export class DetalheCriancaComponent implements OnInit{
     private pacoteService: PacoteService,
     private criancaService: CriancaService,
     private alerts: AlertsService,
+    private reponsavelService: ResponsavelService
 
   ){}
 
@@ -58,14 +64,38 @@ export class DetalheCriancaComponent implements OnInit{
     this.formulario = this.formBuilder.group({
 
       criancaNome: ['', [Validators.required]],
-      dataPay: ['', [Validators.required]]
-    
+      dataPay: ['', [Validators.required]],
+      tipoPacote: ['', [Validators.required]],
+
     });
   
-    this.idPacotePg = this.route.snapshot.params['id'];
+    this.idResponsavel = this.route.snapshot.params['id'];
+    this.findByResponsavelCriancas(this.idResponsavel);
     
+    this.findByAllPacote();
     this.findAllCrianca();
 
+  }
+
+  findByResponsavelCriancas(id: number) {
+
+    this.criancaService
+    .getCriancaResponsavelPagamento(id)
+    .subscribe((resp: Crianca[]) => {
+      this.listResponsavelCrianca = resp;
+    });
+
+  }
+  
+  findByAllPacote() {
+
+    this.pacoteService
+    .getAllPacote()
+    .subscribe((resp: Pacote[]) => {
+
+      this.listerPacote = resp;
+
+    });
   }
 
   findAllCrianca() {
@@ -82,38 +112,39 @@ export class DetalheCriancaComponent implements OnInit{
 
   cadastrar() {
 
-      this.criancaFK.id = this.idCrianca;
-      this.cadPagamentoPacote.crianca = this.criancaFK;
+    this.criancaFK.id = this.idCrianca;
+    this.cadPagamentoPacote.crianca = this.criancaFK;
+    
+    this.pacoteFK.id = this.idPacotePg;
+    this.cadPagamentoPacote.pacote = this.pacoteFK;
+    this.cadPagamentoPacote.status = false;
 
-      this.pacoteFK.id = this.idPacotePg;
-      this.cadPagamentoPacote.pacote = this.pacoteFK;
+    this.pagamentoPacService.postPagamentoPacote(this.cadPagamentoPacote)
+    .subscribe((resp: PagamentoPacote) => {
 
-      this.pagamentoPacService.postPagamentoPacote(this.cadPagamentoPacote)
-      .subscribe((resp: PagamentoPacote) => {
+      console.log(resp);
+      this.cadPagamentoPacote = resp;
+      
+      this.alerts.showAlertSucess("Criança cadastrada com sucesso!");
+      this.router.navigate(["/inicio"]);
 
-        console.log(resp);
-        this.cadPagamentoPacote = resp;
+    }, error => {
+
+      if (error.status === 401) {
         
-        this.alerts.showAlertSucess("Data de Pagamento, cadastrada com sucesso!");
-        this.router.navigate(["/visupacote"]);
-
-      }, error => {
-
-        if (error.status === 401) {
-          
-          this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
-          this.router.navigate(['/login']);
-        }
-        else if (error.status === 404) {
+        this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+        this.router.navigate(['/login']);
+      }
+      else if (error.status === 404) {
 
 
-          this.alerts.showAlertDanger("A data de pagamento deve ser do dia de cadastro até o final do mês seguinte.");
-          
-        }
-        else if (error.status === 500) {
-          
-          this.alerts.showAlertDanger("A data de pagamento deve ser do dia de cadastro até o final do mês seguinte.");
-        }
+        this.alerts.showAlertDanger("A data de pagamento deve ser do dia de cadastro até o final do mês seguinte.");
+        
+      }
+      else if (error.status === 500) {
+        
+        this.alerts.showAlertDanger("A data de pagamento deve ser do dia de cadastro até o final do mês seguinte.");
+      }
 
     });
    

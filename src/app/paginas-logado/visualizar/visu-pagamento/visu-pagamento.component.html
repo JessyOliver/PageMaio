@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table_line" *ngFor="let status of statusPagamentos| orderBy: ['nome']">
+                        <tr class="table_line" *ngFor="let status of statusPagamentos| orderBy: ['crianca.nome']">
                               <!-- (click)="capturarIdCrianca(status)"> -->
 
                             <th class="line_btn color_line" scope="row" [style.color]="status.corNomeCrianca">

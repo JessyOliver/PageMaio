@@ -363,34 +363,12 @@
 
                         </div>
 
-                      <div class="d-block justify-content-center mb-5" *ngIf="formulario.get('termoAceite')?.value === 'true'">
-                        <div class="input-box">
-                          <div class="form-group texto-color">
-                            <label for="tipoPacote" class="label-edit-tp">Pacotes:*</label>
-                              <select class="form-control form-select w-75 p-2" formControlName="tipoPacote" id="tipoPacote" [(ngModel)]="idPacotePg" (change)='findByAllPacote()'>
-                                <option disabled selected value="">Selecione o nome do pacote:</option>
-                                <option *ngFor="let pacotes of listerPacote" value="{{pacotes.id}}" >{{pacotes.tipoPacote}} : R$ {{pacotes.valorPacote}}</option>
-                              </select>
-                          </div>
-
-                          <div class="mensagem-input-error">
-                            <div class="balao cax-position w-50" *ngIf="formulario.get('tipoPacote')?.errors?.['required'] &&
-                                formulario.get('tipoPacote')?.touched">
-                              <span class="m-lg-2">
-                                Seleção obrigatória!
-                              </span>
-                            </div>
-                          </div>
-                      </div>
-
-                      </div>
-
+                      
                       <div class="d-flex justify-content-around m-4">
-                        <button type="submit" class="btn botao-cad m-auto" (click)="cadastrar()" [disabled]="!formulario.valid">
-                          CADASTRAR
+                        <button type="submit" class="btn botao-cad m-auto" (click)="cadastrar()" [disabled]="!formulario.valid">                          CADASTRAR
                         </button>
                         <button type="submit" class="btn botao-cancel m-auto" routerLink="/visuresponsavel">
-                          CANCELAR
+                          AVANÇAR
                         </button>
                       </div>
 

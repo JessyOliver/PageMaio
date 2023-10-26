@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs';
 import { Crianca } from 'src/app/model/Crianca';
 import { Pacote } from 'src/app/model/Pacote';
 import { PagamentoPacote } from 'src/app/model/PagamentoPacote';
@@ -24,6 +25,7 @@ export class CadCriancaComponent implements OnInit{
   formulario!: FormGroup;
 
   cadCrianca: Crianca = new Crianca();
+  idCrianca!: number;
   gen!: string;
   opSaudT!: boolean;
   opSaudAOP!: boolean;
@@ -41,13 +43,6 @@ export class CadCriancaComponent implements OnInit{
   responsavelIdPg: Responsavel = new Responsavel();
   idResponsavel!: number;
 
-  listerPacote: Pacote[] = [];
-  pacote: Pacote = new Pacote;
-  pacoteFK: Pacote = new Pacote;
-  idPacotePg!: number;
-
-  cadPagamentoPacote: PagamentoPacote = new PagamentoPacote();
-
   //inputTipoProblemaSaude = <HTMLInputElement>document.querySelector("#tipoProblemaSaude");
 
   constructor(
@@ -61,7 +56,10 @@ export class CadCriancaComponent implements OnInit{
     private alerts: AlertsService,
     private formBuilder: FormBuilder
 
-  ) {}
+  ) {
+
+    this.cadCrianca = new Crianca();
+  }
 
 
   ngOnInit(){
@@ -94,8 +92,6 @@ export class CadCriancaComponent implements OnInit{
       tipoNecessidadesEspeciais: [''],
       
       termoAceite: ['', [Validators.required]],
-
-      tipoPacote: ['', [Validators.required]],
     
     });
   
@@ -103,8 +99,6 @@ export class CadCriancaComponent implements OnInit{
 
     this.idResponsavel = this.route.snapshot.params['id'];
     this.getByIdResponsavel(this.idResponsavel);
-
-    this.findByAllPacote();
 
   }
 
@@ -125,16 +119,6 @@ export class CadCriancaComponent implements OnInit{
 
   }
 
-  findByAllPacote() {
-
-    this.pacoteService
-    .getAllPacote()
-    .subscribe((resp: Pacote[]) => {
-
-      this.listerPacote = resp;
-
-    });
-  }
 
   genero(event: any){
     this.gen = event.target.value;
@@ -174,9 +158,6 @@ export class CadCriancaComponent implements OnInit{
     this.responsavelFk.id = this.idResponsavel;
     this.cadCrianca.responsavel = this.responsavelFk;
 
-    this.pacoteFK.id = this.idPacotePg;
-    this.cadPagamentoPacote.pacote = this.pacoteFK;
-
     //itens tratados
     this.cadCrianca.genero = this.gen;
     /* this.cadCrianca.dtNascimento = this.dataBr; */
@@ -188,11 +169,13 @@ export class CadCriancaComponent implements OnInit{
 
     this.criancaService
     .postCrianca(this.cadCrianca)
-    .subscribe((resp: Crianca) => {
+    .subscribe((crianca: Crianca) => {
 
-      this.cadCrianca = resp;
-      this.alerts.showAlertSucess("Criança cadastrada com sucesso!");
-      this.router.navigate(["/inicio"]);
+      this.cadCrianca = crianca;
+
+      console.log("id:: " + this.idCrianca);
+      // this.alerts.showAlertSucess("Criança cadastrada com sucesso!");
+      this.router.navigate(['/detalhecrianca', this.idResponsavel]);
     }, 
     error => {
 
@@ -201,7 +184,7 @@ export class CadCriancaComponent implements OnInit{
           this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
           this.router.navigate(['/login']);
         }
-        else if (error.status === 500) {
+        else if (error.status === 400) {
 
           this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
   

@@ -4,6 +4,7 @@ import { Proprietario } from "./Proprietario";
 import { Responsavel } from "./Responsavel";
 
 export class Crianca {
+  [x: string]: any;
 
   public id!: number;
 

@@ -29,8 +29,8 @@
               <th class=" color_line_title" scope="row"> Período <span class="icon-arrow">&UpArrow;</span></th>
               <th class=" color_line_title" scope="row"> Quantidade de Dias <span class="icon-arrow">&UpArrow;</span>
               <th class=" color_line_title" scope="row"> Valor <span class="icon-arrow">&UpArrow;</span></th>
-              <th class=" color_line_title" scope="row"> Data de Pagamento <span class="icon-arrow">&UpArrow;</span>
-              </th>
+              <!-- <th class=" color_line_title" scope="row"> Data de Pagamento <span class="icon-arrow">&UpArrow;</span>
+              </th> -->
               <th class=" color_line_title" scope="row"> Detalhes <span class="icon-arrow">&UpArrow;</span></th>
               <th class=" color_line_title" scope="row"> Editar <span class="icon-arrow">&UpArrow;</span></th>
               <!-- <th class=" color_line_title" scope="row"> Apagar <span class="icon-arrow">&UpArrow;</span></th> -->
@@ -43,15 +43,14 @@
               <td class="line_btn">{{itemPacote.periodo}}</td>
               <td class="line_btn">{{itemPacote.qtdDias}}</td>
               <td class="line_btn">{{itemPacote.valorPacote | currency:'BRL':'symbol':'1.2-2'}}</td>
-              <td class="line_btn">
-                <!-- [routerLink]="['/detalhepacote', itemPacote.id]" -->
+              <!-- <td class="line_btn">
                 <div class="d-flex justify-content-start">
                   <button type="button" class="btn edit_btn" [routerLink]="['/detalhecrianca', itemPacote.id]">
                     <i class="fas fa-calendar-alt icon_btn"></i>
                   </button>
                   <p class="ml-3 mt-2">Definir Data</p>
                 </div>
-              </td>
+              </td> -->
               <td class="line_btn">
                 <!-- [routerLink]="['/detalhepacote', itemPacote.id]" -->
                 <button type="button" class="btn edit_btn" (click)="getId(selectedUserId = itemPacote.id)"

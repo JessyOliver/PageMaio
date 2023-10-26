@@ -1,70 +1,69 @@
 <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active " id="pills-todos"
-    role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
-    
-    <div class="d-flex justify-content-center">
-        
-        <div class="form-group buscar-edit">
-            <input type="text" class="form-control input-busca" id="titulo" 
-            placeholder="🔍 buscar criança..." [(ngModel)]='criancaNome' 
-            (keyup)='findByNomeCrianca()'>
+    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
+
+        <div class="d-flex justify-content-center">
+
+            <div class="form-group buscar-edit">
+                <input type="text" class="form-control input-busca" id="titulo" placeholder="🔍 buscar criança..."
+                    [(ngModel)]='criancaNome' (keyup)='findByNomeCrianca()'>
+            </div>
         </div>
-    </div>
 
-    <div class="d-flex justify-content-center m-0 p-0">
-        <div class="title_camp_top">
-          <hr>
-          <div class="title-icon-ali">
-            <h2 class="text_edit_title_top">CRIANÇAS</h2>
-            <i class="fa fa-child icon_edit_top" aria-hidden="true"></i>
-          </div>
-          <hr>
+        <div class="d-flex justify-content-center m-0 p-0">
+            <div class="title_camp_top">
+                <hr>
+                <div class="title-icon-ali">
+                    <h2 class="text_edit_title_top">CRIANÇAS</h2>
+                    <i class="fa fa-child icon_edit_top" aria-hidden="true"></i>
+                </div>
+                <hr>
+            </div>
         </div>
-    </div>
 
-    <div class="d-flex justify-content-center m-2 p-0" *ngIf="listCrianca == null">
-        <div class="title-camp">
-          <div class="title-icon-ali">
-            <h5 class="text-edit-title-not">Não há crianças, cadastradas no momento.</h5>
-            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
-          </div>
-          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
-            VOLTAR
-        </button>
+        <div class="d-flex justify-content-center m-2 p-0" *ngIf="listCrianca == null">
+            <div class="title-camp">
+                <div class="title-icon-ali">
+                    <h5 class="text-edit-title-not">Não há crianças, cadastradas no momento.</h5>
+                    <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                </div>
+                <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+                    VOLTAR
+                </button>
+            </div>
         </div>
-    </div>
-    
-    <div class="container-principal"> 
 
-        <div class="result-banco">
+        <div class="container-principal">
 
-                <div class="form-group container-respo" *ngFor="let itemCrianca of listCrianca | orderBy: ['nome']"> 
-            
+            <div class="result-banco">
+
+                <div class="form-group container-respo"
+                    *ngFor="let item of listPagamentoPacote | orderBy: ['nome']">
+
                     <div class="d-flex justify-content-center m-0 p-0">
                         <div class="title-camp">
-                          <hr>
-                          <div class="title-icon-ali">
-                            <h5 class="text-edit-title">{{itemCrianca.nome}}</h5>
-                            <i class="fa fa-address-card-o icon-edit-camp" aria-hidden="true"></i>
-                          </div>
-                          <hr>
+                            <hr>
+                            <div class="title-icon-ali">
+                                <h5 class="text-edit-title">{{item.nome}}</h5>
+                                <i class="fa fa-address-card-o icon-edit-camp" aria-hidden="true"></i>
+                            </div>
+                            <hr>
                         </div>
                     </div>
 
                     <div class="container-info">
-    
+
                         <div class="d-flex justify-content-between">
-                
+
                             <div class="elemento_info">
                                 <p class="titulo-edit">Data de Nascimento:</p>
-                                <p class="info-edit">{{itemCrianca.dtNascimento | date:'dd/MM/yyyy'}}</p>
+                                <p class="info-edit">{{item.dtNascimento | date:'dd/MM/yyyy'}}</p>
                             </div>
-    
+
                             <div class="elemento_info">
                                 <p class="titulo-edit">Genêro:</p>
-                                <p class="info-edit">{{itemCrianca.genero}}</p>
+                                <p class="info-edit">{{item.genero}}</p>
                             </div>
-                            
+
                         </div>
 
                         <div class="d-block justify-content-between w-100">
@@ -84,48 +83,49 @@
 
                                 <div class="elemento_info">
                                     <p class="titulo-edit">Tipo de Pacote:</p>
-                                    <p class="info-edit">{{itemCrianca.pacote.tipoPacote}}</p>
+                                    <p class="info-edit">{{item.tipoPacote}}</p>
                                 </div>
 
                                 <div class="elemento_info">
                                     <p class="titulo-edit">Período:</p>
-                                    <p class="info-edit">{{itemCrianca.pacote.periodo}}</p>
+                                    <p class="info-edit">{{item.periodo}}</p>
                                 </div>
 
                                 <div class="elemento_info">
                                     <p class="titulo-edit">Valor:</p>
-                                    <p class="info-edit">{{itemCrianca.pacote.valorPacote |
+                                    <p class="info-edit">{{item.valorPacote |
                                         currency:'BRL':'symbol':'1.2-2'}}</p>
                                 </div>
 
                                 <div class="elemento_info">
                                     <p class="titulo-edit">Quantidade de Dias:</p>
-                                    <p class="info-edit">{{itemCrianca.pacote.qtdDias}}</p>
+                                    <p class="info-edit">{{item.qtdDias}}</p>
                                 </div>
                             </div>
 
                         </div>
 
                     </div>
-       
+
                     <div class="d-flex justify-content-center m-0 p-0">
                         <div class="title-camp">
-                          <hr>
-                          <div class="title-icon-ali">
-                            <h5 class="text-edit-title">ADQUIRIR</h5>
-                            <i class="fa fa-plus-square-o icon-edit-camp" aria-hidden="true"></i>
-                          </div>
-                          <hr>
+                            <hr>
+                            <div class="title-icon-ali">
+                                <h5 class="text-edit-title">ADQUIRIR</h5>
+                                <i class="fa fa-plus-square-o icon-edit-camp" aria-hidden="true"></i>
+                            </div>
+                            <hr>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-center">
 
-                        <button type="submit" class="btn botao-cad" [routerLink]="['/cadagenda', itemCrianca.pagamentoPacote.pacote.id]">
+                        <button type="submit" class="btn botao-cad"
+                            [routerLink]="['/cadagenda', item.pacoteId]">
                             AGENDAR
-                        </button>    
-    
-                        <button type="submit" class="btn botao-cad" [routerLink]="['/visureforco', itemCrianca.id]"> 
+                        </button>
+
+                        <button type="submit" class="btn botao-cad" [routerLink]="['/visureforco', item.criancaId]">
                             REFORÇO ESCOLAR
                         </button>
 
@@ -134,12 +134,12 @@
                         </button>
 
                     </div>
-    
+
                 </div>
             </div>
 
-         </div>        
+        </div>
 
     </div>
 
-</div> 
+</div>
