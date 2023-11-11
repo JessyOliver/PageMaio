@@ -58,4 +58,19 @@ export class PagamentoPacoteService {
     return this.http.get<object[]>(`${this.baseUrl}/crianca-pacote`, this.token);
   }
 
+  //GET ALL CRIANCA SEM PACOTE
+  getCriancaIdsWithoutPagamentoPacote() {
+    return this.http.get<number[]>(`${this.baseUrl}/criancas-sem-pagamento`, this.token);
+  }
+ 
+  //GET ALL CRIANCA SEM PACOTE
+  getPacoteIdsWithoutPagamentoPacote() {
+    return this.http.get<number[]>(`${this.baseUrl}/pacotes-sem-pagamento`, this.token);
+  }
+
+  //GET ALL CRIANÇA E PACOTE
+  getAllCriancaAndPacote() {
+    return this.http.get<object[]>(`${this.baseUrl}/all-crianca-pacote`, this.token);
+  }
+
 }

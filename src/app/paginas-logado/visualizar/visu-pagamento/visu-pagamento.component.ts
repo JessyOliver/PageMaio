@@ -18,6 +18,7 @@ export class VisuPagamentoComponent implements OnInit{
   criancaNome!: string;
   responavelNome!: string;
   idCriancaSelecionada!: number;
+  classMensagem!: string;
 
   constructor(   
 
@@ -26,7 +27,6 @@ export class VisuPagamentoComponent implements OnInit{
     public authService: AuthService,
     private criancaService: CriancaService,
     private pagamentoPacService: PagamentoPacoteService,
-
 
   ){}
 
@@ -80,5 +80,16 @@ export class VisuPagamentoComponent implements OnInit{
       this.responavelNome = resp.responsavel.nome;
     });
   }
-
+  
+  obterClasseMensagem(statusPagamento: PagamentoStatusResponse): string {
+    switch (statusPagamento.mensagem) {
+      case 'Pagamento já efetuado':
+      case 'Aguardando pagamento ultimo dia para pagar.':
+      case 'Pagamento em atraso':
+        return 'mensagem-negrito';
+      default:
+        return ''; // ou qualquer outra classe padrão que você queira aplicar
+    }
+  }
+  
 }

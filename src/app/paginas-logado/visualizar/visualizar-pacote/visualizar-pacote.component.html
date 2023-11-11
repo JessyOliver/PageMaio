@@ -24,7 +24,8 @@
       <section class="table__body">
         <table *ngIf="listPacote != null">
           <thead class="edit_thead">
-            <tr>
+            <tr>             
+              <th class=" color_line_title" scope="row"> Criança <span class="icon-arrow">&UpArrow;</span></th>
               <th class=" color_line_title" scope="row"> Tipo Pacote <span class="icon-arrow">&UpArrow;</span></th>
               <th class=" color_line_title" scope="row"> Período <span class="icon-arrow">&UpArrow;</span></th>
               <th class=" color_line_title" scope="row"> Quantidade de Dias <span class="icon-arrow">&UpArrow;</span>
@@ -37,9 +38,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="table_line" *ngFor="let itemPacote of listPacote | orderBy: ['tipoPacote']">
+            <tr class="table_line" *ngFor="let itemPacote of listAllPagamentoPacote | orderBy: ['nome']">
 
-              <th class="line_btn color_line" scope="row">{{itemPacote.tipoPacote.toUpperCase()}}</th>
+              <th class="line_btn color_line" scope="row">{{itemPacote.nome.toUpperCase()}}</th>
+              <th class="line_btn color_line">{{itemPacote.tipoPacote.toUpperCase()}}</th>
               <td class="line_btn">{{itemPacote.periodo}}</td>
               <td class="line_btn">{{itemPacote.qtdDias}}</td>
               <td class="line_btn">{{itemPacote.valorPacote | currency:'BRL':'symbol':'1.2-2'}}</td>
@@ -53,13 +55,13 @@
               </td> -->
               <td class="line_btn">
                 <!-- [routerLink]="['/detalhepacote', itemPacote.id]" -->
-                <button type="button" class="btn edit_btn" (click)="getId(selectedUserId = itemPacote.id)"
+                <button type="button" class="btn edit_btn" (click)="getId(selectedUserId = itemPacote.pacoteId)"
                   [id]="'btn-modal-' + nextButtonId" data-bs-toggle="modal" data-bs-target="#myModal2">
                   <i class="fa fa-info icon_btn" aria-hidden="true"></i>
                 </button>
               </td>
               <td class="line_btn ">
-                <button type="button" class="btn edit_btn" [routerLink]="['/editpacote', itemPacote.id]">
+                <button type="button" class="btn edit_btn" [routerLink]="['/editpacote', itemPacote.pacoteId]">
                   <i class="fas fa-edit icon_btn"></i>[
                 </button>
               </td>

@@ -48,25 +48,12 @@
                         <tr class="table_line"
                             *ngFor="let itemPayPacote of listPayPacote | orderBy: ['dataPagamento']; let i = index">
 
-                            <td class="line_btn  color_line" scope="row">{{itemPayPacote.dataPagamento |
-                                date:'dd/MM/yyyy' }}</td>
-                            <th class="line_btn">
-                                <span *ngIf="itemPayPacote.status; else pagamentoEmAberto" style="color: green">
-                                    Pagamento Efetuado
-                                </span>
-                                <ng-template #pagamentoEmAberto>
-                                    <span *ngIf="!itemPayPacote.status && itemPayPacote.dataPagamento <= dataAtual; else pagamentoEmAtraso"
-                                        style="color: #1a1714">
-                                        Pagamento em Aberto
-                                    </span>
-                                    <ng-template #pagamentoEmAtraso>
-                                        <span *ngIf="!itemPayPacote.status && itemPayPacote.dataPagamento > dataAtual;"
-                                        style="color: #ff3c00">
-                                        Pagamento em Atraso
-                                    </span>
-                                    </ng-template>
-                                </ng-template>
-                            </th>
+                            <td class="line_btn  color_line" scope="row">{{itemPayPacote.dataPagamento | date:'dd/MM/yyyy' }}</td>
+                                
+                            <td class="line_btn negrito" [ngStyle]="{ 'color': getStatusMessage(itemPayPacote).cor }">
+                                {{ getStatusMessage(itemPayPacote).mensagem }}
+                            </td>                            
+                                
                             <td class="line_btn"> {{listCrianca[i].responsavel.nome}}</td>
                             <td class="line_btn"> {{listCrianca[i].nome}} </td>
                             <td class="line_btn">

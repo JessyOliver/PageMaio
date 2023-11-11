@@ -175,7 +175,8 @@ export class CadCriancaComponent implements OnInit{
 
       console.log("id:: " + this.idCrianca);
       // this.alerts.showAlertSucess("Criança cadastrada com sucesso!");
-      this.router.navigate(['/detalhecrianca', this.idResponsavel]);
+      //this.router.navigate(['/detalhecrianca', this.idResponsavel]);
+      this.router.navigate(['/cadpacote']);
     }, 
     error => {
 

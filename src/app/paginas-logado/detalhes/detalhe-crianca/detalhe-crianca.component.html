@@ -37,15 +37,15 @@
                             <div class="input-box">
                                 <div class="form-group texto-color">
                                     <label for="criancaNome" class="label-edit-tp">Crianças:*</label>
-                                    <select class="form-control form-select w-75 p-2" formControlName="criancaNome"
-                                        id="criancaNome" [(ngModel)]="idCrianca" (change)='findAllCrianca()'>
-                                        <option disabled selected value="">Selecione o nome da criança:</option>
-                                        <option *ngFor="let criancas of listResponsavelCrianca" value="{{criancas.id}}">
-                                            Responsável: {{criancas.responsavel.nome}} | Criança: {{criancas.nome}}
+                                    <select class="form-control form-select w-75 p-2" formControlName="criancaNome" id="criancaNome"
+                                    (change)="getIdCrianca($event)">
+                                        <option disabled selected value="">Selecione o ID da criança:</option>
+                                        <option *ngFor="let criancaId of listCrianca" [value]="criancaId">
+                                            Criança ID: {{ criancaId }}
                                         </option>
                                     </select>
                                 </div>
-
+                            
                                 <div class="mensagem-input-error">
                                     <div class="balao cax-position w-50" *ngIf="formulario.get('criancaNome')?.errors?.['required'] &&
                                     formulario.get('criancaNome')?.touched">
@@ -56,6 +56,9 @@
                                 </div>
                             </div>
 
+                        
+                            <p>Nome: {{nomeCrianca}}</p>
+                            <p>Responsável: {{nomeResponsavel}}</p>
                         </div>
 
                         <div class="d-block justify-content-center mb-5">
@@ -63,10 +66,10 @@
                                 <div class="form-group texto-color">
                                     <label for="tipoPacote" class="label-edit-tp">Pacotes:*</label>
                                     <select class="form-control form-select w-75 p-2" formControlName="tipoPacote"
-                                        id="tipoPacote" [(ngModel)]="idPacotePg" (change)='findByAllPacote()'>
-                                        <option disabled selected value="">Selecione o nome do pacote:</option>
-                                        <option *ngFor="let pacotes of listerPacote" value="{{pacotes.id}}">
-                                            {{pacotes.tipoPacote}} : R$ {{pacotes.valorPacote}}</option>
+                                        id="tipoPacote" (change)="getIdPacote($event)">
+                                        <option disabled selected value="">Selecione o tipo do pacote:</option>
+                                        <option *ngFor="let pacoteId of listPacote" value="{{pacoteId}}">
+                                            Pacote ID: {{ pacoteId  }}</option>
                                     </select>
                                 </div>
 
@@ -80,6 +83,7 @@
                                 </div>
                             </div>
 
+                            <p>Tipo Pacote: {{ nomePacote }}</p>
                         </div>
 
                         <div class="d-flex justify-content-around bg-color">

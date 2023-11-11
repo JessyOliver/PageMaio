@@ -103,8 +103,8 @@ const routes: Routes = [
   
   {path: 'pacotecrianca/:id', component: PacoteCriancaComponent},
 
-  {path: 'detalhecrianca/:id', component: DetalheCriancaComponent},
-  {path: 'detalhepacote/:id', component: DetalhePacoteComponent},
+  {path: 'cadpagamento-pacote', component: DetalheCriancaComponent},
+  {path: 'detalhepacote', component: DetalhePacoteComponent},
   {path: 'detalhereforco/:id', component: DetalheReforcoComponent},
   {path: 'detalheresponsavel/:id', component: DetalhesResponsavelComponent},
   {path: 'detalheusuario/:id', component: DetalheUsuarioComponent},

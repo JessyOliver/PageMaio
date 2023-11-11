@@ -96,6 +96,8 @@ export class CadAgendaComponent implements OnInit {
       this.pacotePeriodo = resp.periodo;
       this.createFormArray();
 
+      console.log("QTD dias: " + this.pacotePg.qtdDias)
+
     });
 
   }

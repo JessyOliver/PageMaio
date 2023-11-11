@@ -45,7 +45,7 @@
                                 {{status.crianca.nome}}</th>
                                 <th class="line_btn">{{responavelNome}}</th>
                                 <th class="line_btn">{{status.dtPagamento | date:'dd/MM/yyyy'}}</th>
-                            <td class="line_btn" [style.background]="status.corNomeCrianca">{{status.mensagem}}</td>
+                            <td class="line_btn" [ngClass]="obterClasseMensagem(status)" [style.background]="status.corNomeCrianca">{{status.mensagem}}</td>
                                                      
                         </tr>
                     </tbody>

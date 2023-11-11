@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Crianca } from 'src/app/model/Crianca';
 import { Pacote } from 'src/app/model/Pacote';
 import { PagamentoPacote } from 'src/app/model/PagamentoPacote';
-import { Responsavel } from 'src/app/model/Responsavel';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CriancaService } from 'src/app/service/crianca.service';
 import { PacoteService } from 'src/app/service/pacote.service';
 import { PagamentoPacoteService } from 'src/app/service/pagamento-pacote.service';
-import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -22,31 +20,29 @@ export class DetalheCriancaComponent implements OnInit{
 
   formulario!: FormGroup;
 
-  listCrianca!: Crianca[];
+  listCrianca!: number[];
+  listPacote!: number[];
   criancaFK: Crianca = new Crianca();
   idCrianca!: number;
+  nomeCrianca!: string;
+  nomeResponsavel!: string;
   
-  listerPacote: Pacote[] = [];
   pacote: Pacote = new Pacote;
   pacoteFK: Pacote = new Pacote;
-  idPacotePg!: number;
+  idPacote!: number;
+  nomePacote!: string;
   
   cadPagamentoPacote: PagamentoPacote = new PagamentoPacote();
-  
-  listResponsavelCrianca!: Crianca[];
-  idResponsavel!: number;
 
   constructor(
     private router: Router,
     private auth: AuthService,
     public authService: AuthService,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private pagamentoPacService: PagamentoPacoteService,
     private pacoteService: PacoteService,
     private criancaService: CriancaService,
     private alerts: AlertsService,
-    private reponsavelService: ResponsavelService
 
   ){}
 
@@ -69,44 +65,62 @@ export class DetalheCriancaComponent implements OnInit{
 
     });
   
-    this.idResponsavel = this.route.snapshot.params['id'];
-    this.findByResponsavelCriancas(this.idResponsavel);
-    
-    this.findByAllPacote();
-    this.findAllCrianca();
+    this.findAllCriancaSemPagPAcote();
+    this.findAllPacoteSemPagPAcote();
 
   }
 
-  findByResponsavelCriancas(id: number) {
+  findAllCriancaSemPagPAcote() {
 
-    this.criancaService
-    .getCriancaResponsavelPagamento(id)
-    .subscribe((resp: Crianca[]) => {
-      this.listResponsavelCrianca = resp;
-    });
+    this.pagamentoPacService
+      .getCriancaIdsWithoutPagamentoPacote()
+      .subscribe((resp: number[]) => {
 
+        this.listCrianca = resp;
+
+      });
   }
+
   
-  findByAllPacote() {
+  getIdCrianca(event: any){
 
-    this.pacoteService
-    .getAllPacote()
-    .subscribe((resp: Pacote[]) => {
+    this.idCrianca = event.target.value;
+    console.log("ID Criança: " + this.idCrianca);
+    this.criancaService
+    .getIdCrianca(this.idCrianca)
+    .subscribe((respId: Crianca) => {
 
-      this.listerPacote = resp;
-
+      this.nomeCrianca = respId.nome;
+      this.nomeResponsavel = respId.responsavel.nome;
     });
+
+    //this.idCrianca = id;
   }
 
-  findAllCrianca() {
+  findAllPacoteSemPagPAcote() {
 
-    this.criancaService
-    .getListSemPagamento()
-    .subscribe((resp: Crianca[]) => {
+    this.pagamentoPacService
+      .getPacoteIdsWithoutPagamentoPacote()
+      .subscribe((resp: number[]) => {
+
+        this.listPacote = resp;
       
-      this.listCrianca = resp;      
+      });
+  }
+
+  getIdPacote(event: any){
+
+    this.idPacote = event.target.value;
+    console.log("ID Pacote: " + this.idPacote);
+    this.pacoteService
+    .getIdPacote(this.idPacote)
+    .subscribe((respId: Pacote) => {
+
+      this.nomePacote = respId.tipoPacote;
 
     });
+
+   // this.idPacotePg = id;
 
   }
 
@@ -115,7 +129,7 @@ export class DetalheCriancaComponent implements OnInit{
     this.criancaFK.id = this.idCrianca;
     this.cadPagamentoPacote.crianca = this.criancaFK;
     
-    this.pacoteFK.id = this.idPacotePg;
+    this.pacoteFK.id = this.idPacote;
     this.cadPagamentoPacote.pacote = this.pacoteFK;
     this.cadPagamentoPacote.status = false;
 

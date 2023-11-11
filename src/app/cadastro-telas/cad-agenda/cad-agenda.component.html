@@ -19,6 +19,15 @@
                 </div>
               </div>
 
+              <div class="d-flex justify-content-center m-2 p-0" *ngIf="pacotePg.qtdDias == 0">
+                <div class="title-camp">
+                  <div class="title-icon-ali">
+                    <h5 class="text-edit-title-not">Não há dias liberados para agendamento.</h5>
+                    <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+
               <form class="margin-dentro" [formGroup]="formulario" (ngSubmit)="cadAgendamento()">
 
                 <div formArrayName="agendar">
@@ -115,7 +124,7 @@
 
                 </div>
                 <div class="d-flex justify-content-around m-2">
-                  <button type="submit" class="btn botao-cad m-auto" >
+                  <button type="submit" class="btn botao-cad m-auto" [disabled]="pacotePg.qtdDias == 0">
                     <!-- (click)="cadAgendamento()"  -->
                     CADASTRAR
                   </button>

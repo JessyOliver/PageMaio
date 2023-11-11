@@ -30,8 +30,13 @@ export class VisuEditPagamentoComponent implements OnInit{
   dataRe!: string;
   dataAtual!: string;
   idCrianca!: number;
+  dataAtualControllerPG!: string;
 
   formatoBrasil = 'dd/MM/yyyy'; // Formato brasileiro (você pode ajustar conforme necessário)
+  formatoEUA = 'yyyy/MM/dd'; // Formato brasileiro (você pode ajustar conforme necessário)
+
+  dataPagamento!: Date;
+
 
   constructor(
     private router: Router,
@@ -40,7 +45,8 @@ export class VisuEditPagamentoComponent implements OnInit{
     private pagamentoPacService: PagamentoPacoteService,
     private criancaService: CriancaService,
     private alerts: AlertsService,
-  ){}
+    
+  ){ }
 
   ngOnInit() {
 
@@ -54,8 +60,10 @@ export class VisuEditPagamentoComponent implements OnInit{
     this.auth.refreshToken();   
 
     this.dataAtual = format(new Date(), this.formatoBrasil); // Formate a data atual no formato desejado
+    this.dataAtualControllerPG = format(new Date(), this.formatoEUA); // Formate a data atual no formato desejado
 
     console.log("Data: " + this.dataAtual)
+    console.log("Data EUA: " + this.dataAtualControllerPG)
     this.findAllPayPacote();
     this.findAllCrianca();
 
@@ -67,12 +75,12 @@ export class VisuEditPagamentoComponent implements OnInit{
     .getListAllPagamentoPacote()
     .subscribe((resp: Crianca[]) => {
       
-      this.listCrianca = resp;      
+      this.listCrianca = resp;    
 
     });
 
   }
-
+  
   findAllPayPacote(){
     
     if (this.listPayPacote && this.listPayPacote.length > 0) {
@@ -88,6 +96,24 @@ export class VisuEditPagamentoComponent implements OnInit{
     
   }
 
+  getStatusMessage(pagamento: PagamentoPacote): { mensagem: string, cor: string } {
+    const dataAtual = new Date();
+    const dataPagamento = new Date(pagamento.dataPagamento);
+  
+    if (pagamento.status) {
+      return { mensagem: 'Pagamento Realizado', cor: '#395b01' };
+    } else if (dataPagamento > dataAtual) {
+      return { mensagem: 'Aguardando Pagamento', cor: '#2D2182' };
+    } else if (dataPagamento.toDateString() === dataAtual.toDateString()) {
+      return { mensagem: 'Aguardando pagamento último dia para pagar.', cor: '#f7a239' };
+    } else if (dataPagamento < dataAtual) {
+      return { mensagem: 'Pagamento em atraso.', cor: '#fc5252' };
+    }
+  
+    // Default return statement
+    return { mensagem: 'Status não reconhecido', cor: '#2D2182' };
+  }
+
   getId(id: number) {
 
     this.nextButtonId++;
@@ -101,6 +127,7 @@ export class VisuEditPagamentoComponent implements OnInit{
     .subscribe((resp: PagamentoPacote) => {
 
       this.editPayPacote = resp;
+
     });
     
   }
@@ -108,7 +135,6 @@ export class VisuEditPagamentoComponent implements OnInit{
   statusPay(event: any){
     this.statusPaymente = event.target.value;
   }
-
 
   updatePayPacote() {
 
@@ -133,7 +159,7 @@ export class VisuEditPagamentoComponent implements OnInit{
       this.editPayPacote = resp;
 
       this.alerts.showAlertSucess("Alteração realizada com sucesso!");
-      this.router.navigate(["/visueditpagamento"]);
+      this.router.navigate(["/inicio"]);
 
     }, error => {
 
