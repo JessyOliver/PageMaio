@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Mensagem } from 'src/app/model/Mensagem';
+import { PagamentoStatusResponse } from 'src/app/model/PagamentoStatusResponse';
 import { Proprietario } from 'src/app/model/Proprietario';
 import { Responsavel } from 'src/app/model/Responsavel';
 import { User } from 'src/app/model/User';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { MensagensService } from 'src/app/service/mensagens.service';
+import { PagamentoPacoteService } from 'src/app/service/pagamento-pacote.service';
 import { ProprietarioService } from 'src/app/service/proprietario.service';
 import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { environment } from 'src/environments/environment.prod';
@@ -35,7 +37,6 @@ export class HomeLoggedComponent implements OnInit{
 
   cadMensagems: Mensagem = new Mensagem();
 
-
   constructor(   
 
     private mensagemService: MensagensService,
@@ -46,7 +47,10 @@ export class HomeLoggedComponent implements OnInit{
     private alerts: AlertsService,
     private formBuilder: FormBuilder,
     private auth: AuthService,
-    public authService: AuthService
+    public authService: AuthService,
+
+    private pagamentoPacService: PagamentoPacoteService,
+
 
   ){}
 
@@ -73,6 +77,7 @@ export class HomeLoggedComponent implements OnInit{
 
   }
 
+  
   //get all user Response<User[]>
   findByAllProprietario() {
 

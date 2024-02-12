@@ -1,9 +1,10 @@
 import { Cursa } from "./Cursa";
-import { Pacote } from "./Pacote";
+import { PagamentoPacote } from "./PagamentoPacote";
 import { Proprietario } from "./Proprietario";
 import { Responsavel } from "./Responsavel";
 
 export class Crianca {
+  [x: string]: any;
 
   public id!: number;
 
@@ -12,6 +13,8 @@ export class Crianca {
   public dtNascimento!: Date;
 
   public genero!: string;
+
+  public numeroPlanSaude!: string;
 
   public problemaSaude!: boolean;
 
@@ -38,7 +41,7 @@ export class Crianca {
 
   public responsavel!: Responsavel;
 
-  public pacote!: Pacote;
+  public pagamentoPacote!: PagamentoPacote[];
 
   public cursa!: Cursa[];
 

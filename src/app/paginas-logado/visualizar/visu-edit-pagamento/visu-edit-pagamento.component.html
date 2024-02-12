@@ -1,0 +1,231 @@
+<div class="home_logado">
+
+    <div class="whare">
+
+        <main class="table">
+            <section class="table__header">
+                <h1 class="text-title">PAGAMENTO DE PACOTES</h1>
+                <!-- <div class="input-group">
+                    <input type="search" class="search-style" placeholder="🔍 buscar criança..." id="titulo"
+                        [(ngModel)]='criancaNome' (keyup)='findByNomeCrianca()'>
+                </div> -->
+            </section>
+            <section>
+
+                <div class="d-flex justify-content-center m-2 p-0" *ngIf="listPayPacote == null">
+                    <div class="title-camp">
+                        <div class="title-icon-ali">
+                            <h5 class="text-edit-title-not">Não há pagamentos de pacotes, cadastrados no momento.</h5>
+                            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="table__body">
+                <table *ngIf="listPayPacote != null">
+                    <thead class="edit_thead">
+                        <tr>
+                            <th class=" color_line_title" scope="row"> Data de Pagamento <span
+                                    class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Status <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Responsável <span
+                                    class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Criança <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Detalhes <span
+                                    class="icon-arrow">&UpArrow;</span></th>
+                            <th class=" color_line_title" scope="row"> Editar <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <!-- <th *ngIf='authService.adm()' class=" color_line_title" scope="row"> Apagar <span
+                                    class="icon-arrow">&UpArrow;</span>
+                            </th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table_line"
+                            *ngFor="let itemPayPacote of listPayPacote | orderBy: ['dataPagamento']; let i = index">
+
+                            <td class="line_btn  color_line" scope="row">{{itemPayPacote.dataPagamento |
+                                date:'dd/MM/yyyy' }}</td>
+
+                            <td class="line_btn negrito" [ngStyle]="{ 'color': getStatusMessage(itemPayPacote).cor }">
+                                {{ getStatusMessage(itemPayPacote).mensagem }}
+                            </td>
+
+                            <td class="line_btn"> {{listCrianca[i].responsavel.nome}}</td>
+                            <td class="line_btn"> {{listCrianca[i].nome}} </td>
+                            <td class="line_btn">
+
+                                <button type="button" class="btn edit_btn"
+                                    (click)="getId(selectedUserId = itemPayPacote.id)"
+                                    [id]="'btn-modal-' + nextButtonId" data-bs-toggle="modal"
+                                    data-bs-target="#myModal2">
+                                    <i class="fas fa-info icon_btn"></i>
+                                </button>
+                            </td>
+                            <td class="line_btn">
+                                <button type="button" class="btn edit_btn"
+                                    (click)="getId(selectedUserId = itemPayPacote.id)"
+                                    [id]="'btn-modal-' + nextButtonId" data-bs-toggle="modal" data-bs-target="#myModal">
+                                    <i class="fas fa-edit icon_btn"></i>
+                                </button>
+                            </td>
+                            <!-- <td *ngIf='authService.adm()' class="line_btn"><button type="button"
+                                    class="btn edit_btn_danger" (click)="getId(itemPayPacote.id)" data-bs-toggle="modal"
+                                    data-bs-target="#myModal">
+                                    <i class="far fa-trash-alt icon_btn"></i></button></td> -->
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel">
+                                <div class="modal-dialog text_modal" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">ALTERAR PAGAMENTO DOS PACOTES</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" *ngIf="selectedUserId !== null">
+                                            <div class="input-box">
+                                                <div class="form-group texto-color">
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <label for="criancaNome" class="label-edit-tp">Criança:</label>
+                                                        <p class="ml-2">{{editPayPacote.crianca.nome}}</p>
+                                                    </div>
+                                                    <!-- <select class="form-control form-select w-75 p-2"
+                                                        formControlName="criancaNome" id="criancaNome"
+                                                        [(ngModel)]="idCrianca" (change)="updateCriancaNome($event)">
+                                                        <option disabled selected value="">Selecione o nome da criança:
+                                                        </option>
+                                                        <option *ngFor="let criancas of listCrianca"
+                                                            value="{{criancas.id}}">
+                                                            Responsável: {{criancas.responsavel.nome}} | Criança:
+                                                            {{criancas.nome}}
+                                                        </option>
+                                                    </select> -->
+
+                                                </div>
+                                            </div>
+
+                                            <div class="input-box">
+                                                <div class="form-group campo">
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <label class="label-color" for="statusPay">Pagamento Status:
+                                                        </label>
+                                                        <p class="ml-2">
+                                                            {{ editPayPacote.status ? "Realizado" : "Aberto"}}
+                                                        </p>
+                                                    </div>
+                                                    <select class="form-control texto-color p-2 w-50" name="statusPay"
+                                                        id="statusPay" (change)="statusPay($event)" required>
+                                                        <option disabled selected value="{{ editPayPacote.status }}">
+                                                            {{ editPayPacote.status ? "Realizado" : "Aberto" }}
+                                                        </option>
+                                                        <option value="true">Realizado</option>
+                                                        <option value="false">Aberto</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-box">
+                                                <div class="form-group campo">
+                                                    <label class="label-color" for="dataNasc">Data de Pagamento</label>
+                                                    <input [(ngModel)]="editPayPacote.dataPagamento"
+                                                        class="form-control texto-color w-75" type="date"
+                                                        name="dataNasc" id="dataNasc" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default btn-success-update"
+                                                    data-bs-dismiss="modal" routerLink="/visueditpagamento">Não</button>
+                                                <button type="button" class="btn btn-primary btn-cancel"
+                                                    data-bs-dismiss="modal" (click)="updatePayPacote()">Sim</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal2 -->
+                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel">
+                                <div class="modal-dialog text_modal" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">DETALHES DO PAGAMENTO DE PACOTES
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" *ngIf="selectedUserId !== null">
+                                            <div class="input-box">
+                                                <div class="form-group texto-color">
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <label for="criancaNome" class="label-edit-tp">Criança:</label>
+                                                        <p class="ml-2">{{editPayPacote.crianca.nome}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-box">
+                                                <div class="form-group texto-color">
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <label for="criancaNome"
+                                                            class="label-edit-tp">Responsável:</label>
+                                                        <p class="ml-2">{{editPayPacote.crianca.responsavel.nome}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-box">
+                                                <div class="form-group campo">
+                                                    <div class="d-flex justify-content-start">
+
+                                                        <label class="label-color" for="statusPay">Pagamento Status:
+                                                        </label>
+                                                        <p class="ml-2">{{ editPayPacote.status ? "Realizado" : "Aberto"
+                                                            }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <div class="input-box">
+                                                    <div class="form-group campo">
+                                                        <div class="d-flex justify-content-start">
+                                                            <label class="label-color" for="dataNasc">Data de Pagamento:
+                                                            </label>
+                                                            <p class="ml-2">{{ editPayPacote.dataPagamento |
+                                                                date:'dd/MM/yyyy' }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="container-btn">
+                <div class="bt-duplo-small">
+                    <button type="submit" class="btn botao_return" routerLink="/inicio">
+                        VOLTAR
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

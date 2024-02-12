@@ -1,22 +1,25 @@
 <div *ngIf='authService.adm()' class="container-cad">
     <div class="content-box">
         <div class="form-box">
-            <div class="d-flex justify-content-center m-0 p-0">
-                <div class="title-camp">
-                    <hr />
-                    <div class="title-icon-ali">
-                        <h2 class="text-edit-title">CADASTRAR REFORÇO</h2>
-                        <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i>
-                    </div>
-                    <hr />
+          <div class="d-flex justify-content-center">
+            <div class="title_camp_top">
+                <hr />
+                <div class="title-icon-ali">
+                    <h2 class="text-edit-title">CADASTRAR REFORÇO</h2>
+                    <i class="fas fa-book-reader icon-edit" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-user-plus icon-edit" aria-hidden="true"></i> -->
                 </div>
+                <hr />
             </div>
+        </div>
+
 
             <div class="caixa-forms-edit">
 
                 <form class="forms-campos-cad" [formGroup]="formulario">
     
-                    <div class="input-box m-0">
+                  <div class="input-box m-0">
+                      <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
                         <div class="form-group">
                           <label class="label-color" for="materias">Matérias *</label>
                           <select class="form-control texto-color p-2" formControlName="materias" id="materias" (change)='materiascad($event)' required>

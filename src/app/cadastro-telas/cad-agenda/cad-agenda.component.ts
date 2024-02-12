@@ -1,8 +1,6 @@
-import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { get } from 'jquery';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Agendamento } from 'src/app/model/Agendamento';
 import { Contem } from 'src/app/model/Contem';
 import { Pacote } from 'src/app/model/Pacote';
@@ -97,6 +95,8 @@ export class CadAgendaComponent implements OnInit {
       this.quantidadeDiasPacote = this.pacotePg.qtdDias;
       this.pacotePeriodo = resp.periodo;
       this.createFormArray();
+
+      console.log("QTD dias: " + this.pacotePg.qtdDias)
 
     });
 

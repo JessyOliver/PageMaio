@@ -1,5 +1,5 @@
 import { Contem } from "./Contem";
-import { Crianca } from "./Crianca";
+import { PagamentoPacote } from "./PagamentoPacote";
 
 export class Pacote {
     [x: string]: any;
@@ -12,7 +12,7 @@ export class Pacote {
     public periodo!: string;
 
     // FK
-    public crianca!: Crianca[];
+    public pagamentoPacote!: PagamentoPacote[];
     
     public contem!: Contem[];
 

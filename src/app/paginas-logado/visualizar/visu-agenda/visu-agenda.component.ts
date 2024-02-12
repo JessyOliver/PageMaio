@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Agendamento } from 'src/app/model/Agendamento';
-import { Crianca } from 'src/app/model/Crianca';
-import { Pacote } from 'src/app/model/Pacote';
 import { AgendamentoService } from 'src/app/service/agendamento.service';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
-import { CriancaService } from 'src/app/service/crianca.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -20,6 +17,11 @@ export class VisuAgendaComponent implements OnInit {
 
   dataAgendamentoget!: string;
   idAgendamento!: number;
+
+  getAgendaDia: Agendamento = new Agendamento;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
 
   constructor(
     private router: Router,
@@ -38,6 +40,10 @@ export class VisuAgendaComponent implements OnInit {
 
     //forçando altenticação
     this.auth.refreshToken();
+
+    if (this.listAgenda && this.listAgenda.length > 0) {
+      this.selectedUserId = this.listAgenda[0].id;
+    }
 
     //validando as ações do função
     this.findByAllAgendamento();
@@ -76,7 +82,22 @@ export class VisuAgendaComponent implements OnInit {
   }
 
   getId(id: number) {
+
     this.idAgendamento = id;
+    this.nextButtonId++;
+    this.findByIdAgendamento(this.idAgendamento );
+  }
+
+  findByIdAgendamento(id: number) {
+
+    this.agendamentoService
+    .getIdAgendamento(id)
+    .subscribe((resp: Agendamento) => {
+
+      this.getAgendaDia = resp;
+
+    });
+
   }
     
   deletarPacote() {

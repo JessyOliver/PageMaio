@@ -82,116 +82,120 @@ export class CadPacoteComponent implements OnInit {
     this.cadPacote.periodo = this.periodo;
 
     this.pacoteService
-    .getTipoPacoteAndPerido(this.tipoPacote, this.periodo)
-    .subscribe((resp: any) => {
+    .postPacote(this.cadPacote)
+    .subscribe((resp: Pacote) => {
 
-      if (resp.existe) {
-        
-        this.alerts.showAlertDanger(" já está cadastrado.")
-      }
+      this.cadPacote = resp;
+      // this.alerts.showAlertSucess("Pacote cadastrado com sucesso!");
+      this.router.navigate(["/cadpagamento-pacote"]);
 
-      this.alerts.showAlertDanger("Tipo de pacote '"+ this.tipoPacote +"' com período '" + this.periodo+ "', já está cadastrado.");
-            
     },
     error => {
-      
-      if (error.status === 401 ) {
+
+      if (error.status === 401) {
 
         this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
         this.router.navigate(['/login']);
 
       }
-      else if (error.status === 404) {
+      if (error.status === 500) {
 
-       /*  if ( 
-          (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
-          (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
-          (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
-          (this.tipoPacote === "SEMANAL" && this.periodo === "INTEGRAL") ||
-          (this.tipoPacote === "AVULSO" && this.periodo === "INTEGRAL") 
-        ) {
-          
-          this.alerts.showAlertDanger("O tipo de pacote '" + this.tipoPacote + 
-                                      "', não pode ser cadastrado para o período '" + this.periodo + "'.");
-        
-        }
-        else { */
-
-          this.pacoteService
-              .postPacote(this.cadPacote)
-              .subscribe((resp: Pacote) => {
-          
-                this.cadPacote = resp;
-                this.alerts.showAlertSucess("Pacote cadastrado com sucesso!");
-                this.router.navigate(["/inicio"]);
-
-              },
-              error => {
-
-                if (error.status === 401) {
-
-                  this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
-                  this.router.navigate(['/login']);
-          
-                }
-                if (error.status === 500) {
-
-                  this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
-          
-                }
-
-              });
-
-        /* }  */       
+        this.alerts.showAlertDanger("Verifique os campos algum valor está incorreto.");
 
       }
-      else {
 
-      /*   if (
-          (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
-          (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
-          (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
-          (this.tipoPacote === "SEMANAL" && this.periodo === "INTEGRAL") ||
-          (this.tipoPacote === "AVULSO" && this.periodo === "INTEGRAL") 
-        ) {
-                    
-          this.alerts.showAlertDanger("O tipo de pacote '" + this.tipoPacote + 
-                                      "', não pode ser cadastrado para o período '" + this.periodo + "'.");
-
-        }
-        else { */
-
-          this.pacoteService
-          .postPacote(this.cadPacote)
-          .subscribe((resp: Pacote) => {
-      
-            this.cadPacote = resp;
-            this.alerts.showAlertSucess("Pacote cadastrado com sucesso!");
-            this.router.navigate(["/inicio"]);
-
-          },
-          error => {
-
-            if (error.status === 401) {
-
-              this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
-              this.router.navigate(['/login']);
-      
-            }
-            if (error.status === 500) {
-
-              this.alerts.showAlertDanger("Confirme as informações inseridas, encontra-se incorreta.");
-      
-            }
-
-          });
-
-       /*  } */   
-
-      }
-      
     });
-
+    
   }
-
+  
 }
+
+    // this.pacoteService
+    // .getTipoPacoteAndPerido(this.tipoPacote, this.periodo)
+    // .subscribe((resp: any) => {
+
+    //   if (resp.existe) {
+        
+    //     this.alerts.showAlertDanger(" já está cadastrado.")
+    //   }
+
+    //   this.alerts.showAlertDanger("Tipo de pacote '"+ this.tipoPacote +"' com período '" + this.periodo+ "', já está cadastrado.");
+            
+    // },
+    // error => {
+      
+    //   if (error.status === 401 ) {
+
+    //     this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+    //     this.router.navigate(['/login']);
+
+    //   }
+    //   else if (error.status === 404) {
+
+    //    /*  if ( 
+    //       (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
+    //       (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
+    //       (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
+    //       (this.tipoPacote === "SEMANAL" && this.periodo === "INTEGRAL") ||
+    //       (this.tipoPacote === "AVULSO" && this.periodo === "INTEGRAL") 
+    //     ) {
+          
+    //       this.alerts.showAlertDanger("O tipo de pacote '" + this.tipoPacote + 
+    //                                   "', não pode ser cadastrado para o período '" + this.periodo + "'.");
+        
+    //     }
+    //     else { */
+
+      
+
+    //     /* }  */       
+
+    //   }
+    //   else {
+
+    //   /*   if (
+    //       (this.tipoPacote === "INTEGRAL" && this.periodo === "MANHÃ") ||
+    //       (this.tipoPacote === "INTEGRAL" && this.periodo === "TARDE") ||
+    //       (this.tipoPacote === "MENSAL" && this.periodo === "INTEGRAL") ||
+    //       (this.tipoPacote === "SEMANAL" && this.periodo === "INTEGRAL") ||
+    //       (this.tipoPacote === "AVULSO" && this.periodo === "INTEGRAL") 
+    //     ) {
+                    
+    //       this.alerts.showAlertDanger("O tipo de pacote '" + this.tipoPacote + 
+    //                                   "', não pode ser cadastrado para o período '" + this.periodo + "'.");
+
+    //     }
+    //     else { */
+
+    //       this.pacoteService
+    //       .postPacote(this.cadPacote)
+    //       .subscribe((resp: Pacote) => {
+      
+    //         this.cadPacote = resp;
+    //         // this.alerts.showAlertSucess("Cadastrado realizado com sucesso!");
+    //         //  this.router.navigate(["/inicio"]);
+    //         this.router.navigate(["/cadpagamento-pacote"]);
+    //        // this.router.navigate(["/detalhepacote"]);
+
+    //       },
+    //       error => {
+
+    //         if (error.status === 401) {
+
+    //           this.alerts.showAlertDanger("Erro de autenticação, refaça o login.");
+    //           this.router.navigate(['/login']);
+      
+    //         }
+    //         if (error.status === 500) {
+
+    //           this.alerts.showAlertDanger("Confirme as informações inseridas, encontra-se incorreta.");
+      
+    //         }
+
+    //       });
+
+    //    /*  } */   
+
+    //   }
+      
+    // });

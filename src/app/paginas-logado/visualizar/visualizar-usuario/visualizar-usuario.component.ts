@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pacote } from 'src/app/model/Pacote';
 import { User } from 'src/app/model/User';
 import { AlertsService } from 'src/app/service/alerts.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -16,7 +15,17 @@ export class VisualizarUsuarioComponent  implements OnInit{
   listUsuario!: User[];
   tipoUsuario!: string;
   idUsuario!: number;
+  idUsuarioTB!: number;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
   
+  nomeUser!: string;
+  usuario!: string;
+  tipo!: string;
+
+  getUser: User = new User;
+
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -29,6 +38,10 @@ export class VisualizarUsuarioComponent  implements OnInit{
 
     if (environment.token == '') {
       this.router.navigate(['/login']);
+    }
+
+    if (this.listUsuario && this.listUsuario.length > 0) {
+      this.selectedUserId = this.listUsuario[0].id;
     }
 
     //forçando altenticação
@@ -73,9 +86,42 @@ export class VisualizarUsuarioComponent  implements OnInit{
   }
 
   getId(id: number) {
+
     this.idUsuario = id;
+    this.nextButtonId++;
+    this.findByIdUser(this.idUsuario);
+
   }
     
+  findByIdUser(id: number) {
+
+    this.auth
+    .getByIdUser(id)
+    .subscribe((resp: User) => {
+
+      this.getUser = resp;
+
+      if (resp.tipo == "ADMINISTRADOR") {
+
+        for (let i = 0; i < resp.proprietario.length; i++) {
+       
+          this.nomeUser = resp.proprietario[i].nome;            
+        }
+          
+      }
+      else {
+
+        for (let i = 0; i < resp.responsavel.length; i++) {
+       
+          this.nomeUser = resp.responsavel[i].nome;
+        }
+
+      }    
+
+    });
+
+  }
+
   deletarUsuario() {
 
     this.auth

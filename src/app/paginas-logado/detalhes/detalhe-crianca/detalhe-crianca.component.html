@@ -5,226 +5,139 @@
             <div class="title_camp_top">
                 <hr>
                 <div class="title-icon-ali">
-                    <h2 class="text_edit_title_top">DETALHES DA CRIANÇA</h2>
-                    <i class="fa fa-child icon_edit_top" aria-hidden="true"></i>
+                    <h2 class="text_edit_title_top">ESCOLHER PACOTE</h2>
+                    <i class="fas fa-calendar-alt icon_edit_top"></i>
                 </div>
                 <hr>
             </div>
         </div>
 
+        <!-- <div class="d-flex justify-content-center m-2 p-0" *ngIf="listCrianca == null">
+            <div class="title-camp">
+                <div class="title-icon-ali">
+                    <h5 class="text-edit-title-not">Não há datas para serem definidas no momento.</h5>
+                    <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                </div>
+                <button type="submit" class="btn botao-cancel"
+                        [routerLink]="['/visupacote',]">
+                        VOLTAR
+                </button>
+            </div>
+        </div> -->
+
         <div class="container-principal">
             <div class="result-banco">
 
-                <div class="form-group container-respo">
+                <form class="margin-dentro" [formGroup]="formulario">
+                    <!--  *ngIf="listCrianca != null" -->
 
-                    <div class="d-flex justify-content-center w-100">
-                        <div class="title-camp">
-                            <hr>
-                            <div class="title-icon-ali">
-                                <h5 class="text-edit-title">{{getCrianca.nome}}</h5>
-                                <i class="fa fa-address-card-o icon-edit-camp" aria-hidden="true"></i>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
+                    <div>
+                        <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
 
-                    <div class="container-info">
-
-                        <div class="d-flex justify-content-start w-100">
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Data de Nascimento:</p>
-                                <p class="info-edit">{{getCrianca.dtNascimento | date:'dd/MM/yyyy'}}</p>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Genêro:</p>
-                                <p class="info-edit">{{getCrianca.genero}}</p>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Idade:</p>
-                                <p class="info-edit">{{calcularIdade(getCrianca.dtNascimento)}}
-                                    {{calcularIdade(getCrianca.dtNascimento) === 1 ? 'ano' : 'anos'}}</p>
-                            </div>
-
-                        </div>
-
-                        <div class="d-flex justify-content-center w-100">
-                            <div class="title-camp">
-                                <hr>
-                                <div class="title-icon-ali">
-                                    <h5 class="text-edit-title">SAÚDE DA CRIANÇA</h5>
-                                    <i class="fa fa-medkit icon-edit-camp" aria-hidden="true"></i>
+                        <div class="d-block justify-content-center mb-5">
+                            <div class="input-box">
+                                <div class="form-group texto-color">
+                                    <label for="criancaNome" class="label-edit-tp">Crianças:*</label>
+                                    <select class="form-control form-select w-75 p-2" formControlName="criancaNome" id="criancaNome"
+                                    (change)="getIdCrianca($event)">
+                                        <option disabled selected value="">Selecione o ID da criança:</option>
+                                        <option *ngFor="let criancaId of listCrianca" [value]="criancaId">
+                                            Criança ID: {{ criancaId }}
+                                        </option>
+                                    </select>
                                 </div>
-                                <hr>
-                            </div>
-                        </div>
-
-                        <div class="d-block justify-content-between w-100">
-
-                            <div class="d-flex justify-content-start">
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Problema Saude?</p>
-                                    <p class="info-edit">{{getCrianca.problemaSaude ? 'Sim' : 'Não'}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Tipo de Problema de Saude:</p>
-                                    <p class="info-edit">{{getCrianca.tipoProblemaSaude}}</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-start">
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Alguma Alergia?</p>
-                                    <p class="info-edit">{{getCrianca.algumaAlergia ? 'Sim' : 'Não'}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Tipo de alergia:</p>
-                                    <p class="info-edit">{{getCrianca.tipoAlergia}}</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-start">
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Faz uso de médicamentos?</p>
-                                    <p class="info-edit">{{getCrianca.usoMedicamento ? 'Sim' : 'Não'}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Quais médicamentos:</p>
-                                    <p class="info-edit">{{getCrianca.qualMedicamento}}</p>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-start">
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Tem necessidades especiais?</p>
-                                    <p class="info-edit">{{getCrianca.necessidadesEspeciais ? 'Sim' : 'Não'}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Quais necessidades especiais:</p>
-                                    <p class="info-edit">{{getCrianca.tipoNecessidadesEspeciais}}</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="d-block justify-content-between w-100">
-
-                            <div class="d-flex justify-content-center w-100">
-                                <div class="title-camp">
-                                    <hr>
-                                    <div class="title-icon-ali">
-                                        <h5 class="text-edit-title">OUTRAS INFORMAÇÕES</h5>
-                                        <i class="fa fa-info-circle icon-edit-camp" aria-hidden="true"></i>
+                            
+                                <div class="mensagem-input-error">
+                                    <div class="balao cax-position w-50" *ngIf="formulario.get('criancaNome')?.errors?.['required'] &&
+                                    formulario.get('criancaNome')?.touched">
+                                        <span class="m-lg-2">
+                                            Seleção obrigatória!
+                                        </span>
                                     </div>
-                                    <hr>
                                 </div>
                             </div>
 
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Observações da Criança:</p>
-                                <p class="info-edit">{{getCrianca.obsDiaCrianca}}</p>
-                            </div>
-
-                            <div class="elemento_info">
-                                <p class="titulo-edit">Termo de aceite:</p>
-                                <p class="info-edit">{{getCrianca.termoAceite ? 'Aceito' : 'Não'}}</p>
-                            </div>
+                        
+                            <p>Nome: {{nomeCrianca}}</p>
+                            <p>Responsável: {{nomeResponsavel}}</p>
                         </div>
 
-                        <div class="d-block justify-content-between w-100">
+                        <div class="d-block justify-content-center mb-5">
+                            <div class="input-box">
+                                <div class="form-group texto-color">
+                                    <label for="tipoPacote" class="label-edit-tp">Pacotes:*</label>
+                                    <select class="form-control form-select w-75 p-2" formControlName="tipoPacote"
+                                        id="tipoPacote" (change)="getIdPacote($event)">
+                                        <option disabled selected value="">Selecione o tipo do pacote:</option>
+                                        <option *ngFor="let pacoteId of listPacote" value="{{pacoteId}}">
+                                            Pacote ID: {{ pacoteId  }}</option>
+                                    </select>
+                                </div>
 
-                            <div class="d-flex justify-content-center w-100">
-                                <div class="title-camp">
-                                    <hr>
-                                    <div class="title-icon-ali">
-                                        <h5 class="text-edit-title">RESPONSÁVEL</h5>
-                                        <i class="fa fa-user icon-edit-camp" aria-hidden="true"></i>
+                                <div class="mensagem-input-error">
+                                    <div class="balao cax-position w-50" *ngIf="formulario.get('tipoPacote')?.errors?.['required'] &&
+                                    formulario.get('tipoPacote')?.touched">
+                                        <span class="m-lg-2">
+                                            Seleção obrigatória!
+                                        </span>
                                     </div>
-                                    <hr>
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-start">
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Responsável:</p>
-                                    <p class="info-edit">{{getCrianca.responsavel.nome}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Contato:</p>
-                                    <p class="info-edit">{{getCrianca.responsavel.celular}}</p>
-                                </div>
-                            </div>
-
-
+                            <p>Tipo Pacote: {{ nomePacote }}</p>
                         </div>
 
-                        <div class="d-block justify-content-between w-100">
+                        <div class="d-flex justify-content-around bg-color">
 
-                            <div class="d-flex justify-content-center w-100">
-                                <div class="title-camp">
-                                    <hr>
-                                    <div class="title-icon-ali">
-                                        <h5 class="text-edit-title">PACOTE</h5>
-                                        <i class="fa fa-cube icon-edit-camp" aria-hidden="true"></i>
+                            <div class="input-box m-lg-1">
+                                <div class="form-group">
+                                    <label class="label-color" for="dataPay">Data de Pagamento*</label>
+                                    <input [(ngModel)]="cadPagamentoPacote.dataPagamento"
+                                        class="form-control texto-color p-2" type="date" formControlName="dataPay"
+                                        id="dataPay" required />
+                                    <!-- (change)="dataConvert($event)" -->
+                                </div>
+
+                                <div class="mensagem-input-error">
+                                    <div class="balao balao-small cax-position w-100" *ngIf="
+                                 formulario.get('dataPay')?.errors?.['required'] &&
+                                 formulario.get('dataPay')?.touched">
+                                        <span class="m-lg-2">
+                                            Preenchimento obrigatório!
+                                        </span>
                                     </div>
-                                    <hr>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-between">
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Tipo de Pacote:</p>
-                                    <p class="info-edit">{{getCrianca.pacote.tipoPacote}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Período:</p>
-                                    <p class="info-edit">{{getCrianca.pacote.periodo}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Valor:</p>
-                                    <p class="info-edit">{{getCrianca.pacote.valorPacote |
-                                        currency:'BRL':'symbol':'1.2-2'}}</p>
-                                </div>
-
-                                <div class="elemento_info">
-                                    <p class="titulo-edit">Quantidade de Dias:</p>
-                                    <p class="info-edit">{{getCrianca.pacote.qtdDias}}</p>
+                                    <!-- <div class="balao balao-small cax-position w-100" *ngIf="
+                                 formulario.get('dataPay')?.errors?.['overage'] &&
+                                 formulario.get('dataPay')?.touched">
+                              <span class="m-lg-2">
+                                A data de pagamento deve ser do dia de cadastro até o final do mês seguinte.
+                              </span>
+                            </div> -->
                                 </div>
                             </div>
 
                         </div>
+
 
                     </div>
 
+                    <div class="container-btn">
 
-                </div>
-                <div class="container-btn">
+                        <div class="bt-duplo-small">
 
-                    <div class="bt-duplo-small">
+                            <button type="submit" class="btn botao-cad m-auto" (click)="cadastrar()"
+                                [disabled]="!formulario.valid">
+                                CADASTRAR
+                            </button>
+                        </div>
 
-                        <button *ngIf='authService.adm()' type="submit" class="btn botao-cancel" routerLink="/visueditcrianca">
+                        <!-- <button type="submit" class="btn botao-cancel"
+                            [routerLink]="['/visupacote',]">
                             VOLTAR
-                        </button>
-                        <button *ngIf='!authService.adm()' type="submit" class="btn botao-cancel" [routerLink]="['/visucriancasresponsaveis', responavelId]">
-                            VOLTAR
-                        </button>
+                        </button> -->
                     </div>
+                </form>
 
-                </div>
             </div>
 
         </div>

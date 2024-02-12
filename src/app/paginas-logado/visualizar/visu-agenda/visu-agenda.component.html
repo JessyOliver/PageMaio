@@ -1,103 +1,147 @@
-<div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active " id="pills-todos" role="tabpanel" aria-labelledby="nav-todasPostagens-tab">
-  
-      <!-- <div class="d-flex justify-content-center">
-  
-        <div class="form-group buscar-edit">
-          <input type="date" class="form-control input-busca" id="titulo" 
-            placeholder="🔍 buscar data..."
-            [(ngModel)]='dataAgendamentoget' (keyup)='findByAllAgendamento()'>
-        </div>
-      </div> -->
-  
-      <div class="d-flex justify-content-center m-0 p-0">
-        <div class="title_camp_top">
-          <hr>
-          <div class="title-icon-ali">
-            <h2 class="text_edit_title_top">AGENDAMENTOS</h2>
-            <i class="fas fa-calendar-alt icon_edit_top"></i>
-          </div>
-          <hr>
-        </div>
-      </div>
-  
-      <div class="d-flex justify-content-center m-2 p-0" *ngIf="listAgenda == null">
-        <div class="title-camp">
-          <div class="title-icon-ali">
-            <h5 class="text-edit-title-not">Não há agendamentos, cadastrados no momento.</h5>
-            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+<div class="home_logado">
+
+  <div class="whare">
+
+    <main class="table">
+      <section class="table__header">
+        <h1 class="text-title">AGENDAMENTOS</h1>
+        <i class="fas fa-calendar-alt icon_edit_top"></i>
+
+        <!-- <div class="input-group">
+                  <input type="search" class="search-style" placeholder="🔍 buscar data..." id="titulo"
+                      [(ngModel)]='dataAgendamentoget' (keyup)='findByAllAgendamento()'>
+              </div> -->
+      </section>
+      <section>
+
+        <div class="d-flex justify-content-center m-2 p-0" *ngIf="listAgenda == null">
+          <div class="title-camp">
+            <div class="title-icon-ali">
+              <h5 class="text-edit-title-not">Não há agendamentos, cadastrados no momento.</h5>
+              <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
-      </div>
-  
-      <div class="container-principal">
-        <div class="table-responsive">
-  
-          <div class="table_position">
-  
-            <table class="table">
-              <thead class="edit_thead">
-                <tr>
-                  <th class="line_btn" scope="col">Data de Agendamento</th>
-                  <th class="line_btn" scope="col">Horário de Entrada</th>
-                  <th class="line_btn" scope="col">Horário de Saída</th>
-                  <th class="line_btn" scope="col">Status</th>
-                  <th class="line_btn" scope="col">Detalhes</th>
-                  <th class="line_btn" scope="col">Editar</th>
-                  <th class="line_btn" scope="col">Apagar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table_line" *ngFor="let itemAgenda of listAgenda | orderBy: ['dataAgendamento']">
-  
-                  <th class="line_btn color_line" scope="row">{{itemAgenda.dataAgendamento.toUpperCase() | date:'dd/MM/yyyy'}}</th>
-                  <td class="line_btn">{{itemAgenda.horarioEntrada}}</td>
-                  <td class="line_btn">{{itemAgenda.horarioSaida}}</td>
-                  <td class="line_btn">{{itemAgenda.status ? 'Agendado' : 'Não Agendado'}}</td>
-                  <td class="line_btn"><button type="button" class="btn edit_btn"
-                      [routerLink]="['/detalheagenda', itemAgenda.id]"><i class="fa fa-info icon_btn"
-                        aria-hidden="true"></i></button></td>
-                  <td class="line_btn"><button type="button" class="btn edit_btn"
-                      [routerLink]="['/editagenda', itemAgenda.id]"><i class="fas fa-edit icon_btn"></i></button></td>
-                  <td class="line_btn"><button type="button" class="btn edit_btn_danger" (click)="getId(itemAgenda.id)"
-                      data-bs-toggle="modal" data-bs-target="#myModal"><i class="far fa-trash-alt icon_btn"></i></button>
-                  </td>
-  
-                  <!-- Modal -->
-                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog text_modal" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" id="myModalLabel">APAGAR AGENDAMENTO</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </section>
+      <section class="table__body">
+        <table *ngIf="listAgenda != null">
+          <thead class="edit_thead">
+            <tr>
+              <th class=" color_line_title" scope="row"> Data de Agendamento <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Horário de Entrada <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Horário de Saída <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Status <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Detalhes <span class="icon-arrow">&UpArrow;</span></th>
+              <th class=" color_line_title" scope="row"> Editar <span class="icon-arrow">&UpArrow;</span>
+              </th>
+              <th class=" color_line_title" scope="row"> Apagar <span class="icon-arrow">&UpArrow;</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table_line" *ngFor="let itemAgenda of listAgenda | orderBy: ['dataAgendamento']">
+
+              <th class="line_btn color_line" scope="row">{{itemAgenda.dataAgendamento.toUpperCase() |
+                date:'dd/MM/yyyy'}}</th>
+              <td class="line_btn">{{itemAgenda.horarioEntrada}}</td>
+              <td class="line_btn">{{itemAgenda.horarioSaida}}</td>
+              <td class="line_btn">{{itemAgenda.status ? 'Agendado' : 'Não Agendado'}}</td>
+              <!-- [routerLink]="['/detalheagenda', itemAgenda.id]" -->
+              <td class="line_btn">
+                <button type="button" class="btn edit_btn" 
+                  (click)="getId(selectedUserId = itemAgenda.id)" [id]="'btn-modal-' + nextButtonId"
+                  data-bs-toggle="modal" data-bs-target="#myModal2">
+                  <i class="fa fa-info icon_btn" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td class="line_btn">
+                <button type="button" class="btn edit_btn" [routerLink]="['/editagenda', itemAgenda.id]"><i
+                    class="fas fa-edit icon_btn"></i>
+                </button>
+              </td>
+              <td class="line_btn">
+                <button type="button" class="btn edit_btn_danger" (click)="getId(itemAgenda.id)" data-bs-toggle="modal"
+                  data-bs-target="#myModal">
+                  <i class="far fa-trash-alt icon_btn"></i></button>
+              </td>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog text_modal" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">APAGAR AGENDAMENTO</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Deseja realmente apagar esse agendamento?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default btn-success-update" data-bs-dismiss="modal"
+                        routerLink="/visuagenda">Não</button>
+                      <button type="button" class="btn btn-primary btn-cancel" data-bs-dismiss="modal"
+                        (click)="deletarPacote()">Sim</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal 2-->
+              <div class="modal fade mt-0" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog text_modal2" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">DETALHES DO AGENDAMENTO</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" *ngIf="selectedUserId !== null">
+                      <div class="title-icon-ali">
+                        <h5 class="text-edit-title">Data: {{getAgendaDia.dataAgendamento | date:'dd/MM/yyyy'}}</h5>
+                      </div>
+                      <div class="container-info w-75">
+
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Horário de Entrada:</p>
+                          <p class="ml-2">{{getAgendaDia.horarioEntrada}}</p>
                         </div>
-                        <div class="modal-body">
-                          Deseja realmente apagar esse agendamento?
+
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">Horário de Saída:</p>
+                          <p class="ml-2">{{getAgendaDia.horarioSaida}}</p>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default btn-success-update" data-bs-dismiss="modal"
-                            routerLink="/visuagenda">Não</button>
-                          <button type="button" class="btn btn-primary btn-cancel" data-bs-dismiss="modal"
-                            (click)="deletarPacote()">Sim</button>
+
+                        <div class="d-flex justify-content-start">
+                          <p class="titulo-edit">STATUS:</p>
+                          <p class="ml-2">{{getAgendaDia.status ? 'Agendado' : 'Sem Agendamento'}}</p>
                         </div>
+
+                      </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                      <div class="d-flex justify-content-start">
+                        <p>OBSERVAÇÃO:</p>
+                        <p class="ml-2 text_align">{{getAgendaDia.observacao}}</p>
                       </div>
                     </div>
                   </div>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      
+                </div>
+              </div>
+
+            </tr>
+          </tbody>
+        </table>
+      </section>
       <div class="container-btn">
         <div class="bt-duplo-small">
-          <button type="submit" class="btn botao-cancel" routerLink="/inicio">
+          <button type="submit" class="btn botao_return" routerLink="/inicio">
             VOLTAR
           </button>
         </div>
       </div>
-  
-    </div>
-  
+    </main>
   </div>
+</div>

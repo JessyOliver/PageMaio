@@ -11,6 +11,8 @@ import { validandoCpf } from 'src/app/validations/validaCpf';
 import { Validacoes } from 'src/app/validations/validacoes';
 import { cepValidator } from 'src/app/validations/validarcep';
 import { environment } from 'src/environments/environment.prod';
+import { MatInput } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-cad-responsavel',
@@ -38,7 +40,7 @@ export class CadResponsavelComponent implements OnInit{
     private router: Router,
     private alerts: AlertsService,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   ngOnInit(){
@@ -63,7 +65,7 @@ export class CadResponsavelComponent implements OnInit{
       celular: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*')]],
       telResidencial: ['', [Validators.maxLength(10), Validators.minLength(10), Validators.pattern('[0-9 ]*')]],
       telComercial: ['', [Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9 ]*')]],
-      cep: ['', [Validators.required, cepValidator()]],
+      cep: ['', [Validators.required, Validators.maxLength(8), Validators.minLength(8), Validators.pattern('[0-9]+')]],
       rua: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
       numCasa: ['', [Validators.required]],
       bairro: ['', [Validators.required, Validators.pattern('[A-zÀ-ú ()]*')]],
@@ -76,13 +78,24 @@ export class CadResponsavelComponent implements OnInit{
     this.findByAllUser();
   }
 
+  onKeyPress(event: KeyboardEvent) {
+    let key = event.key;
+
+    if (!key.match(/^[0-9]$/)) {
+      // O caractere não é um número
+      event.preventDefault();
+    }
+
+  } 
+  
   buscarEndereco() {
 
     const cep = this.formulario.get('cep')!.value.replace(/\D/g, '');
 
     if (cep.length !== 8) {
       // CEP inválido
-      return;
+       this.alerts.showAlertDanger("Valor inserido inválido.");
+
     }
 
     const url = `https://viacep.com.br/ws/${cep}/json/`;
@@ -91,7 +104,8 @@ export class CadResponsavelComponent implements OnInit{
 
       if (data.hasOwnProperty('erro')) {
         // CEP não encontrado
-        return;
+         this.alerts.showAlertDanger("CEP não encontrado.");
+
       }
 
       this.formulario.patchValue({

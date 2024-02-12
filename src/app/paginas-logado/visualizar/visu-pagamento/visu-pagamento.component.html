@@ -1,0 +1,72 @@
+<div class="home_logado">
+
+    <div class="whare">
+
+        <main class="table">
+            <section class="table__header">
+                <h1 class="text-title">STATUS PAGAMENTO</h1>
+                <div class="input-group">
+                    <!-- <input type="search" class="search-style" placeholder="🔍 buscar criança..." id="titulo"
+                        [(ngModel)]='criancaNome' (keyup)='findByNomeCrianca()'> -->
+                </div>
+            </section>
+            <section>
+
+                <div class="d-flex justify-content-center m-2 p-0" *ngIf="statusPagamentos == null">
+                    <div class="title-camp">
+                        <div class="title-icon-ali">
+                            <h5 class="text-edit-title-not">Não há status de pagamentos, para consulta no momento.</h5>
+                            <i class="fa fa-exclamation-circle icon-edit-not" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="table__body">
+                <table *ngIf="statusPagamentos != null">
+                    <thead class="edit_thead">
+                        <tr>
+                            <th class=" color_line_title" scope="row"> Criança <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Responsável <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Data <span class="icon-arrow">&UpArrow;</span>
+                            </th>
+                            <th class=" color_line_title" scope="row"> Status Pagamento <span
+                                    class="icon-arrow">&UpArrow;</span>
+                            </th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table_line" *ngFor="let status of statusPagamentos| orderBy: ['crianca.nome']">
+                              <!-- (click)="capturarIdCrianca(status)"> -->
+
+                            <th class="line_btn color_line text-border" scope="row" [style.color]="status.corNomeCrianca">
+                                {{status.crianca.nome}}</th>
+                                <th class="line_btn">{{responavelNome}}</th>
+                                <th class="line_btn">{{status.dtPagamento | date:'dd/MM/yyyy'}}</th>
+                            <td class="line_btn" [ngClass]="obterClasseMensagem(status)" [style.background]="status.corNomeCrianca">{{status.mensagem}}</td>
+                                                     
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="container-btn">
+                <div class="bt-duplo-small">
+                    <button type="submit" class="btn botao_return" routerLink="/inicio">
+                        VOLTAR
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+<!-- 
+
+<div *ngFor="let status of statusPagamentos">
+    <p [style.color]="status.corNomeCrianca">{{status.crianca.nome}}</p>
+    <p>{{status.mensagem}}</p>
+</div> -->

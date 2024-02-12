@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { Crianca } from '../model/Crianca';
 import { Observable } from 'rxjs';
+import { Responsavel } from '../model/Responsavel';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,30 @@ export class CriancaService {
   getAllCrianca(): Observable<Crianca[]> {
 
     return this.http.get<Crianca[]>(`${this.baseUrl}/all`, this.token);
+  }
+  
+  //GETALLSEMPAGAMENTO
+  getListSemPagamento(): Observable<Crianca[]> {
+
+    return this.http.get<Crianca[]>(`${this.baseUrl}/all-sem-pagamento`, this.token);
+  }
+  
+  //GETALLPAGAMENTO
+  getListAllPagamentoPacote(): Observable<Crianca[]> {
+
+    return this.http.get<Crianca[]>(`${this.baseUrl}/all-pagamento`, this.token);
+  }
+  
+  //GETALLSTATUSPAGAMENTO
+  getListStatus(): Observable<Crianca[]> {
+
+    return this.http.get<Crianca[]>(`${this.baseUrl}/all-status-pagamento`, this.token);
+  }
+
+  //GETALLCRIANÇARESPONSÁVELSEM PAGAMENTO PACOTE
+  //GET CRIANÇA
+  getCriancaResponsavelPagamento(id: number): Observable<Crianca[]> {
+    return this.http.get<Crianca[]>(`${this.baseUrl}/criancas-sem-pacote/${id}`, this.token);
   }
 
   //GET-ID

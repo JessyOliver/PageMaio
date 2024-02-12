@@ -15,11 +15,20 @@ export class VisuSegundoResponsavelComponent implements OnInit{
 
   listSegundoResponsavel!: SegundoResponsavel[];
 
+  getSegunResponsavel: SegundoResponsavel = new SegundoResponsavel;
+
+  nomeCriancaModal!: string;
+  dtNasciCrianca!: Date;
+  responavelId!: number;
+
   nomeSegundoResponsavel!: string;
 
   idSegundoResponsavel!: number;
 
   nomeCrianca!: string;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
   
   constructor(
     private router: Router,
@@ -38,6 +47,10 @@ export class VisuSegundoResponsavelComponent implements OnInit{
 
     //forçando altenticação
     this.auth.refreshToken();
+
+    if (this.listSegundoResponsavel && this.listSegundoResponsavel.length > 0) {
+      this.selectedUserId = this.listSegundoResponsavel[0].id;
+    }
 
     //validando as ações do função
     this.findByAllSegundoResponsavel();
@@ -83,8 +96,31 @@ export class VisuSegundoResponsavelComponent implements OnInit{
   }
 
   getId(id: number) {
+
     this.idSegundoResponsavel = id;
-    
+
+    this.nextButtonId++;
+    this.findByIdSegunResponsavelModal(this.idSegundoResponsavel);   
+  }
+
+  findByIdSegunResponsavelModal(id: number) {
+
+    this.segundoResponsavelService
+    .getById(id)
+    .subscribe((resp: SegundoResponsavel) => {
+
+      this.getSegunResponsavel = resp;
+      this.responavelId = resp.responsavel.id;
+
+      for (let i = 0; i < resp.responsavel.crianca.length; i++) {
+           
+        this.nomeCriancaModal = resp.responsavel.crianca[i].nome;   
+        this.dtNasciCrianca = resp.responsavel.crianca[i].dtNascimento;   
+               
+      }
+
+    });
+
   }
 
   findByIdSegunResponsavel(id: number){

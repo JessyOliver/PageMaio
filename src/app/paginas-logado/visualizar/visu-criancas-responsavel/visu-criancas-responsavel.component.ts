@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Crianca } from 'src/app/model/Crianca';
 import { Responsavel } from 'src/app/model/Responsavel';
 import { AuthService } from 'src/app/service/auth.service';
+import { CriancaService } from 'src/app/service/crianca.service';
 import { ResponsavelService } from 'src/app/service/responsavel.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -12,13 +14,20 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class VisuCriancasResponsavelComponent implements OnInit{
   
-  listResponsavelCrianca!: Responsavel[];
+  listResponsavelCrianca!: Crianca[];
+
+  getCrianca: Crianca = new Crianca;
+  idCrianca!: number;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
     private responsavelService: ResponsavelService,
+    private criancaService: CriancaService
   ){}
 
   ngOnInit() {
@@ -29,6 +38,10 @@ export class VisuCriancasResponsavelComponent implements OnInit{
       this.router.navigate(['/login']);
     }
 
+    if (this.listResponsavelCrianca && this.listResponsavelCrianca.length > 0) {
+      this.selectedUserId = this.listResponsavelCrianca[0].id;
+    }
+
     //forçando altenticação
     this.auth.refreshToken();
 
@@ -37,14 +50,32 @@ export class VisuCriancasResponsavelComponent implements OnInit{
     
   }
 
+  getId(id: number) {
+
+    this.idCrianca = id;
+    this.nextButtonId++;
+    this.findByIdCriancaService(this.idCrianca);     
+  }
+
+  findByIdCriancaService(id: number) {
+
+    this.criancaService
+    .getIdCrianca(id)
+    .subscribe((resp: Crianca) => {
+
+      this.getCrianca = resp;
+    });
+
+  }
 
   findByIdCrianca(id: number) {
 
     this.responsavelService
     .getCrianca(id)
-    .subscribe((resp: Responsavel[]) => {
+    .subscribe((resp: Crianca[]) => {
 
       this.listResponsavelCrianca = resp;
+
     });
 
   }

@@ -32,7 +32,7 @@
     
                             <div class="input-box">
                                 <div class="form-group campo campoSenha">
-                                    <input (input)='primeiraSenha($event)' class="form-control" type="password" name="senha" id="senha" required />
+                                    <input (input)='confirmarSenha($event)' class="form-control" type="password" name="senha" id="senha" required />
                                     <label for="senha" class="label-edit">Senha*</label>
                                     <button type="button" (click)="togglePass()" class="botao-revela">
                                       <i class="fa-solid  fa-eye iconPass" id="text"></i>
@@ -43,7 +43,7 @@
                       
                               <div class="input-box">
                                 <div class="form-group campo campoSenha">
-                                    <input (input)='confirmarSenha($event)' class="form-control" type="password" name="confirmSenha" id="confirmSenha" required />
+                                    <input [(ngModel)]="senha" class="form-control" type="password" name="confirmSenha" id="confirmSenha" required />
                                     <label for="confirmSenha" class="label-edit">Confirmar Senha*</label>
                                     <button type="button" (click)="togglePass2()" class="botao-revela">
                                       <i class="fa-solid  fa-eye iconPass2" id="text2"></i>

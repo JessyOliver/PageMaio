@@ -188,16 +188,16 @@ export class EditCriancaComponent implements OnInit{
       this.editCrianca.necessidadesEspeciais = this.opSaudNEOP;
     }
 
-    if ( this.idPacotePg === undefined) {
+    // if ( this.idPacotePg === undefined) {
       
-      this.editCrianca.pacote;
-    } 
-    else {
+    //   this.editCrianca.pacote;
+    // } 
+    // else {
 
-      //chave estrangeira => FK
-      this.pacoteFK.id = this.idPacotePg;
-      this.editCrianca.pacote = this.pacoteFK;
-    }
+    //   //chave estrangeira => FK
+    //   this.pacoteFK.id = this.idPacotePg;
+    //   this.editCrianca.pacote = this.pacoteFK;
+    // }
     
     this.criancaService
     .putCrianca(this.editCrianca)
