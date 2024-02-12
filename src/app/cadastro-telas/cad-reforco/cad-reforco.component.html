@@ -18,7 +18,8 @@
 
                 <form class="forms-campos-cad" [formGroup]="formulario">
     
-                    <div class="input-box m-0">
+                  <div class="input-box m-0">
+                      <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
                         <div class="form-group">
                           <label class="label-color" for="materias">Matérias *</label>
                           <select class="form-control texto-color p-2" formControlName="materias" id="materias" (change)='materiascad($event)' required>

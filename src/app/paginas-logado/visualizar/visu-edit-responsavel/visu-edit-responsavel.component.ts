@@ -38,12 +38,12 @@ export class VisuEditResponsavelComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    //forçando altenticação
-    this.auth.refreshToken();
-
     if (this.listResponsavel && this.listResponsavel.length > 0) {
       this.selectedUserId = this.listResponsavel[0].id;
     }
+
+    //forçando altenticação
+    this.auth.refreshToken();    
 
     // exibindo o responsável
     this.findAllResponsavel();

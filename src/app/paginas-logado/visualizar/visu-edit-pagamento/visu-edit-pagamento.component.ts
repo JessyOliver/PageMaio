@@ -97,17 +97,21 @@ export class VisuEditPagamentoComponent implements OnInit{
   }
 
   getStatusMessage(pagamento: PagamentoPacote): { mensagem: string, cor: string } {
+    
     const dataAtual = new Date();
     const dataPagamento = new Date(pagamento.dataPagamento);
+    
+    console.log("Data BD: " + format(dataPagamento, this.formatoBrasil))
+    console.log("Data : " + format(dataAtual, this.formatoBrasil))
   
     if (pagamento.status) {
       return { mensagem: 'Pagamento Realizado', cor: '#395b01' };
     } else if (dataPagamento > dataAtual) {
       return { mensagem: 'Aguardando Pagamento', cor: '#2D2182' };
-    } else if (dataPagamento.toDateString() === dataAtual.toDateString()) {
-      return { mensagem: 'Aguardando pagamento último dia para pagar.', cor: '#f7a239' };
+    } else if (dataPagamento.toDateString() == dataAtual.toDateString()) {
+      return { mensagem: 'Aguardando pagamento último dia para pagar', cor: '#f7a239' };
     } else if (dataPagamento < dataAtual) {
-      return { mensagem: 'Pagamento em atraso.', cor: '#fc5252' };
+      return { mensagem: 'Pagamento em atraso', cor: '#fc5252' };
     }
   
     // Default return statement

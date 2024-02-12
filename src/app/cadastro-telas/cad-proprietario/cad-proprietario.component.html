@@ -18,7 +18,9 @@
       <form class="forms-campos-cad" [formGroup]="formulario">
 
         <div class="input-box">
+          
           <div class="form-group campo">
+            <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
             <input [(ngModel)]="cadProprietario.nome" class="form-control" type="text" formControlName="nome" id="nome" required />
             <label for="nome" class="label-edit">Nome*</label>
           </div>

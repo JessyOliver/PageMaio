@@ -48,12 +48,13 @@
                         <tr class="table_line"
                             *ngFor="let itemPayPacote of listPayPacote | orderBy: ['dataPagamento']; let i = index">
 
-                            <td class="line_btn  color_line" scope="row">{{itemPayPacote.dataPagamento | date:'dd/MM/yyyy' }}</td>
-                                
+                            <td class="line_btn  color_line" scope="row">{{itemPayPacote.dataPagamento |
+                                date:'dd/MM/yyyy' }}</td>
+
                             <td class="line_btn negrito" [ngStyle]="{ 'color': getStatusMessage(itemPayPacote).cor }">
                                 {{ getStatusMessage(itemPayPacote).mensagem }}
-                            </td>                            
-                                
+                            </td>
+
                             <td class="line_btn"> {{listCrianca[i].responsavel.nome}}</td>
                             <td class="line_btn"> {{listCrianca[i].nome}} </td>
                             <td class="line_btn">
@@ -116,8 +117,9 @@
 
                                                         <label class="label-color" for="statusPay">Pagamento Status:
                                                         </label>
-                                                        <p class="ml-2">{{ editPayPacote.status ? "Realizado" : "Aberto"
-                                                            }}</p>
+                                                        <p class="ml-2">
+                                                            {{ editPayPacote.status ? "Realizado" : "Aberto"}}
+                                                        </p>
                                                     </div>
                                                     <select class="form-control texto-color p-2 w-50" name="statusPay"
                                                         id="statusPay" (change)="statusPay($event)" required>
@@ -195,7 +197,7 @@
                                                 </div>
                                             </div>
 
-                                            
+
                                             <div class="modal-footer">
                                                 <div class="input-box">
                                                     <div class="form-group campo">

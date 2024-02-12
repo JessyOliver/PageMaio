@@ -94,7 +94,7 @@ export class CadResponsavelComponent implements OnInit{
 
     if (cep.length !== 8) {
       // CEP inválido
-       this.alerts.showAlertDanger("Valor incerido inválido.");
+       this.alerts.showAlertDanger("Valor inserido inválido.");
 
     }
 

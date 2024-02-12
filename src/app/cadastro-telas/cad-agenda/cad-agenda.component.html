@@ -31,6 +31,7 @@
               <form class="margin-dentro" [formGroup]="formulario" (ngSubmit)="cadAgendamento()">
 
                 <div formArrayName="agendar">
+                  <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
 
                   <div *ngFor="let item of agendar.controls; let i = index" [formGroupName]="i">
 

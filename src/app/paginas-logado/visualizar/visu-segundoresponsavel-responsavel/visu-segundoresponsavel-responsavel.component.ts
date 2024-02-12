@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Responsavel } from 'src/app/model/Responsavel';
+import { SegundoResponsavel } from 'src/app/model/SegundoResponsavel';
 import { AuthService } from 'src/app/service/auth.service';
 import { ResponsavelService } from 'src/app/service/responsavel.service';
+import { SegundoResponsavelService } from 'src/app/service/segundo-responsavel.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -12,9 +14,18 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class VisuSegundoresponsavelResponsavelComponent implements OnInit{
 
-  listSegundoResponsavel!: Responsavel[];
+  listSegundoResponsavel!: SegundoResponsavel[];
+  getSegunResponsavel: SegundoResponsavel = new SegundoResponsavel;
+  idSegundoResponsavel!: number;
 
   nomeCrianca!: string;
+
+  nomeCriancaModal!: string;
+  dtNasciCrianca!: Date;
+  responavelId!: number;
+
+  nextButtonId = 1;
+  selectedUserId: number | null = null;
   
   constructor(
     private router: Router,
@@ -22,6 +33,8 @@ export class VisuSegundoresponsavelResponsavelComponent implements OnInit{
     private auth: AuthService,
     public authService: AuthService,
     private responsavelService: ResponsavelService,
+    private segundoResponsavelService: SegundoResponsavelService,
+
   ){}
 
   ngOnInit() {
@@ -30,6 +43,10 @@ export class VisuSegundoresponsavelResponsavelComponent implements OnInit{
 
     if (environment.token == '') {
       this.router.navigate(['/login']);
+    }
+
+    if (this.listSegundoResponsavel && this.listSegundoResponsavel.length > 0) {
+      this.selectedUserId = this.listSegundoResponsavel[0].id;
     }
 
     //forçando altenticação
@@ -44,13 +61,33 @@ export class VisuSegundoresponsavelResponsavelComponent implements OnInit{
 
     this.responsavelService
     .getSegundoResponsavel(id)
-    .subscribe((resp: Responsavel[]) => {
+    .subscribe((resp: SegundoResponsavel[]) => {
 
       this.listSegundoResponsavel = resp;
     });
 
   }
     
+
+  getId(id: number) {
+
+    this.idSegundoResponsavel = id;
+
+    this.nextButtonId++;
+    this.findByIdSegunResponsavelModal(this.idSegundoResponsavel);   
+  }
+
+  findByIdSegunResponsavelModal(id: number) {
+
+    this.segundoResponsavelService
+    .getById(id)
+    .subscribe((resp: SegundoResponsavel) => {
+
+      this.getSegunResponsavel = resp;
+    
+    });
+
+  }
 
 }
 

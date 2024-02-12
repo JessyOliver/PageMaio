@@ -42,25 +42,95 @@
               <td class="line_btn">{{itemSegunResponsavel.parentesco}}</td>
               <td class="line_btn">{{itemSegunResponsavel.celular}}</td>
               <td class="line_btn">
-                <button type="button" class="btn edit_btn"  [routerLink]="['/detalhesegresponsavel', itemSegunResponsavel.id]">
+                <button type="button" class="btn edit_btn" (click)="getId(selectedUserId = itemSegunResponsavel.id)"
+                  [id]="'btn-modal-' + nextButtonId" data-bs-toggle="modal" data-bs-target="#myModal">
                   <i class="fa fa-info icon_btn" aria-hidden="true"></i>
                 </button>
               </td>
-              
+             
+           
             </tr>
 
           </tbody>
+          
         </table>
       </section>
-      <div class="container-btn">
-      
+      <div class="container-btn">      
+
         <div class="bt-duplo-small">
           <button type="submit" class="btn botao-cancel" routerLink="/inicio">
             VOLTAR
           </button>
         </div>
-    
+
       </div>
-    </main>
+    </main>   
+        <!-- Modal 2-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog text_modal" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">DETALHES DO 2° RESPONSÁVEL</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" *ngIf="selectedUserId !== null">
+                <div class="title-icon-ali">
+                  <h5 class="text-edit-title">{{getSegunResponsavel.nome.toUpperCase()}}</h5>
+                </div>
+                <div class="container-info w-75">
+
+                  <div class="d-flex justify-content-start">
+                    <p class="titulo-edit">Data de Nascimento:</p>
+                    <p class="ml-2">{{getSegunResponsavel.dtNascimento | date:'dd/MM/yyyy'}}</p>
+                  </div>
+
+                  <div class="d-flex justify-content-start">
+                    <p class="titulo-edit">Gênero:</p>
+                    <p class="ml-2">{{getSegunResponsavel.genero}}</p>
+                  </div>
+
+                  <div class="d-flex justify-content-start">
+                    <p class="titulo-edit">CPF:</p>
+                    <p class="ml-2">{{getSegunResponsavel.cpf}}</p>
+                  </div>
+
+                  <div class="d-flex justify-content-start">
+                    <p class="titulo-edit">Parentesco:</p>
+                    <p class="ml-2">{{getSegunResponsavel.parentesco}}</p>
+                  </div>
+
+                  <div class=" d-block justify-content-start">
+
+                    <div class="d-flex justify-content-start">
+                      <hr>
+                      <h5 class="text-edit-title">CONTATO</h5>
+                      <hr>
+                    </div>
+
+                    <div class="d-flex justify-content-start">
+                      <p class="titulo-edit">Celular:</p>
+                      <p class="ml-2">{{getSegunResponsavel.celular}}</p>
+                    </div>
+
+                    <div class="d-flex justify-content-start" *ngIf="getSegunResponsavel.telefone != null">
+                      <p class="titulo-edit">Telefone:</p>
+                      <p class="ml-2">{{getSegunResponsavel.telefone}}</p>
+                    </div>
+
+                    <div class="d-flex justify-content-start"
+                      *ngIf="getSegunResponsavel.telefoneComercial != null">
+                      <p class="titulo-edit">Telefone Comercial:</p>
+                      <p class="ml-2">{{getSegunResponsavel.telefoneComercial}}</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+         
+
   </div>
 </div>

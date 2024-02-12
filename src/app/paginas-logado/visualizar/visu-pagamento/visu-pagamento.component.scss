@@ -355,6 +355,11 @@ input::placeholder {
     font-size: 40pt;
 }
 
+.text-border {
+    -webkit-text-stroke-width: 0.2px;
+    -webkit-text-stroke-color: #fff;
+}
+
 main.table {
    
     height: auto; //100vh;

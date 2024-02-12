@@ -24,6 +24,7 @@
                       <form class="margin-dentro" [formGroup]="formulario">
 
                         <div class="campo-nome mb-3 p-3">
+                          <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
                           <div class="input-box">
                             <div class="form-group campo">
                                 <input [(ngModel)]="cadCrianca.nome" class="form-control w-75" type="text" formControlName="nome" id="nome" required />

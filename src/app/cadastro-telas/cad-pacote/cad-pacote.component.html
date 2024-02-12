@@ -18,6 +18,8 @@
     
                     
                     <div class="input-box">
+                        <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
+
                         <div class="form-group campo">
                             <input currencyMask [(ngModel)]="valorPeriodo" class="form-control" type="text"
                                 formControlName="valorPeriodo" id="valorPeriodo" required (ngModelChange)="calcular()"/>

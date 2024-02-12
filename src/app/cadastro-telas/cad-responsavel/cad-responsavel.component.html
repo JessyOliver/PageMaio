@@ -23,8 +23,10 @@
 
                       <form class="margin-dentro" [formGroup]="formulario">
 
+                        <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
                         <div class="d-flex justify-content-between">
                           <div class="input-box m-0">
+
                             <div class="form-group campo">
                                 <input [(ngModel)]="cadResponsavel.nome" class="form-control" type="text" formControlName="nome" id="nome" required />
                                 <label class="label-edit" for="nome">Nome*</label>

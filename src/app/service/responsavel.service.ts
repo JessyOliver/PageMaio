@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Responsavel } from '../model/Responsavel';
+import { Crianca } from '../model/Crianca';
+import { SegundoResponsavel } from '../model/SegundoResponsavel';
 
 @Injectable({
   providedIn: 'root'
@@ -58,13 +60,13 @@ export class ResponsavelService {
   }
  
   //GET CRIANÇA
-  getCrianca(id: number): Observable<Responsavel[]> {
-    return this.http.get<Responsavel[]>(`${this.baseUrl}/criancas/${id}`, this.token);
+  getCrianca(id: number): Observable<Crianca[]> {
+    return this.http.get<Crianca[]>(`${this.baseUrl}/criancas/${id}`, this.token);
   }
 
   //GET SEGUNDO RESPONSAVEL
-  getSegundoResponsavel(id: number): Observable<Responsavel[]> {
-    return this.http.get<Responsavel[]>(`${this.baseUrl}/seguresponsavel/${id}`, this.token);
+  getSegundoResponsavel(id: number): Observable<SegundoResponsavel[]> {
+    return this.http.get<SegundoResponsavel[]>(`${this.baseUrl}/seguresponsavel/${id}`, this.token);
   }
 
 }

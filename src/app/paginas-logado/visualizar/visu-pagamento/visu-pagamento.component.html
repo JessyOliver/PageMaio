@@ -25,7 +25,7 @@
                 <table *ngIf="statusPagamentos != null">
                     <thead class="edit_thead">
                         <tr>
-                            <th class=" color_line_title" scope="row"> Nome <span class="icon-arrow">&UpArrow;</span>
+                            <th class=" color_line_title" scope="row"> Criança <span class="icon-arrow">&UpArrow;</span>
                             </th>
                             <th class=" color_line_title" scope="row"> Responsável <span class="icon-arrow">&UpArrow;</span>
                             </th>
@@ -41,7 +41,7 @@
                         <tr class="table_line" *ngFor="let status of statusPagamentos| orderBy: ['crianca.nome']">
                               <!-- (click)="capturarIdCrianca(status)"> -->
 
-                            <th class="line_btn color_line" scope="row" [style.color]="status.corNomeCrianca">
+                            <th class="line_btn color_line text-border" scope="row" [style.color]="status.corNomeCrianca">
                                 {{status.crianca.nome}}</th>
                                 <th class="line_btn">{{responavelNome}}</th>
                                 <th class="line_btn">{{status.dtPagamento | date:'dd/MM/yyyy'}}</th>

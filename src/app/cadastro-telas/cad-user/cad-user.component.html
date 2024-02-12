@@ -7,7 +7,9 @@
       <h2 class="form-title">CADASTRO DE USUÁRIO</h2>
       <form class="forms-campos-cad" [formGroup]="formulario">
 
+        <label class="label-color mensagem_obri" for="materias">Campos com <span class="span_bold">*</span> são de preenchimento obrigatório.</label>
         <div class="input-box">
+
           <div class="form-group campo">
             <input [(ngModel)]="cadUser.usuario" class="form-control" type="email" formControlName="usuario" id="usuario" (blur)="validatePreenchido()" required />
             <label for="usuario" class="label-edit">Usuário*</label>

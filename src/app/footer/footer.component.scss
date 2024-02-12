@@ -61,6 +61,12 @@ a {
     margin-bottom: 3px;
 }
 
+.position {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .icon_maps {
     color: #ffffff;
     font-size: 50px;
@@ -70,4 +76,5 @@ a {
 .icon_info {
     color: #ffffff;
     font-size: 30px;
+    padding-left: 700px;
 }

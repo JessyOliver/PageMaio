@@ -92,6 +92,13 @@
     font-size: 20px;
 }
 
+.container-btn {
+    width: 95%;
+    display: flex;
+    justify-content: end;
+    text-align: right;
+}
+
 .botao-cancel {
     margin: 2px;
     width: auto;
@@ -210,21 +217,26 @@
 }
 
 ////////////////MODAL////////////////
+
 .text_modal {
     position: relative;
-    top: 45%;
+    top: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-}
-
-.line_btn {
+    color: #2d2182;
+  }
+  
+  .text_align {
+    text-align: justify;
+  }
+  
+  .line_btn {
     position: relative;
     padding: 20px;
-}
-
-.btn-cancel {
+  }
+  
+  .btn-cancel {
     background-color: transparent;
     // margin: 10px;
     color: #ffffff;
@@ -232,42 +244,10 @@
     background-color: #bb2d3b;
     font-weight: 500;
   }
+
+  //////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////
   
-  .btn-cancel:hover {
-    background-color: transparent;
-    color: #bb2d3b;
-    background-color: #bb2d3b2b;
-    border: 2px #bb2d3b solid;
-    font-weight: 500;
-  }
-  
-  .btn-success-update {
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px #ffffff solid;
-    background-color: #157347;
-    font-weight: 500;
-  }
-  
-  .btn-success-update:hover {
-    background-color: transparent;
-    color: #157347;
-    background-color: #1573471e;
-    border: 2px #157347 solid;
-  }
-
-.container-btn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: right;
-    padding: 5px;
-    width: 100%; 
-    height: auto;   
- //   background: rgb(111, 78, 18);  
-}
-
-
-
 @media (max-width:920px) {
 
     .tab-pane {
